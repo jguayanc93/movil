@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>crear cotizacion</title>
+</head>
+<body>
+    <div>
+        <button type="button" id="back-menu">regresar al menu</button>
+    </div>
+    <!-- PASO 1 PARA LA BUSQUEDA DE UN CLIENTE -->
+    <div>
+      <label for="busqueda" class="block text-sm/6 font-medium text-gray-900">Paso 1:</label>
+      <div class="mt-2">
+        <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+          <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">CLIENTE</div>
+          <input type="search" name="busqueda" id="busqueda" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="buscalo por">
+          <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+            <select id="currency" name="currency" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+              <option value="01">PRINCIPAL</option>
+              <option value="08">M&M</option>
+            </select>
+            <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+              <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- FIN DEL PASO 1 -->
+   
+    <div>
+        <!-- <h2>paso 1: busca a tu cliente</h2> -->
+        <div>
+            <!-- <input type="search" id="busqueda"> -->
+            <div id="aparecer">
+                <table>
+                    <tbody id="recorrer"></tbody>
+                </table>
+            </div>
+        </div>
+  <!-- PASO 2 PARA LA BUSQUEDA DE UN CLIENTE -->
+   <div>
+    <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 2:</label>
+    <div class="mt-2">
+      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+        <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">PRODUCTO</div> -->
+        <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"><button id="voz" disabled>presionar</button></div>
+        <!-- <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+          <button class="hover:bg-sky-700">presionar</button>
+        </div> -->
+        <input type="search" name="producto" id="producto" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="buscalo por">
+        <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+          <select id="currency2" name="currency2" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            <option>nombre</option>
+            <option>partnumber</option>
+          </select>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- FIN DEL PASO 2 -->
+<div id="modal-aceptacion" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"></div>
+<!-- PASO 3 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
+<div>
+  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 3:selecciona un producto de la lista para añadirlo</label>
+  <div class="mt-2">
+    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+      <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">PRODUCTO</div> -->
+      <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
+      </div>
+      <!-- <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+        <button class="hover:bg-sky-700">presionar</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!-- FIN DEL PASO 3 -->
+
+
+        <!-- <h2>paso 2: busca tu producto para cotizar</h2>
+        <div>
+            <input type="search" id="producto">
+        </div> -->
+        <!-- <h2>pase 3: selecciona un producto de la lista para añadirlo a tu coti</h2> -->
+        <div id="encontrar">
+            <div class="relative" id="recorrer-productos"></div>
+        </div>
+<!-- PASO 4 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
+<div>
+  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:ver rentabilidad ganada de esta coti (opcional)</label>
+  <div class="mt-2">
+    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+      <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">PRODUCTO</div> -->
+    </div>
+  </div>
+  <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
+</div>
+<!-- FIN DEL PASO 4 -->
+        
+        <!-- /////////////////esta parte de abajo es valida lo de arriba es solo un testeo de responsive -->
+        <!-- <div id="recolectar">
+            <table>
+                <tbody id="seleccionar-productos"></tbody>
+            </table>
+        </div> -->
+        <!-- <h2>paso 4: ver rentabilidad ganada de esta coti (opcional)</h2>
+        <div>
+            <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
+        </div> -->
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Producto</td>
+                        <td>Cantidad</td>
+                        <td>Precio Venta</td>
+                        <td>Dsct Cliente</td>
+                        <td>Costo Total</td>
+                        <td>Totalisado</td>
+                        <td>Diferencia</td>
+                        <td>RENTABILIDAD</td>
+                    </tr>
+                </thead>
+                <tbody id="resumen"></tbody>
+            </table>
+        </div>
+
+        <!-- <h2>paso 5: aplicar OPG o algun tipo de promocion de descuento</h2>
+        <div>            
+            <input type="text" id="opg">
+            <button type="button" id="promo-click">aplicar</button>
+            <p>advertencia:solo se aplicara la promo segun corresponda o este definida la promocion</p>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Producto</td>
+                        <td>Descuento con IGV</td>
+                        <td>Total</td>
+                    </tr>
+                </thead>
+                <tbody id="promos"></tbody>
+            </table>
+        </div> -->
+<!-- PASO 5 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
+<div>
+  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 5:lista de productos</label>
+  <div class="mt-2">
+    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+      <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">PRODUCTO</div> -->
+    </div>
+  </div>
+  <button type="button" id="carrito">PRODUCTOS</button>
+</div>
+<!-- FIN DEL PASO 5 -->
+<div id="carro-contenedor" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+  
+  <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+
+  <div class="fixed inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+        
+        <div class="pointer-events-auto w-screen max-w-md">
+          <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+              <div class="flex items-start justify-between">
+                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">LISTA DE PRODUCTOS</h2>
+                <div class="ml-3 flex h-7 items-center">
+                  <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Close panel</span>
+                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <div class="flow-root">
+                  <ul id="productos-listados" role="list" class="-my-6 divide-y divide-gray-200">
+                    <!-- <li class="flex py-6">
+                      <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
+                        <img src="https://tailwindui.com/plus/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="size-full object-cover">
+                      </div>
+
+                      <div class="ml-4 flex flex-1 flex-col">
+                        <div>
+                          <div class="flex justify-between text-base font-medium text-gray-900">
+                            <h3>
+                              <a href="#">Throwback Hip Bag</a>
+                            </h3>
+                            <p class="ml-4">$90.00</p>
+                          </div>
+                          <p class="mt-1 text-sm text-gray-500">Salmon</p>
+                        </div>
+                        <div class="flex flex-1 items-end justify-between text-sm">
+                          <p class="text-gray-500">Qty 1</p>
+
+                          <div class="flex">
+                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                    </li> -->
+                    <!-- <li class="flex py-6">
+                      <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
+                        <img src="https://tailwindui.com/plus/img/ecommerce-images/shopping-cart-page-04-product-02.jpg" alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." class="size-full object-cover">
+                      </div>
+
+                      <div class="ml-4 flex flex-1 flex-col">
+                        <div>
+                          <div class="flex justify-between text-base font-medium text-gray-900">
+                            <h3>
+                              <a href="#">Medium Stuff Satchel</a>
+                            </h3>
+                            <p class="ml-4">$32.00</p>
+                          </div>
+                          <p class="mt-1 text-sm text-gray-500">Blue</p>
+                        </div>
+                        <div class="flex flex-1 items-end justify-between text-sm">
+                          <p class="text-gray-500">Qty 1</p>
+
+                          <div class="flex">
+                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                    </li> -->
+                    <!-- More products... -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+              <div class="flex justify-between text-base font-medium text-gray-900">
+                <p>Subtotal</p>
+                <p>$262.00</p>
+              </div>
+              <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+              <div class="mt-6">
+                <a id="carrito-cerrar" href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">Cerrar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+        <h2>paso 6: si esta conforme con los items y la promo proceda a crear la coti</h2>
+        <div>
+            <button type="button" id="creacion">Crear Cotizacion</button>
+            <p>mensaje:no se creara nada si su tabla de items esta vacia y/o si desea reiniar la tabla solo actualise</p>
+        </div>
+    </div>
+    <!-- espacio para la insertada del nuevo diseño -->
+
+    <div class="mt-6">
+        <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">MENU</a>
+    </div>
+
+    <!-- <div>
+        <label for="price" class="block text-sm/6 font-medium text-gray-900">Paso 1:</label>
+        <div class="mt-2">
+          <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+            <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">CLIENTE</div>
+            <input type="search" name="price" id="price" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="buscalo por">
+            <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+              <select id="currency" name="currency" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                <option>nombre</option>
+                <option>ruc</option>
+              </select>
+              <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+                <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
+    </div> -->
+
+    <!-- parte para un formato completo cajas de texto -->
+    <div class="border-b border-gray-900/10 pb-12">
+        <h2 class="text-base/7 font-semibold text-gray-900">Personal Information</h2>
+        <p class="mt-1 text-sm/6 text-gray-600">Use a permanent address where you can receive mail.</p>
+  
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <label for="first-name" class="block text-sm/6 font-medium text-gray-900">First name</label>
+            <div class="mt-2">
+              <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            </div>
+          </div>
+  
+          <div class="sm:col-span-3">
+            <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Last name</label>
+            <div class="mt-2">
+              <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+
+
+    
+    <script>
+        document.getElementById("back-menu").addEventListener("click",()=>window.location.href="http://127.0.0.1/demo1/main.html")
+    </script>
+    <script src="./js/global/variables.js"></script>
+    <script src="./caminos/rutas.js"></script>
+
+    <script src="./js/cotizacion/buscar_cliente.js"></script>
+    <script src="./js/funciones/b_cliente.js"></script>
+    <script src="./js/funciones/identificar_cliente.js"></script>
+
+    <script src="./js/cotizacion/buscar_producto.js"></script>
+    <script src="./js/funciones/b_producto.js"></script>
+    <script src="./js/funciones/identificar_producto.js"></script>
+
+    <script src="./js/cotizacion/rentabilidad.js"></script>
+    <script src="./js/funciones/rentabilidad.js"></script>
+
+    <script src="./js/funciones/carrito.js"></script>
+
+    <!-- <script src="./js/cotizacion/promocion.js"></script> -->
+    <!-- <script src="./js/funciones/promocion_aplicar.js"></script> -->
+
+    <script src="./js/cotizacion/crear.js"></script>
+    <script src="./js/funciones/coti_crear.js"></script>
+</body>
+</html>

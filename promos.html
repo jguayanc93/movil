@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aplicar promos</title>
+</head>
+<body>
+    <div><button type="button" id="back-menu">regresar al menu</button></div>
+    <div>
+        <h2>Ingresa el numero de cotizacion</h2>
+        <input type="text" id="ncoti">
+        <button type="button" id="buscar-coti">buscar su cotizacion</button>
+    </div>
+    <div>
+        <h1>COTIZACION DATOS GENERALES</h1>
+        <h2>COTIZACION CABESERA</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>documento</td>
+                    <td>fecha</td>
+                    <td>cliente</td>
+                    <td>vendedor</td>
+                    <td>moneda</td>
+                    <td>total sin IGV</td>
+                    <td>total con IGV</td>
+                    <td>estado</td>
+                    <td>referencial</td>
+                    <td>tipo de cambio</td>
+                </tr>
+            </thead>
+            <tbody id=""></tbody>
+        </table>
+        <h2>COTIZACION DETALLADO</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>codigo f</td>
+                    <td>marca</td>
+                    <td>descripcion</td>
+                    <td>cantidad</td>
+                    <td>precio</td>
+                    <td>totn</td>
+                    <td>descuento</td>
+                    <td>almacen</td>
+                </tr>
+            </thead>
+            <tbody id="coti-detalle"></tbody>
+        </table>
+    </div>
+    <div>
+        <h2>VISUALISAR PROMOCION</h2>
+        <!-- espacio para testo de sonido entrante -->
+         <!-- <input type="text" name="voz" id="voz"> -->
+         <button type="button" id="reconocer-voz">mantener presionado para hablar</button><br>
+         <!-- fin de test de sonido entrante -->
+        <input type="text" id="nprom">
+        <button type="button" id="buscar-prom">ingrese el numero de su promocion</button>
+        <table>
+            <thead id="prom-titulos"></thead>
+            <tbody id="prom-detalle"></tbody>
+        </table>
+    </div>
+    <div>
+        <h2>APLICAR PROMO INSERTADA</h2>
+        <button type="button" id="adjuntar">adjuntar promocion</button>
+    </div>
+    <script>
+        document.getElementById("back-menu").addEventListener("click",()=>window.location.href="http://127.0.0.1/demo1/main.html")
+    </script>
+    <script src="./caminos/rutas.js"></script>
+
+    <script src="./js/global/variables.js"></script>
+
+    <script src="./js/audio/escuchador.js"></script>
+
+    <script src="./js/promos/buscar_cotizacion.js"></script>
+
+    <script src="./js/promos/promo_visualisar.js"></script>
+
+    <script src="./js/promos/promo_adjuntar.js"></script>
+</body>
+</html>

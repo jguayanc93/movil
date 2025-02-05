@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FACTURA</title>    
+</head>
+<body>
+    <div>
+        <button type="button" id="back-menu">regresar al menu</button>
+    </div>
+    <div>
+        <input type="text" name="" id="leer">
+        <button id="enviar">buscar documento</button>
+    </div>
+    <div>
+        <input type="text" id="tipo-despacho" placeholder="selecccionar despacho" style="width: 400px;" disabled>
+        <button type="button" id="upd-tipo-despacho">CAMBIAR</button>
+        <input type="search" id="tipo-despacho2" placeholder="selecccionar despacho" style="width: 400px;" disabled>
+        <br>
+        <input type="text" id="transportista" placeholder="selecccionar transportista" style="width: 400px;" disabled>
+        <button type="button" id="upd-transportista">CAMBIAR</button>
+        <input type="text" id="transportista2" placeholder="selecccionar transportista" style="width: 400px;" disabled>
+        <br>
+        <input type="text" id="atencion" placeholder="selecccionar atencion" style="width: 400px;" disabled>
+        <button type="button" id="upd-atencion">CAMBIAR</button>
+        <input type="text" id="atencion2" placeholder="selecccionar atencion" style="width: 400px;" disabled>
+        <br>
+        <input type="text" id="direccion" placeholder="selecccionar direccion" style="width: 400px;" disabled>
+        <button type="button" id="upd-direccion">CAMBIAR</button>
+        <input type="text" id="direccion2" placeholder="selecccionar atencion" style="width: 400px;" disabled>
+        <br>
+        <input type="text" id="vendedor-asignado" placeholder=" selecccionar vendedor-asignado" style="width: 400px;" disabled>
+        <button type="button" id="upd-vendedor-asignado">CAMBIAR</button>
+        <input type="text" id="vendedor-asignado2" placeholder="selecccionar atencion" style="width: 400px;" disabled>
+        <br>
+        <input type="text" id="observacion" placeholder="observacion" style="width: 400px;" disabled>
+        <button type="button" id="upd-observacion">CAMBIAR</button>
+        <input type="text" id="observacion2" placeholder="selecccionar atencion" style="width: 400px;">
+        <br>
+        <input type="text" id="orden-compra" placeholder="orden-compra" style="width: 400px;" disabled>
+        <button type="button" id="upd-orden-compra">CAMBIAR</button>
+        <input type="text" id="orden-compra2" placeholder="selecccionar atencion" style="width: 400px;">
+
+        <input type="hidden" id="pista">
+        <input type="hidden" id="doc">
+    </div>
+    <div id="aparecer">
+        <table>
+            <tbody id="recorrer"></tbody>
+        </table>        
+    </div>
+    <script>
+        document.getElementById("back-menu").addEventListener("click",()=>window.location.href="http://127.0.0.1/demo1/main.html")
+    </script>
+    <script src="./caminos/rutas.js"></script>
+    <script src="./js/global/variables.js"></script>
+    <script src="./js/funciones/fac_modificar.js"></script>
+    <script src="./activador.js/botones.js"></script>
+    <script src="./js/factura/identificar.js"></script>
+
+    <script src="./js/factura/tipo_entrega.js"></script>
+    <script src="./js/funciones/despacho.js"></script>
+
+    <script src="./js/factura/transportista.js"></script>
+    <script src="./js/funciones/transportista.js"></script>
+
+    <script src="./js/factura/atencion.js"></script>
+    <script src="./js/funciones/atencion.js"></script>
+
+    <script src="./js/factura/direccion.js"></script>
+    <script src="./js/funciones/direccion.js"></script>
+
+    <script src="./js/factura/vendedor_facturado.js"></script>
+    <script src="./js/funciones/vendedor.js"></script>
+
+    <script src="./js/factura/observacion.js"></script>
+    <script src="./js/funciones/observacion.js"></script>
+
+    <script src="./js/factura/orden_compra.js"></script>
+    <script src="./js/funciones/orden_compra.js"></script>
+</body>
+</html>

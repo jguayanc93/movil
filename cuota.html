@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUOTA</title>    
+</head>
+<body>
+    <div>
+        <button type="button" id="back-menu">regresar al menu</button>
+    </div>
+    <div>
+        <h2>selecciona un mes para ver tu cuota y avance con respecto al mes</h2>
+        <input type="date" id="fecha-mes">
+        <button type="button" id="cuota-mes">seleccionar mes</button>
+    </div>
+    <div>
+        <p id="detallado"></p>
+    </div>
+    <script>
+        document.getElementById("back-menu").addEventListener("click",()=>window.location.href="http://127.0.0.1/demo1/main.html")
+    </script>
+    <script src="./caminos/rutas.js"></script>
+    <script src="./js/cuota/cuota.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>programar</title>
+    <!-- <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script> -->
+</head>
+<body>
+    <h2>seccion para programar mis documentos</h2>
+    <div>
+        <p>ingrese numero de documento</p>
+        <br>
+        <input type="search" id="ndoc">
+        <button type="button" id="revisar-doc">programar</button>
+    </div>
+    <div id="insertar">
+        <input type="date" id="fecha-escojido">
+    </div>
+    
+    <div>
+        <h2>contenedor especial de elementos creados</h2>
+        <div id="contenedor"></div>
+        <div id="contenedor-minutos"></div>
+    </div>
+
+    <script src="./caminos/rutas.js"></script>
+
+    <script src="./js/global/variables.js"></script>
+
+    <script>
+        let fechita=document.getElementById("fecha-escojido");
+        let fecha = new Date();
+        let año=fecha.getFullYear();
+        let mes=fecha.getMonth()+1;
+        let dia=fecha.getDate();
+        let dia_max=dia+2;
+        let formato_min=año+"-"+mes+"-"+dia;
+        let formato_max=año+"-"+mes+"-"+dia_max;
+        fechita.setAttribute("min",formato_min);
+        fechita.setAttribute("max",formato_max);
+    </script>
+    
+    <script src="./js/funciones/factura_buscar.js"></script>
+</body>
+</html>
