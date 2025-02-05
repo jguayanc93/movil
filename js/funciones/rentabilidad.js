@@ -49,7 +49,7 @@ async function rentabilidad(){
             mensaje7.appendChild(escondido7);
 
             let escondido8=document.createElement("p");
-            escondido8.textContent=paso2[indice][7];
+            escondido8.textContent=paso2[ind1ice][7];
             let mensaje8=document.createElement("td");
             mensaje8.appendChild(escondido8);
 
