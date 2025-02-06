@@ -1,7 +1,8 @@
 // RUTAS A SEGUIR SIEMPRE EN TESTEO
 // const rutalogin="https://pulpo.compudiskett.com.pe/v1/login";
 const rutalogin="http://127.0.0.1:3000/v1/login";
-const rutacuota="https://pulpo.compudiskett.com.pe/v1/vendedor/cuota";
+// const rutacuota="https://pulpo.compudiskett.com.pe/v1/vendedor/cuota";
+const rutacuota="http://127.0.0.1:3000/v1/login/v1/vendedor/cuota";
 
 const httpcors2="https://pulpo.compudiskett.com.pe/login/chekear";////REVISAR
 const cookiedata="https://pulpo.compudiskett.com.pe/login/mostrar";////REVISAR
