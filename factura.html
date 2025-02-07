@@ -49,10 +49,10 @@
         <input type="hidden" id="pista">
         <input type="hidden" id="doc">
     </div> -->
-    <div>
+    <!-- <div>
       <input type="hidden" id="pista">
       <input type="hidden" id="doc">
-    </div>
+    </div> -->
     <div id="aparecer">
         <table>
             <tbody id="recorrer"></tbody>
@@ -84,7 +84,7 @@
             <div class="min-w-0 flex-auto">
               <p class="text-sm/6 font-semibold text-gray-900">Despacho</p>
               <input type="text" id="tipo-despacho" placeholder="despacho actual" disabled />
-              <input type="text" id="tipo-despacho2" placeholder="nuevo despacho" />
+              <input type="search" id="tipo-despacho2" placeholder="nuevo despacho" disabled />
               <!-- <p class="mt-1 truncate text-xs/5 text-gray-500">espacio sobrante para algo</p> -->
             </div>
           </div>
@@ -99,8 +99,9 @@
             </div>
             <div class="min-w-0 flex-auto">
               <p class="text-sm/6 font-semibold text-gray-900">Transportista</p>
-              <input type="text" id="transportista" placeholder="transportista actual" disabled />
-              <input type="text" id="transportista2" placeholder="nuevo transportista" />
+              <p id="transportista" class="mt-1 truncate text-xs/5 text-gray-500"></p>
+              <!-- <input type="text" id="transportista" placeholder="transportista actual" disabled /> -->
+              <input type="search" id="transportista2" placeholder="nuevo transportista" disabled/>
             </div>
           </div>
         </li>
@@ -114,8 +115,9 @@
           </div>
             <div class="min-w-0 flex-auto">
               <p class="text-sm/6 font-semibold text-gray-900">Atencion</p>
-              <input type="text" id="atencion" placeholder="atencion actual" disabled />
-              <input type="text" id="atencion2" placeholder="nueva atencion" />
+              <p id="atencion" class="mt-1 truncate text-xs/5 text-gray-500"></p>
+              <!-- <input type="text" id="atencion" placeholder="atencion actual" disabled /> -->
+              <input type="search" id="atencion2" placeholder="nueva atencion" disabled/>
             </div>
           </div>
         </li>
@@ -131,7 +133,7 @@
               <p class="text-sm/6 font-semibold text-gray-900">Direccion</p>
               <p id="direccion" class="mt-1 truncate text-xs/5 text-gray-500"></p>
               <!-- <input type="text" id="direccion" placeholder="direccion actual" disabled /> -->
-              <input type="text" id="direccion2" placeholder="nueva direccion" />
+              <input type="search" id="direccion2" placeholder="nueva direccion" disabled/>
             </div>
           </div>
         </li>
@@ -146,7 +148,7 @@
             <div class="min-w-0 flex-auto">
               <p class="text-sm/6 font-semibold text-gray-900">Vendedor Asignado</p>
               <input type="text" id="vendedor-asignado" placeholder="vendedor actual" disabled />
-              <input type="text" id="vendedor-asignado2" placeholder="nuevo vendedor" />
+              <input type="search" id="vendedor-asignado2" placeholder="nuevo vendedor" disabled/>
             </div>
           </div>
         </li>
@@ -176,7 +178,7 @@
               <div class="min-w-0 flex-auto">
                 <p class="text-sm/6 font-semibold text-gray-900">Orden Compra</p>
                 <input type="text" id="orden-compra" placeholder="orden actual" disabled />
-                <input type="text" id="orden-compra2" placeholder="nueva orden" />
+                <input type="search" id="orden-compra2" placeholder="nueva orden" />
               </div>
             </div>
           </li>

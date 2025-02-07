@@ -1,7 +1,8 @@
 function get_observacion(){
     let dataenviar=new Object();
     dataenviar[6]=document.getElementById("observacion2").value;
-    dataenviar.doc=document.getElementById("doc").value;
+    // dataenviar.doc=document.getElementById("doc").value;
+    dataenviar.doc=objfactura[1];
     let fetchobj=new Object();
     fetchobj.method="POST";
     fetchobj.headers={"Content-Type":"application/json"};

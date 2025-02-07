@@ -1,5 +1,5 @@
 document.getElementById("buscar-prom").addEventListener("click",()=>{ ver_promo(); })
-
+// mejorar la funcion de recursion de promociones
 async function ver_promo(){
     let dataenviar=new Object();
     dataenviar.ncoti=document.getElementById("ncoti").value;

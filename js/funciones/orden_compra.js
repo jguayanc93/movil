@@ -1,7 +1,8 @@
 function get_ordercompra(){
     let dataenviar=new Object();
     dataenviar[7]=document.getElementById("orden-compra2").value;
-    dataenviar.doc=document.getElementById("doc").value;
+    // dataenviar.doc=document.getElementById("doc").value;
+    dataenviar.doc=objfactura[1];
     let fetchobj=new Object();
     fetchobj.method="POST";
     fetchobj.headers={"Content-Type":"application/json"};

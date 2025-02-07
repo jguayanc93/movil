@@ -1,6 +1,7 @@
 async function get_vendedor(){
     let dataenviar=new Object();
-    dataenviar.cli=document.getElementById("pista").value;
+    // dataenviar.cli=document.getElementById("pista").value;
+    dataenviar.cli=objfactura[0];
     dataenviar.sugerencia=document.getElementById("vendedor-asignado2").value;
     let fetchobj=new Object();
     fetchobj.method="POST";
