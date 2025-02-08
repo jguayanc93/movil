@@ -41,3 +41,6 @@ const rutaaddprom="http://127.0.0.1:3000/v1/prom/add";
 const rutabfacturavalida="http://127.0.0.1:3000/v1/vendedor/programar";
 const rutafacturaprogramada="http://127.0.0.1:3000/v1/vendedor/programarventanilla";
 const rutafacturaprogramadaminutos="http://127.0.0.1:3000/v1/vendedor/programarventanillaminutos";
+
+
+const rutapivot="http://127.0.0.1:3000/v1/prom/pivot";
