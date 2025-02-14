@@ -36,12 +36,12 @@ recognition.maxAlternatives = 1;
 // }
 
 /////////////////buscar producto segun audio
-document.getElementById("voz").addEventListener("mousedown",()=>{
+document.getElementById("voz").addEventListener('touchstart',()=>{
     console.log("escuchando");
     recognition.start();
 })
 
-document.getElementById("voz").addEventListener("mouseup",()=>{
+document.getElementById("voz").addEventListener('touchend',()=>{
     console.log("finalisando la escucha");
     recognition.onspeechend =()=>{
         recognition.stop();
