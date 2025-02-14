@@ -263,9 +263,9 @@ document.getElementById("currency2").addEventListener('change',()=>{
     document.getElementById("voz").disabled=false;
     document.getElementById("voz").className="bg-sky-500";
 })
-document.getElementById("voz").addEventListener("click",()=>{
-    alert("activando reconocimiento de voz");
-})
+// document.getElementById("voz").addEventListener("click",()=>{
+//     alert("activando reconocimiento de voz");
+// })
 
 function cancelar_confirmacion(){
     document.getElementById("producto").value="";

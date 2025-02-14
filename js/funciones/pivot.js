@@ -1,8 +1,8 @@
-document.getElementById("conjunto-id").addEventListener('click',buscar_pivot)
+// document.getElementById("conjunto-id").addEventListener('click',buscar_pivot)
 
 async function buscar_pivot(){
     let dataenviar=new Object();
-    dataenviar.sugerencia='pivot';
+    dataenviar.ncoti=document.getElementById("ncoti").value;
     let fetchobj = new Object();
     fetchobj.method="POST";
     fetchobj.headers={"Content-Type":"application/json"};
@@ -12,9 +12,9 @@ async function buscar_pivot(){
     try{
         let paso1= await fetch(rutapivot,fetchobj)
         let paso2= await paso1.json();
-        let paso3= await JSON.parse(paso2);
-        console.log(paso3);
-        
+        // let paso3= await JSON.parse(paso2);
+        console.log(paso2);
+        for(let idprom of paso2) promos_conjunto_diferenciales.push(idprom);
     }
     catch(err){
         console.log(err);

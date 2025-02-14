@@ -14,3 +14,7 @@ var prom_numero={};
 const objprogramar={}
 
 let objfactura=[];///////VARIABLES PARA LA MODIFICACION DE LA FACTURA TEMPORAL Y SUS CAMPOS 0CODIGOCLIENTE 1FACTURA
+
+let promos_conjunto_diferenciales=[];/////////promos acumuladas con posibles resultados devueltos
+
+var coti_cant=0;/////variable para guardar el acumulado de cuantos items tiene esta cotizacion

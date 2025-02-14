@@ -1,5 +1,5 @@
 
-document.getElementById("producto").addEventListener("input",()=>{
+document.getElementById("producto").addEventListener("input",(ev)=>{
     document.getElementById("recorrer-productos").innerHTML="";
-    buscar_producto();
+    ev.target.value!='' ? buscar_producto() : document.getElementById("recorrer-productos").innerHTML="";
 })
