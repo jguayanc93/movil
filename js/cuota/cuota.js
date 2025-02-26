@@ -26,3 +26,30 @@ document.getElementById("cuota-mes").addEventListener("click",()=>{
     })
     .catch(err=>{console.log(err);})
 })
+
+document.getElementById("cuota-general").addEventListener("click",()=>{
+    let dataenviada= new Object();
+    dataenviada.cgeneral="crea el excel";
+    let fetchobj= new Object();
+    fetchobj.method="POST";
+    fetchobj.headers={"Content-Type":"application/json"};
+    fetchobj.mode="cors";
+    fetchobj.credentials="include";
+    fetchobj.body=JSON.stringify(dataenviada);
+    fetch(rutacuotageneral,fetchobj)
+    .then(resultado=>{
+        if(!resultado.ok) throw new Error("fallo la fecheada");
+        return resultado.blob();
+    })
+    .then(resultado=>{
+        const url=URL.createObjectURL(resultado);
+        const link=document.createElement('a');
+        link.href=url;
+        link.download="general.xlsx";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    })
+    .catch(err=>{console.log(err);})
+})

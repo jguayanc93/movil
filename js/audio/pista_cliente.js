@@ -13,12 +13,12 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 /////////////////buscar producto segun audio
-document.getElementById("voz").addEventListener('touchstart',()=>{
+document.getElementById("voz-cliente").addEventListener('mouseover',()=>{
     console.log("escuchando");
     recognition.start();
 })
 
-document.getElementById("voz").addEventListener('touchend',()=>{
+document.getElementById("voz-cliente").addEventListener('mouseleave',()=>{
     console.log("finalisando la escucha");
     recognition.onspeechend =()=>{
         recognition.stop();
@@ -27,7 +27,7 @@ document.getElementById("voz").addEventListener('touchend',()=>{
 
 recognition.onresult=(event)=>{
     const escuchado = event.results[0][0].transcript;
-    document.getElementById("producto").value=escuchado;
+    document.getElementById("busqueda").value=escuchado;
     console.log(`transcrito ${escuchado}`)
     console.log(`confiansa de ecucha ${event.results[0][0].confidence}`)
 }

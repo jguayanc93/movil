@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CUOTA</title>    
+    <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
+    <title>CUOTA</title>
 </head>
 <body>
-    <div>
+    <!-- <div>
         <button type="button" id="back-menu">regresar al menu</button>
+    </div> -->
+    <div class="mt-6">
+        <a href="main.html" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">MENU</a>
     </div>
     <div>
         <h2>selecciona un mes para ver tu cuota y avance con respecto al mes</h2>
@@ -17,9 +21,10 @@
     <div>
         <p id="detallado"></p>
     </div>
-    <script>
-        document.getElementById("back-menu").addEventListener("click",()=>window.location.href="http://127.0.0.1/demo1/main.html")
-    </script>
+    <div>
+        <p>crea las cuotas del mes</p>
+        <button type="button" id="cuota-general">CREA EL EXEL</button>
+    </div>
     <script src="./caminos/rutas.js"></script>
     <script src="./js/cuota/cuota.js"></script>
 </body>

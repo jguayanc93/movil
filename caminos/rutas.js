@@ -1,8 +1,11 @@
 // RUTAS A SEGUIR SIEMPRE EN TESTEO
+const developer="http://127.0.0.1:3000/v1"
+const produccion="https://pulpo.compudiskett.com.pe/v1"
+
 // const rutalogin="https://pulpo.compudiskett.com.pe/v1/login";
-const rutalogin="http://127.0.0.1:3000/v1/login";
+const rutalogin=produccion+"/login";
 // const rutacuota="https://pulpo.compudiskett.com.pe/v1/vendedor/cuota";
-const rutacuota="http://127.0.0.1:3000/v1/login/v1/vendedor/cuota";
+const rutacuota=produccion+"/vendedor/cuota";
 
 const httpcors2="https://pulpo.compudiskett.com.pe/login/chekear";////REVISAR
 const cookiedata="https://pulpo.compudiskett.com.pe/login/mostrar";////REVISAR
@@ -44,3 +47,4 @@ const rutafacturaprogramadaminutos="http://127.0.0.1:3000/v1/vendedor/programarv
 
 
 const rutapivot="http://127.0.0.1:3000/v1/prom/pivot";
+const rutacuotageneral="http://127.0.0.1:3000/v1/cuotas/general";
