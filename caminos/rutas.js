@@ -1,5 +1,5 @@
 // RUTAS A SEGUIR SIEMPRE EN TESTEO
-const developer="http://127.0.0.1:3000/v1"
+const desarrollo="http://127.0.0.1:3000/v1"
 const produccion="https://pulpo.compudiskett.com.pe/v1"
 
 // const rutalogin="https://pulpo.compudiskett.com.pe/v1/login";
