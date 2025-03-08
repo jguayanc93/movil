@@ -97,6 +97,7 @@ async function ver_promo2(idprom){
     dataenviar.ncoti=document.getElementById("ncoti").value;
     // dataenviar.nprom=document.getElementById("nprom").value;
     dataenviar.nprom=idprom;
+    dataenviar.grupos=cont_grupo_id;
     let fetchobj = new Object();
     fetchobj.method="POST";
     fetchobj.headers={"Content-Type":"application/json"};
@@ -110,7 +111,10 @@ async function ver_promo2(idprom){
         console.log(paso2);
         
         // for(let i in paso2["items_validos2"]){ prom_numero[i]=paso2["items_validos2"][i]; }
-        
+        if(Object.keys(paso2).includes("agrupados")){
+            cont_grupo_id.push(paso2["agrupados"])
+            delete paso2["agrupados"];
+        }
         ////una posible solucion es sumar los descuentos en uno solo para convertirlo en uno general y asi descontar exacto
         // if(Object.keys(paso2).includes("descuento")) prom_numero["descuento"]=paso2["descuento"];
         // delete paso2["descuento"];

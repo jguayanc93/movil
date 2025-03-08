@@ -124,7 +124,7 @@
                         </svg>
                     </div>
                     <div>
-                        <a href="#" class="font-semibold text-gray-900">
+                        <a href="lcot.html" class="font-semibold text-gray-900">
                             COTIZACION
                             <span class="absolute inset-0"></span>
                         </a>
@@ -193,11 +193,14 @@
           </div>
     </div>
     <script>
-        document.getElementById("seccion1").addEventListener("click",()=>{window.location.href="http://127.0.0.1/demo1/cotizacion.html"})
-        document.getElementById("seccion2").addEventListener("click",()=>{window.location.href="http://127.0.0.1/demo1/cuota.html"})
-        document.getElementById("seccion3").addEventListener("click",()=>{window.location.href="http://127.0.0.1/demo1/factura.html"})
-        document.getElementById("seccion5").addEventListener("click",()=>{window.location.href="http://127.0.0.1/demo1/promos.html"})
-        document.getElementById("seccion6").addEventListener("click",()=>{window.location.href="http://127.0.0.1/demo1/programardoc.html"})
+      let gatillo=false;
+      let referencia='https://landing.compudiskett.com.pe/movil';
+      let referencia2='http://127.0.0.1/demo1';
+        document.getElementById("seccion1").addEventListener("click",()=>gatillo ? window.location.href=referencia+"/cotizacion.html" :  window.location.href=referencia2+"/cotizacion.html" )
+        document.getElementById("seccion2").addEventListener("click",()=>{ gatillo ? window.location.href=referencia+"/cuota.html" :  window.location.href=referencia2+"/cuota.html" })
+        document.getElementById("seccion3").addEventListener("click",()=>{ gatillo ? window.location.href=referencia+"/factura.html" :  window.location.href=referencia2+"/factura.html" })
+        document.getElementById("seccion5").addEventListener("click",()=>{ gatillo ? window.location.href=referencia+"/promos.html" :  window.location.href=referencia2+"/promos.html" })
+        document.getElementById("seccion6").addEventListener("click",()=>{ gatillo ? window.location.href=referencia+"/programadordoc.html" :  window.location.href=referencia2+"/programador.html" })
     </script>
 </body>
 </html>

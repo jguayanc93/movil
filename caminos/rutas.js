@@ -48,3 +48,6 @@ const rutafacturaprogramadaminutos="http://127.0.0.1:3000/v1/vendedor/programarv
 
 const rutapivot="http://127.0.0.1:3000/v1/prom/pivot";
 const rutacuotageneral="http://127.0.0.1:3000/v1/cuotas/general";
+
+const rutalistacoti=desarrollo+"/lista/cotis";
+const rutalistacotidia=desarrollo+"/lista/cotis/dia";

@@ -18,3 +18,5 @@ let objfactura=[];///////VARIABLES PARA LA MODIFICACION DE LA FACTURA TEMPORAL Y
 let promos_conjunto_diferenciales=[];/////////promos acumuladas con posibles resultados devueltos
 
 var coti_cant=0;/////variable para guardar el acumulado de cuantos items tiene esta cotizacion
+
+let cont_grupo_id=[];///variable para guardar el id de grupo y no repetir por cada ves q se busca promo
