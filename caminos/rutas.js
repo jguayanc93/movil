@@ -41,7 +41,7 @@ const rutaprom="http://127.0.0.1:3000/v1/prom/verificar";
 
 const rutaaddprom="http://127.0.0.1:3000/v1/prom/add";
 
-const rutabfacturavalida="http://127.0.0.1:3000/v1/vendedor/programar";
+const rutabfacturavalida=desarrollo+"/vendedor/programar";
 const rutafacturaprogramada="http://127.0.0.1:3000/v1/vendedor/programarventanilla";
 const rutafacturaprogramadaminutos="http://127.0.0.1:3000/v1/vendedor/programarventanillaminutos";
 
@@ -51,3 +51,12 @@ const rutacuotageneral="http://127.0.0.1:3000/v1/cuotas/general";
 
 const rutalistacoti=desarrollo+"/lista/cotis";
 const rutalistacotidia=desarrollo+"/lista/cotis/dia";
+
+const rutalistapedi=desarrollo+"/lista/pedis";
+const rutalistapedidia=desarrollo+"/lista/pedis/dia";
+
+const rutalistafac=desarrollo+"/lista/factus";
+const rutalistafacdia=desarrollo+"/lista/factus/dia";
+
+const rutalistadespacho=desarrollo+"/lista/despacho";
+const rutalistadespachodia=desarrollo+"/lista/despacho/dia";

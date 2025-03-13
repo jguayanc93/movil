@@ -11,7 +11,7 @@ async function buscar_dia(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1= await fetch(rutalistacoti,fetchobj)
+        let paso1= await fetch(rutalistapedi,fetchobj)
         let paso2= await paso1.json();
         let paso3= await JSON.parse(paso2);
         
@@ -64,7 +64,7 @@ async function buscar_dia(){
             contenedorsuperior.appendChild(img)
             contenedorsuperior.appendChild(contenedormedio)
 
-            document.getElementById("ncotis").appendChild(contenedorsuperior);
+            document.getElementById("npedis").appendChild(contenedorsuperior);
         }
         // console.log(typeof paso3);
         // console.log(paso3);
@@ -107,12 +107,12 @@ async function buscar_dia(){
             //contenedorsuperior.appendChild(img)
             contenedorsuperior.appendChild(contenedormedio)
 
-            document.getElementById("ncotis").appendChild(contenedorsuperior);
+            document.getElementById("npedis").appendChild(contenedorsuperior);
     }
 }
 
 async function buscar_dia2(){
-    document.getElementById("ncotis").innerHTML="";
+    document.getElementById("npedis").innerHTML="";
     let dataenviar=new Object();
     dataenviar.dia=document.getElementById("fecha-dia").value;
     let fetchobj = new Object();
@@ -122,7 +122,7 @@ async function buscar_dia2(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1= await fetch(rutalistacotidia,fetchobj)
+        let paso1= await fetch(rutalistapedidia,fetchobj)
         let paso2= await paso1.json();
         let paso3= await JSON.parse(paso2);
         
@@ -175,7 +175,7 @@ async function buscar_dia2(){
             contenedorsuperior.appendChild(img)
             contenedorsuperior.appendChild(contenedormedio)
 
-            document.getElementById("ncotis").appendChild(contenedorsuperior);
+            document.getElementById("npedis").appendChild(contenedorsuperior);
         }
         // console.log(typeof paso3);
         // console.log(paso3);
@@ -218,6 +218,6 @@ async function buscar_dia2(){
             //contenedorsuperior.appendChild(img)
             contenedorsuperior.appendChild(contenedormedio)
 
-            document.getElementById("ncotis").appendChild(contenedorsuperior);
+            document.getElementById("npedis").appendChild(contenedorsuperior);
     }
 }

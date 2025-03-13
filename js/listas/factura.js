@@ -11,7 +11,7 @@ async function buscar_dia(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1= await fetch(rutalistacoti,fetchobj)
+        let paso1= await fetch(rutalistafac,fetchobj)
         let paso2= await paso1.json();
         let paso3= await JSON.parse(paso2);
         
@@ -45,12 +45,17 @@ async function buscar_dia(){
             let parrafo4=document.createElement('p');
             parrafo4.classList.add("text-sm","font-medium","text-gray-900");
             parrafo4.textContent=paso3[item][4];
+            
+            let parrafo5=document.createElement('p');
+            parrafo5.classList.add("text-sm","font-medium","text-gray-900");
+            parrafo5.textContent="/"+paso3[item][5];
 
             let contenedormedio=document.createElement('div')
             contenedormedio.classList.add("mt-4","flex","justify-between");
             contenedormedio.appendChild(contenedorinferior)
             contenedormedio.appendChild(parrafo3)
             contenedormedio.appendChild(parrafo4)
+            contenedormedio.appendChild(parrafo5)
 
             let img=document.createElement('img');
             img.src="logotipo.png";
@@ -64,7 +69,7 @@ async function buscar_dia(){
             contenedorsuperior.appendChild(img)
             contenedorsuperior.appendChild(contenedormedio)
 
-            document.getElementById("ncotis").appendChild(contenedorsuperior);
+            document.getElementById("nfactus").appendChild(contenedorsuperior);
         }
         // console.log(typeof paso3);
         // console.log(paso3);
@@ -107,12 +112,12 @@ async function buscar_dia(){
             //contenedorsuperior.appendChild(img)
             contenedorsuperior.appendChild(contenedormedio)
 
-            document.getElementById("ncotis").appendChild(contenedorsuperior);
+            document.getElementById("nfactus").appendChild(contenedorsuperior);
     }
 }
 
 async function buscar_dia2(){
-    document.getElementById("ncotis").innerHTML="";
+    document.getElementById("nfactus").innerHTML="";
     let dataenviar=new Object();
     dataenviar.dia=document.getElementById("fecha-dia").value;
     let fetchobj = new Object();
@@ -122,7 +127,7 @@ async function buscar_dia2(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1= await fetch(rutalistacotidia,fetchobj)
+        let paso1= await fetch(rutalistafacdia,fetchobj)
         let paso2= await paso1.json();
         let paso3= await JSON.parse(paso2);
         
@@ -157,11 +162,16 @@ async function buscar_dia2(){
             parrafo4.classList.add("text-sm","font-medium","text-gray-900");
             parrafo4.textContent=paso3[item][4];
 
+            let parrafo5=document.createElement('p');
+            parrafo5.classList.add("text-sm","font-medium","text-gray-900");
+            parrafo5.textContent="/"+paso3[item][5];
+
             let contenedormedio=document.createElement('div')
             contenedormedio.classList.add("mt-4","flex","justify-between");
             contenedormedio.appendChild(contenedorinferior)
             contenedormedio.appendChild(parrafo3)
             contenedormedio.appendChild(parrafo4)
+            contenedormedio.appendChild(parrafo5)
 
             let img=document.createElement('img');
             img.src="logotipo.png";
@@ -175,10 +185,8 @@ async function buscar_dia2(){
             contenedorsuperior.appendChild(img)
             contenedorsuperior.appendChild(contenedormedio)
 
-            document.getElementById("ncotis").appendChild(contenedorsuperior);
+            document.getElementById("nfactus").appendChild(contenedorsuperior);
         }
-        // console.log(typeof paso3);
-        // console.log(paso3);
     }
     catch(err){
         console.log(err);
@@ -208,7 +216,7 @@ async function buscar_dia2(){
 
             let img=document.createElement('img');
             img.src="logotipo.png";
-            img.alt="Front of men&#039;s Basic Tee in black.";
+            img.alt="no encontrado";
             // img.classList.add("aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80");
             img.className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80";
 
@@ -218,6 +226,6 @@ async function buscar_dia2(){
             //contenedorsuperior.appendChild(img)
             contenedorsuperior.appendChild(contenedormedio)
 
-            document.getElementById("ncotis").appendChild(contenedorsuperior);
+            document.getElementById("nfactus").appendChild(contenedorsuperior);
     }
 }
