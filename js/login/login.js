@@ -54,7 +54,8 @@ function logearse(ev){
     .then(resultado=>{
         let decodificar = JSON.parse(resultado);
         // console.log("cookie externa aceptada");
-        window.location.replace("http://127.0.0.1/demo1/main.html")
+        // window.location.replace("http://127.0.0.1/demo1/main.html")
+        window.location.replace("https://landing.compudiskett.com.pe/movil/main.html")
     })
     .catch(err=>{
         console.log(err);
