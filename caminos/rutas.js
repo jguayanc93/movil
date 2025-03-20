@@ -12,7 +12,7 @@ const cookiedata="https://pulpo.compudiskett.com.pe/login/mostrar";////REVISAR
 const cookieclear="https://pulpo.compudiskett.com.pe/login/clean";////REVISAR
 
 
-const rutactualisar="http://127.0.0.1:3000/v1/vendedor/modificar";///SON PARA CONOCER DATOS DE LA FACTURA
+const rutactualisar=produccion+"/vendedor/modificar";///SON PARA CONOCER DATOS DE LA FACTURA
 const rutarevelar="http://127.0.0.1:3000/v1/vendedor/recomendacion";///FACTURA TIPO DE ENTREGA
 
 const rutaropc2="http://127.0.0.1:3000/v1/vendedor/opc2";
@@ -33,30 +33,30 @@ const rutacrentabilidad="http://127.0.0.1:3000/v1/coti/rentabilidad";////rentabi
 
 const rutapromocion="http://127.0.0.1:3000/v1/coti/opg";///aplicar promocion
 
-const rutacreacion="http://127.0.0.1:3000/v1/coti/creacion";///no te olvides de crear la ruta para la creacion
+const rutacreacion=produccion+"/coti/creacion";///no te olvides de crear la ruta para la creacion
 
-const rutacotizacion="http://127.0.0.1:3000/v1/coti/buscar";
+const rutacotizacion=produccion+"/coti/buscar";
 
-const rutaprom="http://127.0.0.1:3000/v1/prom/verificar";
+const rutaprom=produccion+"/prom/verificar";
 
-const rutaaddprom="http://127.0.0.1:3000/v1/prom/add";
+const rutaaddprom=produccion+"/prom/add";
 
-const rutabfacturavalida=desarrollo+"/vendedor/programar";
-const rutafacturaprogramada="http://127.0.0.1:3000/v1/vendedor/programarventanilla";
-const rutafacturaprogramadaminutos="http://127.0.0.1:3000/v1/vendedor/programarventanillaminutos";
+const rutabfacturavalida=produccion+"/vendedor/programar";
+const rutafacturaprogramada=produccion+"/vendedor/programarventanilla";
+const rutafacturaprogramadaminutos=produccion+"/vendedor/programarventanillaminutos";
 
 
 const rutapivot="http://127.0.0.1:3000/v1/prom/pivot";
 const rutacuotageneral="http://127.0.0.1:3000/v1/cuotas/general";
 
-const rutalistacoti=desarrollo+"/lista/cotis";
-const rutalistacotidia=desarrollo+"/lista/cotis/dia";
+const rutalistacoti=produccion+"/lista/cotis";
+const rutalistacotidia=produccion+"/lista/cotis/dia";
 
-const rutalistapedi=desarrollo+"/lista/pedis";
-const rutalistapedidia=desarrollo+"/lista/pedis/dia";
+const rutalistapedi=produccion+"/lista/pedis";
+const rutalistapedidia=produccion+"/lista/pedis/dia";
 
-const rutalistafac=desarrollo+"/lista/factus";
-const rutalistafacdia=desarrollo+"/lista/factus/dia";
+const rutalistafac=produccion+"/lista/factus";
+const rutalistafacdia=produccion+"/lista/factus/dia";
 
-const rutalistadespacho=desarrollo+"/lista/despacho";
-const rutalistadespachodia=desarrollo+"/lista/despacho/dia";
+const rutalistadespacho=produccion+"/lista/despacho";
+const rutalistadespachodia=produccion+"/lista/despacho/dia";

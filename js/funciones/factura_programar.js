@@ -52,7 +52,6 @@ async function buscar_lista(){
     }
     catch(err){
         console.log(err);
-        console.log(err);
         let contenedor_superior=document.createElement('dl')
         contenedor_superior.className="divide-y divide-gray-100";
         let contenedor_medio=document.createElement('div');
