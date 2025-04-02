@@ -20,3 +20,6 @@ let promos_conjunto_diferenciales=[];/////////promos acumuladas con posibles res
 var coti_cant=0;/////variable para guardar el acumulado de cuantos items tiene esta cotizacion
 
 let cont_grupo_id=[];///variable para guardar el id de grupo y no repetir por cada ves q se busca promo
+
+let cotimodi_tmpitems={};///variable temporal para guardar los agregados,cantidades,removidos items segun seleccion
+let cotimodi_tipcli=[];////variable temporal para saber el tipo de cliente de esa coti que se modificara,etc

@@ -30,7 +30,7 @@
     </div>
     <div>
         
-        <button type="button" id="adjuntar" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">adjuntar productos</button>
+        <button type="button" id="adjuntar" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">crear modificacion</button>
     </div>
 
     <!-- MODAL DE ACEPTACION -->
@@ -93,6 +93,12 @@
           </button>
         </div>
       </div>
+      <!--espacio para insertar la busqueda de productos-->
+      <div id="cotimodificar-buscarnuevoproducto"></div>
+
+      <div id="encontrar">
+        <div class="relative" id="recorrer-productos"></div>
+      </div>
 
       <div class="mt-8">
         <div class="flow-root">
@@ -136,6 +142,26 @@
   </div>
 </div>
 
+<!-- <div id="cotimodificar-buscarnuevoproducto">
+  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 2:</label>
+    <div class="mt-2">
+      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+        <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"><button id="voz" disabled>presionar</button></div>
+          
+        <input type="search" name="producto" id="producto" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="buscalo por">
+        <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+          <select id="currency2" name="currency2" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            <option>nombre</option>
+            <option>partnumber</option>
+          </select>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+    </div>
+</div> -->
+
       
       
     <script>
@@ -149,6 +175,7 @@
 
     <script src="./js/cotizacion/modificar_cotizacion.js"></script>
     <!-- <script src="./js/funciones/coti_modi.js"></script> -->
+     <script src="./js/funciones/identificar_producto.js"></script>
 
     <!-- <script src="./js/promos/promo_visualisar.js"></script> -->
 
