@@ -21,9 +21,18 @@ async function buscar_cotizacion_modificar(){
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
         console.log(paso3)
-        cotimodi_tipcli.push(paso3[0][10]);
+        cotimodi_tipcli.push(paso3[0][0]);///clialfabeto
+        cotimodi_tipcli.push(paso3[0][1]);///fecha
+        cotimodi_tipcli.push(paso3[0][2]);///cdocu
+        cotimodi_tipcli.push(paso3[0][3]);///documento
+        cotimodi_tipcli.push(paso3[0][4]);///codcliente
+        cotimodi_tipcli.push(paso3[0][5]);///tcambio
+        cotimodi_tipcli.push(paso3[0][6]);///mone
+        cotimodi_tipcli.push(paso3[0][7]);///moneitem
+        cotimodi_tipcli.push(paso3[0][20]);///moneitem
+
         /////guardando temporalmente los items
-        for(const item in paso3) cotimodi_tmpitems[paso3[item][2]]=[paso3[item][0],paso3[item][1],paso3[item][2],paso3[item][3],paso3[item][4],paso3[item][5],paso3[item][6],paso3[item][7],paso3[item][8],paso3[item][9],paso3[item][10],paso3[item][11],paso3[item][12],paso3[item][13],paso3[item][14],paso3[item][15],paso3[item][16],paso3[item][17],paso3[item][18],paso3[item][19],paso3[item][20],paso3[item][21],paso3[item][22],paso3[item][23],paso3[item][24],paso3[item][25],paso3[item][26],paso3[item][27],paso3[item][28],paso3[item][29],paso3[item][30],paso3[item][31],paso3[item][32]];
+        for(const item in paso3) cotimodi_tmpitems[paso3[item][10]]=[paso3[item][1],paso3[item][2],paso3[item][3],paso3[item][4],paso3[item][5],paso3[item][6],paso3[item][7],paso3[item][8],paso3[item][9],paso3[item][10],paso3[item][11],paso3[item][12],paso3[item][13],paso3[item][14],paso3[item][15],paso3[item][16],paso3[item][17],paso3[item][18],paso3[item][19],paso3[item][20],paso3[item][21],paso3[item][22]];
         
         console.log(cotimodi_tipcli);
         
@@ -52,25 +61,25 @@ async function buscar_cotizacion_modificar(){
         for(let indice in cotimodi_tmpitems){
             let parrafo1=document.createElement('p')
             parrafo1.className="mt-1 text-sm text-gray-500";
-            parrafo1.textContent=cotimodi_tmpitems[indice][8];
+            parrafo1.textContent=cotimodi_tmpitems[indice][10];
             let contenedor1=document.createElement('div');
             contenedor1.className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200";
             contenedor1.appendChild(parrafo1);
 
             let enlace=document.createElement('a')
-            enlace.textContent=cotimodi_tmpitems[indice][3];
+            enlace.textContent=cotimodi_tmpitems[indice][13];
             let titulo=document.createElement('h3');
             titulo.appendChild(enlace);
             let parrafo2=document.createElement('p');
             parrafo2.className="ml-4";
-            parrafo2.textContent=`$${cotimodi_tmpitems[indice][6]}`;
+            parrafo2.textContent=`$${cotimodi_tmpitems[indice][16]}`;
             let contenedor2=document.createElement('div')
             contenedor2.className="flex justify-between text-base font-medium text-gray-900";
             contenedor2.appendChild(titulo);
             contenedor2.appendChild(parrafo2);
             let parrafo3=document.createElement('p')
             parrafo3.className="mt-1 text-sm text-gray-500";
-            parrafo3.textContent=cotimodi_tmpitems[indice][9];
+            parrafo3.textContent=cotimodi_tmpitems[indice][11];
 
             let contenedor_vacio=document.createElement('div');
             contenedor_vacio.appendChild(contenedor2)
@@ -80,10 +89,10 @@ async function buscar_cotizacion_modificar(){
             let boton1=document.createElement('button');
             boton1.type="button";
             boton1.className="font-medium text-indigo-600 hover:text-indigo-500";
-            boton1.textContent=`Cant. ${cotimodi_tmpitems[indice][4]}`;
+            boton1.textContent=`Cant. ${cotimodi_tmpitems[indice][14]}`;
             boton1.addEventListener('click',()=>{
-                console.log(`cambiando esta cantidad ${cotimodi_tmpitems[indice][4]}`);
-                cambiar_cantidad(cotimodi_tmpitems[indice][2],cotimodi_tmpitems[indice][3],cotimodi_tmpitems[indice][4]);
+                console.log(`cambiando esta cantidad ${cotimodi_tmpitems[indice][14]}`);
+                cambiar_cantidad(cotimodi_tmpitems[indice][9],cotimodi_tmpitems[indice][13],cotimodi_tmpitems[indice][14]);
             })
 
             let contenedor3=document.createElement('div');
@@ -91,7 +100,7 @@ async function buscar_cotizacion_modificar(){
             contenedor3.appendChild(boton1);
             let parrafo4=document.createElement('p')
             parrafo4.className="text-gray-500";
-            parrafo4.textContent=`P.Unit ${cotimodi_tmpitems[indice][5]}`;
+            parrafo4.textContent=`P.Unit ${cotimodi_tmpitems[indice][15]}`;
             let contenedor4=document.createElement('div')
             contenedor4.className="flex flex-1 items-end justify-between text-sm";
             contenedor4.appendChild(parrafo4)
@@ -107,7 +116,7 @@ async function buscar_cotizacion_modificar(){
                 // document.getElementById("contendor-final-final").innerHTML="";
                 document.getElementById("aqui-nuevos").innerHTML="";
                 console.log("eliminado")
-                volver_correr(cotimodi_tmpitems[indice][2]);
+                volver_correr(cotimodi_tmpitems[indice][9]);
             });
             
             let contenedor5=document.createElement('div');
@@ -116,7 +125,7 @@ async function buscar_cotizacion_modificar(){
             
             let parrafo5=document.createElement('p')
             parrafo5.className="text-gray-500";
-            parrafo5.textContent=`Dscto% ${cotimodi_tmpitems[indice][7]}`;
+            parrafo5.textContent=`Dscto% ${cotimodi_tmpitems[indice][17]}`;
             let contenedor6=document.createElement('div')
             contenedor6.className="flex flex-1 items-end justify-between text-sm";
 
@@ -447,8 +456,8 @@ async function tblprd3(cprd,stoc){
     // document.getElementById("seleccionar-productos").innerHTML="";
     let dataenviar=new Object();
     dataenviar.sugerencia=cprd;
-    // dataenviar.cctl=cliente_data[5];
     dataenviar.cctl=cotimodi_tipcli[0];
+    dataenviar.ccli=cotimodi_tipcli[4];
     let fetchobj = new Object();
     fetchobj.method="POST";
     fetchobj.headers={"Content-Type":"application/json"};
@@ -456,21 +465,18 @@ async function tblprd3(cprd,stoc){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1=await fetch(rutabproductoid,fetchobj)
+        let paso1=await fetch(rutacotizacionbprdagregar,fetchobj)
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
-        console.log("este es el firme producto q si existe")
-        console.log(paso3);
-        let sacar_fecha= Object.values(cotimodi_tmpitems)[0][0];
-        let sacar_doc= Object.values(cotimodi_tmpitems)[0][1];
-        let totaxcant=paso3[4]*stoc;
-        let tota=totaxcant-((totaxcant*(paso3[5]/100)).toFixed(2));
-        cotimodi_tmpitems[paso3[0]]=[sacar_fecha,sacar_doc,paso3[0],paso3[1],stoc,paso3[4],tota,paso3[5],paso3[6],paso3[7]];
+        
+        let dsct_sacado=(paso3[8]*(paso3[9]/100));
+        // let tota=((paso3[8]-dsct_sacado)*stoc).toFixed(2);
+        let tota=parseFloat((paso3[8]-dsct_sacado).toFixed(2))*stoc;
+        let totn=tota*1.18;
+        // cotimodi_tmpitems[paso3[2]]=[sacar_fecha,sacar_doc,paso3[0],paso3[1],stoc,paso3[4],tota,paso3[5],paso3[6],paso3[7]];
+        cotimodi_tmpitems[paso3[2]]=[cotimodi_tipcli[1],cotimodi_tipcli[2],cotimodi_tipcli[3],cotimodi_tipcli[4],cotimodi_tipcli[5],cotimodi_tipcli[6],cotimodi_tipcli[7],paso3[0],paso3[1],paso3[2],paso3[3],paso3[4],paso3[5],paso3[6],stoc,paso3[8],tota,paso3[9],totn,cotimodi_tipcli[8],paso3[10],paso3[11]];
 
         volver_correr();
-        // agrupacion[paso3[0]]=[paso3[1],stoc,paso3[3],paso3[4],paso3[5],paso3[6],paso3[7]];
-        // console.log(agrupacion);
-        // document.getElementById("cotimodificar-buscarnuevoproducto").innerHTML="";
     }
     catch(err){
         console.log(err);
@@ -505,25 +511,25 @@ function volver_correr(coti){
         for(let indice in cotimodi_tmpitems){
             let parrafo1=document.createElement('p')
             parrafo1.className="mt-1 text-sm text-gray-500";
-            parrafo1.textContent=cotimodi_tmpitems[indice][8];
+            parrafo1.textContent=cotimodi_tmpitems[indice][10];
             let contenedor1=document.createElement('div');
             contenedor1.className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200";
             contenedor1.appendChild(parrafo1);
 
             let enlace=document.createElement('a')
-            enlace.textContent=cotimodi_tmpitems[indice][3];
+            enlace.textContent=cotimodi_tmpitems[indice][13];
             let titulo=document.createElement('h3');
             titulo.appendChild(enlace);
             let parrafo2=document.createElement('p');
             parrafo2.className="ml-4";
-            parrafo2.textContent=`$${cotimodi_tmpitems[indice][6]}`;
+            parrafo2.textContent=`$${cotimodi_tmpitems[indice][16]}`;
             let contenedor2=document.createElement('div')
             contenedor2.className="flex justify-between text-base font-medium text-gray-900";
             contenedor2.appendChild(titulo);
             contenedor2.appendChild(parrafo2);
             let parrafo3=document.createElement('p')
             parrafo3.className="mt-1 text-sm text-gray-500";
-            parrafo3.textContent=cotimodi_tmpitems[indice][9];
+            parrafo3.textContent=cotimodi_tmpitems[indice][11];
 
             let contenedor_vacio=document.createElement('div');
             contenedor_vacio.appendChild(contenedor2)
@@ -533,10 +539,10 @@ function volver_correr(coti){
             let boton1=document.createElement('button');
             boton1.type="button";
             boton1.className="font-medium text-indigo-600 hover:text-indigo-500";
-            boton1.textContent=`Cant. ${cotimodi_tmpitems[indice][4]}`;
+            boton1.textContent=`Cant. ${cotimodi_tmpitems[indice][14]}`;
             boton1.addEventListener('click',()=>{
-                console.log(`cambiando esta cantidad ${cotimodi_tmpitems[indice][4]}`)
-                cambiar_cantidad(cotimodi_tmpitems[indice][2],cotimodi_tmpitems[indice][3],cotimodi_tmpitems[indice][4])
+                console.log(`cambiando esta cantidad ${cotimodi_tmpitems[indice][14]}`)
+                cambiar_cantidad(cotimodi_tmpitems[indice][9],cotimodi_tmpitems[indice][13],cotimodi_tmpitems[indice][14])
             })
 
             let contenedor3=document.createElement('div');
@@ -544,7 +550,7 @@ function volver_correr(coti){
             contenedor3.appendChild(boton1);
             let parrafo4=document.createElement('p')
             parrafo4.className="text-gray-500";
-            parrafo4.textContent=`P.Unit ${cotimodi_tmpitems[indice][5]}`;
+            parrafo4.textContent=`P.Unit ${cotimodi_tmpitems[indice][15]}`;
             let contenedor4=document.createElement('div')
             contenedor4.className="flex flex-1 items-end justify-between text-sm";
             contenedor4.appendChild(parrafo4)
@@ -560,7 +566,7 @@ function volver_correr(coti){
                 // document.getElementById("contendor-final-final").innerHTML="";
                 document.getElementById("aqui-nuevos").innerHTML="";
                 console.log("eliminado")
-                volver_correr(cotimodi_tmpitems[indice][2]);
+                volver_correr(cotimodi_tmpitems[indice][9]);
             });
             
             let contenedor5=document.createElement('div');
@@ -569,7 +575,7 @@ function volver_correr(coti){
             
             let parrafo5=document.createElement('p')
             parrafo5.className="text-gray-500";
-            parrafo5.textContent=`Dscto% ${cotimodi_tmpitems[indice][7]}`;
+            parrafo5.textContent=`Dscto% ${cotimodi_tmpitems[indice][17]}`;
             let contenedor6=document.createElement('div')
             contenedor6.className="flex flex-1 items-end justify-between text-sm";
 

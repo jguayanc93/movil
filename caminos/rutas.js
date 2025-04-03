@@ -62,3 +62,5 @@ const rutalistadespacho=desarrollo+"/lista/despacho";
 const rutalistadespachodia=desarrollo+"/lista/despacho/dia";
 
 const rutacotizacionbmodificar=desarrollo+"/coti/modificar";
+const rutacotizacionbprdagregar=desarrollo+"/coti/idprdmodificadoagregado";
+const rutacotizacioncmodificacion=desarrollo+"/coti/crearmodificacion";
