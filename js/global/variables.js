@@ -23,3 +23,5 @@ let cont_grupo_id=[];///variable para guardar el id de grupo y no repetir por ca
 
 let cotimodi_tmpitems={};///variable temporal para guardar los agregados,cantidades,removidos items segun seleccion
 let cotimodi_tipcli=[];////variable temporal para saber el tipo de cliente de esa coti que se modificara,etc
+
+let marca_seleccionada="";///variable temporal para guardar la seleccion del usuario se reiniciara cada ves q entre
