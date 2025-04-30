@@ -77,6 +77,9 @@ async function buscar_cotizacion(){
 }
 
 async function buscar_cotizacion2(){
+    /////NO TE OLVIDES DE LIMPIAR CADA VES QUE BUSCAN UNA COTI LAS VARIABLES GLOBLAES
+    document.getElementById("productos-cotizacion-detallada").innerHTML="";
+    /////////
     let dataenviar=new Object();
     dataenviar.ncoti=document.getElementById("ncoti").value;
     let fetchobj = new Object();

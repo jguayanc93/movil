@@ -95,7 +95,6 @@ async function ver_promo(){
 async function ver_promo2(idprom){
     let dataenviar=new Object();
     dataenviar.ncoti=document.getElementById("ncoti").value;
-    // dataenviar.nprom=document.getElementById("nprom").value;
     dataenviar.nprom=idprom;
     dataenviar.grupos=cont_grupo_id;
     let fetchobj = new Object();
