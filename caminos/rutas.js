@@ -27,6 +27,7 @@ const rutafindcli="http://127.0.0.1:3000/v1/coti/identificador";////posible coli
 const rutarevisar="http://127.0.0.1:3000/v1/vendedor/revisar";/////revisar todas las rutas
 
 const rutabproducto="http://127.0.0.1:3000/v1/coti/producto";
+const rutabproductopartnumber="http://127.0.0.1:3000/v1/coti/productopartnumber";///para buscar por partnumber
 const rutabproductoid="http://127.0.0.1:3000/v1/coti/productoid";
 
 const rutacrentabilidad="http://127.0.0.1:3000/v1/coti/rentabilidad";////rentabilidad

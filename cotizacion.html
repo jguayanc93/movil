@@ -36,15 +36,18 @@
   <!-- FIN DEL PASO 1 -->
    
     <div>
-        <!-- <h2>paso 1: busca a tu cliente</h2> -->
         <div>
-            <!-- <input type="search" id="busqueda"> -->
             <div id="aparecer">
                 <table>
                     <tbody id="recorrer"></tbody>
                 </table>
             </div>
         </div>
+  <!-- ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
+  <!-- <div id="encontrar"> -->
+    <div class="relative" id="recorrer-clientes"></div>
+  <!-- </div> -->
+<!-- FIN ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
   <!-- PASO 2 PARA LA BUSQUEDA DE UN CLIENTE -->
    <div>
     <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 2:</label>
@@ -55,11 +58,16 @@
         <!-- <div class="grid shrink-0 grid-cols-1 focus-within:relative">
           <button class="hover:bg-sky-700">presionar</button>
         </div> -->
+        <!-- AGREGAR AQUI EL CAMBIO DE BUSCADOR SEGUN ELECCION DE BUSQUEDA -->
+        <!-- BUSUQEDA DE PRODUCTO POR DESCRIPCION -->
         <input type="search" name="producto" id="producto" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="buscalo por">
+        <!-- BUSUQEDA DE PRODUCTO POR PARTNUMBER -->
+        <input type="search" name="productof" id="productof" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 hidden" placeholder="buscalo por">
+        <!-- FIN DE DIFERENCIARLOS BIEN -->
         <div class="grid shrink-0 grid-cols-1 focus-within:relative">
           <select id="currency2" name="currency2" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-            <option>nombre</option>
-            <option>partnumber</option>
+            <option value="1">nombre</option>
+            <option value="2">partnumber</option>
           </select>
           <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
             <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
@@ -195,60 +203,7 @@
               <div class="mt-8">
                 <div class="flow-root">
                   <ul id="productos-listados" role="list" class="-my-6 divide-y divide-gray-200">
-                    <!-- <li class="flex py-6">
-                      <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src="https://tailwindui.com/plus/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="size-full object-cover">
-                      </div>
-
-                      <div class="ml-4 flex flex-1 flex-col">
-                        <div>
-                          <div class="flex justify-between text-base font-medium text-gray-900">
-                            <h3>
-                              <a href="#">Throwback Hip Bag</a>
-                            </h3>
-                            <p class="ml-4">$90.00</p>
-                          </div>
-                          <p class="mt-1 text-sm text-gray-500">Qty 1</p>
-                        </div>
-                        <div class="flex flex-1 items-end justify-between text-sm">
-                          <p class="text-gray-500">Rentabilidad</p>
-
-                          <div class="flex">
-                            <p class="text-gray-500">0.7%</p>
-                          </div>
-
-                          <div class="flex">
-                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                          </div>
-                          
-                        </div>
-                      </div>
-                    </li> -->
-                    <!-- <li class="flex py-6">
-                      <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src="https://tailwindui.com/plus/img/ecommerce-images/shopping-cart-page-04-product-02.jpg" alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." class="size-full object-cover">
-                      </div>
-
-                      <div class="ml-4 flex flex-1 flex-col">
-                        <div>
-                          <div class="flex justify-between text-base font-medium text-gray-900">
-                            <h3>
-                              <a href="#">Medium Stuff Satchel</a>
-                            </h3>
-                            <p class="ml-4">$32.00</p>
-                          </div>
-                          <p class="mt-1 text-sm text-gray-500">Blue</p>
-                        </div>
-                        <div class="flex flex-1 items-end justify-between text-sm">
-                          <p class="text-gray-500">Qty 1</p>
-
-                          <div class="flex">
-                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                          </div>
-                        </div>
-                      </div>
-                    </li> -->
-                    <!-- More products... -->
+                   
                   </ul>
                 </div>
               </div>
@@ -298,45 +253,6 @@
 </div>
 </div>
 <!-- FIN DEL PASO 6 -->
-    <!-- espacio para la insertada del nuevo diseño -->
-
-    
-
-    <!-- <div>
-        <label for="price" class="block text-sm/6 font-medium text-gray-900">Paso 1:</label>
-        <div class="mt-2">
-          <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-            <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">CLIENTE</div>
-            <input type="search" name="price" id="price" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="buscalo por">
-            <div class="grid shrink-0 grid-cols-1 focus-within:relative">
-              <select id="currency" name="currency" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                <option>nombre</option>
-                <option>ruc</option>
-              </select>
-              <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
-                <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-              </svg>
-            </div>
-          </div>
-        </div>
-    </div> -->
-
-    <!-- parte para un formato completo cajas de texto -->
-    <!-- <div class="border-b border-gray-900/10 pb-12">
-        <h2 class="text-base/7 font-semibold text-gray-900">Personal Information</h2>
-        <p class="mt-1 text-sm/6 text-gray-600">Use a permanent address where you can receive mail.</p>
-  
-        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <div class="sm:col-span-3">
-            <label for="first-name" class="block text-sm/6 font-medium text-gray-900">First name</label>
-            <div class="mt-2">
-              <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-
 
     <script src="./js/global/variables.js"></script>
     <script src="./caminos/rutas.js"></script>

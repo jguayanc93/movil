@@ -87,6 +87,7 @@
 async function buscar_producto(){
     let dataenviar=new Object();
     dataenviar.sugerencia=document.getElementById("producto").value;
+    dataenviar.tipbusq=document.getElementById("currency2").value;
     // dataenviar.cctl=document.getElementById("ctcl").value;
     // dataenviar.cctl=cliente_data[5];
     let fetchobj = new Object();
@@ -97,6 +98,7 @@ async function buscar_producto(){
     fetchobj.body=JSON.stringify(dataenviar);
     try{
         let paso1=await fetch(rutabproducto,fetchobj)
+        // let paso1=await fetch(tipbusqueda,fetchobj)
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
 
@@ -258,14 +260,7 @@ function prod(codi,descr,stock1,stock2){
 }
 
 
-document.getElementById("currency2").addEventListener('change',()=>{
-    console.log("ejecutando cambio")
-    document.getElementById("voz").disabled=false;
-    document.getElementById("voz").className="bg-sky-500";
-})
-// document.getElementById("voz").addEventListener("click",()=>{
-//     alert("activando reconocimiento de voz");
-// })
+
 
 function cancelar_confirmacion(){
     document.getElementById("producto").value="";

@@ -17,7 +17,8 @@ function cliente(sustituto){
         return resultado;
     })
     .then(resultado=>{        
-        document.getElementById("recorrer").innerHTML="";
+        // document.getElementById("recorrer").innerHTML="";
+        document.getElementById("recorrer-clientes").innerHTML="";
         console.log(cliente_data)
         // document.getElementById("ccli").value=resultado[0][0];
         // document.getElementById("cliente").value=resultado[0][1];
