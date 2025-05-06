@@ -1,4 +1,4 @@
-document.getElementById("transportista2").addEventListener("keyup",()=>{
+document.getElementById("transportista2").addEventListener("input",(ev)=>{
   document.getElementById("recorrer").innerHTML='';
-  get_transportista();
+  ev.target.value=='' ? document.getElementById("recorrer").innerHTML="" : get_transportista();
 })

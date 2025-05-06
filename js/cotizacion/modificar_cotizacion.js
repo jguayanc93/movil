@@ -244,7 +244,7 @@ function coti_item_new(){
 async function buscar_producto(){
     let dataenviar=new Object();
     dataenviar.sugerencia=document.getElementById("producto").value;
-    // dataenviar.cctl=cliente_data[5];
+    dataenviar.tipbusq=document.getElementById("currency2").value;
     let fetchobj = new Object();
     fetchobj.method="POST";
     fetchobj.headers={"Content-Type":"application/json"};

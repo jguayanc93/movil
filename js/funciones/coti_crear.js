@@ -4,6 +4,8 @@ async function generador_coti(){
     dataenviar.cliente=cliente_data;
     dataenviar.productos=agrupacion;
     dataenviar.promos=promos_insertadas;
+    dataenviar.alm=almc_id;
+
     let fetchobj = new Object();
     fetchobj.method="POST";
     fetchobj.headers={"Content-Type":"application/json"};
@@ -14,7 +16,10 @@ async function generador_coti(){
         let paso1 = await fetch(rutacreacion,fetchobj)
         let paso2 = await paso1.json();
         console.log(paso2);
-        // let paso3 = await
+        ///BORRANDO DATOS GUARDADOS DE LA COTI
+        cliente_data.length=0;
+        almc_id='01';
+        for(let prod in agrupacion) if(agrupacion.hasOwnProperty(prod)) delete agrupacion[prod];
     }
     catch(err){
         console.log(err);

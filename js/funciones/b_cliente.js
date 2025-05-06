@@ -45,7 +45,6 @@ async function buscar_cliente(busqueda){
 
 async function buscar_cliente2(busqueda){
     let dataenviar=new Object();
-    // dataenviar.sugerencia=document.getElementById("busqueda").value;
     dataenviar.sugerencia=busqueda;
     let fetchobj = new Object();
     fetchobj.method="POST";

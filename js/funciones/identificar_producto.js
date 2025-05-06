@@ -46,7 +46,6 @@ async function tblprd2(cprd,stoc){
     document.getElementById("producto").innerHTML="";
     // document.getElementById("seleccionar-productos").innerHTML="";
     
-    ////////////
     let dataenviar=new Object();
     dataenviar.sugerencia=cprd;
     dataenviar.cctl=cliente_data[5];
@@ -62,7 +61,7 @@ async function tblprd2(cprd,stoc){
         let paso3=await JSON.parse(paso2);
 
         agrupacion[paso3[0]]=[paso3[1],stoc,paso3[3],paso3[4],paso3[5],paso3[6],paso3[7]];
-        console.log(agrupacion);
+        // console.log(agrupacion);
     }
     catch(err){
         console.log(err);

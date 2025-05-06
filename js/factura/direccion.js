@@ -1,4 +1,4 @@
-document.getElementById("direccion2").addEventListener("keyup",()=>{
+document.getElementById("direccion2").addEventListener("input",(ev)=>{
     document.getElementById("recorrer").innerHTML='';
-    get_direccion();
+    ev.target.value=='' ? document.getElementById("recorrer").innerHTML='' : get_direccion();
 })
