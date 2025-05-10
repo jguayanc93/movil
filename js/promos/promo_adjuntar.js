@@ -1,7 +1,5 @@
 
-document.getElementById("adjuntar").addEventListener("click",()=>{
-    addprom();
-})
+document.getElementById("adjuntar").addEventListener("click",()=>{ addprom();})
 
 async function addprom(){
     let dataenviar=new Object();

@@ -11,24 +11,19 @@ let cotimodi_tmpitems={};///variable temporal para guardar los agregados,cantida
 ////MODIFICAR FACTURA
 
 //////////////////
+////MANEJADOR PROMOCIONES
+var coti_cant=0;/////variable para guardar el acumulado de cuantos items tiene esta cotizacion
+let cont_grupo_id=[];///variable para guardar el id de grupo(promocion dar el mejor premio) y no repetir por cada ves q se busca promo
+var prom_numero={};//////variable de emergencia para recodar las prom
+let promos_conjunto_diferenciales=[];/////////promos acumuladas con posibles resultados devueltos
+//////////////////
 var acumulador=[];
 
-
-//////variable de emergencia para recodar las prom
-var prom_numero={};
 
 /////VARIABLES PARA PROGRAMAR LAS FACTURAS REVISAR DESPUES
 const objprogramar={}
 
 let objfactura=[];///////VARIABLES PARA LA MODIFICACION DE LA FACTURA TEMPORAL Y SUS CAMPOS 0CODIGOCLIENTE 1FACTURA
-
-let promos_conjunto_diferenciales=[];/////////promos acumuladas con posibles resultados devueltos
-
-var coti_cant=0;/////variable para guardar el acumulado de cuantos items tiene esta cotizacion
-
-let cont_grupo_id=[];///variable para guardar el id de grupo(promocion dar el mejor premio) y no repetir por cada ves q se busca promo
-
-
 
 
 let marca_seleccionada="";///variable temporal para guardar la seleccion del usuario se reiniciara cada ves q entre
