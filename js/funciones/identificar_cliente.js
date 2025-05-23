@@ -18,6 +18,7 @@ function cliente(sustituto){
     })
     .then(resultado=>{
         document.getElementById("recorrer-clientes").innerHTML="";
+        document.getElementById("paso2").classList.remove("hidden");
         console.log(cliente_data)
     })
     .catch(err=>console.log(err))

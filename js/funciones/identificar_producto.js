@@ -62,6 +62,9 @@ async function tblprd2(cprd,stoc){
 
         agrupacion[paso3[0]]=[paso3[1],stoc,paso3[3],paso3[4],paso3[5],paso3[6],paso3[7]];
         // console.log(agrupacion);
+        // SOLO PARA TESTEAR EL ACCESO A CREAR CUANDO TIENE PRODUCTOS
+        document.getElementById("creacion").classList.remove("bg-rose-500");
+        document.getElementById("creacion").classList.add("bg-green-500");
     }
     catch(err){
         console.log(err);

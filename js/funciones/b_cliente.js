@@ -86,7 +86,8 @@ async function buscar_cliente2(busqueda){
             contenedor1.appendChild(enlace_descripcion_titulo);
             contenedor1.appendChild(parrafo_descripcion_data);
             contenedor1.addEventListener("click",()=>{
-                document.getElementById("busqueda").value=paso3[indice][1];
+                document.getElementById("busqueda").value="";
+                document.getElementById("nomcli").textContent=paso3[indice][1];
                 cliente(paso3[indice][0])
             })
 

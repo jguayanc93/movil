@@ -208,4 +208,8 @@ function cerrar_carrito(){ document.getElementById("carro-contenedor").classList
 function remover_item(codi){
     delete agrupacion[codi];
     document.getElementById("carro-contenedor").classList.add('hidden');
+    if(Object.keys(agrupacion).length==0){
+        document.getElementById("creacion").classList.remove("bg-green-500");
+        document.getElementById("creacion").classList.add("bg-rose-500");
+    }
 }
