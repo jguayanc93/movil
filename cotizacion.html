@@ -87,11 +87,13 @@
 <div id="modal-aceptacion" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"></div>
 <div class="relative" id="recorrer-productos"></div>
 <!-- PASO 3 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<div>
-  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 3:selecciona un producto de la lista para añadirlo</label>
+<div class="mx-6 my-4">
+  <div class="flex flex-row space-x-2">
+    <label class="block text-sm/6 font-medium text-gray-900">Paso 3:</label>
+    <label class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">(opcional)*revisar carrito</label>
+  </div>
   <div class="mt-2">
     <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">PRODUCTO</div> -->
       <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
       </div>
     </div>
@@ -239,23 +241,21 @@
     <!-- </div> -->
 
     <!-- PASO 6 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<!-- <div>
-  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 5:crear cotizacion</label>
+<div class="mx-6 my-4">
+  <div class="flex flex-row space-x-2">
+    <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:</label>
+    <label for="producto" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Generar Cotizacion</label>
+  </div>
   <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-    </div>
+    <p class="font-mono text-base">advertencia:no se creara nada si su tabla de items esta vacia y/o si desea reiniar la tabla solo actualise</p>
+    <!-- <a id="creacion" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">CREAR</a> -->
   </div>
-  
-  <div class="mt-6">
-    <p>mensaje:no se creara nada si su tabla de items esta vacia y/o si desea reiniar la tabla solo actualise</p>
-    <a id="creacion" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">CREAR</a>
-  </div>
-</div> -->
+</div>
   
   <div class="my-4 mx-16">
     <a id="creacion" 
     class="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs pointer-events-none hover:bg-indigo-700">CREAR</a>
+    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">CREAR</a>
   </div>
 <!-- FIN DEL PASO 6 -->
 
@@ -276,7 +276,7 @@
     <script src="./js/funciones/rentabilidad.js"></script> REVISAR Y REVIVIR PARA DESPUES -->
 
 <script src="./js/funciones/carrito.js"></script>
-<script src="./js/audio/pista.js"></script>
+<!-- <script src="./js/audio/pista.js"></script> -->
 
     <!-- <script src="./js/cotizacion/promocion.js"></script> -->
     <!-- <script src="./js/funciones/promocion_aplicar.js"></script> -->
