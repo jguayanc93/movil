@@ -21,10 +21,10 @@ document.getElementById("cuota-mes").addEventListener("click",()=>{
     })
     .then(resultado=>JSON.parse(resultado))
     .then(resultado=>{
-        console.log(resultado);
-        document.getElementById("detallado").innerHTML="vendido: "+resultado[0][0]+ "--- meta: "+ resultado[0][1];
-        document.getElementById("vmeta").innerHTML="$"+resultado[0][0]+"K";
-        document.getElementById("vavance").innerHTML="$"+resultado[0][1]+"K";
+        // console.log(resultado);
+        // document.getElementById("detallado").innerHTML="vendido: "+resultado[0][0]+ "--- meta: "+ resultado[0][1];
+        document.getElementById("vmeta").innerHTML="$"+resultado[0][1]+"K";
+        document.getElementById("vavance").innerHTML="$"+resultado[0][0]+"K";
     })
     .catch(err=>{console.log(err);})
 })

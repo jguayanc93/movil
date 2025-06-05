@@ -106,7 +106,7 @@ async function carrito2(){
             capa1.className="flex py-6";
 
             let capa2=document.createElement('div');
-            capa2.className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200";
+            capa2.className="size-16 shrink-0 overflow-hidden rounded-md border border-gray-200";
 
             let capaimg=document.createElement('img');
             capaimg.src="https://tailwindui.com/plus/img/ecommerce-images/shopping-cart-page-04-product-01.jpg";
