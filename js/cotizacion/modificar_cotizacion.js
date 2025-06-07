@@ -40,7 +40,7 @@ async function buscar_cotizacion_modificar(){
         ///creacion del cuerpo
         let cuerpo1=document.createElement('h2');
         cuerpo1.className="text-lg font-medium text-gray-900";
-        cuerpo1.textContent="Lista Productos";
+        cuerpo1.textContent="Lista de productos";
         let cuerpo2=document.createElement('div');
         cuerpo2.className="flex items-start justify-between";
         cuerpo2.appendChild(cuerpo1);
@@ -63,7 +63,7 @@ async function buscar_cotizacion_modificar(){
             parrafo1.className="mt-1 text-sm text-gray-500";
             parrafo1.textContent=cotimodi_tmpitems[indice][10];
             let contenedor1=document.createElement('div');
-            contenedor1.className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200";
+            contenedor1.className="h-full size-16 shrink-0 overflow-hidden rounded-md border border-gray-200";
             contenedor1.appendChild(parrafo1);
 
             let enlace=document.createElement('a')
@@ -139,7 +139,7 @@ async function buscar_cotizacion_modificar(){
             contenedor7.appendChild(contenedor6)
             
             let fila=document.createElement('li')
-            fila.className="flex py-6";
+            fila.className="flex py-6 items-center";
             fila.appendChild(contenedor1)
             fila.appendChild(contenedor7)
 
@@ -152,20 +152,20 @@ async function buscar_cotizacion_modificar(){
 
         cuerpo3.appendChild(cuerpo4);
 
-        let parrafo6=document.createElement('p');
-        parrafo6.className="mt-0.5 text-sm text-gray-500";
-        parrafo6.textContent="Listado de productos detallado.";
+        // let parrafo6=document.createElement('p');
+        // parrafo6.className="mt-0.5 text-sm text-gray-500";
+        // parrafo6.textContent="Listado de productos detallado.";
         //////espacio para la busqueda de promos
         let boton_prom=document.createElement('button');
         boton_prom.className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
-        boton_prom.textContent="Agregar Producto";
+        boton_prom.textContent="AGREGAR PRODUCTO";
         boton_prom.addEventListener('click',()=>{ coti_item_new();
             // esperador(promos_conjunto_diferenciales);
         })
         ///////////////////
         let cuerpo6=document.createElement('div');
-        cuerpo6.className="border-t border-gray-200 px-4 py-6 sm:px-6";
-        cuerpo6.appendChild(parrafo6);
+        cuerpo6.className="border-t border-gray-200 px-12 py-6";
+        // cuerpo6.appendChild(parrafo6);
         cuerpo6.appendChild(boton_prom);
 
         let cuerpo7=document.createElement('div');
@@ -199,7 +199,7 @@ function coti_item_new(){
     boton_voz.id='cotivoz';
     boton_voz.disabled
     boton_voz.textContent='presionar';
-    contenedor3.appendChild(boton_voz);
+    // contenedor3.appendChild(boton_voz);
 
     let busqueda=document.createElement('input');
     busqueda.type='search';
@@ -513,7 +513,7 @@ function volver_correr(coti){
             parrafo1.className="mt-1 text-sm text-gray-500";
             parrafo1.textContent=cotimodi_tmpitems[indice][10];
             let contenedor1=document.createElement('div');
-            contenedor1.className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200";
+            contenedor1.className="size-16 shrink-0 overflow-hidden rounded-md border border-gray-200";
             contenedor1.appendChild(parrafo1);
 
             let enlace=document.createElement('a')
@@ -589,7 +589,7 @@ function volver_correr(coti){
             contenedor7.appendChild(contenedor6)
             
             let fila=document.createElement('li')
-            fila.className="flex py-6";
+            fila.className="flex py-6 items-center";
             fila.appendChild(contenedor1)
             fila.appendChild(contenedor7)
 
