@@ -3,9 +3,9 @@ const desarrollo="http://127.0.0.1:3000/v1"
 const produccion="https://pulpo.compudiskett.com.pe/v1"
 
 // const rutalogin="https://pulpo.compudiskett.com.pe/v1/login";
-const rutalogin=desarrollo+"/login";
-const rutaidentificador=desarrollo+"/login/identificador";
-const rutaloginregistro=desarrollo+"/login/registro";
+const rutalogin=produccion+"/login";
+const rutaidentificador=produccion+"/login/identificador";
+const rutaloginregistro=produccion+"/login/registro";
 // const rutacuota="https://pulpo.compudiskett.com.pe/v1/vendedor/cuota";
 const rutacuota=desarrollo+"/vendedor/cuota";
 
