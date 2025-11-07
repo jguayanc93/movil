@@ -46,14 +46,20 @@ function logearse(ev){
     ///////fechar la peticion para el exito
     fetch(peticion)
     .then(resultado=>{
-        if(!resultado.ok){ throw new Error(`HTTP error status: ${resultado.status}`); }
+        if(!resultado.ok){
+
+            return resultado.json().then(errordata=>{
+                const ups = new Error(`HTTP error status: ${resultado.status}`)
+                ups.detalles=errordata;
+                throw ups;
+            })
+            // throw new Error(`HTTP error status: ${resultado.status}`);
+        }
         return resultado.json();
-        // if(resultado.ok){ return resultado.json(); }
-        // else{ return resultado.text(); }
     })
     .then(resultado=>{
         let decodificar = JSON.parse(resultado);
-        // console.log("cookie externa aceptada");
+        console.log("que sucedera? con la redireccion");
         // window.location.replace("http://127.0.0.1/demo1/main.html")
         window.location.replace("https://landing.compudiskett.com.pe/movil/main.html")
     })
@@ -62,5 +68,44 @@ function logearse(ev){
         document.getElementById("user").value="";
         document.getElementById("pass").value="";
         document.getElementById("respuesta").textContent="usuario y/o password incorrecto";
+        if(err.detalles){error_manejador(err.detalles)}
     })
+}
+
+function error_manejador(errobj){
+    ////MANEJA CON CUIDADO LOS PARAMETROS PORQE DEPENDERA DE LA REDIRECCION
+    switch (errobj.status) {
+        case "error query":
+            console.log("la webada fallo consulte con su equipo de sistemas");
+            break;
+
+        case "no cdk user":
+            console.log("oe weon no estas registrado en el navachof");
+            break;
+
+        case "falsa galleta":
+            console.log("que mrd hiciste con tu logeo en la sesion");
+            break;
+
+        case "no identificado":
+            console.log("registrate primero chistoso para poder usar la intranet");
+            autenticarse();
+            break;
+    
+        default:
+            console.log("paso algo rarisimo y esqe nose que mrd es esto");
+            console.log(errobj.msg);
+            break;
+    }
+}
+
+function autenticarse(){
+    window.location.assign("https://landing.compudiskett.com.pe/movil/registro.html")
+    // let peticion=new Request(rutaidentificador,{
+    //     method:"POST",
+    //     // headers:{},
+    //     body:{"user":usuario},
+    //     mode:"cors",
+    //     credentials:"include"
+    // })
 }

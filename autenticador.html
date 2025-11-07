@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>autenticar usuario</title>
+</head>
+<body>
+  <div class="my-4 mx-16">
+    <a href="registro.html" class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
+    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">MENU</a>
+  </div>
+  <!-- PASO 1 PARA LA BUSQUEDA DE UN CLIENTE -->
+  <div class="mx-6">
+    <div class="flex flex-row space-x-2">
+      <label for="busqueda" class="block text-sm/6 font-medium text-gray-900">Paso 1:</label>
+      <label id="nomcli" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">CUOTA</label>
+    </div>
+    <!-- <label for="busqueda" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Paso 1:</label> -->
+    <div class="mt-2">
+      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+        <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
+          <button id="voz-cliente">ClIENTE</button>
+        </div> -->
+        <input type="search" name="busqueda" id="busqueda" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="digitar...">
+        <!-- <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+          <select id="alm" name="alm" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            <option value="01">PRINCIPAL</option>
+            <option value="08">M&M</option>
+          </select>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <!-- ESTO ES PARA EL NUEVO PASO 2 -->
+   <div class="mx-6">
+    <div class="flex flex-row space-x-2">
+      <label for="busqueda" class="block text-sm/6 font-medium text-gray-900">Paso 2:</label>
+      <label id="nomcli" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Tipo de Vendedor</label>
+    </div>
+    <!-- <label for="busqueda" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Paso 1:</label> -->
+    <div class="mt-2">
+      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+        <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
+          <button id="voz-cliente">ClIENTE</button>
+        </div> -->
+        <!-- <input type="search" name="busqueda" id="busqueda" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="digitar..."> -->
+        <div class="grid shrink-0 w-full focus-within:relative">
+          <select id="alm" name="alm" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            <option value="1">COBERTURA</option>
+            <option value="2">CARTERA</option>
+            <option value="3">ESPECIALISTA</option>
+          </select>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+    <!-- <div> -->
+      <!-- obsoleto esta parte -->
+        
+  <!-- ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
+  <div class="relative" id="recorrer-clientes"></div>
+  <!-- FIN ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
+
+  <!-- PASO 2 PARA LA BUSQUEDA DE UN CLIENTE -->
+  <div id="paso2" class="mx-6 my-4 hidden">
+    <div class="flex flex-row space-x-2">
+      <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 2:</label>
+      <label class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Productos</label>
+    </div>
+    <div class="mt-2">
+      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+        <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
+          <button id="voz" disabled>presionar</button>
+        </div> -->
+        <!-- <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+          <button class="hover:bg-sky-700">presionar</button>
+        </div> -->
+        <!-- AGREGAR AQUI EL CAMBIO DE BUSCADOR SEGUN ELECCION DE BUSQUEDA -->
+        <!-- BUSUQEDA DE PRODUCTO POR DESCRIPCION -->
+        <input type="search" name="producto" id="producto" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="buscar por...">
+        <!-- BUSUQEDA DE PRODUCTO POR PARTNUMBER -->
+        <input type="search" name="productof" id="productof" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 hidden" placeholder="buscar por...">
+        <!-- FIN DE DIFERENCIARLOS BIEN -->
+        <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+          <select id="currency2" name="currency2" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            <option value="1">nombre</option>
+            <option value="2">partnumber</option>
+          </select>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- FIN DEL PASO 2 -->
+<div id="modal-aceptacion" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"></div>
+<div class="relative" id="recorrer-productos"></div>
+<!-- PASO 3 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
+<div class="mx-6 my-4">
+  <div class="flex flex-row space-x-2">
+    <label class="block text-sm/6 font-medium text-gray-900">Paso 3:</label>
+    <label class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">(opcional)*revisar carrito</label>
+  </div>
+  <div class="mt-2">
+    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+      <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN DEL PASO 3 -->
+
+        <!-- <h2>paso 2: busca tu producto para cotizar</h2>
+        <div>
+            <input type="search" id="producto">
+        </div> -->
+        <!-- <h2>pase 3: selecciona un producto de la lista para añadirlo a tu coti</h2> -->
+        <!-- <div id="encontrar">
+            <div class="relative" id="recorrer-productos"></div>
+        </div> -->
+<!-- PASO 4 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
+<!-- <div>
+  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:ver rentabilidad ganada de esta coti (opcional)</label>
+  <div class="mt-2">
+    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+      
+    </div>
+  </div>
+  <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
+</div> -->
+<!-- FIN DEL PASO 4 -->
+        
+        <!-- /////////////////esta parte de abajo es valida lo de arriba es solo un testeo de responsive -->
+        <!-- <div id="recolectar">
+            <table>
+                <tbody id="seleccionar-productos"></tbody>
+            </table>
+        </div> -->
+        <!-- <h2>paso 4: ver rentabilidad ganada de esta coti (opcional)</h2>
+        <div>
+            <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
+        </div> -->
+
+        <!-- <h2>paso 5: aplicar OPG o algun tipo de promocion de descuento</h2>
+        <div>            
+            <input type="text" id="opg">
+            <button type="button" id="promo-click">aplicar</button>
+            <p>advertencia:solo se aplicara la promo segun corresponda o este definida la promocion</p>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Producto</td>
+                        <td>Descuento con IGV</td>
+                        <td>Total</td>
+                    </tr>
+                </thead>
+                <tbody id="promos"></tbody>
+            </table>
+        </div> -->
+<!-- PASO 5 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
+<!-- <div>
+  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:productos guardados</label>
+  <div class="mt-2">
+    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+      
+    </div>
+  </div>
+  <div class="mt-6">
+    <a id="carrito" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">PRODUCTOS</a>
+</div>
+</div> -->
+<div class="my-4 mx-16">
+    <a id="carrito" 
+    class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
+    font-semibold text-white tracking-[.2em] shadow-xs hover:bg-indigo-700">PRODUCTOS</a>
+  </div>
+<!-- FIN DEL PASO 5 -->
+<div id="carro-contenedor" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+  
+  <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+
+  <div class="fixed inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-6">
+        
+        <div class="pointer-events-auto w-screen max-w-md">
+          <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+              <div class="flex items-start justify-between">
+                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">LISTA DE PRODUCTOS</h2>
+                <div class="ml-3 flex h-7 items-center">
+                  <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Close panel</span>
+                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <div class="flow-root">
+                  <ul id="productos-listados" role="list" class="-my-6 divide-y divide-gray-200">
+                   
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div id="productos-totales" class="border-t border-gray-200 px-4 py-6 sm:px-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+        <!-- <h2>paso 6: si esta conforme con los items y la promo proceda a crear la coti</h2>
+        <div>
+            <button type="button" id="creacion">Crear Cotizacion</button>
+            <p>mensaje:no se creara nada si su tabla de items esta vacia y/o si desea reiniar la tabla solo actualise</p>
+        </div> -->
+    <!-- </div> -->
+
+    <!-- PASO 6 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
+<div class="mx-6 my-4">
+  <div class="flex flex-row space-x-2">
+    <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 3:</label>
+    <label for="producto" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Advertencia</label>
+  </div>
+  <div class="mt-2">
+    <p class="font-mono text-base">no podra cambiar y/alterar su informacion despues del registro</p>
+    <!-- <a id="creacion" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">CREAR</a> -->
+  </div>
+</div>
+  
+  <div class="my-4 mx-16">
+    <a id="creacion" 
+    class="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl 
+    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">CREAR</a>
+  </div>
+<!-- FIN DEL PASO 6 -->
+
+<!-- <script src="./js/global/variables.js"></script>
+<script src="./caminos/rutas.js"></script>
+
+<script src="./js/cotizacion/buscar_cliente.js"></script>
+<script src="./js/funciones/b_cliente.js"></script>
+<script src="./js/funciones/identificar_cliente.js"></script>
+
+<script src="./js/cotizacion/cambio_almacen.js"></script>
+
+<script src="./js/cotizacion/buscar_producto.js"></script>
+<script src="./js/funciones/b_producto.js"></script>
+<script src="./js/funciones/identificar_producto.js"></script>
+
+<script src="./js/funciones/carrito.js"></script>
+
+<script src="./js/cotizacion/crear.js"></script>
+<script src="./js/funciones/coti_crear.js"></script> -->
+
+</body>
+</html>
