@@ -88,7 +88,7 @@ function error_manejador(errobj){
             break;
 
         case "no identificado":
-            console.log("registrate primero chistoso para poder usar la intranet");
+            // console.log("registrate primero chistoso para poder usar la intranet");
             autenticarse();
             break;
     

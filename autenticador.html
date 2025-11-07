@@ -23,7 +23,7 @@
         <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
           <button id="voz-cliente">ClIENTE</button>
         </div> -->
-        <input type="search" name="busqueda" id="busqueda" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="digitar...">
+        <input type="number" name="busqueda" id="busqueda" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="digitar...">
         <!-- <div class="grid shrink-0 grid-cols-1 focus-within:relative">
           <select id="alm" name="alm" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             <option value="01">PRINCIPAL</option>
@@ -105,20 +105,6 @@
 <!-- FIN DEL PASO 2 -->
 <div id="modal-aceptacion" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"></div>
 <div class="relative" id="recorrer-productos"></div>
-<!-- PASO 3 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<div class="mx-6 my-4">
-  <div class="flex flex-row space-x-2">
-    <label class="block text-sm/6 font-medium text-gray-900">Paso 3:</label>
-    <label class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">(opcional)*revisar carrito</label>
-  </div>
-  <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
-      </div>
-    </div>
-  </div>
-</div>
-<!-- FIN DEL PASO 3 -->
 
         <!-- <h2>paso 2: busca tu producto para cotizar</h2>
         <div>
@@ -128,64 +114,7 @@
         <!-- <div id="encontrar">
             <div class="relative" id="recorrer-productos"></div>
         </div> -->
-<!-- PASO 4 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<!-- <div>
-  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:ver rentabilidad ganada de esta coti (opcional)</label>
-  <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      
-    </div>
-  </div>
-  <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
-</div> -->
-<!-- FIN DEL PASO 4 -->
-        
-        <!-- /////////////////esta parte de abajo es valida lo de arriba es solo un testeo de responsive -->
-        <!-- <div id="recolectar">
-            <table>
-                <tbody id="seleccionar-productos"></tbody>
-            </table>
-        </div> -->
-        <!-- <h2>paso 4: ver rentabilidad ganada de esta coti (opcional)</h2>
-        <div>
-            <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
-        </div> -->
 
-        <!-- <h2>paso 5: aplicar OPG o algun tipo de promocion de descuento</h2>
-        <div>            
-            <input type="text" id="opg">
-            <button type="button" id="promo-click">aplicar</button>
-            <p>advertencia:solo se aplicara la promo segun corresponda o este definida la promocion</p>
-        </div>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Producto</td>
-                        <td>Descuento con IGV</td>
-                        <td>Total</td>
-                    </tr>
-                </thead>
-                <tbody id="promos"></tbody>
-            </table>
-        </div> -->
-<!-- PASO 5 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<!-- <div>
-  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:productos guardados</label>
-  <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      
-    </div>
-  </div>
-  <div class="mt-6">
-    <a id="carrito" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">PRODUCTOS</a>
-</div>
-</div> -->
-<div class="my-4 mx-16">
-    <a id="carrito" 
-    class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.2em] shadow-xs hover:bg-indigo-700">PRODUCTOS</a>
-  </div>
 <!-- FIN DEL PASO 5 -->
 <div id="carro-contenedor" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
   
@@ -248,7 +177,7 @@
     <label for="producto" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Advertencia</label>
   </div>
   <div class="mt-2">
-    <p class="font-mono text-base">no podra cambiar y/alterar su informacion despues del registro</p>
+    <p class="font-mono text-base">no podra cambiar y/o alterar su informacion despues del registro</p>
     <!-- <a id="creacion" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">CREAR</a> -->
   </div>
 </div>
@@ -256,27 +185,38 @@
   <div class="my-4 mx-16">
     <a id="creacion" 
     class="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">CREAR</a>
+    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">GUARDAR</a>
   </div>
 <!-- FIN DEL PASO 6 -->
 
-<!-- <script src="./js/global/variables.js"></script>
+<script src="./js/global/variables.js"></script>
 <script src="./caminos/rutas.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded",function(){
+    console.log("documento cargo?")
+    if(document.getElementById("recorrer-productos")){
+      manejar_diferenciar_opciones();
+    }
+  })
 
-<script src="./js/cotizacion/buscar_cliente.js"></script>
-<script src="./js/funciones/b_cliente.js"></script>
-<script src="./js/funciones/identificar_cliente.js"></script>
+  function manejar_diferenciar_opciones(){
 
-<script src="./js/cotizacion/cambio_almacen.js"></script>
+    let peticion = new Request(rutaloginregistro,{ method:"GET",mode:"cors",credentials:"include"})
 
-<script src="./js/cotizacion/buscar_producto.js"></script>
-<script src="./js/funciones/b_producto.js"></script>
-<script src="./js/funciones/identificar_producto.js"></script>
-
-<script src="./js/funciones/carrito.js"></script>
-
-<script src="./js/cotizacion/crear.js"></script>
-<script src="./js/funciones/coti_crear.js"></script> -->
-
+    fetch(peticion)
+    .then(resultado=>{
+      if(!resultado.ok){
+        throw new Error("error en el llamado de las galleta");
+      }
+    })
+    .then(resultado=>{
+      let decodificar = JSON.parse(resultado);
+      console.log("se trajo esta respuesta correcta",decodificar)
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }
+</script>
 </body>
 </html>
