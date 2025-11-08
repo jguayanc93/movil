@@ -291,7 +291,10 @@
     let diferenciador = document.getElementById("vend-tipos");
       console.log("este es el seleccionado: ",diferenciador.value);
 
-      let peticion = new Request(rutaloginregistrocompletado,{ method:"GET",body:{"diferenciador":diferenciador},mode:"cors",credentials:"include"})
+      const cuerpo={ 'diferenciador':diferenciador.value}
+      const bodystring=JSON.stringify(cuerpo);
+
+      let peticion = new Request(rutaloginregistrocompletado,{ method:"POST",headers:{'Content-Type':'application/json'},body:bodystring,mode:"cors",credentials:"include"})
 
       fetch(peticion)
       .then(resultado=>{
@@ -302,7 +305,8 @@
       })
       .then(resultado=>{
         let decodificar = JSON.parse(resultado);
-        console.log("que sucedera? con la redireccion");
+        console.log(decodificar)
+        //console.log("que sucedera? con la redireccion");
         window.location.replace("https://landing.compudiskett.com.pe/main.html")
       })
       .catch(err=>{
