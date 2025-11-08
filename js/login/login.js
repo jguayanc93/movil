@@ -61,7 +61,7 @@ function logearse(ev){
         let decodificar = JSON.parse(resultado);
         console.log("que sucedera? con la redireccion");
         // window.location.replace("http://127.0.0.1/demo1/main.html")
-        window.location.replace("https://landing.compudiskett.com.pe/movil/main.html")
+        window.location.replace("https://landing.compudiskett.com.pe/main.html")
     })
     .catch(err=>{
         console.log(err);
@@ -100,7 +100,7 @@ function error_manejador(errobj){
 }
 
 function autenticarse(){
-    window.location.assign("https://landing.compudiskett.com.pe/movil/registro.html")
+    window.location.assign("https://landing.compudiskett.com.pe/registro.html")
     // let peticion=new Request(rutaidentificador,{
     //     method:"POST",
     //     // headers:{},
