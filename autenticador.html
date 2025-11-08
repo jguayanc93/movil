@@ -126,7 +126,7 @@
   <div class="my-4 mx-16">
     <a id="creacion" 
     class="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">GUARDAR</a>
+    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700" onclick="guardar_diferenciador()">GUARDAR</a>
   </div>
 <!-- FIN DEL PASO 6 -->
 
@@ -287,10 +287,8 @@
   }
 
   function guardar_diferenciador(){
-    let seleccionado = document.getElementById("creacion");
 
-    seleccionado.addEventListener("click",function(){
-      let diferenciador = document.getElementById("vend-tipos");
+    let diferenciador = document.getElementById("vend-tipos");
       console.log("este es el seleccionado: ",diferenciador.value);
 
       let peticion = new Request(rutaloginregistrocompletado,{ method:"GET",body:{"diferenciador":diferenciador},mode:"cors",credentials:"include"})
@@ -310,7 +308,6 @@
       .catch(err=>{
         console.log(err);
       })
-    })
   }
 </script>
 </body>
