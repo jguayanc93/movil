@@ -130,7 +130,7 @@
   </div>
 <!-- FIN DEL PASO 6 -->
 
-<script src="./js/global/variables.js"></script>
+<!-- <script src="./js/global/variables.js"></script> -->
 <script src="./caminos/rutas.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded",function(){
@@ -283,9 +283,34 @@
         opcion.textContent="no pertenece a ningun grupo";        
         break;
     }
-    
 
+  }
 
+  function guardar_diferenciador(){
+    let seleccionado = document.getElementById("creacion");
+
+    seleccionado.addEventListener("click",function(){
+      let diferenciador = document.getElementById("vend-tipos");
+      console.log("este es el seleccionado: ",diferenciador.value);
+
+      let peticion = new Request(rutaloginregistrocompletado,{ method:"GET",body:{"diferenciador":diferenciador},mode:"cors",credentials:"include"})
+
+      fetch(peticion)
+      .then(resultado=>{
+        if(!resultado.ok){
+          throw new Error("fallo en la redireccion hacia el menu despues del registro");
+        }
+        return resultado.json();
+      })
+      .then(resultado=>{
+        let decodificar = JSON.parse(resultado);
+        console.log("que sucedera? con la redireccion");
+        window.location.replace("https://landing.compudiskett.com.pe/main.html")
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+    })
   }
 </script>
 </body>

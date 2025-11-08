@@ -6,6 +6,7 @@ const produccion="https://pulpo.compudiskett.com.pe/v1"
 const rutalogin=produccion+"/login";
 const rutaidentificador=produccion+"/login/identificador";
 const rutaloginregistro=produccion+"/login/registro";
+const rutaloginregistrocompletado=produccion+"/login/registro/completado";
 // const rutacuota="https://pulpo.compudiskett.com.pe/v1/vendedor/cuota";
 const rutacuota=desarrollo+"/vendedor/cuota";
 
