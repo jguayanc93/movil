@@ -187,6 +187,7 @@
             </div>
           </div>
     </div>
+    <script src="./caminos/rutas.js"></script>
     <script>
       // let gatillo=false;
       // let referencia='https://landing.compudiskett.com.pe/movil';
@@ -196,6 +197,31 @@
       //   document.getElementById("seccion3").addEventListener("click",()=>{ gatillo ? window.location.href=referencia+"/factura.html" :  window.location.href=referencia2+"/factura.html" })
       //   document.getElementById("seccion5").addEventListener("click",()=>{ gatillo ? window.location.href=referencia+"/promos.html" :  window.location.href=referencia2+"/promos.html" })
       //   document.getElementById("seccion6").addEventListener("click",()=>{ gatillo ? window.location.href=referencia+"/programadordoc.html" :  window.location.href=referencia2+"/programador.html" })
+
+
+      document.addEventListener("DOMContentLoaded",function(){
+        manejar_acceso();
+      })
+
+      function manejar_acceso(){
+        let peticion = new Request(rutavendedor,{ method:"GET",mode:"cors",credentials:"include"})
+
+        fetch(peticion)
+        .then(resultado=>{
+          if(!resultado.ok){
+            throw new Error("error en el llamado de las galleta");
+          }
+          return resultado.json();
+        })
+        .then(resultado=>{
+          let decodificar = JSON.parse(resultado);
+          console.log("se trajo esta respuesta correcta",decodificar)
+        })
+        .catch(err=>{
+          console.log(err);
+          // insertar_opciones_usuario("VENTAS-EJECUTIVOS");
+        })
+      }
     </script>
 </body>
 </html>
