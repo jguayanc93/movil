@@ -216,11 +216,24 @@
         .then(resultado=>{
           let decodificar = JSON.parse(resultado);
           console.log("se trajo esta respuesta correcta",decodificar)
+          return decodificar;
+          // modulos_dinamicos(decodificar["permisos"])
+        })
+        .then(resultado=>{
+          modulos_dinamicos(resultado["permisos"])
         })
         .catch(err=>{
           console.log(err);
           // insertar_opciones_usuario("VENTAS-EJECUTIVOS");
         })
+      }
+
+      function modulos_dinamicos(objmodulos){
+        ////tendria q incrustar modulos segun el obj pero tendria q controlar cada ves mas dentro del modulo
+        let desmenuzar=Object.keys(objmodulos);
+        console.log("si llege hasta el modulo dinamico",objmodulos)
+
+        ///construccion del los modulos con sus accesos
       }
     </script>
 </body>
