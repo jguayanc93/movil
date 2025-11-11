@@ -204,7 +204,8 @@
           /////aqui es donde tengo q manejarlo con cuidado segun el objmodulo
           let enlace=document.createElement("a");
           enlace.className="font-semibold text-white underline underline-offset-4";
-          enlace.href=manejar_enlace_dinamico(modulo);
+          // enlace.href=manejar_enlace_dinamico(modulo);
+          enlace.href=`${modulo}.html`;
           enlace.textContent=modulo.toUpperCase();
 
           let span=document.createElement("span");
@@ -214,7 +215,7 @@
 
           let parrafo=document.createElement("p");
           parrafo.className="mt-1 text-white italic justify-self-end-safe";
-          parrafo.textContent=manejar_parrafo_dinamico(modulo);
+          parrafo.textContent=objmodulos[modulo];
 
           contenedor2.appendChild(enlace);
           contenedor2.appendChild(parrafo);
@@ -250,33 +251,7 @@
             break;
         }
       }
-      function manejar_parrafo_dinamico(modulo){
-        switch (modulo) {
-          case "cotizacion":
-            return "Permite manejar cotizaciones";
-            break;
-
-          case "listas":
-            return "Lista tus ventas";
-            break;
-
-          case "facturas":
-            return "Permite manejar facturas";
-            break;
-
-          case "promocion":
-            return "Permite adjuntar y retirar promociones";
-            break;
-
-          case "cuota":
-            return  "Ver el avance tus cuotas";
-            break;
-        
-          default:
-            return "nada que mostrar";
-            break;
-        }
-      }
+      
     </script>
 </body>
 </html>
