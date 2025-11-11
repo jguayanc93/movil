@@ -2,14 +2,15 @@
 const desarrollo="http://127.0.0.1:3000/v1"
 const produccion="https://pulpo.compudiskett.com.pe/v1"
 
-////// nuevas rutas con respecto al logeo
+////// nuevas rutas con respecto al LOGEO
 const rutalogin=produccion+"/login";
 const rutaidentificador=produccion+"/login/identificador";
 const rutaloginregistro=produccion+"/login/registro";
 const rutaloginregistrocompletado=produccion+"/login/registro/completado";
-//////nuevas rutas con respecto al vendedor
+//////nuevas rutas con respecto al VENDEDOR
 const rutavendedor=produccion+"/vendedor";
-//////////
+//////////nuevas rutas con respecto ala COTIZACION raiz principal con accesos dinamicos
+const rutacotizacionpermisos=produccion+"/cotizacion";
 // const rutacuota="https://pulpo.compudiskett.com.pe/v1/vendedor/cuota";
 const rutacuota=desarrollo+"/vendedor/cuota";
 

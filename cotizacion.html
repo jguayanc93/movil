@@ -3,285 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>crear cotizacion</title>
+    <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>cdk</title>
 </head>
 <body>
-  <div class="my-4 mx-16">
-    <a href="main.html" class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">MENU</a>
-  </div>
-  <!-- PASO 1 PARA LA BUSQUEDA DE UN CLIENTE -->
-  <div class="mx-6">
-    <div class="flex flex-row space-x-2">
-      <label for="busqueda" class="block text-sm/6 font-medium text-gray-900">Paso 1:</label>
-      <label id="nomcli" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Cliente</label>
-    </div>
-    <!-- <label for="busqueda" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Paso 1:</label> -->
-    <div class="mt-2">
-      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-        <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
-          <button id="voz-cliente">ClIENTE</button>
-        </div> -->
-        <input type="search" name="busqueda" id="busqueda" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="digitar...">
-        <div class="grid shrink-0 grid-cols-1 focus-within:relative">
-          <select id="alm" name="alm" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-            <option value="01">PRINCIPAL</option>
-            <option value="08">M&M</option>
-          </select>
-          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
-            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- FIN DEL PASO 1 -->
-   
-    <!-- <div> -->
-      <!-- obsoleto esta parte -->
-        <!-- <div>
-            <div id="aparecer">
-                <table>
-                    <tbody id="recorrer"></tbody>
-                </table>
-            </div>
-        </div> -->
-  <!-- ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
-  <div class="relative" id="recorrer-clientes"></div>
-  <!-- FIN ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
-
-  <!-- PASO 2 PARA LA BUSQUEDA DE UN CLIENTE -->
-  <div id="paso2" class="mx-6 my-4 hidden">
-    <div class="flex flex-row space-x-2">
-      <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 2:</label>
-      <label class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Productos</label>
-    </div>
-    <div class="mt-2">
-      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-        <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
-          <button id="voz" disabled>presionar</button>
-        </div> -->
-        <!-- <div class="grid shrink-0 grid-cols-1 focus-within:relative">
-          <button class="hover:bg-sky-700">presionar</button>
-        </div> -->
-        <!-- AGREGAR AQUI EL CAMBIO DE BUSCADOR SEGUN ELECCION DE BUSQUEDA -->
-        <!-- BUSUQEDA DE PRODUCTO POR DESCRIPCION -->
-        <input type="search" name="producto" id="producto" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="buscar por...">
-        <!-- BUSUQEDA DE PRODUCTO POR PARTNUMBER -->
-        <input type="search" name="productof" id="productof" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 hidden" placeholder="buscar por...">
-        <!-- FIN DE DIFERENCIARLOS BIEN -->
-        <div class="grid shrink-0 grid-cols-1 focus-within:relative">
-          <select id="currency2" name="currency2" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-            <option value="1">nombre</option>
-            <option value="2">partnumber</option>
-          </select>
-          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
-            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- FIN DEL PASO 2 -->
-<div id="modal-aceptacion" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"></div>
-<div class="relative" id="recorrer-productos"></div>
-<!-- PASO 3 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<div class="mx-6 my-4">
-  <div class="flex flex-row space-x-2">
-    <label class="block text-sm/6 font-medium text-gray-900">Paso 3:</label>
-    <label class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">(opcional)*revisar carrito</label>
-  </div>
-  <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
-      </div>
-    </div>
-  </div>
-</div>
-<!-- FIN DEL PASO 3 -->
-
-        <!-- <h2>paso 2: busca tu producto para cotizar</h2>
-        <div>
-            <input type="search" id="producto">
-        </div> -->
-        <!-- <h2>pase 3: selecciona un producto de la lista para añadirlo a tu coti</h2> -->
-        <!-- <div id="encontrar">
-            <div class="relative" id="recorrer-productos"></div>
-        </div> -->
-<!-- PASO 4 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<!-- <div>
-  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:ver rentabilidad ganada de esta coti (opcional)</label>
-  <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      
-    </div>
-  </div>
-  <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
-</div> -->
-<!-- FIN DEL PASO 4 -->
-        
-        <!-- /////////////////esta parte de abajo es valida lo de arriba es solo un testeo de responsive -->
-        <!-- <div id="recolectar">
-            <table>
-                <tbody id="seleccionar-productos"></tbody>
-            </table>
-        </div> -->
-        <!-- <h2>paso 4: ver rentabilidad ganada de esta coti (opcional)</h2>
-        <div>
-            <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
-        </div> -->
-
-        <!-- <div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Producto</td>
-                        <td>Cantidad</td>
-                        <td>Precio Venta</td>
-                        <td>Dsct Cliente</td>
-                        <td>Costo Total</td>
-                        <td>Totalisado</td>
-                        <td>Diferencia</td>
-                        <td>RENTABILIDAD</td>
-                    </tr>
-                </thead>
-                <tbody id="resumen"></tbody>
-            </table>
-        </div> -->
-
-        <!-- <h2>paso 5: aplicar OPG o algun tipo de promocion de descuento</h2>
-        <div>            
-            <input type="text" id="opg">
-            <button type="button" id="promo-click">aplicar</button>
-            <p>advertencia:solo se aplicara la promo segun corresponda o este definida la promocion</p>
-        </div>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Producto</td>
-                        <td>Descuento con IGV</td>
-                        <td>Total</td>
-                    </tr>
-                </thead>
-                <tbody id="promos"></tbody>
-            </table>
-        </div> -->
-<!-- PASO 5 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<!-- <div>
-  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:productos guardados</label>
-  <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      
-    </div>
-  </div>
-  <div class="mt-6">
-    <a id="carrito" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">PRODUCTOS</a>
-</div>
-</div> -->
-<div class="my-4 mx-16">
-    <a id="carrito" 
-    class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.2em] shadow-xs hover:bg-indigo-700">PRODUCTOS</a>
-  </div>
-<!-- FIN DEL PASO 5 -->
-<div id="carro-contenedor" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-  
-  <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
-
-  <div class="fixed inset-0 overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-6">
-        
-        <div class="pointer-events-auto w-screen max-w-md">
-          <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-              <div class="flex items-start justify-between">
-                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">LISTA DE PRODUCTOS</h2>
-                <div class="ml-3 flex h-7 items-center">
-                  <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
-                    <span class="absolute -inset-0.5"></span>
-                    <span class="sr-only">Close panel</span>
-                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+    <!--agrupacion de opciones del menu principal-->
+    <div class="relative">
+        <div class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
+            <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 ring-1 shadow-lg ring-gray-900/5">
+              <div id="" class="flex flex-col gap-4 p-4">
+                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                  
+                  <div class="w-64">
+                    <a href="cotizacion.html" class="font-semibold text-white underline underline-offset-4">
+                      CREAR COTIZACION
+                      <span class="absolute inset-0"></span>
+                    </a>
+                    <p class="mt-1 text-white italic justify-self-end-safe">Permite crear una nueva cotizacion</p>
+                  </div>
                 </div>
+                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                  
+                  <div class="w-64">
+                    <a href="cuota.html" class="font-semibold text-white underline underline-offset-4">
+                      MODIFICAR COTIZACION
+                      <span class="absolute inset-0"></span>
+                    </a>
+                    <p class="mt-1 text-white italic justify-self-end-safe">Permite ver el avance de mi cuota</p>
+                  </div>
+                </div>
+                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                  
+                  <div class="w-64">
+                    <a href="modifcoti.html" class="font-semibold text-white underline underline-offset-4">
+                      DESAPROBAR COTIZACION
+                      <span class="absolute inset-0"></span>
+                    </a>
+                    <p class="mt-1 text-white italic justify-self-end-safe">Permite modificar una cotizacion</p>
+                  </div>
+                </div>
+                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                  
+                  <div class="w-64">
+                    <a href="factura.html" class="font-semibold text-white underline underline-offset-4">
+                      VER COTIZACION
+                      <span class="absolute inset-0"></span>
+                    </a>
+                    <p class="mt-1 text-white italic justify-self-end-safe">Permite modificar la factura o boleta</p>
+                  </div>
+                </div>
+                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                  
+                  <div class="w-64">
+                    <a href="#" class="font-semibold text-white underline underline-offset-4">
+                      CAMBIO ALMACEN
+                      <span class="absolute inset-0"></span>
+                    </a>
+                    <p class="mt-1 text-white italic justify-self-end-safe">Permite ver la rentabilidad de una respectiva cotizacion</p>
+                  </div>
+                </div>
+                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                  
+                  <div class="w-64">
+                    <a href="promos.html" class="font-semibold text-white underline underline-offset-4">
+                      PROMOCION ACTIVADOR
+                      <span class="absolute inset-0"></span>
+                    </a>
+                    <p class="mt-1 text-white italic justify-self-end-safe">Permite el manejo de una promocion con respecto a una cotizacion creada</p>
+                  </div>
+                </div>
+                
               </div>
-
-              <div class="mt-8">
-                <div class="flow-root">
-                  <ul id="productos-listados" role="list" class="-my-6 divide-y divide-gray-200">
-                   
-                  </ul>
-                </div>
+              <div class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                <a href="#" class="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
+                  <svg class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z" clip-rule="evenodd" />
+                  </svg>
+                  CERRAR SESION
+                </a>
+                <a href="#" class="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
+                  <svg class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd" />
+                  </svg>
+                  AYUDA
+                </a>
               </div>
             </div>
-
-            <div id="productos-totales" class="border-t border-gray-200 px-4 py-6 sm:px-6"></div>
           </div>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
+    <script src="./caminos/rutas.js"></script>
+    <script>
 
+      document.addEventListener("DOMContentLoaded",function(){
+        manejar_acceso();
+      })
 
+      function manejar_acceso(){
+        let peticion = new Request(rutacotizacionpermisos,{ method:"GET",mode:"cors",credentials:"include"})
 
+        fetch(peticion)
+        .then(resultado=>{
+          if(!resultado.ok){
+            throw new Error("error en el llamado a los permisos segun vendedor");
+          }
+          return resultado.json();
+        })
+        .then(resultado=>{
+          let decodificar = JSON.parse(resultado);
+          console.log("se trajo estos permisos",decodificar)
+          //   return decodificar;
+        })
+        // .then(resultado=>{
+        //   modulos_dinamicos(resultado)
+        // })
+        .catch(err=>{
+          console.log(err);
+          // insertar_opciones_usuario("VENTAS-EJECUTIVOS");
+        })
+      }
 
+      function modulos_dinamicos(objmodulos){
+        ////tendria q incrustar modulos segun el obj pero tendria q controlar cada ves mas dentro del modulo
+        let desmenuzar=Object.keys(objmodulos);
+        console.log("si llege hasta el modulo dinamico",desmenuzar)
 
+        for(const modulo of desmenuzar){
+          ///construccion del los modulos con sus accesos
+          let contenedor = document.createElement("div");
+          contenedor.className="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50";
 
+          let contenedor2=document.createElement("div");
+          contenedor2.className="w-64";
 
-        <!-- <h2>paso 6: si esta conforme con los items y la promo proceda a crear la coti</h2>
-        <div>
-            <button type="button" id="creacion">Crear Cotizacion</button>
-            <p>mensaje:no se creara nada si su tabla de items esta vacia y/o si desea reiniar la tabla solo actualise</p>
-        </div> -->
-    <!-- </div> -->
+          /////aqui es donde tengo q manejarlo con cuidado segun el objmodulo
+          let enlace=document.createElement("a");
+          enlace.className="font-semibold text-white underline underline-offset-4";
+          // enlace.href=manejar_enlace_dinamico(modulo);
+          enlace.href=`${modulo}.html`;
+          enlace.textContent=modulo.toUpperCase();
 
-    <!-- PASO 6 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<div class="mx-6 my-4">
-  <div class="flex flex-row space-x-2">
-    <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:</label>
-    <label for="producto" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Generar Cotizacion</label>
-  </div>
-  <div class="mt-2">
-    <p class="font-mono text-base">advertencia:no se creara nada si su tabla de items esta vacia y/o si desea reiniar la tabla solo actualise</p>
-    <!-- <a id="creacion" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">CREAR</a> -->
-  </div>
-</div>
-  
-  <div class="my-4 mx-16">
-    <a id="creacion" 
-    class="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">CREAR</a>
-  </div>
-<!-- FIN DEL PASO 6 -->
+          let span=document.createElement("span");
+          span.className="absolute inset-0";
 
-<script src="./js/global/variables.js"></script>
-<script src="./caminos/rutas.js"></script>
+          enlace.appendChild(span)
 
-<script src="./js/cotizacion/buscar_cliente.js"></script>
-<script src="./js/funciones/b_cliente.js"></script>
-<script src="./js/funciones/identificar_cliente.js"></script>
+          let parrafo=document.createElement("p");
+          parrafo.className="mt-1 text-white italic justify-self-end-safe";
+          parrafo.textContent=objmodulos[modulo];
 
-<script src="./js/cotizacion/cambio_almacen.js"></script>
-
-<script src="./js/cotizacion/buscar_producto.js"></script>
-<script src="./js/funciones/b_producto.js"></script>
-<script src="./js/funciones/identificar_producto.js"></script>
-
-    <!-- <script src="./js/cotizacion/rentabilidad.js"></script>
-    <script src="./js/funciones/rentabilidad.js"></script> REVISAR Y REVIVIR PARA DESPUES -->
-
-<script src="./js/funciones/carrito.js"></script>
-<!-- <script src="./js/audio/pista.js"></script> -->
-
-    <!-- <script src="./js/cotizacion/promocion.js"></script> -->
-    <!-- <script src="./js/funciones/promocion_aplicar.js"></script> -->
-
-<script src="./js/cotizacion/crear.js"></script>
-<script src="./js/funciones/coti_crear.js"></script>
+          contenedor2.appendChild(enlace);
+          contenedor2.appendChild(parrafo);
+          contenedor.appendChild(contenedor2);
+          document.getElementById("adjuntar-modulos").appendChild(contenedor);
+        }
+      }
+      
+    </script>
 </body>
 </html>
