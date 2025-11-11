@@ -12,18 +12,18 @@
     <div class="relative">
         <div class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
             <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 ring-1 shadow-lg ring-gray-900/5">
-              <div id="" class="flex flex-col gap-4 p-4">
-                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+              <div id="accesos-adjuntar" class="flex flex-col gap-4 p-4">
+                <!-- <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
                   
                   <div class="w-64">
-                    <a href="cotizacion.html" class="font-semibold text-white underline underline-offset-4">
+                    <a href="/cotizacion/" class="font-semibold text-white underline underline-offset-4">
                       CREAR COTIZACION
                       <span class="absolute inset-0"></span>
                     </a>
                     <p class="mt-1 text-white italic justify-self-end-safe">Permite crear una nueva cotizacion</p>
                   </div>
-                </div>
-                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                </div> -->
+                <!-- <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
                   
                   <div class="w-64">
                     <a href="cuota.html" class="font-semibold text-white underline underline-offset-4">
@@ -32,8 +32,8 @@
                     </a>
                     <p class="mt-1 text-white italic justify-self-end-safe">Permite ver el avance de mi cuota</p>
                   </div>
-                </div>
-                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                </div> -->
+                <!-- <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
                   
                   <div class="w-64">
                     <a href="modifcoti.html" class="font-semibold text-white underline underline-offset-4">
@@ -42,8 +42,8 @@
                     </a>
                     <p class="mt-1 text-white italic justify-self-end-safe">Permite modificar una cotizacion</p>
                   </div>
-                </div>
-                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                </div> -->
+                <!-- <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
                   
                   <div class="w-64">
                     <a href="factura.html" class="font-semibold text-white underline underline-offset-4">
@@ -52,8 +52,8 @@
                     </a>
                     <p class="mt-1 text-white italic justify-self-end-safe">Permite modificar la factura o boleta</p>
                   </div>
-                </div>
-                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                </div> -->
+                <!-- <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
                   
                   <div class="w-64">
                     <a href="#" class="font-semibold text-white underline underline-offset-4">
@@ -62,8 +62,8 @@
                     </a>
                     <p class="mt-1 text-white italic justify-self-end-safe">Permite ver la rentabilidad de una respectiva cotizacion</p>
                   </div>
-                </div>
-                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                </div> -->
+                <!-- <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
                   
                   <div class="w-64">
                     <a href="promos.html" class="font-semibold text-white underline underline-offset-4">
@@ -72,7 +72,7 @@
                     </a>
                     <p class="mt-1 text-white italic justify-self-end-safe">Permite el manejo de una promocion con respecto a una cotizacion creada</p>
                   </div>
-                </div>
+                </div> -->
                 
               </div>
               <div class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
@@ -112,23 +112,21 @@
         .then(resultado=>{
           let decodificar = JSON.parse(resultado);
           console.log("se trajo estos permisos",decodificar)
-          //   return decodificar;
+            return decodificar;
         })
-        // .then(resultado=>{
-        //   modulos_dinamicos(resultado)
-        // })
+        .then(resultado=>{ permisos_dinamicos(resultado["accesos"]) })
         .catch(err=>{
           console.log(err);
           // insertar_opciones_usuario("VENTAS-EJECUTIVOS");
         })
       }
 
-      function modulos_dinamicos(objmodulos){
-        ////tendria q incrustar modulos segun el obj pero tendria q controlar cada ves mas dentro del modulo
-        let desmenuzar=Object.keys(objmodulos);
-        console.log("si llege hasta el modulo dinamico",desmenuzar)
+      function permisos_dinamicos(arrpermisos){
+        ////este un array con los permisos autorizados desde el otro lado
+        // let desmenuzar=Object.keys(objmodulos);
+        console.log("si llege hasta el acceso dinamico",arrpermisos)
 
-        for(const modulo of desmenuzar){
+        for(const acces of arrpermisos){
           ///construccion del los modulos con sus accesos
           let contenedor = document.createElement("div");
           contenedor.className="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50";
@@ -139,9 +137,9 @@
           /////aqui es donde tengo q manejarlo con cuidado segun el objmodulo
           let enlace=document.createElement("a");
           enlace.className="font-semibold text-white underline underline-offset-4";
-          // enlace.href=manejar_enlace_dinamico(modulo);
-          enlace.href=`${modulo}.html`;
-          enlace.textContent=modulo.toUpperCase();
+        //   enlace.href=enlaces_de_permisos(acces);
+          enlace.href=`/cotizacion/${enlaces_de_permisos(acces)}.html`;
+          enlace.textContent=direccionador_de_permisos(acces)[0];
 
           let span=document.createElement("span");
           span.className="absolute inset-0";
@@ -150,12 +148,69 @@
 
           let parrafo=document.createElement("p");
           parrafo.className="mt-1 text-white italic justify-self-end-safe";
-          parrafo.textContent=objmodulos[modulo];
+          parrafo.textContent=direccionador_de_permisos(acces)[1];
 
           contenedor2.appendChild(enlace);
           contenedor2.appendChild(parrafo);
           contenedor.appendChild(contenedor2);
-          document.getElementById("adjuntar-modulos").appendChild(contenedor);
+          document.getElementById("accesos-adjuntar").appendChild(contenedor);
+        }
+      }
+      function enlaces_de_permisos(permiso){
+        
+        switch (permiso) {
+            case "crear":
+                return "cotizacion_nuevo";
+                break;
+
+            case "leer":
+                return "cotizacion_observar";
+                break;
+
+            case "update":
+                return "cotizacion_modificar";
+                break;
+            
+            case "delete":
+                return "cotizacion_eliminar";
+                break;
+
+            case "alm":
+                return "cotizacion_almacen";
+                break;
+        
+            default:
+                return "#"
+                break;
+        }
+      }
+
+      function direccionador_de_permisos(permisos){
+
+        switch (permisos) {
+            case "crear":
+                return ["CREAR","Permite crear una nueva cotizacion"];
+                break;
+
+            case "leer":
+                return ["VER","Permite observar una cotizacion"];
+                break;
+
+            case "update":
+                return ["MODIFICAR","Permite modificar cotizacion reciente"];
+                break;
+
+            case "delete":
+                return ["ELIMINAR","Permite dar de baja una cotizacion"];
+                break;
+
+            case "alm":
+                return ["ALMACEN","Permite cambiar de almacen una cotizacion reciente"];
+                break;
+        
+            default:
+                return ["",""];
+                break;
         }
       }
       
