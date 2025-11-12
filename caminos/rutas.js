@@ -11,6 +11,8 @@ const rutaloginregistrocompletado=produccion+"/login/registro/completado";
 const rutavendedor=produccion+"/vendedor";
 //////////nuevas rutas con respecto ala COTIZACION raiz principal con accesos dinamicos
 const rutacotizacionpermisos=produccion+"/cotizacion";
+//////nuevas rutas con respecto al CLIENTE ya se busqueda o identificar
+const rutaclientebusqueda=produccion+"/cliente/buscar";
 // const rutacuota="https://pulpo.compudiskett.com.pe/v1/vendedor/cuota";
 const rutacuota=desarrollo+"/vendedor/cuota";
 
