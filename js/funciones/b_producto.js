@@ -11,7 +11,7 @@ async function buscar_producto(descprod){
     fetchobj.body=JSON.stringify(dataenviar);
 
     try{
-        let paso1=await fetch(rutabproducto,fetchobj)
+        let paso1=await fetch(rutaproductobuscar,fetchobj)
         // let paso1=await fetch(tipbusqueda,fetchobj)
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);

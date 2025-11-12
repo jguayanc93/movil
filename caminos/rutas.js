@@ -14,7 +14,10 @@ const rutacotizacionpermisos=produccion+"/cotizacion";
 //////nuevas rutas con respecto al CLIENTE ya se busqueda o identificar
 const rutaclientebusqueda=produccion+"/cliente/buscar";
 const rutaclienteid=produccion+"/cliente/id";
-// const rutacuota="https://pulpo.compudiskett.com.pe/v1/vendedor/cuota";
+//////nuevas rutas con respecto al PRODUCTO ya sea busqueda o identificar
+const rutaproductobuscar=produccion+"/producto/buscar";
+// const rutaproductoid=produccion+"/producto/id";
+
 const rutacuota=desarrollo+"/vendedor/cuota";
 
 const httpcors2="https://pulpo.compudiskett.com.pe/login/chekear";////REVISAR
