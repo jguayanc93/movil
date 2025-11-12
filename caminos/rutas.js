@@ -29,7 +29,7 @@ const rutaropc5="http://127.0.0.1:3000/v1/vendedor/opc5";
 const rutaropc6="http://127.0.0.1:3000/v1/vendedor/revisar";
 const rutaropc7="http://127.0.0.1:3000/v1/vendedor/revisar";
 
-const rutabcliente="http://127.0.0.1:3000/v1/coti/busqueda";
+const rutabcliente=produccion+"/coti/busqueda";
 const rutafindcli="http://127.0.0.1:3000/v1/coti/identificador";////posible colision de ruta
 const rutarevisar="http://127.0.0.1:3000/v1/vendedor/revisar";/////revisar todas las rutas
 
