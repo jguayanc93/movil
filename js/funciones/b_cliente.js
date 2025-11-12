@@ -53,7 +53,7 @@ async function buscar_cliente2(busqueda){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1= await fetch(rutaclientebusqueda,fetchobj)//rutabcliente
+        let paso1= await fetch(rutaclientebusqueda,fetchobj)
         let paso2= await paso1.json();
         let paso3= await JSON.parse(paso2);
 

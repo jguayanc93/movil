@@ -8,7 +8,7 @@ function cliente(sustituto){
     fetchobj.mode="cors";
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
-    fetch(rutafindcli,fetchobj)
+    fetch(rutaclienteid,fetchobj)
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))
     .then(resultado=>{
