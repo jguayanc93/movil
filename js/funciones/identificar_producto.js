@@ -56,7 +56,7 @@ async function tblprd2(cprd,stoc){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1=await fetch(rutabproductoid,fetchobj)
+        let paso1=await fetch(rutaproductoid,fetchobj)
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
 

@@ -16,7 +16,7 @@ const rutaclientebusqueda=produccion+"/cliente/buscar";
 const rutaclienteid=produccion+"/cliente/id";
 //////nuevas rutas con respecto al PRODUCTO ya sea busqueda o identificar
 const rutaproductobuscar=produccion+"/producto/buscar";
-// const rutaproductoid=produccion+"/producto/id";
+const rutaproductoid=produccion+"/producto/id";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
