@@ -90,7 +90,7 @@ async function carrito2(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1=await fetch(rutacrentabilidad,fetchobj)
+        let paso1=await fetch(rutacarritorentabilidad,fetchobj)
         let paso2=await paso1.json();
         console.log(paso2);
 
