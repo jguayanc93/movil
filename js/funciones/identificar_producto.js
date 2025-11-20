@@ -60,8 +60,10 @@ async function tblprd2(cprd,stoc){
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
 
+        console.log("esto es lo que trae la consulta de producto identificado",paso3)
+
         agrupacion[paso3[0]]=[paso3[1],stoc,paso3[3],paso3[4],paso3[5],paso3[6],paso3[7]];
-        // console.log(agrupacion);
+        console.log("esto es lo que a guardado el objeto global",agrupacion);
         // SOLO PARA TESTEAR EL ACCESO A CREAR CUANDO TIENE PRODUCTOS
         document.getElementById("creacion").classList.remove("bg-rose-500");
         document.getElementById("creacion").classList.add("bg-green-500");
