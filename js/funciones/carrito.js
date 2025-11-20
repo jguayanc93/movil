@@ -80,6 +80,7 @@ function carrito(){
 
  
 async function carrito2(){
+    console.log("esto deberia ser el objeto enviado del carro",agrupacion)
     ////////////////////////
     let dataenviar=new Object();
     dataenviar.productos=agrupacion;
@@ -92,7 +93,7 @@ async function carrito2(){
     try{
         let paso1=await fetch(rutacarritorentabilidad,fetchobj)
         let paso2=await paso1.json();
-        console.log(paso2);
+        console.log("esto deberia ser el objeto recibido del carro",paso2);
 
         document.getElementById("productos-listados").innerHTML="";
         document.getElementById("productos-totales").innerHTML="";
