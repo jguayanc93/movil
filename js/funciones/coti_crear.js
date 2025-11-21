@@ -13,8 +13,9 @@ async function generador_coti(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1 = await fetch(rutacreacion,fetchobj)
+        let paso1 = await fetch(rutacotizacioncrear,fetchobj)
         let paso2 = await paso1.json();
+        console.log("verificar lo que esta regresando por consultas");
         console.log(paso2);
         ///BORRANDO DATOS GUARDADOS DE LA COTI
         cliente_data.length=0;
