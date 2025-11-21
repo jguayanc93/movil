@@ -20,7 +20,7 @@ const rutaproductoid=produccion+"/producto/id";
 /////nuevas rutas con respecto ala rentabilidad o es para ver el carro ? chekear bien esto despues porq no recuerdo
 const rutacarritorentabilidad=produccion+"/producto/rentabilidad";
 ////nuevas rutas con respecto ala COTIZACION CREAR
-const rutacotizacioncrear=desarrollo+"/cotizacion/create";
+const rutacotizacioncrear=produccion+"/cotizacion/create";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
