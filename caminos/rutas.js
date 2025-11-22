@@ -17,6 +17,7 @@ const rutaclienteid=produccion+"/cliente/id";
 //////nuevas rutas con respecto al PRODUCTO ya sea busqueda o identificar
 const rutaproductobuscar=produccion+"/producto/buscar";
 const rutaproductoid=produccion+"/producto/id";
+const rutaproductoencontrado=produccion+"/producto/encontrado";
 /////nuevas rutas con respecto ala rentabilidad o es para ver el carro ? chekear bien esto despues porq no recuerdo
 const rutacarritorentabilidad=produccion+"/producto/rentabilidad";
 ////nuevas rutas con respecto ala COTIZACION CREAR
