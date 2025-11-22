@@ -20,7 +20,7 @@ async function buscar_cotizacion_modificar(){
         let paso1=await fetch(rutacotizacionbmodificar,fetchobj)
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
-        console.log(paso3)
+        console.log("esto es lo que trae la ruta ver factura",paso3)
         cotimodi_tipcli.push(paso3[0][0]);///clialfabeto
         cotimodi_tipcli.push(paso3[0][1]);///fecha
         cotimodi_tipcli.push(paso3[0][2]);///cdocu
