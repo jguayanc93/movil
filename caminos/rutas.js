@@ -24,6 +24,8 @@ const rutacarritorentabilidad=produccion+"/producto/rentabilidad";
 const rutacotizacioncrear=produccion+"/cotizacion/create";
 ///nuevos rutas con respecto ala COTIZACION LEER
 const rutacotizacionleer=produccion+"/cotizacion/read";
+///nuevas rutas con respecto ala COTIZACION MODIFICAR
+const rutacotizacionactualizar=produccion+"/cotizacion/update";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 

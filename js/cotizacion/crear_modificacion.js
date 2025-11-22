@@ -14,7 +14,8 @@ async function modificacion_terminada(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1=await fetch(rutacotizacioncmodificacion,fetchobj)
+        // let paso1=await fetch(rutacotizacioncmodificacion,fetchobj)
+        let paso1=await fetch(rutacotizacionactualizar,fetchobj)
         // let paso2=await paso1.json();
         let paso2=await paso1.text();
 
