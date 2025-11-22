@@ -17,7 +17,7 @@ async function buscar_cotizacion_modificar(){
     try{
         document.getElementById("contendor-final-final").innerHTML="";
         
-        let paso1=await fetch(rutacotizacionbmodificar,fetchobj)
+        let paso1=await fetch(rutacotizacionleer,fetchobj)
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
         console.log("esto es lo que trae la ruta ver factura",paso3)
