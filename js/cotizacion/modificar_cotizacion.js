@@ -478,7 +478,7 @@ async function tblprd3(cprd,stoc){
         // cotimodi_tmpitems[paso3[2]]=[sacar_fecha,sacar_doc,paso3[0],paso3[1],stoc,paso3[4],tota,paso3[5],paso3[6],paso3[7]];
         cotimodi_tmpitems[paso3[2]]=[cotimodi_tipcli[1],cotimodi_tipcli[2],cotimodi_tipcli[3],cotimodi_tipcli[4],cotimodi_tipcli[5],cotimodi_tipcli[6],cotimodi_tipcli[7],paso3[0],paso3[1],paso3[2],paso3[3],paso3[4],paso3[5],paso3[6],stoc,paso3[8],tota,paso3[9],totn,cotimodi_tipcli[8],paso3[10],paso3[11]];
 
-        volver_correr();
+        // volver_correr();
     }
     catch(err){
         console.log(err);
