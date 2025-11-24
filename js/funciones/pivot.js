@@ -11,7 +11,8 @@ async function buscar_pivot(){
     fetchobj.body=JSON.stringify(dataenviar);
     try{
         promos_conjunto_diferenciales.length=0;////PARA VACIAR LAS PROMOS CADA VES QUE SE BUSCA
-        let paso1= await fetch(rutapivot,fetchobj)
+        // let paso1= await fetch(rutapivot,fetchobj)
+        let paso1= await fetch(rutapromocionbuscador,fetchobj)
         let paso2= await paso1.json();
         // let paso3= await JSON.parse(paso2);
         console.log("este es el array de posibles promociones");

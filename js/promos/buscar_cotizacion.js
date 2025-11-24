@@ -91,7 +91,8 @@ async function buscar_cotizacion2(){
     try{
         document.getElementById("contendor-final-final").innerHTML="";
         
-        let paso1=await fetch(rutacotizacion,fetchobj)
+        // let paso1=await fetch(rutacotizacion,fetchobj)
+        let paso1=await fetch(rutacotizacionleertodo,fetchobj)
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
         await buscar_pivot();

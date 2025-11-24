@@ -24,8 +24,11 @@ const rutacarritorentabilidad=produccion+"/producto/rentabilidad";
 const rutacotizacioncrear=produccion+"/cotizacion/create";
 ///nuevos rutas con respecto ala COTIZACION LEER
 const rutacotizacionleer=produccion+"/cotizacion/read";
+const rutacotizacionleertodo=produccion+"/cotizacion/readcomplete";
 ///nuevas rutas con respecto ala COTIZACION MODIFICAR
 const rutacotizacionactualizar=produccion+"/cotizacion/update";
+///nuevas rutas con respecto a PROMOCION BUSCAR Y ADJUNTAR
+const rutapromocionbuscador=produccion+"/promocion/revisar";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
