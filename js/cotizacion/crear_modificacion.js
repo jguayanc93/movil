@@ -18,6 +18,7 @@ async function modificacion_terminada(){
         let paso1=await fetch(rutacotizacionactualizar,fetchobj)
         // let paso2=await paso1.json();
         let paso2=await paso1.text();
+        console.log("esta seria la respuesta",paso2)
 
         cotimodi_tipcli.length=0;
         for(let propiedad in cotimodi_tmpitems){
