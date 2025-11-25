@@ -29,6 +29,7 @@ const rutacotizacionleertodo=produccion+"/cotizacion/readcomplete";
 const rutacotizacionactualizar=produccion+"/cotizacion/update";
 ///nuevas rutas con respecto a PROMOCION BUSCAR Y ADJUNTAR
 const rutapromocionbuscador=produccion+"/promocion/revisar";
+const rutapromocionrecojedor=produccion+"/promocion/";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
