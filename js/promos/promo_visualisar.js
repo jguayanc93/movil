@@ -105,7 +105,8 @@ async function ver_promo2(idprom){
     fetchobj.body=JSON.stringify(dataenviar);
     try{
         console.log(`fecheando el ${idprom}`);
-        let paso1=await fetch(rutaprom,fetchobj)
+        // let paso1=await fetch(rutaprom,fetchobj)
+        let paso1=await fetch(rutapromocionrecojedor,fetchobj)
         let paso2=await paso1.json();
         console.log(paso2);
         
