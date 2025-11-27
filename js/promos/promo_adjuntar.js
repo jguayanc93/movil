@@ -12,7 +12,10 @@ async function addprom(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1=await fetch(rutaaddprom,fetchobj)
+        console.log("ESTO ES LO Q ESTOI MANDANDO A ADJUNTAR")
+        console.log(prom_numero);
+        // let paso1=await fetch(rutaaddprom,fetchobj)
+        let paso1=await fetch(rutapromocionacoplador,fetchobj)
         // let paso2=await paso1.json();
         let paso2=await paso1.text();
         console.log(paso2);

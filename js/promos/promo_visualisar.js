@@ -108,7 +108,7 @@ async function ver_promo2(idprom){
         // let paso1=await fetch(rutaprom,fetchobj)
         let paso1=await fetch(rutapromocionrecojedor,fetchobj)
         let paso2=await paso1.json();
-        console.log(paso2);
+        // console.log(paso2);
         
         // for(let i in paso2["items_validos2"]){ prom_numero[i]=paso2["items_validos2"][i]; }
         if(Object.keys(paso2).includes("agrupados")){
@@ -138,13 +138,19 @@ async function ver_promo2(idprom){
         //////////////////// CUIDADO CON EL CONSTRUCTOR Y SUS CANTIDADES CON RESPECTO A LO MERECIDO
         // for(let i in paso2) prom_numero[i]=paso2[i];
         ///////////////REVISAR LA DIFERENCIA DE CODIS
+        console.log("esto debe repetirse 3 veces")
+        console.log(paso2)
         for(let i in paso2){
+            console.log("aqui esta el problema",i)
             if(Object.keys(prom_numero).includes(i)){ prom_numero[i][7]+=paso2[i][7]; }
             else{
                 prom_numero[i]=paso2[i];
                 prom_numero[i][6]=coti_cant+1;
                 coti_cant++;
             }
+            // prom_numero[i]=paso2[i];
+            //     prom_numero[i][6]=coti_cant+1;
+            //     coti_cant++;
         };
         
 

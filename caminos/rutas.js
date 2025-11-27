@@ -24,12 +24,13 @@ const rutacarritorentabilidad=produccion+"/producto/rentabilidad";
 const rutacotizacioncrear=produccion+"/cotizacion/create";
 ///nuevos rutas con respecto ala COTIZACION LEER
 const rutacotizacionleer=produccion+"/cotizacion/read";
-const rutacotizacionleertodo=produccion+"/cotizacion/readcomplete";
+const rutacotizacionleertodo=desarrollo+"/cotizacion/readcomplete";
 ///nuevas rutas con respecto ala COTIZACION MODIFICAR
 const rutacotizacionactualizar=produccion+"/cotizacion/update";
 ///nuevas rutas con respecto a PROMOCION BUSCAR Y ADJUNTAR
-const rutapromocionbuscador=produccion+"/promocion/revisar";
-const rutapromocionrecojedor=produccion+"/promocion/mostrar";
+const rutapromocionbuscador=desarrollo+"/promocion/revisar";
+const rutapromocionrecojedor=desarrollo+"/promocion/mostrar";
+const rutapromocionacoplador=desarrollo+"/promocion/acoplar";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
