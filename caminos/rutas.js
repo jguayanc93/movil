@@ -31,8 +31,8 @@ const rutacotizacionactualizar=produccion+"/cotizacion/update";
 const rutapromocionpermisos=produccion+"/promocion";
 ///nuevas rutas con respecto a PROMOCION BUSCAR Y ADJUNTAR
 const rutapromocionbuscador=produccion+"/promocion/revisar";
-const rutapromocionrecojedor=desarrollo+"/promocion/mostrar";
-const rutapromocionacoplador=desarrollo+"/promocion/acoplar";
+const rutapromocionrecojedor=produccion+"/promocion/mostrar";
+const rutapromocionacoplador=produccion+"/promocion/acoplar";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
