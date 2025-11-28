@@ -23,7 +23,7 @@ const rutacarritorentabilidad=produccion+"/producto/rentabilidad";
 ////nuevas rutas con respecto ala COTIZACION CREAR
 const rutacotizacioncrear=produccion+"/cotizacion/create";
 ///nuevos rutas con respecto ala COTIZACION LEER
-const rutacotizacionleer=produccion+"/cotizacion/read";
+const rutacotizacionleer=desarrollo+"/cotizacion/read";
 const rutacotizacionleertodo=desarrollo+"/cotizacion/readcomplete";
 ///nuevas rutas con respecto ala COTIZACION MODIFICAR
 const rutacotizacionactualizar=produccion+"/cotizacion/update";

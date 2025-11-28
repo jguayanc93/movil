@@ -138,19 +138,25 @@ async function ver_promo2(idprom){
         //////////////////// CUIDADO CON EL CONSTRUCTOR Y SUS CANTIDADES CON RESPECTO A LO MERECIDO
         // for(let i in paso2) prom_numero[i]=paso2[i];
         ///////////////REVISAR LA DIFERENCIA DE CODIS
-        console.log("esto debe repetirse 3 veces")
-        console.log(paso2)
         for(let i in paso2){
-            console.log("aqui esta el problema",i)
-            if(Object.keys(prom_numero).includes(i)){ prom_numero[i][7]+=paso2[i][7]; }
+            ////el problema reside en que cuando se envia el indice es 0 y cuando vuelve a encontrar
+            ///al otro objeto con el mismo indice con 0 solo lo descarta
+            if(Object.keys(prom_numero).includes(i)){
+                // prom_numero[i][7]+=paso2[i][7];
+                /////solucion temporal no mantener porqe puede romper el adjuntar promo
+                if(Number.isInteger(parseInt(i))){
+                    let aumentara1=parseInt(i)+1
+                    prom_numero[aumentara1]=paso2[i];
+                    prom_numero[aumentara1][6]=coti_cant+1;
+                    coti_cant++;
+                }
+                else{prom_numero[i][7]+=paso2[i][7];}                
+            }
             else{
                 prom_numero[i]=paso2[i];
                 prom_numero[i][6]=coti_cant+1;
                 coti_cant++;
             }
-            // prom_numero[i]=paso2[i];
-            //     prom_numero[i][6]=coti_cant+1;
-            //     coti_cant++;
         };
         
 
