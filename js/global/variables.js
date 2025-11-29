@@ -27,3 +27,6 @@ let objfactura=[];///////VARIABLES PARA LA MODIFICACION DE LA FACTURA TEMPORAL Y
 
 
 let marca_seleccionada="";///variable temporal para guardar la seleccion del usuario se reiniciara cada ves q entre
+
+//////VARIABLES PARA EL GUARDADO TEMPORAL DE LAS PROMOCIONES SELECCIONADAS EN LA ELIMINACION DE LA PROMOCION
+const promos_recojidas=[];

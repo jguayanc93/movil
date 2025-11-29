@@ -24,7 +24,7 @@ const rutacarritorentabilidad=produccion+"/producto/rentabilidad";
 const rutacotizacioncrear=produccion+"/cotizacion/create";
 ///nuevos rutas con respecto ala COTIZACION LEER
 const rutacotizacionleer=produccion+"/cotizacion/read";
-const rutacotizacionleertodo=desarrollo+"/cotizacion/readcomplete";
+const rutacotizacionleerprom=produccion+"/cotizacion/readprom";
 ///nuevas rutas con respecto ala COTIZACION MODIFICAR
 const rutacotizacionactualizar=produccion+"/cotizacion/update";
 //////////nuevas rutas con respecto ala PROMOCION raiz principal con accesos dinamicos
@@ -33,6 +33,11 @@ const rutapromocionpermisos=produccion+"/promocion";
 const rutapromocionbuscador=produccion+"/promocion/revisar";
 const rutapromocionrecojedor=produccion+"/promocion/mostrar";
 const rutapromocionacoplador=produccion+"/promocion/acoplar";
+///nuevas rutas con respecto a PROMOCION ELIMINAR
+const rutapromocioneliminar=produccion+"/promocion/eliminar";
+
+///nuevas rutas con respecto ala CUOTA raiz principal con accesos dinamicos
+const rutacuotapermisos=produccion+"/cuota"
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 

@@ -2,111 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>CUOTA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>cdk</title>
 </head>
 <body>
-  <div class="my-4 mx-16">
-    <a href="main.html" class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">MENU</a>
-  </div>
-    <!-- <div class="mt-6">
-        <a href="main.html" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">MENU</a>
-    </div> -->
-    <div>
-        <p id="detallado"></p>
-    </div>
-    <!--version compacta-->
-    <div class="lg:flex lg:items-center lg:justify-between">
-        <div class="min-w-0 flex-1">
-          <div class="flex flex-row justify-center items-center gap-4">
-            <p class="font-mono text-2xl font-bold tracking-tighter">Pick a Mes:</p>
-            <input type="date" id="fecha-mes"
-            class="w-32 p-2 border border-gray-600 rounded-md shadow-2xl focus:ring-2 focus:ring-blue-500 bg-white text-gray-700">
+    <!--agrupacion de opciones del menu principal-->
+    <div class="relative">
+        <div class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
+            <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 ring-1 shadow-lg ring-gray-900/5">
+              <div id="accesos-adjuntar" class="flex flex-col gap-4 p-4">
+                
+                
+              </div>
+              <div class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                <a href="#" class="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
+                  <svg class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z" clip-rule="evenodd" />
+                  </svg>
+                  CERRAR SESION
+                </a>
+                <a href="#" class="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
+                  <svg class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                    <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd" />
+                  </svg>
+                  AYUDA
+                </a>
+              </div>
+            </div>
           </div>
-          
-          <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
-            <!-- esta primera parte puede no ir debido a que no todos tiene una cuota establecida tener en cuenta -->
-            <div class="h-24 flex flex-row justify-evenly">
-              <div class="mt-2 flex items-center text-sm self-center">
-                <svg class="mr-1.5 size-5 shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                  <path fill-rule="evenodd" d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 1 0 3 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 0 0 2.273 1.765 11.842 11.842 0 0 0 .976.544l.062.029.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" clip-rule="evenodd" />
-                </svg>
-                <p class="text-xl font-bold underline underline-offset-8 decoration-2">CUOTA</p>
-              </div>
-              <div class="mt-2 flex items-center text-sm text-gray-500 self-end">
-                <svg class="mr-1.5 size-5 shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                  <path d="M10.75 10.818v2.614A3.13 3.13 0 0 0 11.888 13c.482-.315.612-.648.612-.875 0-.227-.13-.56-.612-.875a3.13 3.13 0 0 0-1.138-.432ZM8.33 8.62c.053.055.115.11.184.164.208.16.46.284.736.363V6.603a2.45 2.45 0 0 0-.35.13c-.14.065-.27.143-.386.233-.377.292-.514.627-.514.909 0 .184.058.39.202.592.037.051.08.102.128.152Z" />
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-6a.75.75 0 0 1 .75.75v.316a3.78 3.78 0 0 1 1.653.713c.426.33.744.74.925 1.2a.75.75 0 0 1-1.395.55 1.35 1.35 0 0 0-.447-.563 2.187 2.187 0 0 0-.736-.363V9.3c.698.093 1.383.32 1.959.696.787.514 1.29 1.27 1.29 2.13 0 .86-.504 1.616-1.29 2.13-.576.377-1.261.603-1.96.696v.299a.75.75 0 1 1-1.5 0v-.3c-.697-.092-1.382-.318-1.958-.695-.482-.315-.857-.717-1.078-1.188a.75.75 0 1 1 1.359-.636c.08.173.245.376.54.569.313.205.706.353 1.138.432v-2.748a3.782 3.782 0 0 1-1.653-.713C6.9 9.433 6.5 8.681 6.5 7.875c0-.805.4-1.558 1.097-2.096a3.78 3.78 0 0 1 1.653-.713V4.75A.75.75 0 0 1 10 4Z" clip-rule="evenodd" />
-                </svg>
-                <p id="vmeta">100000</p>
-              </div>
-            </div>
-            <div class="h-24 flex flex-row justify-evenly">
-              <div class="mt-2 flex items-center text-sm self-center">
-                <svg class="mr-1.5 size-5 shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                  <path fill-rule="evenodd" d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 1 0 3 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 0 0 2.273 1.765 11.842 11.842 0 0 0 .976.544l.062.029.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" clip-rule="evenodd" />
-                </svg>
-                <p class="text-xl font-bold underline underline-offset-8 decoration-2">AVANCE</p>
-              </div>
-              <div class="mt-2 flex items-center text-sm text-gray-500 self-end">
-                <svg class="mr-1.5 size-5 shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                  <path d="M10.75 10.818v2.614A3.13 3.13 0 0 0 11.888 13c.482-.315.612-.648.612-.875 0-.227-.13-.56-.612-.875a3.13 3.13 0 0 0-1.138-.432ZM8.33 8.62c.053.055.115.11.184.164.208.16.46.284.736.363V6.603a2.45 2.45 0 0 0-.35.13c-.14.065-.27.143-.386.233-.377.292-.514.627-.514.909 0 .184.058.39.202.592.037.051.08.102.128.152Z" />
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-6a.75.75 0 0 1 .75.75v.316a3.78 3.78 0 0 1 1.653.713c.426.33.744.74.925 1.2a.75.75 0 0 1-1.395.55 1.35 1.35 0 0 0-.447-.563 2.187 2.187 0 0 0-.736-.363V9.3c.698.093 1.383.32 1.959.696.787.514 1.29 1.27 1.29 2.13 0 .86-.504 1.616-1.29 2.13-.576.377-1.261.603-1.96.696v.299a.75.75 0 1 1-1.5 0v-.3c-.697-.092-1.382-.318-1.958-.695-.482-.315-.857-.717-1.078-1.188a.75.75 0 1 1 1.359-.636c.08.173.245.376.54.569.313.205.706.353 1.138.432v-2.748a3.782 3.782 0 0 1-1.653-.713C6.9 9.433 6.5 8.681 6.5 7.875c0-.805.4-1.558 1.097-2.096a3.78 3.78 0 0 1 1.653-.713V4.75A.75.75 0 0 1 10 4Z" clip-rule="evenodd" />
-                </svg>
-                <p id="vavance">50000</p>
-              </div>
-            </div>
-            <!-- <div class="mt-2 flex items-center text-sm text-gray-500">
-              <svg class="mr-1.5 size-5 shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                <path fill-rule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clip-rule="evenodd" />
-              </svg>
-              <p id="hoydia"></p>
-              <p id="limite">limitante</p>
-            </div> -->
-          </div>
-          <div class="mt-4 flex justify-center text-sm text-gray-500">
-              <svg class="mr-1.5 size-5 shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                <path fill-rule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clip-rule="evenodd" />
-              </svg>
-              <p id="hoydia"></p>
-            </div>
-        </div>
-        <div class="mt-4 bg-indigo-600 text-white flex justify-center">limitante</div>
-        <div class="mt-5 flex justify-center">
-      
-          <!-- <span class="sm:ml-16">
-            <button type="button" id="cuota-mes" 
-            class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Buscar
-            </button>
-          </span> -->
-
-          <button type="button" id="cuota-mes" class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-lg 
-            font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">
-            BUSCAR
-          </button>
-        </div>
-      </div>
-      
-    <div>
-        <button type="button" id="cuota-general">CREA EL EXEL DE TODOS LAS LINEAS</button>
     </div>
     <script src="./caminos/rutas.js"></script>
-    <script src="./js/cuota/cuota.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded",()=>{
-        let hoy=new Date();
-        document.getElementById("hoydia").innerHTML=hoy.toLocaleDateString();
 
-        let mon=hoy.getMonth()+1;
-        if(mon<10) mon='0'+mon;
-        let d=hoy.getDate();
-        if(d<10) d='0'+d;
-        let formato=hoy.getFullYear()+'-'+mon+'-'+d;
-        document.getElementById("fecha-mes").setAttribute('max',formato);
+      document.addEventListener("DOMContentLoaded",function(){
+        manejar_acceso();
       })
+
+      function manejar_acceso(){
+        let peticion = new Request(rutacuotapermisos,{ method:"GET",mode:"cors",credentials:"include"})
+
+        fetch(peticion)
+        .then(resultado=>{
+          if(!resultado.ok){
+            throw new Error("error en el llamado a los permisos segun vendedor");
+          }
+          return resultado.json();
+        })
+        .then(resultado=>{
+          let decodificar = JSON.parse(resultado);
+          console.log("se trajo estos permisos",decodificar)
+            return decodificar;
+        })
+        .then(resultado=>{ permisos_dinamicos(resultado["accesos"]) })
+        .catch(err=>{
+          console.log(err);
+          // insertar_opciones_usuario("VENTAS-EJECUTIVOS");
+        })
+      }
+
+      function permisos_dinamicos(arrpermisos){
+
+        for(const acces of arrpermisos){
+          ///construccion del los modulos con sus accesos
+          let contenedor = document.createElement("div");
+          contenedor.className="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50";
+
+          let contenedor2=document.createElement("div");
+          contenedor2.className="w-64";
+
+          /////aqui es donde tengo q manejarlo con cuidado segun el objmodulo
+          let enlace=document.createElement("a");
+          enlace.className="font-semibold text-white underline underline-offset-4";
+        //   enlace.href=enlaces_de_permisos(acces);
+          enlace.href=`/cuota/${enlaces_de_permisos(acces)}.html`;
+          enlace.textContent=direccionador_de_permisos(acces)[0];
+
+          let span=document.createElement("span");
+          span.className="absolute inset-0";
+
+          enlace.appendChild(span)
+
+          let parrafo=document.createElement("p");
+          parrafo.className="mt-1 text-white italic justify-self-end-safe";
+          parrafo.textContent=direccionador_de_permisos(acces)[1];
+
+          contenedor2.appendChild(enlace);
+          contenedor2.appendChild(parrafo);
+          contenedor.appendChild(contenedor2);
+          document.getElementById("accesos-adjuntar").appendChild(contenedor);
+        }
+      }
+      function enlaces_de_permisos(permiso){
+        
+        switch (permiso) {
+            case "crear":
+                return "cuota_registrar";
+                break;
+
+            case "leer":
+                return "cuota_observar";
+                break;
+
+            case "update":
+                return "promocion_adjuntar";
+                break;
+            
+            case "delete":
+                return "promocion_eliminar";
+                break;
+        
+            default:
+                return "#"
+                break;
+        }
+      }
+
+      function direccionador_de_permisos(permisos){
+
+        switch (permisos) {
+            case "crear":
+                return ["Registrar","Permite registrar tu cuota mensual"];
+                break;
+
+            case "leer":
+                return ["VER","Permite observar tu avance"];
+                break;
+
+            case "update":
+                return ["MODIFICAR","Permite aplicar promociones"];
+                break;
+
+            case "delete":
+                return ["ELIMINAR","Permite dar de baja una promocion"];
+                break;
+        
+            default:
+                return ["",""];
+                break;
+        }
+      }
+      
     </script>
 </body>
 </html>

@@ -11,21 +11,17 @@
     <a href="/main.html" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">MENU</a>
 </div>
     <!-- <div><button type="button" id="back-menu">regresar al menu</button></div> -->
-    <!-- <div>
-        <h2>Ingresa el numero de cotizacion</h2>
-        <input type="text" id="ncoti">
-        <button type="button" id="buscar-coti">buscar su cotizacion</button>
-    </div> -->
+    
     
     <div>         
          <button type="button" id="reconocer-voz">mantener presionado para hablar</button><br>
-         <!-- fin de test de sonido entrante -->
+         
         <input type="text" id="nprom">
         <button type="button" id="buscar-prom">ingrese el numero de su promocion</button>        
     </div>
 
     <div>
-        <button type="button" id="adjuntar" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">adjuntar promocion</button>
+        <button type="button" id="remover-promos" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">eliminar promocion</button>
     </div>
 
     <!-- MODAL DE ACEPTACION -->
@@ -66,7 +62,7 @@
   <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
     <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
       <div class="flex items-start justify-between">
-        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Lista Promociones</h2>
+        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Listar Seleccionadas</h2>
         <div class="ml-3 flex h-7 items-center">
           <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
             <span class="absolute -inset-0.5"></span>
@@ -120,24 +116,26 @@
   </div>
 </div>
 
-    <script src="../caminos/rutas.js"></script>
+    <!-- <script src="../caminos/rutas.js"></script>
     <script src="../js/global/variables.js"></script>
-    <script src="../js/promos/buscar_cotizacion.js"></script>
-    <script src="../js/promos/promo_visualisar.js"></script>
-    <script src="../js/promos/promo_adjuntar.js"></script>
-    <script src="../js/funciones/pivot.js"></script>
+    
+    <script src="../js/promos/buscar_promocion.js"></script>
+    
+    <script src="../js/promos/recolectar_promocion.js"></script>
+    
+    <script src="../js/promos/promo_remover.js"></script> -->
 
     
-    <!-- <script src="/caminos/rutas.js"></script>
+    <script src="/caminos/rutas.js"></script>
 
     <script src="/js/global/variables.js"></script>
 
-    <script src="/js/promos/buscar_cotizacion.js"></script>
+    <script src="/js/promos/buscar_promocion.js"></script>
 
-    <script src="/js/promos/promo_visualisar.js"></script>
+    <script src="/js/promos/recolectar_promocion.js"></script>
 
-    <script src="/js/promos/promo_adjuntar.js"></script>
+    <script src="/js/promos/promo_remover.js"></script>
 
-    <script src="/js/funciones/pivot.js"></script> -->
+    <!-- <script src="/js/funciones/pivot.js"></script> -->
 </body>
 </html>
