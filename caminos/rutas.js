@@ -39,8 +39,10 @@ const rutapromocioneliminar=produccion+"/promocion/eliminar";
 ///nuevas rutas con respecto ala CUOTA raiz principal con accesos dinamicos
 const rutacuotapermisos=produccion+"/cuota"
 const rutacuotarevisarregistro=produccion+"/cuota/revisar";
-///nuevas rutas con respecto ala CUOTA raiz principal con accesos dinamicos
+///nuevas rutas con respecto ala CUOTA registrar
 const rutacuotaregistro=produccion+"/cuota/update";
+///nuevas rutas con respecto ala CUOTA para mostrar
+const rutacuotamostrar=produccion+"/cuota/mostrar";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
