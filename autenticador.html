@@ -49,6 +49,10 @@
       </div>
     </div>
   </div> -->
+  <div id="buscador-marcas" class="mx-6"></div>
+
+
+  <div class="relative" id="recorrer-marcas"></div>
    
     <!-- <div> -->
       <!-- obsoleto esta parte -->
@@ -170,7 +174,7 @@
     let contenedor_principal1=document.createElement("div");
     let princiapl1_label1=document.createElement("label");
     princiapl1_label1.className="block text-sm/6 font-medium text-gray-900";
-    princiapl1_label1.textContent="Paso 2:";
+    princiapl1_label1.textContent="Paso 1:";
     let princiapl1_label2=document.createElement("label");
     princiapl1_label2.className="block text-sm/6 font-medium underline underline-offset-4 text-gray-900";
     princiapl1_label2.textContent="Tipo de Vendedor";
@@ -250,6 +254,8 @@
     estilo_tipo.appendChild(contenedor_principal1)
     estilo_tipo.appendChild(contenedor_principal2)
 
+    if(grupo==='VENTAS-JEFES DE PROD'){plantilla_especial();}
+
   }
 
   function informacion_tipo(ev){
@@ -284,6 +290,115 @@
         break;
     }
 
+  }
+
+  function plantilla_especial(){
+     let estilo_tipo = document.getElementById("buscador-marcas");
+    estilo_tipo.innerHTML="";
+
+    /////crea su estilo de tipo
+    let contenedor_principal1=document.createElement("div");
+    let princiapl1_label1=document.createElement("label");
+    princiapl1_label1.className="block text-sm/6 font-medium text-gray-900";
+    princiapl1_label1.textContent="Paso 2:";
+    let princiapl1_label2=document.createElement("label");
+    princiapl1_label2.className="block text-sm/6 font-medium underline underline-offset-4 text-gray-900";
+    princiapl1_label2.textContent="Marcas a Cargo";
+    contenedor_principal1.appendChild(princiapl1_label1);
+    contenedor_principal1.appendChild(princiapl1_label2);
+    ///////contenedor 2
+    let contenedor_principal2=document.createElement("div");
+    contenedor_principal2.className="mt-2";
+    let contenedor_principal2_contenedor1=document.createElement("div");
+    contenedor_principal2_contenedor1.className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600"
+    let contenedor_principal2_contenedor2=document.createElement("div");
+    contenedor_principal2_contenedor2.className="grid shrink-0 w-full focus-within:relative";
+
+    let selector_marcas=document.createElement("input");
+    selector_marcas.id="buscador"
+    selector_marcas.type="text";
+    selector_marcas.className="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6";    
+    selector_marcas.addEventListener("input",(ev)=>{
+      console.log("ecribiendo en el buscador de marcas")
+      let busqueda= ev.target.value;
+      let busqueda_anterior = document.getElementById("recorrer-marcas");
+      busqueda_anterior.innerHTML="";
+      busqueda=='' ? busqueda_anterior.innerHTML="" : buscar_marcas2(busqueda);
+    })
+
+    contenedor_principal2_contenedor2.appendChild(selector_marcas);
+
+    contenedor_principal2_contenedor1.appendChild(contenedor_principal2_contenedor2);
+    
+    contenedor_principal2.appendChild(contenedor_principal2_contenedor1);
+
+    estilo_tipo.appendChild(contenedor_principal1)
+    estilo_tipo.appendChild(contenedor_principal2)
+  }
+
+  async function buscar_marcas2(busqueda){
+    let dataenviar=new Object();
+    dataenviar.sugerencia=busqueda;
+    let fetchobj = new Object();
+    fetchobj.method="POST";
+    fetchobj.headers={"Content-Type":"application/json"};
+    fetchobj.mode="cors";
+    fetchobj.credentials="include";
+    fetchobj.body=JSON.stringify(dataenviar);
+    try{
+        let paso1= await fetch(rutaproductobuscarmarcas,fetchobj)
+        let paso2= await paso1.json();
+        let paso3= await JSON.parse(paso2);
+        console.log("primero veamos el paso2",paso2)
+        console.log("segundo veamos el paso3",paso3)
+
+        let contenedor_general=document.createElement('div');
+        contenedor_general.className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4";
+
+        let contenedor_general1=document.createElement('div');
+        contenedor_general1.className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 ring-1 shadow-lg ring-gray-900/5";
+
+        let contenedor_general2=document.createElement('div');
+        contenedor_general2.className="p-4";
+
+        for(let indice in paso3){
+
+            let contenedor_general3=document.createElement('div')
+            contenedor_general3.className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50";
+
+            let contenedor1=document.createElement('div');
+            let enlace_descripcion_titulo=document.createElement('a');
+            enlace_descripcion_titulo.href="#";
+            enlace_descripcion_titulo.className="font-semibold text-gray-900";
+            enlace_descripcion_titulo.textContent="SUGERENCIA";
+            let spamcito=document.createElement('span');
+            spamcito.className="absolute inset-0";
+            enlace_descripcion_titulo.appendChild(spamcito)          
+            let parrafo_descripcion_data=document.createElement('p')
+            parrafo_descripcion_data.className="mt-1 text-gray-600";
+            parrafo_descripcion_data.textContent=paso3[indice][1];
+
+            contenedor1.appendChild(enlace_descripcion_titulo);
+            contenedor1.appendChild(parrafo_descripcion_data);
+            contenedor1.addEventListener("click",()=>{
+                document.getElementById("busqueda").value="";
+                document.getElementById("nomcli").textContent=paso3[indice][1];
+                cliente(paso3[indice][0])
+            })
+
+            contenedor_general3.appendChild(contenedor1);
+            contenedor_general2.appendChild(contenedor_general3);
+        }
+
+        contenedor_general1.appendChild(contenedor_general2);
+        contenedor_general.appendChild(contenedor_general1);
+
+        document.getElementById("recorrer-clientes").appendChild(contenedor_general);
+        
+    }
+    catch(err){
+        console.log(err);
+    }
   }
 
   function guardar_diferenciador(){

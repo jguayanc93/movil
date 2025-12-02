@@ -43,6 +43,8 @@ const rutacuotarevisarregistro=produccion+"/cuota/revisar";
 const rutacuotaregistro=produccion+"/cuota/update";
 ///nuevas rutas con respecto ala CUOTA para mostrar
 const rutacuotamostrar=produccion+"/cuota/mostrar";
+///nuevas rutas con respecto ala PRODUCTOS en la BUSQUEDA DE MARCAS
+const rutaproductobuscarmarcas=produccion+"/producto/marcas";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
