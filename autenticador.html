@@ -53,6 +53,13 @@
 
 
   <div class="relative" id="recorrer-marcas"></div>
+
+  <div class="mx-6">
+    <div class="flex flex-row space-x-2">
+      <label for="busqueda" class="block text-sm/6 font-medium text-gray-900">Paso 3:</label>
+      <label id="nomcli" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Marcas</label>
+    </div>
+  </div>
    
     <!-- <div> -->
       <!-- obsoleto esta parte -->
@@ -349,7 +356,6 @@
         let paso1= await fetch(rutaproductobuscarmarcas,fetchobj)
         let paso2= await paso1.json();
         let paso3= await JSON.parse(paso2);
-        console.log("primero veamos el paso2",paso2)
         console.log("segundo veamos el paso3",paso3)
 
         let contenedor_general=document.createElement('div');
@@ -383,7 +389,7 @@
             contenedor1.addEventListener("click",()=>{
                 document.getElementById("busqueda").value="";
                 document.getElementById("nomcli").textContent=paso3[indice][1];
-                cliente(paso3[indice][0])
+                marcas_seleccionadas(paso3[indice][0],paso3[indice][2])
             })
 
             contenedor_general3.appendChild(contenedor1);
@@ -393,12 +399,17 @@
         contenedor_general1.appendChild(contenedor_general2);
         contenedor_general.appendChild(contenedor_general1);
 
-        document.getElementById("recorrer-clientes").appendChild(contenedor_general);
+        document.getElementById("recorrer-marcas").appendChild(contenedor_general);
         
     }
     catch(err){
         console.log(err);
     }
+  }
+
+  function marcas_seleccionadas(codigo,abreviatura){
+    marcas_recojidas.push([codigo,abreviatura]);
+    console.log(marcas_recojidas)
   }
 
   function guardar_diferenciador(){

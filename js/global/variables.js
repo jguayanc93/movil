@@ -30,3 +30,5 @@ let marca_seleccionada="";///variable temporal para guardar la seleccion del usu
 
 //////VARIABLES PARA EL GUARDADO TEMPORAL DE LAS PROMOCIONES SELECCIONADAS EN LA ELIMINACION DE LA PROMOCION
 const promos_recojidas=[];
+////VARIABLE TEMPORAL PARA EL GUARDADO DE MARCAS SEGUN ESPECIALISTA
+const marcas_recojidas=[];
