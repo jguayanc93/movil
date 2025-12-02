@@ -195,6 +195,7 @@
           boton1.disabled=false;
           boton1.textContent="OK";
           // boton1.id="producto-confirmado";
+          boton1.addEventListener('click',revision_confirmacion)
           
 
           // let boton2=document.createElement('button');
@@ -206,23 +207,27 @@
           parte2.appendChild(boton1);
           // parte2.appendChild(boton2);
 
-    // interior2.appendChild(parrafo);
-    // interior4.appendChild(parrafo2);
-    capa7.appendChild(interior1);
-    capa7.appendChild(interior2);
-    // capa7.appendChild(interior3);
-    // capa7.appendChild(interior4);
-    capa6.appendChild(capa7);
-    capa5.appendChild(capa6);
-    capa4.appendChild(capa5);
-    capa4.appendChild(parte2);
-    capa3.appendChild(capa4);
-    capa2.appendChild(capa3);
-    capa1.appendChild(capa2);
-
-    document.getElementById("modal-aceptacion").appendChild(capa1);
-    document.getElementById("modal-aceptacion").classList.remove('hidden');
+          // interior2.appendChild(parrafo);
+          // interior4.appendChild(parrafo2);
+          capa7.appendChild(interior1);
+          capa7.appendChild(interior2);
+          // capa7.appendChild(interior3);
+          // capa7.appendChild(interior4);
+          capa6.appendChild(capa7);
+          capa5.appendChild(capa6);
+          capa4.appendChild(capa5);
+          capa4.appendChild(parte2);
+          capa3.appendChild(capa4);
+          capa2.appendChild(capa3);
+          capa1.appendChild(capa2);
+          
+          document.getElementById("modal-aceptacion").appendChild(capa1);
+          document.getElementById("modal-aceptacion").classList.remove('hidden');
         })
+      }
+
+      function revision_confirmacion(){
+        window.location.assign('/main.html')
       }
 
       function recibir_mensajes(objrespon){
