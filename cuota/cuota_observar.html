@@ -45,7 +45,7 @@
         </div>
       </div>
 
-    <div class="my-4 mx-16">
+    <div id="no-mostrar-jefaturas" class="my-4 mx-16">
       <a id="creacion" 
       class="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl 
       font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700" onclick="guardar_diferenciador()">REGISTRAR</a>
@@ -76,7 +76,7 @@
           console.log("sin parsear",resultado)
           let direccion=Object.keys(resultado);
           if(Object.keys(resultado).includes("simple")){crear_plantilla_registro(resultado);}
-          else if(Object.keys(resultado).includes("multiple")){document.getElementById("creacion").innerHTML="";mostrar_marcas_asignadas(resultado["multiple"]);}
+          else if(Object.keys(resultado).includes("multiple")){document.getElementById("no-mostrar-jefaturas").innerHTML="";mostrar_marcas_asignadas(resultado["multiple"]);}
           else if(Object.keys(resultado).includes("superior")){console.log("aun falta esta parte")}
           // let decodificar = JSON.parse(resultado);
           // console.log("se trajo esta respuesta correcta",decodificar)          
@@ -378,6 +378,7 @@
         enlace_para_guardar.className="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700";
         enlace_para_guardar.textContent="REGISTRAR";
         enlace_para_guardar.addEventListener("click",()=>{guardar_cuota_de_marca(codigo,abreviatura)})
+        marca_tipo.appendChild(enlace_para_guardar);
       }
 
 
