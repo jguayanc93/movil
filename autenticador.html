@@ -60,8 +60,13 @@
       <label id="nomcli" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Marcas</label>
     </div>
   </div>
-   
-    <!-- <div> -->
+
+  <div id="agrupador-marcas-seleccionadas" class="mx-6">
+    <div class="flex flex-row space-x-2">
+      <label id="marcas-nom" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900"></label>
+    </div>
+  </div>   
+    
       <!-- obsoleto esta parte -->
 
   <!-- PASO 2 PARA LA BUSQUEDA DE UN CLIENTE -->
@@ -387,12 +392,12 @@
             contenedor1.appendChild(enlace_descripcion_titulo);
             contenedor1.appendChild(parrafo_descripcion_data);
             contenedor1.addEventListener("click",()=>{
-              let acumulado_temporal=document.getElementById("nomcli").textContent;
-              let formato_temporal=acumulado_temporal+"/"+paso3[indice][1];
+              // let acumulado_temporal=document.getElementById("marcas-nom").textContent;
+              // let formato_temporal=acumulado_temporal+"/"+paso3[indice][1];
               document.getElementById("buscador").value="";
-              document.getElementById("recorrer-marcas").value="";
-              document.getElementById("nomcli").textContent=formato_temporal;
-              marcas_seleccionadas(paso3[indice][0],paso3[indice][2])
+              document.getElementById("recorrer-marcas").innerHTML="";
+              // document.getElementById("marcas-nom").textContent=formato_temporal;
+              marcas_seleccionadas(paso3[indice][0],paso3[indice][1],paso3[indice][2])
             })
 
             contenedor_general3.appendChild(contenedor1);
@@ -410,8 +415,18 @@
     }
   }
 
-  function marcas_seleccionadas(codigo,abreviatura){
-    marcas_recojidas.push([codigo,abreviatura]);
+  function marcas_seleccionadas(codigo,nombre,abreviatura){
+    marcas_recojidas.push([codigo,abreviatura,nombre]);
+    document.getElementById("agrupador-marcas-seleccionadas").innerHTML="";
+    for(const marca of marcas_recojidas){
+      let contenedor_pequeño=document.createElement("div");
+      contenedor_pequeño.className="flex flex-row space-x-2";
+      let parrafo_pequeño=document.createElement("label");
+      parrafo_pequeño.className="block text-sm/6 font-medium underline underline-offset-4 text-gray-900";
+      parrafo_pequeño.textContent=marca[2];
+      contenedor_pequeño.appendChild(parrafo_pequeño);
+      document.getElementById("agrupador-marcas-seleccionadas").appendChild(contenedor_pequeño);
+    }
     console.log(marcas_recojidas)
   }
 
