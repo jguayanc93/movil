@@ -387,9 +387,12 @@
             contenedor1.appendChild(enlace_descripcion_titulo);
             contenedor1.appendChild(parrafo_descripcion_data);
             contenedor1.addEventListener("click",()=>{
-                document.getElementById("buscador").value="";
-                document.getElementById("nomcli").textContent=paso3[indice][1];
-                marcas_seleccionadas(paso3[indice][0],paso3[indice][2])
+              let acumulado_temporal=document.getElementById("nomcli").textContent;
+              let formato_temporal=acumulado_temporal+"/"+paso3[indice][1];
+              document.getElementById("buscador").value="";
+              document.getElementById("recorrer-marcas").value="";
+              document.getElementById("nomcli").textContent=formato_temporal;
+              marcas_seleccionadas(paso3[indice][0],paso3[indice][2])
             })
 
             contenedor_general3.appendChild(contenedor1);
