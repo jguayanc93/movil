@@ -73,7 +73,7 @@
           console.log("sin parsear",resultado)
           let direccion=Object.keys(resultado);
           if(Object.keys(resultado).includes("simple")){crear_plantilla_registro(resultado);}
-          else if(Object.keys(resultado).includes("multiple")){mostrar_marcas_asignadas(resultado);}
+          else if(Object.keys(resultado).includes("multiple")){mostrar_marcas_asignadas(resultado["multiple"]);}
           else if(Object.keys(resultado).includes("superior")){console.log("aun falta esta parte")}
           // let decodificar = JSON.parse(resultado);
           // console.log("se trajo esta respuesta correcta",decodificar)          
@@ -241,7 +241,7 @@
         let contenedor3=document.createElement("div");
         let princiapl3_label1=document.createElement("label");
         princiapl3_label1.className="block text-sm/6 font-medium text-gray-900";
-        princiapl3_label1.textContent="Vendedor:";
+        princiapl3_label1.textContent="Tipo:";
         let princiapl3_label2=document.createElement("label");
         princiapl3_label2.className="block text-sm/6 font-medium underline underline-offset-4 text-gray-900";
         princiapl3_label2.textContent=vendedor["tipo"];
@@ -252,6 +252,7 @@
         estilo_tipo.appendChild(contenedor3)
         ///contenedor marcas
         for(const marc in vendedor["marcas"]){
+          console.log(marc)
 
           let contenedor_principal2=document.createElement("div");
           contenedor_principal2.className="mt-2";
