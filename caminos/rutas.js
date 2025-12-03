@@ -41,6 +41,7 @@ const rutacuotapermisos=produccion+"/cuota"
 const rutacuotarevisarregistro=produccion+"/cuota/revisar";
 ///nuevas rutas con respecto ala CUOTA registrar
 const rutacuotaregistro=produccion+"/cuota/update";
+const rutacuotaregistromarcaseleccionada=produccion+"/cuota/marcaupdate";
 ///nuevas rutas con respecto ala CUOTA para mostrar
 const rutacuotamostrar=produccion+"/cuota/mostrar";
 ///nuevas rutas con respecto ala PRODUCTOS en la BUSQUEDA DE MARCAS

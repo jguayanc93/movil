@@ -13,6 +13,7 @@
   </div>
 
   <div id="insertador-tipo" class="mx-6"></div>
+  <div id="insertador-marca" class="mx-6"></div>
     
     <div>
         <p id="detallado"></p>
@@ -48,7 +49,9 @@
       <a id="creacion" 
       class="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl 
       font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700" onclick="guardar_diferenciador()">REGISTRAR</a>
-  </div>
+    </div>
+    <div id="creacion-marca" class="my-4 mx-16"></div>
+
     <script src="/caminos/rutas.js"></script>
     <!-- <script src="./js/cuota/cuota.js"></script> -->
     <!-- <script src="../caminos/rutas.js"></script> -->
@@ -73,7 +76,7 @@
           console.log("sin parsear",resultado)
           let direccion=Object.keys(resultado);
           if(Object.keys(resultado).includes("simple")){crear_plantilla_registro(resultado);}
-          else if(Object.keys(resultado).includes("multiple")){mostrar_marcas_asignadas(resultado["multiple"]);}
+          else if(Object.keys(resultado).includes("multiple")){document.getElementById("creacion").innerHTML="";mostrar_marcas_asignadas(resultado["multiple"]);}
           else if(Object.keys(resultado).includes("superior")){console.log("aun falta esta parte")}
           // let decodificar = JSON.parse(resultado);
           // console.log("se trajo esta respuesta correcta",decodificar)          
@@ -222,8 +225,6 @@
       }
 
       function mostrar_marcas_asignadas(vendedor){
-        console.log("estoi trabajando con este objeto")
-        console.log(vendedor)
         let estilo_tipo = document.getElementById("insertador-tipo");
         estilo_tipo.innerHTML="";
 
@@ -252,8 +253,6 @@
         estilo_tipo.appendChild(contenedor3)
         ///contenedor marcas
         for(const marc in vendedor["marcas"]){
-          console.log(marc)
-
           let contenedor_principal2=document.createElement("div");
           contenedor_principal2.className="mt-2";
 
@@ -262,10 +261,10 @@
 
           let boton_marca=document.createElement("div");
           boton_marca.className="my-4 mx-16";
-          let enlace_marca=document.createElement("a");          
+          let enlace_marca=document.createElement("a");
           enlace_marca.className="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700";
-          enlace_marca.textContent=vendedor["marcas"][marc][2];
-          enlace_marca.addEventListener("click",()=>habilitar_cuota_marca(marc,vendedor["marcas"][marc][1],vendedor["marcas"][marc][2]))
+          enlace_marca.textContent=vendedor["marcas"][marc][1];
+          enlace_marca.addEventListener("click",()=>habilitar_cuota_marca(marc,vendedor["marcas"][marc][0],vendedor["marcas"][marc][1]))
 
           boton_marca.appendChild(enlace_marca);
           contenedor_principal2_contenedor1.appendChild(boton_marca)
@@ -318,9 +317,67 @@
       }
 
       function habilitar_cuota_marca(codigo,abreviatura,nombre){
-        console.log("este es codigo",codigo)
-        console.log("este es abreviadtura",abreviatura)
-        console.log("este es nombre",nombre)
+        let estilo_tipo = document.getElementById("insertador-marca");
+        estilo_tipo.innerHTML="";
+
+        /////crea su estilo de tipo
+        let contenedor_principal1=document.createElement("div");
+        let princiapl1_label1=document.createElement("label");
+        princiapl1_label1.className="block text-sm/6 font-medium text-gray-900";
+        princiapl1_label1.textContent="Paso 1:";
+        let princiapl1_label2=document.createElement("label");
+        princiapl1_label2.className="block text-sm/6 font-medium underline underline-offset-4 text-gray-900";
+        princiapl1_label2.textContent=`Cuota de Mes Asignada a ${nombre}`;
+        contenedor_principal1.appendChild(princiapl1_label1);
+        contenedor_principal1.appendChild(princiapl1_label2);
+        ///////contenedor 2
+        let contenedor_principal2=document.createElement("div");
+        contenedor_principal2.className="mt-2";
+
+        let contenedor_principal2_contenedor1=document.createElement("div");
+        contenedor_principal2_contenedor1.className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600"
+
+        let contenedor_principal2_contenedor2=document.createElement("div");
+        contenedor_principal2_contenedor2.className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6";
+        contenedor_principal2_contenedor2.textContent="$";
+
+        let monto_acordado=document.createElement("input");
+        monto_acordado.id="vend-proyeccion";
+        monto_acordado.type="number";
+        monto_acordado.placeholder="0.00";
+        monto_acordado.className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6";
+
+        let contenedor_principal3=document.createElement("div");
+        contenedor_principal3.className="grid shrink-0 grid-cols-1 focus-within:relative";
+
+        let selector_tipos=document.createElement("select");
+        selector_tipos.id="currency"
+        selector_tipos.name="currency"
+        selector_tipos.ariaLabel="Currency"
+        selector_tipos.className="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6";
+        let option1 = document.createElement("option");
+        option1.value="USD";
+        option1.textContent="USD";
+
+        selector_tipos.appendChild(option1);
+
+        contenedor_principal3.appendChild(selector_tipos)
+
+        contenedor_principal2_contenedor1.appendChild(contenedor_principal2_contenedor2);
+        contenedor_principal2_contenedor1.appendChild(monto_acordado);
+        contenedor_principal2_contenedor1.appendChild(contenedor_principal3);
+
+        contenedor_principal2.appendChild(contenedor_principal2_contenedor1);
+
+        estilo_tipo.appendChild(contenedor_principal1)
+        estilo_tipo.appendChild(contenedor_principal2)
+        /////esto es solo para permitir el registro de una cuota de una marca especifica
+
+        let marca_tipo = document.getElementById("creacion-marca");
+        let enlace_para_guardar=document.createElement("a");
+        enlace_para_guardar.className="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700";
+        enlace_para_guardar.textContent="REGISTRAR";
+        enlace_para_guardar.addEventListener("click",()=>{guardar_cuota_de_marca(codigo,abreviatura)})
       }
 
 
@@ -335,6 +392,40 @@
         if(parseFloat(diferenciador.value)>1){
 
           let peticion = new Request(rutacuotaregistro,{ method:"POST",headers:{'Content-Type':'application/json'},body:bodystring,mode:"cors",credentials:"include"})
+
+          fetch(peticion)
+          .then(resultado=>{
+            if(!resultado.ok){
+              throw new Error("fallo en el registro de la cuota mensual");
+            }
+            return resultado.json();
+          })
+          .then(resultado=>{
+            // let decodificar = JSON.parse(resultado);
+            // console.log(decodificar)
+            window.location.assign("https://landing.compudiskett.com.pe/main.html")
+          })
+          .catch(err=>{
+            console.log(err);
+          })
+        }
+      }
+
+      function guardar_cuota_de_marca(codigo,abreviatura){
+
+        let diferenciador = document.getElementById("vend-proyeccion");
+        console.log("este es el seleccionado: ",diferenciador.value);
+
+        const cuerpo={
+          'fijado':diferenciador.value,
+          'codigo':codigo,
+          'recortado':abreviatura
+        }
+        const bodystring=JSON.stringify(cuerpo);
+
+        if(parseFloat(diferenciador.value)>1){
+
+          let peticion = new Request(rutacuotaregistromarcaseleccionada,{ method:"POST",headers:{'Content-Type':'application/json'},body:bodystring,mode:"cors",credentials:"include"})
 
           fetch(peticion)
           .then(resultado=>{
