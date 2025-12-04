@@ -309,7 +309,7 @@
         fetch(peticion)
         .then(resultado=>{
           if(!resultado.ok){
-            throw new Error("fallo en el registro de la cuota mensual");
+            throw new Error("fallo al revisar si la marca ya tiene una cuota asignada");
           }
           return resultado.json();
         })
@@ -319,7 +319,8 @@
           habilitar_cuota_marca_mostrar(codigo,abreviatura,nombre)
         })
         .catch(err=>{
-          window.location.assign("https://landing.compudiskett.com.pe/main.html")
+          console.log(err)
+          // window.location.assign("https://landing.compudiskett.com.pe/main.html")
         })
       }
 
@@ -335,7 +336,7 @@
         fetch(peticion)
         .then(resultado=>{
           if(!resultado.ok){
-            throw new Error("fallo en el registro de la cuota mensual");
+            throw new Error("fallo en mostrar las cuotas de la marca seleccionada");
           }
           return resultado.json();
         })
@@ -346,7 +347,8 @@
           // habilitar_cuota_marca(codigo,abreviatura,nombre);
         })
         .catch(err=>{
-          window.location.assign("https://landing.compudiskett.com.pe/main.html")
+          console.log(err)
+          // window.location.assign("https://landing.compudiskett.com.pe/main.html")
         })
       }
     </script>
