@@ -314,8 +314,6 @@
           return resultado.json();
         })
         .then(resultado=>{
-          console.log(resultado)
-          ////aqui es donde muestro los resultados de las cuotas de la marca seleccionada
           habilitar_cuota_marca_mostrar(codigo,abreviatura,nombre)
         })
         .catch(err=>{
