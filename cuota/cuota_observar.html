@@ -264,61 +264,44 @@
           let enlace_marca=document.createElement("a");
           enlace_marca.className="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700";
           enlace_marca.textContent=vendedor["marcas"][marc][1];
-          enlace_marca.addEventListener("click",()=>habilitar_cuota_marca(marc,vendedor["marcas"][marc][0],vendedor["marcas"][marc][1]))
+          enlace_marca.addEventListener("click",()=>revisar_cuota_marca_existe(marc,vendedor["marcas"][marc][0],vendedor["marcas"][marc][1]))
 
           boton_marca.appendChild(enlace_marca);
           contenedor_principal2_contenedor1.appendChild(boton_marca)
           contenedor_principal2.appendChild(contenedor_principal2_contenedor1);
           estilo_tipo.appendChild(contenedor_principal2);
+        }        
+      }
+
+      function revisar_cuota_marca_existe(codigo,abreviatura,nombre){
+        const cuerpo={
+          'fijado':diferenciador.value,
+          'codigo':codigo,
+          'recortado':abreviatura
         }
+        const bodystring=JSON.stringify(cuerpo);
+        
+        let peticion = new Request(rutacuotarevisarregistromarca,{ method:"POST",headers:{'Content-Type':'application/json'},body:bodystring,mode:"cors",credentials:"include"})
 
-
-        // let contenedor_principal2=document.createElement("div");
-        // contenedor_principal2.className="mt-2";
-
-        // let contenedor_principal2_contenedor1=document.createElement("div");
-        // contenedor_principal2_contenedor1.className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600"
-
-        // let contenedor_principal2_contenedor2=document.createElement("div");
-        // contenedor_principal2_contenedor2.className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6";
-        // contenedor_principal2_contenedor2.textContent="$";
-
-        // let monto_acordado=document.createElement("input");
-        // monto_acordado.id="vend-proyeccion";
-        // monto_acordado.type="number";
-        // monto_acordado.placeholder="0.00";
-        // monto_acordado.className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6";
-
-        // let contenedor_principal3=document.createElement("div");
-        // contenedor_principal3.className="grid shrink-0 grid-cols-1 focus-within:relative";
-
-        // let selector_tipos=document.createElement("select");
-        // selector_tipos.id="currency"
-        // selector_tipos.name="currency"
-        // selector_tipos.ariaLabel="Currency"
-        // selector_tipos.className="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6";
-        // let option1 = document.createElement("option");
-        // option1.value="USD";
-        // option1.textContent="USD";
-
-        // selector_tipos.appendChild(option1);
-
-        // contenedor_principal3.appendChild(selector_tipos)
-
-        // contenedor_principal2_contenedor1.appendChild(contenedor_principal2_contenedor2);
-        // contenedor_principal2_contenedor1.appendChild(monto_acordado);
-        // contenedor_principal2_contenedor1.appendChild(contenedor_principal3);
-
-        // contenedor_principal2.appendChild(contenedor_principal2_contenedor1);
-
-        // estilo_tipo.appendChild(contenedor_principal1)
-        // estilo_tipo.appendChild(contenedor3)
-        // estilo_tipo.appendChild(contenedor_principal2)
+        fetch(peticion)
+        .then(resultado=>{
+          if(!resultado.ok){
+            throw new Error("fallo en el registro de la cuota mensual");
+          }
+          return resultado.json();
+        })
+        .then(resultado=>{
+          habilitar_cuota_marca(codigo,abreviatura,nombre);
+        })
+        .catch(err=>{
+          window.location.assign("https://landing.compudiskett.com.pe/main.html")
+        })
       }
 
       function habilitar_cuota_marca(codigo,abreviatura,nombre){
         let estilo_tipo = document.getElementById("insertador-marca");
         estilo_tipo.innerHTML="";
+        document.getElementById("creacion-marca").innerHTML="";
 
         /////crea su estilo de tipo
         let contenedor_principal1=document.createElement("div");
