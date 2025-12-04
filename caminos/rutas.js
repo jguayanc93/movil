@@ -40,6 +40,7 @@ const rutapromocioneliminar=produccion+"/promocion/eliminar";
 const rutacuotapermisos=produccion+"/cuota"
 const rutacuotarevisarregistro=produccion+"/cuota/revisar";
 const rutacuotarevisarregistromarca=produccion+"/cuota/marcarevisar";
+const rutacuotarevisarregistromarca2=produccion+"/cuota/marcawach";
 ///nuevas rutas con respecto ala CUOTA registrar
 const rutacuotaregistro=produccion+"/cuota/update";
 const rutacuotaregistromarcaseleccionada=produccion+"/cuota/marcaupdate";

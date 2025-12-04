@@ -336,7 +336,7 @@
         }
         const bodystring=JSON.stringify(cuerpo);
         
-        let peticion = new Request(rutacuotarevisarregistromarca,{ method:"POST",headers:{'Content-Type':'application/json'},body:bodystring,mode:"cors",credentials:"include"})
+        let peticion = new Request(rutacuotarevisarregistromarca2,{ method:"POST",headers:{'Content-Type':'application/json'},body:bodystring,mode:"cors",credentials:"include"})
 
         fetch(peticion)
         .then(resultado=>{
