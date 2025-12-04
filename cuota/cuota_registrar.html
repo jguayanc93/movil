@@ -11,15 +11,14 @@
     <a href="/main.html" class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
     font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">MENU</a>
   </div>
-    <!-- <div class="mt-6">
-        <a href="main.html" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">MENU</a>
-    </div> -->
-    <div>
-        <p id="detallado"></p>
-    </div>
-    <div id="modal-aceptacion" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"></div>
+
+  <div id="insertador-tipo" class="mx-6"></div>
+
+  <div><p id="detallado"></p></div>
+
+  <div id="modal-aceptacion" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"></div>
     <!--version compacta-->
-    <div class="lg:flex lg:items-center lg:justify-between">
+    <div id="marcas-multiple" class="lg:flex lg:items-center lg:justify-between hidden">
         <div class="min-w-0 flex-1">
           
           
@@ -146,7 +145,16 @@
           console.log("sin parsear",resultado)
           // let decodificar = JSON.parse(resultado);
           // console.log("se trajo esta respuesta correcta",decodificar)
-          recibir_mensajes(resultado);
+          let direccion=Object.keys(resultado);
+          if(Object.keys(resultado).includes("simple")){
+            document.getElementById("marcas-multiple").classList.remove('hidden');
+            recibir_mensajes(resultado["simple"]);
+          }
+          else if(Object.keys(resultado).includes("multiple")){
+            // document.getElementById("marcas-multiple").innerHTML="";
+            recorrer_bucles_marcas(resultado["multiple"])}
+          else if(Object.keys(resultado).includes("superior")){ console.log("aun falta esta parte")}
+          
         })
         .catch(err=>{
           console.log(err);
@@ -236,6 +244,110 @@
         document.getElementById("respon3").textContent=objrespon["avance"];
         document.getElementById("respon4").textContent=objrespon["porcentaje"];
         document.getElementById("respon5").textContent=objrespon["mensaje"];
+      }
+
+      function recorrer_bucles_marcas(vendedor){
+        console.log("estos son los valores a tratar")
+        console.log(vendedor)
+        let estilo_tipo = document.getElementById("insertador-tipo");
+        estilo_tipo.innerHTML="";
+
+        /////crea su estilo de tipo
+        let contenedor_principal1=document.createElement("div");
+        let princiapl1_label1=document.createElement("label");
+        princiapl1_label1.className="block text-sm/6 font-medium text-gray-900";
+        princiapl1_label1.textContent="Vendedor:";
+        let princiapl1_label2=document.createElement("label");
+        princiapl1_label2.className="block text-sm/6 font-medium underline underline-offset-4 text-gray-900";
+        princiapl1_label2.textContent=vendedor["nombre"];
+        contenedor_principal1.appendChild(princiapl1_label1);
+        contenedor_principal1.appendChild(princiapl1_label2);
+        ///////contenedor 2
+        let contenedor3=document.createElement("div");
+        let princiapl3_label1=document.createElement("label");
+        princiapl3_label1.className="block text-sm/6 font-medium text-gray-900";
+        princiapl3_label1.textContent="Tipo:";
+        let princiapl3_label2=document.createElement("label");
+        princiapl3_label2.className="block text-sm/6 font-medium underline underline-offset-4 text-gray-900";
+        princiapl3_label2.textContent=vendedor["tipo"];
+        contenedor3.appendChild(princiapl3_label1);
+        contenedor3.appendChild(princiapl3_label2);
+
+        estilo_tipo.appendChild(contenedor_principal1)
+        estilo_tipo.appendChild(contenedor3)
+        ///contenedor marcas
+        for(const marc in vendedor["marcas"]){
+          let contenedor_principal2=document.createElement("div");
+          contenedor_principal2.className="mt-2";
+
+          let contenedor_principal2_contenedor1=document.createElement("div");
+          contenedor_principal2_contenedor1.className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600"
+
+          let boton_marca=document.createElement("div");
+          boton_marca.className="my-4 mx-16";
+          let enlace_marca=document.createElement("a");
+          enlace_marca.className="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700";
+          enlace_marca.textContent=vendedor["marcas"][marc][1];
+          enlace_marca.addEventListener("click",()=>revisar_cuota_marca_existe(marc,vendedor["marcas"][marc][0],vendedor["marcas"][marc][1]))
+
+          boton_marca.appendChild(enlace_marca);
+          contenedor_principal2_contenedor1.appendChild(boton_marca)
+          contenedor_principal2.appendChild(contenedor_principal2_contenedor1);
+          estilo_tipo.appendChild(contenedor_principal2);
+        }
+      }
+
+      function revisar_cuota_marca_existe(codigo,abreviatura,nombre){
+        const cuerpo={
+          'codigo':codigo,
+          'recortado':abreviatura
+        }
+        const bodystring=JSON.stringify(cuerpo);
+        
+        let peticion = new Request(rutacuotarevisarregistromarca,{ method:"POST",headers:{'Content-Type':'application/json'},body:bodystring,mode:"cors",credentials:"include"})
+
+        fetch(peticion)
+        .then(resultado=>{
+          if(!resultado.ok){
+            throw new Error("fallo en el registro de la cuota mensual");
+          }
+          return resultado.json();
+        })
+        .then(resultado=>{
+          console.log(resultado)
+          ////aqui es donde muestro los resultados de las cuotas de la marca seleccionada
+          habilitar_cuota_marca_mostrar(codigo,abreviatura,nombre)
+        })
+        .catch(err=>{
+          window.location.assign("https://landing.compudiskett.com.pe/main.html")
+        })
+      }
+
+      function habilitar_cuota_marca_mostrar(codigo,abreviatura,nombre){
+        const cuerpo={
+          'codigo':codigo,
+          'recortado':abreviatura
+        }
+        const bodystring=JSON.stringify(cuerpo);
+        
+        let peticion = new Request(rutacuotamostrarmarca,{ method:"POST",headers:{'Content-Type':'application/json'},body:bodystring,mode:"cors",credentials:"include"})
+
+        fetch(peticion)
+        .then(resultado=>{
+          if(!resultado.ok){
+            throw new Error("fallo en el registro de la cuota mensual");
+          }
+          return resultado.json();
+        })
+        .then(resultado=>{
+          console.log("habilitar contenido traido")
+          console.log(resultado)
+          ////aqui es donde muestro los resultados de las cuotas de la marca seleccionada
+          // habilitar_cuota_marca(codigo,abreviatura,nombre);
+        })
+        .catch(err=>{
+          window.location.assign("https://landing.compudiskett.com.pe/main.html")
+        })
       }
     </script>
 </body>
