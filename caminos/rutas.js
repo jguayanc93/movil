@@ -53,6 +53,8 @@ const rutaproductobuscarmarcas=produccion+"/producto/marcas";
 ///nuevas rutas con respecto ala LISTA raiz principal con accesos dinamicos
 const rutalistapermisos=produccion+"/lista";
 const rutalistacoti=produccion+"/lista/cotis";
+const rutalistapedi=produccion+"/lista/pedidos";
+const rutalistafactus=produccion+"/lista/facturas"
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
@@ -102,7 +104,7 @@ const rutacuotageneral="http://127.0.0.1:3000/v1/cuotas/general";
 // const rutalistacoti=desarrollo+"/lista/cotis";
 const rutalistacotidia=desarrollo+"/lista/cotis/dia";
 
-const rutalistapedi=desarrollo+"/lista/pedis";
+// const rutalistapedi=desarrollo+"/lista/pedis";
 const rutalistapedidia=desarrollo+"/lista/pedis/dia";
 
 const rutalistafac=desarrollo+"/lista/factus";
