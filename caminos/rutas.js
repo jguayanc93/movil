@@ -56,6 +56,10 @@ const rutalistacoti=produccion+"/lista/cotis";
 const rutalistapedi=produccion+"/lista/pedidos";
 const rutalistafactus=produccion+"/lista/facturas"
 
+///////nuevas rutas con respecto al PROGRAMADOR raiz principal con accesos dinamicos
+const rutaprogramadorpermisos=produccion+"/programador";
+const rutaprogramadordespacharhoy=produccion+"/programador/despacho"
+
 const rutacuota=desarrollo+"/vendedor/cuota";
 
 const httpcors2="https://pulpo.compudiskett.com.pe/login/chekear";////REVISAR
