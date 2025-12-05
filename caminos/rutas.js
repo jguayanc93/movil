@@ -50,6 +50,10 @@ const rutacuotamostrarmarca=produccion+"/cuota/marcamostrar";///puede q no sea n
 ///nuevas rutas con respecto ala PRODUCTOS en la BUSQUEDA DE MARCAS
 const rutaproductobuscarmarcas=produccion+"/producto/marcas";
 
+///nuevas rutas con respecto ala LISTA raiz principal con accesos dinamicos
+const rutalistapermisos=produccion+"/lista";
+const rutalistacoti=produccion+"/lista/cotis";
+
 const rutacuota=desarrollo+"/vendedor/cuota";
 
 const httpcors2="https://pulpo.compudiskett.com.pe/login/chekear";////REVISAR
@@ -95,7 +99,7 @@ const rutafacturaprogramadaminutos=desarrollo+"/vendedor/programarventanillaminu
 const rutapivot="http://127.0.0.1:3000/v1/prom/pivot";
 const rutacuotageneral="http://127.0.0.1:3000/v1/cuotas/general";
 
-const rutalistacoti=desarrollo+"/lista/cotis";
+// const rutalistacoti=desarrollo+"/lista/cotis";
 const rutalistacotidia=desarrollo+"/lista/cotis/dia";
 
 const rutalistapedi=desarrollo+"/lista/pedis";
