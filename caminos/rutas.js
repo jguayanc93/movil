@@ -59,6 +59,7 @@ const rutalistafactus=produccion+"/lista/facturas"
 ///////nuevas rutas con respecto al PROGRAMADOR raiz principal con accesos dinamicos
 const rutaprogramadorpermisos=produccion+"/programador";
 const rutaprogramadordespacharhoy=produccion+"/programador/despacho"
+const rutaprogramadorfacturavalida=produccion+"/programador/programar";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
@@ -97,7 +98,7 @@ const rutaprom=desarrollo+"/prom/verificar";
 
 const rutaaddprom=desarrollo+"/prom/add";
 
-const rutabfacturavalida=desarrollo+"/vendedor/programar";
+// const rutabfacturavalida=desarrollo+"/vendedor/programar";
 const rutafacturaprogramada=desarrollo+"/vendedor/programarventanilla";
 const rutafacturaprogramadaminutos=desarrollo+"/vendedor/programarventanillaminutos";
 
