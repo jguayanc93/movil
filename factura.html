@@ -104,20 +104,28 @@
                 return "factura_despacho";
                 break;
 
-            case "leer":
-                return "factura_observar";
+            case "transporte":
+                return "factura_transporte";
                 break;
 
-            case "update":
-                return "cotizacion_modificar";
+            case "atencion":
+                return "factura_modificar";
                 break;
             
-            case "delete":
-                return "cotizacion_eliminar";
+            case "direccion":
+                return "factura_direccion";
                 break;
 
-            case "alm":
-                return "cotizacion_almacen";
+            case "vendedor":
+                return "factura_vendedor";
+                break;
+
+            case "observacion":
+                return "factura_observacion";
+                break;
+
+            case "orden":
+                return "factura_orden";
                 break;
         
             default:
@@ -129,24 +137,32 @@
       function direccionador_de_permisos(permisos){
 
         switch (permisos) {
-            case "crear":
-                return ["CREAR","Permite crear una nueva cotizacion"];
+            case "despacho":
+                return ["TIPO DESPACHO","Permite modificar el tipo de despacho"];
                 break;
 
-            case "leer":
-                return ["VER","Permite observar una cotizacion"];
+            case "transporte":
+                return ["TRANSPORTE","Permite modificar el transportista"];
                 break;
 
-            case "update":
-                return ["MODIFICAR","Permite modificar cotizacion reciente"];
+            case "atencion":
+                return ["ATENCION","Permite modificar la atencion"];
                 break;
 
-            case "delete":
-                return ["ELIMINAR","Permite dar de baja una cotizacion"];
+            case "direccion":
+                return ["DIRECCIOIN","Permite modificar la direccion"];
                 break;
 
-            case "alm":
-                return ["ALMACEN","Permite cambiar de almacen una cotizacion reciente"];
+            case "vendedor":
+                return ["VENDEDOR ASIGNADO","Permite modificar el vendedor"];
+                break;
+
+            case "observacion":
+                return ["OBSERVACION","Permite modificar la observacion del documento"];
+                break;
+
+            case "orden":
+                return ["ORDEN COMPRA","Permite modificar la orden si tuviera el documento"];
                 break;
         
             default:
