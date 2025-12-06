@@ -60,7 +60,7 @@ if(document.getElementById("enviar2")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("transportista").value=resultado[0][1];
+          document.getElementById("transportista").textContent=resultado[0][1];
       })
       .catch(err=>{console.log(err);})
   })
@@ -79,7 +79,7 @@ if(document.getElementById("enviar3")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("atencion").value=resultado[0][0];
+          document.getElementById("atencion").textContent=resultado[0][0];
       })
       .catch(err=>{console.log(err);})
   })
@@ -98,7 +98,7 @@ if(document.getElementById("enviar4")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("direccion").value=resultado[0][0];
+          document.getElementById("direccion").textContent=resultado[0][0];
       })
       .catch(err=>{console.log(err);})
   })

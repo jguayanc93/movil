@@ -68,7 +68,7 @@ const rutaprogramadorfacturaxdia=produccion+"/programador/despachoxdia";
 ///////nuevas rutas con respecto al FACTURA MODIFICACION raiz principal con accesos dinamicos
 const rutafacturapermisos=produccion+"/factura";
 const rutafacturacampodespacho=produccion+"/factura/despacho";
-const rutafacturacampotransportista=produccion+"/factura/transportista";
+const rutafacturacampotransportista=produccion+"/factura/transporte";
 const rutafacturacampoatencion=produccion+"/factura/atencion";
 const rutafacturacampodireccion=produccion+"/factura/direccion";
 const rutafacturacampovendedor=produccion+"/factura/vendedor";
