@@ -60,6 +60,7 @@ const rutalistafactus=produccion+"/lista/facturas"
 const rutaprogramadorpermisos=produccion+"/programador";
 const rutaprogramadordespacharhoy=produccion+"/programador/despacho"
 const rutaprogramadorfacturavalida=produccion+"/programador/programar";
+const rutaprogramadorfacturaxdia=produccion+"/programador/despachoxdia";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
