@@ -65,6 +65,9 @@ const rutaprogramadordespacharhoy=produccion+"/programador/despacho"
 const rutaprogramadorfacturavalida=produccion+"/programador/programar";
 const rutaprogramadorfacturaxdia=produccion+"/programador/despachoxdia";
 
+///////nuevas rutas con respecto al FACTURA MODIFICACION raiz principal con accesos dinamicos
+const rutafacturapermisos=produccion+"/factura";
+
 const rutacuota=desarrollo+"/vendedor/cuota";
 
 const httpcors2="https://pulpo.compudiskett.com.pe/login/chekear";////REVISAR
