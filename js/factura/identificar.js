@@ -26,3 +26,129 @@ document.getElementById("enviar").addEventListener("click",()=>{
       })
       .catch(err=>{console.log(err);})
   })
+
+  document.getElementById("enviar1").addEventListener("click",()=>{
+    let dataenviar=new Object();
+    dataenviar.opc1=document.getElementById("leer").value;
+    let fetchobj = new Object();
+    fetchobj.method="POST";
+    fetchobj.headers={"Content-Type":"application/json"};
+    fetchobj.mode="cors";
+    fetchobj.credentials="include";
+    fetchobj.body=JSON.stringify(dataenviar);
+    fetch(rutafacturacampodespacho,fetchobj)
+    .then(resultado=>resultado.ok?resultado.json():resultado.text())
+    .then(resultado=>JSON.parse(resultado))///agregado para conversion
+    .then(resultado=>{
+          document.getElementById("tipo-despacho").value=resultado[0][1];
+      })
+      .catch(err=>{console.log(err);})
+  })
+
+  document.getElementById("enviar2").addEventListener("click",()=>{
+    let dataenviar=new Object();
+    dataenviar.opc1=document.getElementById("leer").value;
+    let fetchobj = new Object();
+    fetchobj.method="POST";
+    fetchobj.headers={"Content-Type":"application/json"};
+    fetchobj.mode="cors";
+    fetchobj.credentials="include";
+    fetchobj.body=JSON.stringify(dataenviar);
+    fetch(rutafacturacampotransportista,fetchobj)
+    .then(resultado=>resultado.ok?resultado.json():resultado.text())
+    .then(resultado=>JSON.parse(resultado))///agregado para conversion
+    .then(resultado=>{
+          document.getElementById("transportista").value=resultado[0][1];
+      })
+      .catch(err=>{console.log(err);})
+  })
+
+  document.getElementById("enviar3").addEventListener("click",()=>{
+    let dataenviar=new Object();
+    dataenviar.opc1=document.getElementById("leer").value;
+    let fetchobj = new Object();
+    fetchobj.method="POST";
+    fetchobj.headers={"Content-Type":"application/json"};
+    fetchobj.mode="cors";
+    fetchobj.credentials="include";
+    fetchobj.body=JSON.stringify(dataenviar);
+    fetch(rutafacturacampoatencion,fetchobj)
+    .then(resultado=>resultado.ok?resultado.json():resultado.text())
+    .then(resultado=>JSON.parse(resultado))///agregado para conversion
+    .then(resultado=>{
+          document.getElementById("atencion").value=resultado[0][0];
+      })
+      .catch(err=>{console.log(err);})
+  })
+
+  document.getElementById("enviar4").addEventListener("click",()=>{
+    let dataenviar=new Object();
+    dataenviar.opc1=document.getElementById("leer").value;
+    let fetchobj = new Object();
+    fetchobj.method="POST";
+    fetchobj.headers={"Content-Type":"application/json"};
+    fetchobj.mode="cors";
+    fetchobj.credentials="include";
+    fetchobj.body=JSON.stringify(dataenviar);
+    fetch(rutafacturacampodireccion,fetchobj)
+    .then(resultado=>resultado.ok?resultado.json():resultado.text())
+    .then(resultado=>JSON.parse(resultado))///agregado para conversion
+    .then(resultado=>{
+          document.getElementById("direccion").value=resultado[0][0];
+      })
+      .catch(err=>{console.log(err);})
+  })
+
+  document.getElementById("enviar5").addEventListener("click",()=>{
+    let dataenviar=new Object();
+    dataenviar.opc1=document.getElementById("leer").value;
+    let fetchobj = new Object();
+    fetchobj.method="POST";
+    fetchobj.headers={"Content-Type":"application/json"};
+    fetchobj.mode="cors";
+    fetchobj.credentials="include";
+    fetchobj.body=JSON.stringify(dataenviar);
+    fetch(rutafacturacampovendedor,fetchobj)
+    .then(resultado=>resultado.ok?resultado.json():resultado.text())
+    .then(resultado=>JSON.parse(resultado))///agregado para conversion
+    .then(resultado=>{
+          document.getElementById("vendedor-asignado").value=resultado[0][0];
+      })
+      .catch(err=>{console.log(err);})
+  })
+
+  document.getElementById("enviar6").addEventListener("click",()=>{
+    let dataenviar=new Object();
+    dataenviar.opc1=document.getElementById("leer").value;
+    let fetchobj = new Object();
+    fetchobj.method="POST";
+    fetchobj.headers={"Content-Type":"application/json"};
+    fetchobj.mode="cors";
+    fetchobj.credentials="include";
+    fetchobj.body=JSON.stringify(dataenviar);
+    fetch(rutafacturacampoobservacion,fetchobj)
+    .then(resultado=>resultado.ok?resultado.json():resultado.text())
+    .then(resultado=>JSON.parse(resultado))///agregado para conversion
+    .then(resultado=>{
+          document.getElementById("observacion").value=resultado[0][0];
+      })
+      .catch(err=>{console.log(err);})
+  })
+
+  document.getElementById("enviar7").addEventListener("click",()=>{
+    let dataenviar=new Object();
+    dataenviar.opc1=document.getElementById("leer").value;
+    let fetchobj = new Object();
+    fetchobj.method="POST";
+    fetchobj.headers={"Content-Type":"application/json"};
+    fetchobj.mode="cors";
+    fetchobj.credentials="include";
+    fetchobj.body=JSON.stringify(dataenviar);
+    fetch(rutafacturacampoorden,fetchobj)
+    .then(resultado=>resultado.ok?resultado.json():resultado.text())
+    .then(resultado=>JSON.parse(resultado))///agregado para conversion
+    .then(resultado=>{
+          document.getElementById("orden-compra").value=resultado[0][0];
+      })
+      .catch(err=>{console.log(err);})
+  })
