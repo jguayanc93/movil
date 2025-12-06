@@ -74,6 +74,14 @@ const rutafacturacampodireccion=produccion+"/factura/direccion";
 const rutafacturacampovendedor=produccion+"/factura/vendedor";
 const rutafacturacampoobservacion=produccion+"/factura/observacion";
 const rutafacturacampoorden=produccion+"/factura/orden";
+/////////nuevas rutas con respecto al FACTURA MODIFICACION CAMPO SELECCIONADO
+const rutafacturacambiodespacho=produccion+"/factura/despacho/cambio";
+const rutafacturacambiotransportista=produccion+"/factura/transporte/cambio";
+const rutafacturacambioatencion=produccion+"/factura/atencion/cambio";
+const rutafacturacambiodireccion=produccion+"/factura/direccion/cambio";
+const rutafacturacambiovendedor=produccion+"/factura/vendedor/cambio";
+const rutafacturacambioobservacion=produccion+"/factura/observacion/cambio";
+const rutafacturacambioorden=produccion+"/factura/orden/cambio";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 
