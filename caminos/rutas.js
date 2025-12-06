@@ -53,8 +53,11 @@ const rutaproductobuscarmarcas=produccion+"/producto/marcas";
 ///nuevas rutas con respecto ala LISTA raiz principal con accesos dinamicos
 const rutalistapermisos=produccion+"/lista";
 const rutalistacoti=produccion+"/lista/cotis";
+const rutalistacotixdia=produccion+"/lista/cotisxdia";
 const rutalistapedi=produccion+"/lista/pedidos";
+const rutalistapedixdia=produccion+"/lista/pedidosxdia";
 const rutalistafactus=produccion+"/lista/facturas"
+const rutalistafactusxdia=produccion+"/lista/facturasxdia";
 
 ///////nuevas rutas con respecto al PROGRAMADOR raiz principal con accesos dinamicos
 const rutaprogramadorpermisos=produccion+"/programador";

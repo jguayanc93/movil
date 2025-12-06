@@ -127,7 +127,7 @@ async function buscar_dia2(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        let paso1= await fetch(rutalistafacdia,fetchobj)
+        let paso1= await fetch(rutalistafactusxdia,fetchobj)
         let paso2= await paso1.json();
         let paso3= await JSON.parse(paso2);
         
@@ -174,8 +174,8 @@ async function buscar_dia2(){
             contenedormedio.appendChild(parrafo5)
 
             let img=document.createElement('img');
-            img.src="logotipo.png";
-            img.alt="Front of men&#039;s Basic Tee in black.";
+            img.src="/logotipo.png";
+            img.alt="logo cdk";
             // img.classList.add("aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80");
             img.className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80";
 
