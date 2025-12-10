@@ -37,7 +37,8 @@ async function get_transportista(){
       for(let i of reconocedor.children){
         i.lastElementChild.firstElementChild.addEventListener("click",()=>{
           acumulador.push(2);
-          preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          // preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          preparado(i.firstElementChild.firstElementChild.textContent,2,objfactura[1]);
           document.getElementById("transportista2").value=i.lastElementChild.firstElementChild.textContent;
         })
       }

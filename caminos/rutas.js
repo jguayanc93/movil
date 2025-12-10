@@ -82,6 +82,8 @@ const rutafacturacambiodireccion=produccion+"/factura/direccion/cambio";
 const rutafacturacambiovendedor=produccion+"/factura/vendedor/cambio";
 const rutafacturacambioobservacion=produccion+"/factura/observacion/cambio";
 const rutafacturacambioorden=produccion+"/factura/orden/cambio";
+/////////nuevas rutas con respecto al FACTURA MODIFICACION CAMPO ACTUALISADO
+const rutafacturacampoactualisar=produccion+"/factura/cambiado";
 
 const rutacuota=desarrollo+"/vendedor/cuota";
 

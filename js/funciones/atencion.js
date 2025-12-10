@@ -32,7 +32,8 @@ async function get_atencion(){
       for(let i of reconocedor.children){
         i.firstElementChild.firstElementChild.addEventListener("click",()=>{
           acumulador.push(3);
-          preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          // preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          preparado(i.firstElementChild.firstElementChild.textContent,3,objfactura[1]);
           document.getElementById("atencion2").value=i.lastElementChild.firstElementChild.textContent;
         })
       }

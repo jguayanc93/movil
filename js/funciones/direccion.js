@@ -32,7 +32,8 @@ async function get_direccion(){
       for(let i of reconocedor.children){
         i.firstElementChild.firstElementChild.addEventListener("click",()=>{
           acumulador.push(4);
-          preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          // preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          preparado(i.firstElementChild.firstElementChild.textContent,4,objfactura[1]);
           document.getElementById("direccion2").value=i.lastElementChild.firstElementChild.textContent;
         })
       }

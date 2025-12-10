@@ -37,7 +37,8 @@ async function get_vendedor(){
       for(let i of reconocedor.children){
         i.lastElementChild.firstElementChild.addEventListener("click",()=>{
           acumulador.push(5);
-          preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          // preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          preparado(i.firstElementChild.firstElementChild.textContent,5,objfactura[1]);
           document.getElementById("vendedor-asignado2").value=i.lastElementChild.firstElementChild.textContent;
         })
       }

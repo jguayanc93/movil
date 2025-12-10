@@ -34,7 +34,8 @@ async function get_despacho(){
       for(let i of reconocedor.children){
         i.lastElementChild.firstElementChild.addEventListener("click",()=>{
           acumulador.push(1);
-          preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          // preparado(i.firstElementChild.firstElementChild.textContent,acumulador[0],document.getElementById("doc").value);
+          preparado(i.firstElementChild.firstElementChild.textContent,1,objfactura[1]);
           document.getElementById("tipo-despacho2").value=i.lastElementChild.firstElementChild.textContent;
         })
       }

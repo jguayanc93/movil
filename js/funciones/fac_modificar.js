@@ -9,7 +9,8 @@ function preparado(sustituto,indice,doc){
     fetchobj.mode="cors";
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
-    fetch(rutarevisar,fetchobj)
+    // fetch(rutarevisar,fetchobj)
+    fetch(rutafacturacampoactualisar,fetchobj)
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>{
         acumulador.shift();
