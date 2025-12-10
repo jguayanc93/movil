@@ -41,6 +41,7 @@ if(document.getElementById("enviar1")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
+      console.log("este es el resultado",resultado)
       objfactura=[];
       objfactura=[resultado[0][2],resultado[0][3]];
       document.getElementById("tipo-despacho").value=resultado[0][1];
