@@ -146,7 +146,7 @@ const rutacotizacionbmodificar=desarrollo+"/coti/modificar";
 const rutacotizacionbprdagregar=desarrollo+"/coti/idprdmodificadoagregado";
 const rutacotizacioncmodificacion=desarrollo+"/coti/crearmodificacion";
 
-const rutamarcas=desarrollo+"/reporte/marcas";
+const rutamarcas=produccion+"/reporte/marcas";
 const rutastock=desarrollo+"/reporte/stoc";
 const rutatiempo=desarrollo+"/reporte/tiempo";
 const rutamarcaprecios=desarrollo+"/reporte/precios";
