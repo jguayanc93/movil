@@ -41,9 +41,11 @@ if(document.getElementById("enviar1")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("tipo-despacho").value=resultado[0][1];
-      })
-      .catch(err=>{console.log(err);})
+      objfactura=[];
+      objfactura=[resultado[0][2],resultado[0][3]];
+      document.getElementById("tipo-despacho").value=resultado[0][1];
+    })
+    .catch(err=>{console.log(err);})
   })
 }
 if(document.getElementById("enviar2")){
@@ -60,7 +62,9 @@ if(document.getElementById("enviar2")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("transportista").textContent=resultado[0][1];
+      objfactura=[];
+      objfactura=[resultado[0][2],resultado[0][3]];
+      document.getElementById("transportista").textContent=resultado[0][1];
       })
       .catch(err=>{console.log(err);})
   })
@@ -79,7 +83,9 @@ if(document.getElementById("enviar3")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("atencion").textContent=resultado[0][0];
+      objfactura=[];
+      objfactura=[resultado[0][1],resultado[0][2]];
+      document.getElementById("atencion").textContent=resultado[0][0];
       })
       .catch(err=>{console.log(err);})
   })
@@ -98,7 +104,9 @@ if(document.getElementById("enviar4")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("direccion").textContent=resultado[0][0];
+      objfactura=[];
+      objfactura=[resultado[0][1],resultado[0][2]];
+      document.getElementById("direccion").textContent=resultado[0][0];
       })
       .catch(err=>{console.log(err);})
   })
@@ -117,8 +125,10 @@ if(document.getElementById("enviar5")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("vendedor-asignado").value=resultado[0][0];
-      })
+      objfactura=[];
+      objfactura=[resultado[0][1],resultado[0][2]];
+      document.getElementById("vendedor-asignado").value=resultado[0][0];
+    })
       .catch(err=>{console.log(err);})
   })
 }
@@ -136,8 +146,10 @@ if(document.getElementById("enviar6")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("observacion").value=resultado[0][0];
-      })
+      objfactura=[];
+      objfactura=[resultado[0][1],resultado[0][2]];
+      document.getElementById("observacion").value=resultado[0][0];
+    })
       .catch(err=>{console.log(err);})
   })
 }
@@ -155,8 +167,10 @@ if(document.getElementById("enviar7")){
     .then(resultado=>resultado.ok?resultado.json():resultado.text())
     .then(resultado=>JSON.parse(resultado))///agregado para conversion
     .then(resultado=>{
-          document.getElementById("orden-compra").value=resultado[0][0];
-      })
+      objfactura=[];
+      objfactura=[resultado[0][1],resultado[0][2]];
+      document.getElementById("orden-compra").value=resultado[0][0];
+    })
       .catch(err=>{console.log(err);})
   })
 } 

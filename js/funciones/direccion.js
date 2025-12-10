@@ -10,7 +10,8 @@ async function get_direccion(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-      let paso1=await fetch(rutaropc4,fetchobj)
+      // let paso1=await fetch(rutaropc4,fetchobj)
+      let paso1=await fetch(rutafacturacambiodireccion,fetchobj)
       let paso2=await paso1.json();
       let paso3=await JSON.parse(paso2);
       for(let indice in paso3){

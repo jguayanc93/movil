@@ -10,7 +10,8 @@ async function get_atencion(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-      let paso1=await fetch(rutaropc3,fetchobj)
+      // let paso1=await fetch(rutaropc3,fetchobj)
+      let paso1=await fetch(rutafacturacambioatencion,fetchobj)
       let paso2=await paso1.json(); 
       let paso3=await JSON.parse(paso2);
       for(let indice in paso3){
