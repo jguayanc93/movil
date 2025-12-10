@@ -41,11 +41,11 @@ async function cargamarcas(){
 
             let encabesado=document.createElement('h3');
             encabesado.className="mt-4 text-sm text-gray-700";
-            encabesado.textContent=paso3[marc][0];
+            encabesado.textContent=paso3[marc][2];
 
             let parrafo=document.createElement('p');
             parrafo.className="mt-1 text-lg font-medium text-gray-900";
-            parrafo.textContent=paso3[marc][0];
+            parrafo.textContent=paso3[marc][2];
             parrafo.addEventListener('click',vista_descargas)
 
             // enlace.appendChild(image)
