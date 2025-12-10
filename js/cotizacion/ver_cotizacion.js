@@ -18,6 +18,9 @@ async function buscar_cotizacion_modificar(){
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
         console.log(paso3)
+
+        /////guardando temporalmente los items
+        for(const item in paso3) cotimodi_tmpitems[paso3[item][10]]=[paso3[item][1],paso3[item][2],paso3[item][3],paso3[item][4],paso3[item][5],paso3[item][6],paso3[item][7],paso3[item][8],paso3[item][9],paso3[item][10],paso3[item][11],paso3[item][12],paso3[item][13],paso3[item][14],paso3[item][15],paso3[item][16],paso3[item][17],paso3[item][18],paso3[item][19],paso3[item][20],paso3[item][21],paso3[item][22]];
                 
         // coti_cant=Object.keys(paso3).length;
         ///creacion del cuerpo
@@ -131,7 +134,7 @@ async function buscar_cotizacion_modificar(){
         //////espacio para la busqueda de promos
         let boton_prom=document.createElement('button');
         boton_prom.className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
-        boton_prom.textContent="AGREGAR PRODUCTO";
+        boton_prom.textContent="PRODUCTOS DESPLEGADOS";
         
         ///////////////////
         let cuerpo6=document.createElement('div');
