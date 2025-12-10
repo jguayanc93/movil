@@ -8,7 +8,8 @@ async function get_despacho(){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-      let paso1=await fetch(rutarevelar,fetchobj)
+      // let paso1=await fetch(rutarevelar,fetchobj)
+      let paso1=await fetch(rutafacturacambiodespacho,fetchobj)
       let paso2=await paso1.json();
       let paso3=await JSON.parse(paso2);
       for(let indice in paso3){
