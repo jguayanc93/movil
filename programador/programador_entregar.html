@@ -53,8 +53,9 @@
         let dia=fecha.getDate();
         // if(mes<10) mes="0"+mes;
         let dia_max=dia+2;
-        let formato_min=año+"-"+mes+"-"+dia;
-        let formato_max=año+"-"+mes+"-"+dia_max;        
+        let dia_min=dia-2;
+        let formato_min=año+"-"+mes+"-"+dia_min;
+        let formato_max=año+"-"+mes+"-"+dia_max;
         fechita.setAttribute("min",formato_min);
         fechita.setAttribute("max",formato_max);
     </script>
