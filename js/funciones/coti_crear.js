@@ -21,14 +21,14 @@ async function generador_coti(){
         cliente_data.length=0;
         almc_id='01';
         for(let prod in agrupacion) if(agrupacion.hasOwnProperty(prod)) delete agrupacion[prod];
-        confirmar_creacion();
+        confirmar_creacion(paso2["numero"]);
     }
     catch(err){
         console.log(err);
     }
 }
 
-function confirmar_creacion(){
+function confirmar_creacion(numero){
     document.getElementById("recorrer-productos").innerHTML="";
 
     let capa1=document.createElement('div');
@@ -54,12 +54,12 @@ function confirmar_creacion(){
     interior2.className="mt-2";
     let parrafo=document.createElement('p');
     parrafo.className="text-sm text-gray-500";
-    parrafo.textContent=`Revisar cotizacion numero 009-00`;
-    let interior3=document.createElement('h3');
-    interior3.className="text-base font-semibold text-gray-900";
-    interior3.textContent="UNIDADES";
-    let interior4=document.createElement('div');
-    interior4.className="mt-2";
+    parrafo.textContent=`Revisar cotizacion numero ${numero}`;
+    // let interior3=document.createElement('h3');
+    // interior3.className="text-base font-semibold text-gray-900";
+    // interior3.textContent="UNIDADES";
+    // let interior4=document.createElement('div');
+    // interior4.className="mt-2";
     // let parrafo2=document.createElement('input')
     // parrafo2.type="number";
     // parrafo2.id="cantidades";
@@ -87,8 +87,8 @@ function confirmar_creacion(){
     // interior4.appendChild(parrafo2);
     capa7.appendChild(interior1);
     capa7.appendChild(interior2);
-    capa7.appendChild(interior3);
-    capa7.appendChild(interior4);
+    // capa7.appendChild(interior3);
+    // capa7.appendChild(interior4);
     capa6.appendChild(capa7);
     capa5.appendChild(capa6);
     capa4.appendChild(capa5);
