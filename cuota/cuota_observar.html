@@ -273,7 +273,7 @@
       function recibir_mensajes(objrespon){
         document.getElementById("respon1").textContent=objrespon["diastexto"];
         document.getElementById("respon2").textContent=objrespon["meta"];
-        document.getElementById("respon3").textContent=objrespon["avance"];
+        document.getElementById("respon3").textContent=parseFloat(objrespon["avance"].toFixed(2));
         document.getElementById("respon4").textContent=objrespon["porcentaje"];
         document.getElementById("respon5").textContent=objrespon["mensaje"];
       }
