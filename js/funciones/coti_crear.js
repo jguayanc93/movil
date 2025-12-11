@@ -102,5 +102,5 @@ function confirmar_creacion(){
 }
 
 function vendedor_confirmado(){
-    window.location.assign('/main.html');
+    window.location.assign('https://landing.compudiskett.com.pe/main.html');
 }
