@@ -73,7 +73,7 @@ function confirmar_creacion(){
     let boton1=document.createElement('button');
     boton1.className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto";
     boton1.setAttribute("type","button");
-    boton1.disabled=true;
+    boton1.disabled=false;
     boton1.textContent="OK";
     boton1.id="producto-confirmado";
     boton1.addEventListener("click",()=>{
