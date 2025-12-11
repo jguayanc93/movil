@@ -2,6 +2,8 @@
 const desarrollo="http://127.0.0.1:3000/v1"
 const produccion="https://pulpo.compudiskett.com.pe/v1"
 
+////// nuevas rutas con respecto a cerrar sesion
+const rutalogout=produccion+"/logout";
 ////// nuevas rutas con respecto al LOGEO
 const rutalogin=produccion+"/login";
 const rutaidentificador=produccion+"/login/identificador";
