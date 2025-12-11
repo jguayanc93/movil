@@ -27,6 +27,8 @@ const rutacotizacionleer=produccion+"/cotizacion/read";
 const rutacotizacionleerprom=produccion+"/cotizacion/readprom";
 ///nuevas rutas con respecto ala COTIZACION MODIFICAR
 const rutacotizacionactualizar=produccion+"/cotizacion/update";
+///nuevas rutas con respecto ala COTIZACION CAMBIAR ALMACEN
+const rutacotizacioncambiaralmacen=produccion+"/cotizacion/almacen";
 //////////nuevas rutas con respecto ala PROMOCION raiz principal con accesos dinamicos
 const rutapromocionpermisos=produccion+"/promocion";
 ///nuevas rutas con respecto a PROMOCION BUSCAR Y ADJUNTAR

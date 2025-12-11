@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>cambiar almacen</title>
+</head>
+<body>
+  <div class="my-4 mx-16">
+    <a href="/cotizacion.html" class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
+    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">MENU</a>
+  </div>
+  <!-- PASO 1 PARA LA BUSQUEDA DE UN CLIENTE -->
+  <div class="mx-6">
+    <div class="flex flex-row space-x-2">
+      <label for="busqueda" class="block text-sm/6 font-medium text-gray-900">Paso 1:</label>
+      <label id="nomcli" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Cotizacion</label>
+    </div>
+    <!-- <label for="busqueda" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Paso 1:</label> -->
+    <div class="mt-2">
+      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+        <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
+          <button id="voz-cliente">ClIENTE</button>
+        </div> -->
+        <input type="number" name="busqueda" id="busqueda" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="digitar...">
+        <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+          <select id="alm" name="alm" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            <option value="01">PRINCIPAL</option>
+            <option value="08">M&M</option>
+          </select>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIN DEL PASO 1 -->
+   
+    
+  <!-- ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
+  <div class="relative" id="recorrer-clientes"></div>
+  <!-- FIN ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
+
+<!-- FIN DEL PASO 2 -->
+<div id="modal-aceptacion" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"></div>
+<div class="relative" id="recorrer-productos"></div>
+
+<!-- FIN DEL PASO 3 -->
+
+        <!-- <h2>paso 2: busca tu producto para cotizar</h2>
+        <div>
+            <input type="search" id="producto">
+        </div> -->
+        <!-- <h2>pase 3: selecciona un producto de la lista para añadirlo a tu coti</h2> -->
+        <!-- <div id="encontrar">
+            <div class="relative" id="recorrer-productos"></div>
+        </div> -->
+<!-- PASO 4 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
+<!-- <div>
+  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:ver rentabilidad ganada de esta coti (opcional)</label>
+  <div class="mt-2">
+    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+      
+    </div>
+  </div>
+  <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
+</div> -->
+
+
+
+    <!-- PASO 6 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
+<div class="mx-6 my-4">
+  <div class="flex flex-row space-x-2">
+    <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:</label>
+    <label for="producto" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Generar Cotizacion</label>
+  </div>
+  <div class="mt-2">
+    <p class="font-mono text-base">advertencia:solo se podra cambiar si la cotizacion que le pertenece es valida y no esta aprovada </p>
+    <!-- <a id="creacion" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">CREAR</a> -->
+  </div>
+</div>
+  
+  <div class="my-4 mx-16">
+    <a id="cambio" 
+    class="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl 
+    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">CAMBIAR</a>
+  </div>
+<!-- FIN DEL PASO 6 -->
+
+<script src="/js/global/variables.js"></script>
+<script src="/caminos/rutas.js"></script>
+
+<!-- <script src="/js/cotizacion/buscar_cliente.js"></script>
+<script src="/js/funciones/b_cliente.js"></script>
+<script src="/js/funciones/identificar_cliente.js"></script> -->
+
+<script src="/js/cotizacion/cambio_almacen.js"></script>
+
+
+<script src="/js/funciones/coti_cambiar_almacen.js"></script>
+
+<!-- <script src="/js/cotizacion/crear.js"></script>
+<script src="/js/funciones/coti_crear.js"></script> -->
+</body>
+</html>
