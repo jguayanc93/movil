@@ -7,25 +7,10 @@
     <title>cdk</title>
 </head>
 <body>
-    <!-- <div id="contenedor-principal">
-        <h2>BIENVENIDO ALA DEMO V1</h2>
-        <H3>LOGEATE</H3>
-        <div id="contenedor-login">
-            <input type="text" id="user">
-            <br>
-            <input type="text" id="pass">
-            <br>
-            <button type="button" id="loggin">iniciar sesion</button>
-            <br>
-            <p id="respuesta"></p>
-        </div>
-    </div> -->
-    <!--espacio de constructor de responsive-->
-    
-    <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
+    <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-lg md:max-w-2xl">
         <div class="md:flex">
             <div class="md:shrink-0">
-                <!-- <img class="h-48 w-full object-cover lg:h-full lg:w-8" -->
+                
                 <img class="h-48 w-full object-cover md:h-full md:w-48"
                  src="logotipo.png" alt="img texto" />
             </div>
@@ -51,9 +36,7 @@
                     <div>
                         <div class="flex items-center justify-between">
                           <label for="password" class="block text-sm/6 font-medium text-gray-900">Password:</label>
-                          <!-- <div class="text-sm">
-                            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-                          </div> -->
+                          
                         </div>
                         <div class="mt-2">
                           <input type="password" name="pass" id="pass" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -72,6 +55,56 @@
             </div>
         </div>
     </div>
+    <!-- no te olvides borrar lo de arriba porque es solo un diseño temporal de centrado de columna-->
+    <!--espacio de constructor de responsive-->
+    
+    <!-- <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
+        <div class="md:flex">
+            <div class="md:shrink-0">
+                <img class="h-48 w-full object-cover md:h-full md:w-48"
+                 src="logotipo.png" alt="img texto" />
+            </div>
+            <div class="p-8">
+                <div class="text-sm font-semibold tracking-wide text-indigo-500 uppercase">WELCOME</div>
+                <a href="#" class="mt-1 block text-lg leading-tight font-medium text-black hover:underline">
+                    Demo .v1.0
+                </a>
+                <p class="mt-2 text-gray-500">
+                    portal de acciones en prototipo para vendedores.
+                </p>
+            </div>
+            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <form action="#" id="cdk-logeo" class="space-y-6">
+
+                    <div>
+                        <label for="email" class="block text-sm/6 font-medium text-gray-900">User:</label>
+                        <div class="mt-2">
+                            <input type="text" name="cuenta" id="user" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between">
+                          <label for="password" class="block text-sm/6 font-medium text-gray-900">Password:</label>
+                          
+                        </div>
+                        <div class="mt-2">
+                          <input type="password" name="pass" id="pass" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                        </div>
+                    </div>
+
+                    <div>
+                        <p id="respuesta" class="text-center"></p>
+                    </div>                    
+
+                    <div>
+                        <button type="submit" id="loggin" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Iniciar Sesion</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div> -->
 
     <script src="./caminos/rutas.js"></script>
     <script src="./js/login/login.js"></script>
