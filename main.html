@@ -11,15 +11,11 @@
     <!--agrupacion de opciones del menu principal-->
     <div class="relative">
         <div class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
-            <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 ring-1 shadow-lg ring-gray-900/5">
-              <div id="adjuntar-modulos" class="flex flex-col gap-4 p-4">
-                <!-- <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50"> -->
-                  <!-- <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <svg class="size-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-                    </svg>
-                  </div> -->
-                  <!-- <div class="w-64">
+            <div class="w-screen max-w-xl max-[391px]:max-w-sm max-[1024px]:max-w-lg flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 ring-1 shadow-lg ring-gray-900/5">
+              <div id="adjuntar-modulos" class="flex flex-row flex-wrap gap-4 p-4">
+
+                <!--<div class="group relative basis-auto max-[391px]:w-full min-[391px]:rounded-lg max-[391px]:rounded-r-lg p-4 bg-blue-600 border-r-2 border-b-2 border-black shadow-lg/60">
+                   <div class="w-full">
                     <a href="cotizacion.html" class="font-semibold text-white underline underline-offset-4">
                       NUEVA COTIZACION
                       <span class="absolute inset-0"></span>
@@ -27,9 +23,9 @@
                     <p class="mt-1 text-white italic justify-self-end-safe">Permite crear una nueva cotizacion</p>
                   </div>
                 </div>
-                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
-                  
-                  <div class="w-64">
+
+                <div class="group relative basis-auto max-[391px]:w-full p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                  <div class="w-full">
                     <a href="cuota.html" class="font-semibold text-white underline underline-offset-4">
                       VER CUOTA
                       <span class="absolute inset-0"></span>
@@ -37,9 +33,9 @@
                     <p class="mt-1 text-white italic justify-self-end-safe">Permite ver el avance de mi cuota</p>
                   </div>
                 </div>
-                <div class="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
-                  
-                  <div class="w-64">
+
+                <div class="group relative basis-auto p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50">
+                  <div class="w-full">
                     <a href="modifcoti.html" class="font-semibold text-white underline underline-offset-4">
                       SOPORTE COTIZACION
                       <span class="absolute inset-0"></span>
@@ -150,9 +146,7 @@
     <script src="/js/login/logout.js"></script>
     <script>
 
-      document.addEventListener("DOMContentLoaded",function(){
-        manejar_acceso();
-      })
+      document.addEventListener("DOMContentLoaded",function(){ manejar_acceso(); })
 
       function manejar_acceso(){
         let peticion = new Request(rutavendedor,{ method:"GET",mode:"cors",credentials:"include"})
@@ -187,10 +181,12 @@
         for(const modulo of desmenuzar){
           ///construccion del los modulos con sus accesos
           let contenedor = document.createElement("div");
-          contenedor.className="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50";
+          // contenedor.className="group relative flex p-4 bg-indigo-500 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60 hover:bg-gray-50";
+          contenedor.className="group relative basis-auto max-[391px]:w-full min-[391px]:rounded-lg max-[391px]:rounded-r-lg p-4 bg-blue-600 rounded-r-lg border-r-2 border-b-2 border-black shadow-lg/60";
 
           let contenedor2=document.createElement("div");
-          contenedor2.className="w-64";
+          // contenedor2.className="w-64";
+          contenedor2.className="w-full";
 
           /////aqui es donde tengo q manejarlo con cuidado segun el objmodulo
           let enlace=document.createElement("a");
