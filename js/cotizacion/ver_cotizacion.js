@@ -21,7 +21,7 @@ async function buscar_cotizacion_modificar(){
 
         /////guardando temporalmente los items
         ////aqui esta el error
-        // for(const item in paso3) cotimodi_tmpitems[paso3[item][10]]=[paso3[item][1],paso3[item][2],paso3[item][3],paso3[item][4],paso3[item][5],paso3[item][6],paso3[item][7],paso3[item][8],paso3[item][9],paso3[item][10],paso3[item][11],paso3[item][12],paso3[item][13],paso3[item][14],paso3[item][15],paso3[item][16],paso3[item][17],paso3[item][18],paso3[item][19],paso3[item][20],paso3[item][21],paso3[item][22]];
+        for(const item in paso3) cotimodi_tmpitems[paso3[item][10]]=[paso3[item][1],paso3[item][2],paso3[item][3],paso3[item][4],paso3[item][5],paso3[item][6],paso3[item][7],paso3[item][8],paso3[item][9],paso3[item][10],paso3[item][11],paso3[item][12],paso3[item][13],paso3[item][14],paso3[item][15],paso3[item][16],paso3[item][17],paso3[item][18],paso3[item][19],paso3[item][20],paso3[item][21],paso3[item][22]];
                 
         // coti_cant=Object.keys(paso3).length;
         ///creacion del cuerpo
@@ -45,28 +45,28 @@ async function buscar_cotizacion_modificar(){
         productos_cotizacion_detallada.role="list";
         productos_cotizacion_detallada.className="-my-6 divide-y divide-gray-200";
         
-        for(let indice in paso3){
+        for(let indice in cotimodi_tmpitems){
             let parrafo1=document.createElement('p')
             parrafo1.className="mt-1 text-sm text-gray-500";
-            parrafo1.textContent=paso3[indice][10];
+            parrafo1.textContent=cotimodi_tmpitems[indice][10];
             let contenedor1=document.createElement('div');
             contenedor1.className="h-full size-16 shrink-0 overflow-hidden rounded-md border border-gray-200";
             contenedor1.appendChild(parrafo1);
 
             let enlace=document.createElement('a')
-            enlace.textContent=paso3[indice][13];
+            enlace.textContent=cotimodi_tmpitems[indice][13];
             let titulo=document.createElement('h3');
             titulo.appendChild(enlace);
             let parrafo2=document.createElement('p');
             parrafo2.className="ml-4";
-            parrafo2.textContent=`$${paso3[indice][16]}`;
+            parrafo2.textContent=`$${cotimodi_tmpitems[indice][16]}`;
             let contenedor2=document.createElement('div')
             contenedor2.className="flex justify-between text-base font-medium text-gray-900";
             contenedor2.appendChild(titulo);
             contenedor2.appendChild(parrafo2);
             let parrafo3=document.createElement('p')
             parrafo3.className="mt-1 text-sm text-gray-500";
-            parrafo3.textContent=paso3[indice][11];
+            parrafo3.textContent=cotimodi_tmpitems[indice][11];
 
             let contenedor_vacio=document.createElement('div');
             contenedor_vacio.appendChild(contenedor2)
@@ -76,14 +76,14 @@ async function buscar_cotizacion_modificar(){
             let boton1=document.createElement('button');
             boton1.type="button";
             boton1.className="font-medium text-indigo-600 hover:text-indigo-500";
-            boton1.textContent=`Cant. ${paso3[indice][14]}`;
+            boton1.textContent=`Cant. ${cotimodi_tmpitems[indice][14]}`;
 
             let contenedor3=document.createElement('div');
             contenedor3.className="flex";
             contenedor3.appendChild(boton1);
             let parrafo4=document.createElement('p')
             parrafo4.className="text-gray-500";
-            parrafo4.textContent=`P.Unit ${paso3[indice][15]}`;
+            parrafo4.textContent=`P.Unit ${cotimodi_tmpitems[indice][15]}`;
             let contenedor4=document.createElement('div')
             contenedor4.className="flex flex-1 items-end justify-between text-sm";
             contenedor4.appendChild(parrafo4)
@@ -102,7 +102,7 @@ async function buscar_cotizacion_modificar(){
             
             let parrafo5=document.createElement('p')
             parrafo5.className="text-gray-500";
-            parrafo5.textContent=`Dscto% ${paso3[indice][17]}`;
+            parrafo5.textContent=`Dscto% ${cotimodi_tmpitems[indice][17]}`;
             let contenedor6=document.createElement('div')
             contenedor6.className="flex flex-1 items-end justify-between text-sm";
 
