@@ -144,7 +144,7 @@ async function buscar_cotizacion_modificar(){
         cuerpo6.appendChild(boton_prom);
 
         let cuerpo7=document.createElement('div');
-        cuerpo7.className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl";
+        cuerpo7.className="flex h-full flex-col bg-white shadow-xl";
         cuerpo7.appendChild(cuerpo3)
         cuerpo7.appendChild(cuerpo6)
 
