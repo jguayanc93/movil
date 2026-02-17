@@ -34,7 +34,7 @@ async function buscar_dia(){
 
             let parrafo=document.createElement('p');
             // parrafo.classList.add("mt-1","text-sm","text-gray-500");
-            parrafo.classList.add("truncate");
+            parrafo.className="truncate";
             parrafo.textContent=paso3[item][2];
 
             contenedorinferior.appendChild(tituloh3)
