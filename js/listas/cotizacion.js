@@ -144,8 +144,8 @@ async function buscar_dia2(){
             tituloh3.appendChild(linkh3);
 
             let parrafo=document.createElement('p');
-            // parrafo.classList.add("mt-1","text-sm","text-gray-500");
-            parrafo.classList.add("truncate");
+            // parrafo.classList.add("mt-1","text-sm","text-gray-500");            
+            parrafo.className="truncate";
             parrafo.textContent=paso3[item][2];
 
             contenedorinferior.appendChild(tituloh3)
@@ -166,7 +166,8 @@ async function buscar_dia2(){
             minicontenedor.appendChild(parrafo4);
 
             let contenedormedio=document.createElement('div')///el segundo contenedor
-            contenedormedio.classList.add("sm:mt-4","flex-col","content-center");
+            // contenedormedio.classList.add("sm:mt-4","flex-col","content-center");
+            contenedormedio.className="sm:mt-4 flex-col content-center";
             contenedormedio.appendChild(contenedorinferior)
             contenedormedio.appendChild(minicontenedor)
             // contenedormedio.appendChild(parrafo3)
