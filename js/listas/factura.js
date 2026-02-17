@@ -133,6 +133,7 @@ async function buscar_dia2(){
         
         for(const item in paso3){
             let contenedorinferior=document.createElement('div');
+            contenedorinferior.className="flex flex-col w-40 gap-y-4";
 
             let tituloh3=document.createElement('h3');
             tituloh3.classList.add("text-sm","text-gray-700");
@@ -148,11 +149,15 @@ async function buscar_dia2(){
             tituloh3.appendChild(linkh3);
 
             let parrafo=document.createElement('p');
-            parrafo.classList.add("mt-1","text-sm","text-gray-500");
+            // parrafo.classList.add("mt-1","text-sm","text-gray-500");
+            parrafo.className="truncate";
             parrafo.textContent=paso3[item][2];
 
             contenedorinferior.appendChild(tituloh3)
             contenedorinferior.appendChild(parrafo)
+
+            let minicontenedor=document.createElement("div");
+            minicontenedor.className="flex flex-col gap-y-2";
 
             let parrafo3=document.createElement('p');
             parrafo3.classList.add("text-sm","font-medium","text-gray-900");
@@ -166,22 +171,28 @@ async function buscar_dia2(){
             parrafo5.classList.add("text-sm","font-medium","text-gray-900");
             parrafo5.textContent="/"+paso3[item][5];
 
+            minicontenedor.appendChild(parrafo3);
+            minicontenedor.appendChild(parrafo4);
+            minicontenedor.appendChild(parrafo5);
+
             let contenedormedio=document.createElement('div')
             contenedormedio.classList.add("mt-4","flex","justify-between");
             contenedormedio.appendChild(contenedorinferior)
-            contenedormedio.appendChild(parrafo3)
-            contenedormedio.appendChild(parrafo4)
-            contenedormedio.appendChild(parrafo5)
+            contenedormedio.appendChild(minicontenedor)
+            // contenedormedio.appendChild(parrafo3)
+            // contenedormedio.appendChild(parrafo4)
+            // contenedormedio.appendChild(parrafo5)
 
             let img=document.createElement('img');
             img.src="/logotipo.png";
             img.alt="logo cdk";
             // img.classList.add("aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80");
-            img.className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80";
+            // img.className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80";
+            img.className="aspect-square w-full rounded-md bg-gray-200 object-contain";
 
             let contenedorsuperior=document.createElement('div');
             // contenedorsuperior.classList.add("group relative");
-            contenedorsuperior.className="group relative";
+            contenedorsuperior.className="group relative flex flex-row gap-x-6 max-[391px]:max-w-[150px] min-[601px]:max-w-[180px]";
             contenedorsuperior.appendChild(img)
             contenedorsuperior.appendChild(contenedormedio)
 
