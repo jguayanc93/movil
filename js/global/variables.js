@@ -1,6 +1,6 @@
 /////NUEVA COTIZACION
 var cliente_data=[];/////////data exacta del cliente seleccionado
-let almc_id="01";////////////identificador para la seleccion del almacen
+let almc_id="D";////////////identificador para la seleccion del almacen//ahora la moneda
 const agrupacion={};///////conjunto de productos seleccionados por el vendedor
 var promos_insertadas={};////PODRIA NO VALER NADA
 ///////////////////

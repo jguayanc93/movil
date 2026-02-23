@@ -4,7 +4,8 @@ async function generador_coti(){
     dataenviar.cliente=cliente_data;
     dataenviar.productos=agrupacion;
     dataenviar.promos=promos_insertadas;
-    dataenviar.alm=almc_id;
+    // dataenviar.alm=almc_id;
+    dataenviar.moneda=almc_id;
 
     let fetchobj = new Object();
     fetchobj.method="POST";
@@ -19,7 +20,7 @@ async function generador_coti(){
         console.log(paso2);
         ///BORRANDO DATOS GUARDADOS DE LA COTI
         cliente_data.length=0;
-        almc_id='01';
+        almc_id='D';
         for(let prod in agrupacion) if(agrupacion.hasOwnProperty(prod)) delete agrupacion[prod];
         confirmar_creacion(paso2["numero"]);
     }
