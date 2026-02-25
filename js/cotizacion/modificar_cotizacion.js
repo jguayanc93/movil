@@ -29,7 +29,7 @@ async function buscar_cotizacion_modificar(){
         cotimodi_tipcli.push(paso3[0][5]);///tcambio
         cotimodi_tipcli.push(paso3[0][6]);///mone
         cotimodi_tipcli.push(paso3[0][7]);///moneitem
-        cotimodi_tipcli.push(paso3[0][20]);///moneitem
+        cotimodi_tipcli.push(paso3[0][20]);///almacen
 
         /////guardando temporalmente los items
         for(const item in paso3) cotimodi_tmpitems[paso3[item][10]]=[paso3[item][1],paso3[item][2],paso3[item][3],paso3[item][4],paso3[item][5],paso3[item][6],paso3[item][7],paso3[item][8],paso3[item][9],paso3[item][10],paso3[item][11],paso3[item][12],paso3[item][13],paso3[item][14],paso3[item][15],paso3[item][16],paso3[item][17],paso3[item][18],paso3[item][19],paso3[item][20],paso3[item][21],paso3[item][22]];
@@ -470,13 +470,34 @@ async function tblprd3(cprd,stoc){
         let paso1=await fetch(rutaproductoencontrado,fetchobj)
         let paso2=await paso1.json();
         let paso3=await JSON.parse(paso2);
-        
-        let dsct_sacado=(paso3[8]*(paso3[9]/100));
-        // let tota=((paso3[8]-dsct_sacado)*stoc).toFixed(2);
-        let tota=parseFloat((paso3[8]-dsct_sacado).toFixed(2))*stoc;
-        let totn=tota*1.18;
-        // cotimodi_tmpitems[paso3[2]]=[sacar_fecha,sacar_doc,paso3[0],paso3[1],stoc,paso3[4],tota,paso3[5],paso3[6],paso3[7]];
-        cotimodi_tmpitems[paso3[2]]=[cotimodi_tipcli[1],cotimodi_tipcli[2],cotimodi_tipcli[3],cotimodi_tipcli[4],cotimodi_tipcli[5],cotimodi_tipcli[6],cotimodi_tipcli[7],paso3[0],paso3[1],paso3[2],paso3[3],paso3[4],paso3[5],paso3[6],stoc,paso3[8],tota,paso3[9],totn,cotimodi_tipcli[8],paso3[10],paso3[11]];
+
+        let dsct_sacado=0;
+        let tota=0;
+        let totn=0;
+
+        if(cotimodi_tipcli[6]=='S'){
+            let costo_sol=Number((paso3[10]*cotimodi_tipcli[5]).toFixed(2));
+            let preu_sol=Number((paso3[8]*cotimodi_tipcli[5]).toFixed(2));
+            let saca_descuento=paso3[9]/100;
+            dsct_sacado=Number((preu_sol*saca_descuento).toFixed(2));
+            tota=(preu_sol-dsct_sacado).toFixed(2);
+            totn=tota*1.18;
+            cotimodi_tmpitems[paso3[2]]=[cotimodi_tipcli[1],cotimodi_tipcli[2],cotimodi_tipcli[3],cotimodi_tipcli[4],cotimodi_tipcli[5],cotimodi_tipcli[6],cotimodi_tipcli[7],paso3[0],paso3[1],paso3[2],paso3[3],paso3[4],paso3[5],paso3[6],stoc,preu_sol,tota,paso3[9],totn,cotimodi_tipcli[8],costo_sol,paso3[11]];
+        }
+        else{
+            dsct_sacado=(paso3[8]*(paso3[9]/100));
+            tota=parseFloat((paso3[8]-dsct_sacado).toFixed(2))*stoc;
+            let totn=tota*1.18;
+            // cotimodi_tmpitems[paso3[2]]=[sacar_fecha,sacar_doc,paso3[0],paso3[1],stoc,paso3[4],tota,paso3[5],paso3[6],paso3[7]];
+            cotimodi_tmpitems[paso3[2]]=[cotimodi_tipcli[1],cotimodi_tipcli[2],cotimodi_tipcli[3],cotimodi_tipcli[4],cotimodi_tipcli[5],cotimodi_tipcli[6],cotimodi_tipcli[7],paso3[0],paso3[1],paso3[2],paso3[3],paso3[4],paso3[5],paso3[6],stoc,paso3[8],tota,paso3[9],totn,cotimodi_tipcli[8],paso3[10],paso3[11]];
+        }
+        //////////////DESCOMENTAR PARA REGRESAR COMO ESTABA
+        // let dsct_sacado=(paso3[8]*(paso3[9]/100));
+        // // let tota=((paso3[8]-dsct_sacado)*stoc).toFixed(2);
+        // let tota=parseFloat((paso3[8]-dsct_sacado).toFixed(2))*stoc;
+        // let totn=tota*1.18;
+        // // cotimodi_tmpitems[paso3[2]]=[sacar_fecha,sacar_doc,paso3[0],paso3[1],stoc,paso3[4],tota,paso3[5],paso3[6],paso3[7]];
+        // cotimodi_tmpitems[paso3[2]]=[cotimodi_tipcli[1],cotimodi_tipcli[2],cotimodi_tipcli[3],cotimodi_tipcli[4],cotimodi_tipcli[5],cotimodi_tipcli[6],cotimodi_tipcli[7],paso3[0],paso3[1],paso3[2],paso3[3],paso3[4],paso3[5],paso3[6],stoc,paso3[8],tota,paso3[9],totn,cotimodi_tipcli[8],paso3[10],paso3[11]];
 
         volver_correr();
     }
