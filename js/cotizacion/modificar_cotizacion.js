@@ -480,7 +480,7 @@ async function tblprd3(cprd,stoc){
             let preu_sol=Number((paso3[8]*cotimodi_tipcli[5]).toFixed(2));
             let saca_descuento=paso3[9]/100;
             dsct_sacado=Number((preu_sol*saca_descuento).toFixed(2));
-            tota=(preu_sol-dsct_sacado).toFixed(2);
+            tota=parseFloat((preu_sol-dsct_sacado).toFixed(2))*stoc;
             totn=tota*1.18;
             cotimodi_tmpitems[paso3[2]]=[cotimodi_tipcli[1],cotimodi_tipcli[2],cotimodi_tipcli[3],cotimodi_tipcli[4],cotimodi_tipcli[5],cotimodi_tipcli[6],cotimodi_tipcli[7],paso3[0],paso3[1],paso3[2],paso3[3],paso3[4],paso3[5],paso3[6],stoc,preu_sol,tota,paso3[9],totn,cotimodi_tipcli[8],costo_sol,paso3[11]];
         }
