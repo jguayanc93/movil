@@ -18,13 +18,13 @@ async function buscar_pivot(){
         console.log("este es el array de posibles promociones");
         console.log(paso2);
         if(typeof paso2==='object'){
-            throw new Error(paso2);
+            throw new Error(JSON.stringify(paso2));
         }
         for(let idprom of paso2) promos_conjunto_diferenciales.push(idprom);///guardamos las posibles promociones en array
     }
     catch(err){
         console.log(err);
-        let transformador=JSON.parse(err.message);
+        let transformador=JSON.parse(err);
         /////aca se debe trabajar
         if(transformador["status"]==='ninguna promocion'){
             let prom_msj=document.getElementById("msg-respuesta-promo");
