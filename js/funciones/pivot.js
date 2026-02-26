@@ -24,8 +24,9 @@ async function buscar_pivot(){
     }
     catch(err){
         console.log(err);
+        let transformador=JSON.parse(err.message);
         /////aca se debe trabajar
-        if(err["status"]==='ninguna promocion'){
+        if(transformador["status"]==='ninguna promocion'){
             let prom_msj=document.getElementById("msg-respuesta-promo");
             prom_msj.textContent="Ninguna Promocion Encontrada";
             prom_msj.classList.remove("bg-indigo-600");
