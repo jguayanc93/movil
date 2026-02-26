@@ -24,7 +24,7 @@ async function buscar_pivot(){
     }
     catch(err){
         console.log(err);
-        let transformador=JSON.parse(err);
+        let transformador=JSON.parse(err.message);
         /////aca se debe trabajar
         if(transformador["status"]==='ninguna promocion'){
             let prom_msj=document.getElementById("msg-respuesta-promo");
