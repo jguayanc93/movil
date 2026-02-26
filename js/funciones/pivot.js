@@ -17,9 +17,9 @@ async function buscar_pivot(){
         // let paso3= await JSON.parse(paso2);
         console.log("este es el array de posibles promociones");
         console.log(paso2);
-        if(typeof paso2==='object'){
-            throw new Error(JSON.stringify(paso2));
-        }
+        // if(typeof paso2==='object'){
+        //     throw new Error(JSON.stringify(paso2));
+        // }
         for(let idprom of paso2) promos_conjunto_diferenciales.push(idprom);///guardamos las posibles promociones en array
     }
     catch(err){
