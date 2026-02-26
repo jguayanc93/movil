@@ -21,5 +21,14 @@ async function buscar_pivot(){
     }
     catch(err){
         console.log(err);
+        /////aca se debe trabajar
+        if(err["status"]==='ninguna promocion'){
+            let prom_msj=document.getElementById("msg-respuesta-promo");
+            prom_msj.textContent="Ninguna Promocion Encontrada";
+            prom_msj.classList.remove("bg-indigo-600");
+            prom_msj.classList.add("bg-red-500");
+            let contenedor_listado_promo=document.getElementById("contendor-promos-final");
+            contenedor_listado_promo.innerHTML="";
+        }
     }
 }
