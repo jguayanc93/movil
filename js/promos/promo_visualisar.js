@@ -107,8 +107,13 @@ async function ver_promo2(idprom){
         console.log(`fecheando el ${idprom}`);
         // let paso1=await fetch(rutaprom,fetchobj)
         let paso1=await fetch(rutapromocionrecojedor,fetchobj)
+        if(!paso1.ok){ throw new Error(paso1.status); }
         let paso2=await paso1.json();
-        // console.log(paso2);
+        
+        // console.log("el status",paso2["status"])
+        // if(Object.keys(paso2).includes("status")){
+        //     throw new Error("promocion ya aplicada")
+        // }
         
         // for(let i in paso2["items_validos2"]){ prom_numero[i]=paso2["items_validos2"][i]; }
         if(Object.keys(paso2).includes("agrupados")){
@@ -158,6 +163,43 @@ async function ver_promo2(idprom){
                 coti_cant++;
             }
         };
+        // siempre es 0 el indice del paso2
+        // if(Object.keys(prom_numero).includes("0")){
+            
+        //     let indice_defecto=Object.keys(prom_numero).length;
+        //     let aumentara1=indice_defecto;
+        //     prom_numero[aumentara1]=paso2[0];
+        //     prom_numero[aumentara1][6]=coti_cant + (Object.keys(prom_numero).length-1);
+        //     // coti_cant++;////ya no tiene sentido
+        // }
+        // else{
+        //     prom_numero[0]=paso2[0];
+        //     ////esto falla cuando la promo es unitaria
+        //     prom_numero[0][6]=coti_cant+1;
+        // }
+
+        // for(let i in paso2){
+        //     console.log("esto es lo girado en i",i);
+        //     console.log("array en buscar",Object.keys(prom_numero))
+        //     if(Object.keys(prom_numero).includes(i)){
+                
+        //         /////solucion temporal no mantener porqe puede romper el adjuntar promo
+        //         if(Number.isInteger(parseInt(i))){
+        //             let aumentara1=parseInt(i)+1
+        //             prom_numero[aumentara1]=paso2[i];
+        //             prom_numero[aumentara1][6]=coti_cant+1;///variable para guardar el acumulado de cuantos items tiene esta cotizacion
+        //             coti_cant++;
+        //         }
+        //         else{prom_numero[i][7]+=paso2[i][7];}                
+        //     }
+        //     else{
+        //         prom_numero[i]=paso2[i];
+        //         prom_numero[i][6]=coti_cant+1;
+        //         coti_cant++;
+        //     }
+        // };
+
+        console.log("revisar objeto prom_numero",prom_numero);
         
 
         for(let indice in paso2){
