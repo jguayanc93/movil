@@ -1,108 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>cdk</title>
+    <meta name="description" content="Portal de gestión de ventas CDK - Sistema de cotizaciones y facturas">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles/login.css">
+    <title>CDK - Portal de Vendedores</title>
 </head>
-<body class="h-screen w-screen content-center">
-    <!--separacion de plantilla-->
-    <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-lg md:max-w-2xl content-center">
-        <div class="md:flex">
-            <div class="md:shrink-0">
-                <img class="h-48 w-full object-cover md:h-full md:w-48 md:object-contain"
-                 src="logotipo.png" alt="img texto" />
-            </div>
-            <div class="p-8 content-center">
-                <div class="text-sm font-semibold tracking-wide text-indigo-500 uppercase">WELCOME</div>
-                <a href="#" class="mt-1 block text-lg leading-tight font-medium text-black hover:underline">
-                    Demo .v1.0
-                </a>
-                <p class="mt-2 text-gray-500">
-                    portal de acciones en prototipo para vendedores.
-                </p>
-            </div>
-            <div class="mx-auto sm:mx-auto sm:w-full sm:max-w-sm">
-                <form action="#" id="cdk-logeo" class="space-y-6 p-4">
-
-                    <div>
-                        <label for="email" class="block text-sm/6 font-medium text-gray-900">Usuario:</label>
-                        <div class="mt-2">
-                            <input type="text" name="cuenta" id="user" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="flex items-center justify-between">
-                          <label for="password" class="block text-sm/6 font-medium text-gray-900">Contraseña:</label>
-                          
-                        </div>
-                        <div class="mt-2">
-                          <input type="password" name="pass" id="pass" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                        </div>
-                    </div>
-
-                    <div> <p id="respuesta" class="text-center"></p> </div>
-                    
-                    <button type="submit" id="loggin" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Iniciar Sesion</button>
-
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- no te olvides borrar lo de arriba porque es solo un diseño temporal de centrado de columna-->
-    <!--espacio de constructor de responsive-->
+<body class="min-h-screen w-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
     
-    <!-- <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
-        <div class="md:flex">
-            <div class="md:shrink-0">
-                <img class="h-48 w-full object-cover md:h-full md:w-48"
-                 src="logotipo.png" alt="img texto" />
-            </div>
-            <div class="p-8">
-                <div class="text-sm font-semibold tracking-wide text-indigo-500 uppercase">WELCOME</div>
-                <a href="#" class="mt-1 block text-lg leading-tight font-medium text-black hover:underline">
-                    Demo .v1.0
-                </a>
-                <p class="mt-2 text-gray-500">
-                    portal de acciones en prototipo para vendedores.
-                </p>
-            </div>
-            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form action="#" id="cdk-logeo" class="space-y-6">
-
-                    <div>
-                        <label for="email" class="block text-sm/6 font-medium text-gray-900">User:</label>
-                        <div class="mt-2">
-                            <input type="text" name="cuenta" id="user" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+    <!-- Contenedor principal con animación de entrada -->
+    <main class="w-full max-w-4xl">
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:shadow-3xl">
+            
+            <!-- Grid responsivo: imagen + formulario -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-0">
+                
+                <!-- Sección de imagen - oculta en móvil -->
+                <div class="hidden md:flex md:col-span-2 bg-gradient-to-br from-indigo-600 to-indigo-800 flex-col items-center justify-center p-8 text-white">
+                    <div class="text-center">
+                        <div class="mb-6 transform hover:scale-105 transition-transform duration-300">
+                            <img src="logotipo.png" alt="Logo CDK" class="h-32 w-32 mx-auto object-contain drop-shadow-lg">
+                        </div>
+                        <h1 class="text-3xl font-bold mb-2">CDK</h1>
+                        <p class="text-indigo-100 text-sm">Portal de Gestión de Ventas</p>
+                    </div>
+                    
+                    <!-- Características destacadas -->
+                    <div class="mt-12 space-y-4 text-sm">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle flex-shrink-0 mt-0.5 text-indigo-300"></i>
+                            <span>Gestión de cotizaciones</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle flex-shrink-0 mt-0.5 text-indigo-300"></i>
+                            <span>Control de facturas</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle flex-shrink-0 mt-0.5 text-indigo-300"></i>
+                            <span>Seguimiento de promociones</span>
                         </div>
                     </div>
+                </div>
 
-                    <div>
-                        <div class="flex items-center justify-between">
-                          <label for="password" class="block text-sm/6 font-medium text-gray-900">Password:</label>
-                          
-                        </div>
-                        <div class="mt-2">
-                          <input type="password" name="pass" id="pass" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                        </div>
+                <!-- Sección de formulario -->
+                <div class="col-span-1 md:col-span-3 p-8 md:p-12 flex flex-col justify-center">
+                    
+                    <!-- Header móvil -->
+                    <div class="md:hidden text-center mb-8">
+                        <img src="logotipo.png" alt="Logo CDK" class="h-20 w-20 mx-auto object-contain mb-4">
+                        <h1 class="text-2xl font-bold text-gray-900">CDK</h1>
+                        <p class="text-gray-600 text-sm mt-1">Portal de Gestión de Ventas</p>
                     </div>
 
-                    <div>
-                        <p id="respuesta" class="text-center"></p>
-                    </div>                    
-
-                    <div>
-                        <button type="submit" id="loggin" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Iniciar Sesion</button>
+                    <!-- Heading del formulario -->
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Bienvenido</h2>
+                        <p class="text-gray-600">Inicia sesión para acceder a tu portal</p>
                     </div>
 
-                </form>
+                    <!-- Formulario de login -->
+                    <form id="cdk-logeo" class="space-y-6">
+                        
+                        <!-- Campo Usuario -->
+                        <div class="form-group">
+                            <label for="user" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-user mr-2 text-indigo-600"></i>Usuario
+                            </label>
+                            <div class="relative">
+                                <input 
+                                    type="text" 
+                                    name="cuenta" 
+                                    id="user" 
+                                    placeholder="Ingresa tu usuario"
+                                    autocomplete="username" 
+                                    required
+                                    class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-all duration-300 focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-100 placeholder:text-gray-400"
+                                    aria-label="Usuario"
+                                >
+                                <span class="input-feedback hidden absolute right-3 top-2.5 text-lg"></span>
+                            </div>
+                            <p class="input-error hidden text-red-500 text-xs mt-1"></p>
+                        </div>
+
+                        <!-- Campo Contraseña -->
+                        <div class="form-group">
+                            <label for="pass" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-lock mr-2 text-indigo-600"></i>Contraseña
+                            </label>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    name="pass" 
+                                    id="pass" 
+                                    placeholder="Ingresa tu contraseña"
+                                    autocomplete="current-password" 
+                                    required
+                                    class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-all duration-300 focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-100 placeholder:text-gray-400"
+                                    aria-label="Contraseña"
+                                >
+                                <button 
+                                    type="button" 
+                                    class="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700 toggle-password"
+                                    aria-label="Mostrar/ocultar contraseña"
+                                >
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <span class="input-feedback hidden absolute right-10 top-2.5 text-lg"></span>
+                            </div>
+                            <p class="input-error hidden text-red-500 text-xs mt-1"></p>
+                        </div>
+
+                        <!-- Mensaje de respuesta -->
+                        <div id="respuesta" class="hidden p-4 rounded-lg text-sm font-medium" role="alert"></div>
+
+                        <!-- Botón de envío -->
+                        <button 
+                            type="submit" 
+                            id="loggin"
+                            class="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 text-white font-semibold py-2.5 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                            aria-label="Iniciar sesión"
+                        >
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span class="button-text">Iniciar Sesión</span>
+                            <i class="fas fa-spinner fa-spin hidden button-loader"></i>
+                        </button>
+
+                        <!-- Enlaces adicionales -->
+                        <div class="text-center text-sm text-gray-600">
+                            <p>¿Primera vez aquí? <a href="registro.html" class="text-indigo-600 hover:text-indigo-700 font-medium transition-colors">Crear cuenta</a></p>
+                        </div>
+                    </form>
+
+                    <!-- Footer -->
+                    <div class="mt-8 pt-6 border-t border-gray-200 text-center text-xs text-gray-500">
+                        <p>CDK v1.0 - Portal de Gestión de Ventas</p>
+                        <p class="mt-1">© derechos reservados a chistemas</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div> -->
+    </main>
 
+    <!-- Scripts -->
     <script src="./caminos/rutas.js"></script>
+    <script src="./styles/login-validation.js"></script>
     <script src="./js/login/login.js"></script>
 </body>
 </html>

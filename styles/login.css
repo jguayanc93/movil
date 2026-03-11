@@ -1,0 +1,377 @@
+/* ==========================================
+   LOGIN STYLES - Estilos personalizados
+   ========================================== */
+
+:root {
+    --color-primary: #4f46e5;
+    --color-primary-dark: #4338ca;
+    --color-primary-light: #eef2ff;
+    --color-success: #10b981;
+    --color-error: #ef4444;
+    --color-warning: #f59e0b;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================
+   ANIMACIONES
+   ========================================== */
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse-scale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes checkmark {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: -100;
+    }
+}
+
+/* ==========================================
+   BODY
+   ========================================== */
+
+body {
+    animation: slideInUp 0.6s ease-out;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+main {
+    animation: slideInUp 0.8s ease-out 0.1s both;
+}
+
+/* ==========================================
+   FORMULARIO
+   ========================================== */
+
+.form-group {
+    animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+.form-group:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.form-group:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* ==========================================
+   INPUTS
+   ========================================== */
+
+input[type="text"],
+input[type="password"] {
+    transition: var(--transition);
+}
+
+input:focus {
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+/* Validación - Input válido */
+input.input-valid {
+    border-color: var(--color-success) !important;
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+input.input-valid:focus {
+    border-color: var(--color-success) !important;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+input.input-valid ~ .input-feedback {
+    display: inline-block !important;
+    color: var(--color-success);
+}
+
+/* Validación - Input inválido */
+input.input-invalid {
+    border-color: var(--color-error) !important;
+    background-color: rgba(239, 68, 68, 0.05);
+}
+
+input.input-invalid:focus {
+    border-color: var(--color-error) !important;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+input.input-invalid ~ .input-feedback {
+    display: inline-block !important;
+    color: var(--color-error);
+}
+
+/* ==========================================
+   FEEDBACK Y VALIDACIÓN
+   ========================================== */
+
+.input-feedback {
+    font-size: 1.2rem;
+    display: none !important;
+}
+
+.input-feedback.success::before {
+    content: '✓';
+}
+
+.input-feedback.error::before {
+    content: '✕';
+}
+
+.input-error {
+    display: none !important;
+    animation: slideInUp 0.3s ease-out;
+}
+
+.input-error.show {
+    display: block !important;
+}
+
+/* ==========================================
+   MENSAJE DE RESPUESTA
+   ========================================== */
+
+#respuesta {
+    animation: slideInUp 0.3s ease-out;
+}
+
+#respuesta.success {
+    background-color: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--color-success);
+    color: var(--color-success);
+    border-radius: 0.5rem;
+}
+
+#respuesta.success::before {
+    content: '✓ ';
+    font-weight: bold;
+}
+
+#respuesta.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+    border-radius: 0.5rem;
+}
+
+#respuesta.error::before {
+    content: '✕ ';
+    font-weight: bold;
+}
+
+#respuesta.warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    border: 1px solid var(--color-warning);
+    color: var(--color-warning);
+    border-radius: 0.5rem;
+}
+
+#respuesta.warning::before {
+    content: '⚠ ';
+    font-weight: bold;
+}
+
+/* ==========================================
+   BOTÓN DE ENVÍO
+   ========================================== */
+
+#loggin {
+    animation: slideInUp 0.6s ease-out 0.5s both;
+    position: relative;
+    overflow: hidden;
+}
+
+#loggin::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+#loggin:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+#loggin:disabled {
+    background: linear-gradient(to right, #9ca3af, #9ca3af) !important;
+    cursor: not-allowed;
+}
+
+.button-loader {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==========================================
+   TOGGLE PASSWORD
+   ========================================== */
+
+.toggle-password {
+    cursor: pointer;
+    transition: var(--transition);
+    color: #6b7280;
+}
+
+.toggle-password:hover {
+    color: var(--color-primary);
+}
+
+.toggle-password:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+    /* Reducir padding en pantallas pequeñas */
+    body {
+        padding: 1rem;
+    }
+
+    /* Animaciones más rápidas en móvil */
+    main {
+        animation: slideInUp 0.5s ease-out;
+    }
+
+    .form-group {
+        animation: slideInUp 0.4s ease-out both;
+    }
+
+    .form-group:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+
+    .form-group:nth-child(3) {
+        animation-delay: 0.2s;
+    }
+
+    /* Inputs más grandes para touch */
+    input[type="text"],
+    input[type="password"],
+    button {
+        min-height: 44px;
+    }
+
+    /* Reducir tamaño de fuente en inputs */
+    input {
+        font-size: 16px;
+    }
+}
+
+/* ==========================================
+   DARK MODE
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(to br, #1e293b, #0f172a);
+    }
+
+    .bg-white {
+        background-color: #1e293b;
+        color: #f1f5f9;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        background-color: #334155 !important;
+        color: #f1f5f9;
+        border-color: #475569 !important;
+    }
+
+    input::placeholder {
+        color: #94a3b8;
+    }
+
+    input:focus {
+        background-color: #0f172a !important;
+    }
+
+    label,
+    h1,
+    h2,
+    p {
+        color: #f1f5f9;
+    }
+
+    .text-gray-600 {
+        color: #cbd5e1;
+    }
+
+    .text-gray-500 {
+        color: #94a3b8;
+    }
+
+    .border-gray-200 {
+        border-color: #334155;
+    }
+}
+
+/* ==========================================
+   ACCESIBILIDAD
+   ========================================== */
+
+/* Modo alto contraste */
+@media (prefers-contrast: more) {
+    input[type="text"],
+    input[type="password"] {
+        border-width: 2px;
+    }
+
+    button {
+        font-weight: 700;
+    }
+}
+
+/* Movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
