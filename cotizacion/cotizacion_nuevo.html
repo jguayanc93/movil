@@ -1,222 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>crear cotizacion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crear nueva cotización - CDK Sistema de Gestión de Ventas">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>CDK - Crear Cotización</title>
 </head>
-<body>
-  <div class="min-[601px]:max-w-[400px] min-[601px]:mx-auto my-4 mx-16">
-    <a href="/main.html" 
-    class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">MENU</a>
-  </div>
-  <!-- PASO 1 PARA LA BUSQUEDA DE UN CLIENTE -->
-  <div class="min-[601px]:max-w-[400px] min-[601px]:mx-auto mx-10">
-    <div class="flex flex-row space-x-2">
-      <label for="busqueda" class="block text-sm/6 font-medium text-gray-900">Paso 1:</label>
-      <label id="nomcli" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Cliente</label>
-    </div>
-    <!-- <label for="busqueda" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Paso 1:</label> -->
-    <div class="mt-2">
-      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-        <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
-          <button id="voz-cliente">ClIENTE</button>
-        </div> -->
-        <input type="search" name="busqueda" id="busqueda" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="digitar...">
-        <div class="grid shrink-0 grid-cols-1 focus-within:relative">
-          <select id="alm" name="alm" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-            <option value="D">DOLAR</option>
-            <option value="S">SOLES</option>
-          </select>
-          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
-            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- FIN DEL PASO 1 -->
-   
-    <!-- <div> -->
-      <!-- obsoleto esta parte -->
-        <!-- <div>
-            <div id="aparecer">
-                <table>
-                    <tbody id="recorrer"></tbody>
-                </table>
-            </div>
-        </div> -->
-  <!-- ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
-  <div class="relative" id="recorrer-clientes"></div>
-  <!-- FIN ESPACIO PARA EL CONTENEDOR DE SUGERENCIAS CUANDO BUSCA CLIENTE -->
-
-  <!-- PASO 2 PARA LA BUSQUEDA DE UN CLIENTE -->
-  <div id="paso2" class="min-[601px]:max-w-[400px] min-[601px]:mx-auto mx-6 my-4 hidden">
-    <div class="flex flex-row space-x-2">
-      <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 2:</label>
-      <label class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Productos</label>
-    </div>
-    <div class="mt-2">
-      <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-        <!-- <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
-          <button id="voz" disabled>presionar</button>
-        </div> -->
-        <!-- <div class="grid shrink-0 grid-cols-1 focus-within:relative">
-          <button class="hover:bg-sky-700">presionar</button>
-        </div> -->
-        <!-- AGREGAR AQUI EL CAMBIO DE BUSCADOR SEGUN ELECCION DE BUSQUEDA -->
-        <!-- BUSUQEDA DE PRODUCTO POR DESCRIPCION -->
-        <input type="search" name="producto" id="producto" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="buscar por...">
-        <!-- BUSUQEDA DE PRODUCTO POR PARTNUMBER -->
-        <input type="search" name="productof" id="productof" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 hidden" placeholder="buscar por...">
-        <!-- FIN DE DIFERENCIARLOS BIEN -->
-        <div class="grid shrink-0 grid-cols-1 focus-within:relative">
-          <select id="currency2" name="currency2" aria-label="Currency" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-            <option value="1">nombre</option>
-            <option value="2">partnumber</option>
-          </select>
-          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
-            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- FIN DEL PASO 2 -->
-<div id="modal-aceptacion" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"></div>
-<div class="relative" id="recorrer-productos"></div>
-<!-- PASO 3 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<div class="min-[601px]:max-w-[400px] min-[601px]:mx-auto mx-6 my-4">
-  <div class="flex flex-row space-x-2">
-    <label class="block text-sm/6 font-medium text-gray-900">Paso 3:</label>
-    <label class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">(opcional)*revisar carrito</label>
-  </div>
-  <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
-      </div>
-    </div>
-  </div>
-</div>
-<!-- FIN DEL PASO 3 -->
-
-        <!-- <h2>paso 2: busca tu producto para cotizar</h2>
-        <div>
-            <input type="search" id="producto">
-        </div> -->
-        <!-- <h2>pase 3: selecciona un producto de la lista para añadirlo a tu coti</h2> -->
-        <!-- <div id="encontrar">
-            <div class="relative" id="recorrer-productos"></div>
-        </div> -->
-<!-- PASO 4 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<!-- <div>
-  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:ver rentabilidad ganada de esta coti (opcional)</label>
-  <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      
-    </div>
-  </div>
-  <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
-</div> -->
-<!-- FIN DEL PASO 4 -->
-        
-        <!-- /////////////////esta parte de abajo es valida lo de arriba es solo un testeo de responsive -->
-        <!-- <div id="recolectar">
-            <table>
-                <tbody id="seleccionar-productos"></tbody>
-            </table>
-        </div> -->
-        <!-- <h2>paso 4: ver rentabilidad ganada de esta coti (opcional)</h2>
-        <div>
-            <button type="button" id="calc">CALCULAR LA RENTABILIDAD</button>
-        </div> -->
-        
-<!-- PASO 5 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<!-- <div>
-  <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:productos guardados</label>
-  <div class="mt-2">
-    <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-      
-    </div>
-  </div>
-  <div class="mt-6">
-    <a id="carrito" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">PRODUCTOS</a>
-</div>
-</div> -->
-<div class="min-[601px]:max-w-[400px] min-[601px]:mx-auto my-4 mx-16">
-    <a id="carrito" 
-    class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.2em] shadow-xs hover:bg-indigo-700">PRODUCTOS</a>
-  </div>
-<!-- FIN DEL PASO 5 -->
-<div id="carro-contenedor" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
   
-  <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+  <!-- HEADER/NAVBAR -->
+  <nav class="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <h1 class="text-xl font-bold text-indigo-600">CDK</h1>
+          <span class="text-sm text-gray-600">Crear Cotización</span>
+        </div>
+        <a href="/main.html" 
+        class="flex items-center justify-center space-x-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">
+          <i class="fas fa-home"></i>
+          <span>Menú</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 
-  <div class="fixed inset-0 overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-6">
-        
-        <div class="pointer-events-auto w-screen max-w-md">
-          <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-              <div class="flex items-start justify-between">
-                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">LISTA DE PRODUCTOS</h2>
-                <div class="ml-3 flex h-7 items-center">
-                  <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
-                    <span class="absolute -inset-0.5"></span>
-                    <span class="sr-only">Close panel</span>
-                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- PASO 1: BUSCAR CLIENTE -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-6 border-l-4 border-indigo-600">
+      <div class="flex items-center mb-4">
+        <div class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full font-bold text-sm">1</div>
+        <h2 class="ml-3 text-xl font-bold text-gray-900">
+          <i class="fas fa-user mr-2 text-indigo-600"></i>
+          Seleccionar Cliente
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="busqueda" class="block text-sm font-medium text-gray-700 mb-2">
+            Buscar Cliente
+          </label>
+          <div class="relative">
+            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            <input type="search" name="busqueda" id="busqueda" 
+            class="w-full pl-10 pr-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none placeholder:text-gray-400"
+            placeholder="Digitar nombre o RUC...">
+          </div>
+        </div>
+        <div>
+          <label for="alm" class="block text-sm font-medium text-gray-700 mb-2">
+            Moneda
+          </label>
+          <select id="alm" name="alm" 
+          class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none">
+            <option value="D">💵 USD - Dólar</option>
+            <option value="S">S/ - Soles</option>
+          </select>
+        </div>
+      </div>
+      <p id="nomcli" class="mt-4 px-4 py-2 bg-indigo-100 text-indigo-800 rounded-lg text-sm font-medium hidden">
+        <i class="fas fa-check-circle mr-2"></i>Cliente seleccionado
+      </p>
+    </div>
+
+    <!-- CONTENEDOR DE SUGERENCIAS DE CLIENTES -->
+    <div id="recorrer-clientes" class="mb-6 space-y-2"></div>
+
+    <!-- PASO 2: BUSCAR PRODUCTOS -->
+    <div id="paso2" class="bg-white rounded-xl shadow-lg p-6 mb-6 border-l-4 border-green-600 hidden">
+      <div class="flex items-center mb-4">
+        <div class="flex items-center justify-center w-8 h-8 bg-green-600 text-white rounded-full font-bold text-sm">2</div>
+        <h2 class="ml-3 text-xl font-bold text-gray-900">
+          <i class="fas fa-box mr-2 text-green-600"></i>
+          Seleccionar Productos
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="producto" class="block text-sm font-medium text-gray-700 mb-2">
+            Buscar por Descripción
+          </label>
+          <div class="relative">
+            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            <input type="search" name="producto" id="producto" 
+            class="w-full pl-10 pr-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-green-500 focus:bg-white focus:outline-none placeholder:text-gray-400"
+            placeholder="Nombre del producto...">
+          </div>
+        </div>
+        <div>
+          <label for="currency2" class="block text-sm font-medium text-gray-700 mb-2">
+            Tipo de Búsqueda
+          </label>
+          <select id="currency2" name="currency2"
+          class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-green-500 focus:bg-white focus:outline-none">
+            <option value="1">📋 Por Descripción</option>
+            <option value="2">🔍 Por Part Number</option>
+          </select>
+        </div>
+      </div>
+      <input type="search" name="productof" id="productof" 
+      class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-green-500 focus:bg-white focus:outline-none placeholder:text-gray-400 hidden"
+      placeholder="Ingrese Part Number...">
+    </div>
+
+    <!-- MODAL DE ACEPTACION -->
+    <div id="modal-aceptacion" class="relative z-10"></div>
+
+    <!-- CONTENEDOR DE SUGERENCIAS DE PRODUCTOS -->
+    <div id="recorrer-productos" class="mb-6 space-y-2"></div>
+
+    <!-- PASO 3: CARRITO DE PRODUCTOS -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-6 border-l-4 border-blue-600">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center">
+          <div class="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full font-bold text-sm">3</div>
+          <h2 class="ml-3 text-xl font-bold text-gray-900">
+            <i class="fas fa-shopping-cart mr-2 text-blue-600"></i>
+            Revisar Carrito
+          </h2>
+        </div>
+        <button id="carrito" 
+        class="inline-flex items-center justify-center space-x-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">
+          <i class="fas fa-list"></i>
+          <span>Ver Carrito</span>
+        </button>
+      </div>
+      <p class="text-sm text-gray-600">
+        <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+        (Opcional) Revisa los productos seleccionados antes de generar la cotización
+      </p>
+    </div>
+
+    <!-- MODAL DEL CARRITO -->
+    <div id="carro-contenedor" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+      <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+      <div class="fixed inset-0 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+          <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-6">
+            <div class="pointer-events-auto w-screen max-w-md">
+              <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-2xl">
+                <div class="flex items-start justify-between bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-6 sm:px-6 text-white">
+                  <h2 class="text-lg font-semibold" id="slide-over-title">
+                    <i class="fas fa-shopping-cart mr-2"></i>
+                    Carrito de Productos
+                  </h2>
+                  <button type="button" class="relative -m-2 p-2 text-blue-100 hover:text-white transition-colors">
+                    <span class="sr-only">Cerrar panel</span>
+                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                     </svg>
                   </button>
                 </div>
-              </div>
-
-              <div class="mt-8">
-                <div class="flow-root">
-                  <ul id="productos-listados" role="list" class="-my-6 divide-y divide-gray-200">
-                   
-                  </ul>
+                <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                  <ul id="productos-listados" role="list" class="-my-6 divide-y divide-gray-200"></ul>
                 </div>
+                <div id="productos-totales" class="border-t border-gray-200 px-4 py-6 sm:px-6 bg-gray-50"></div>
               </div>
             </div>
-
-            <div id="productos-totales" class="border-t border-gray-200 px-4 py-6 sm:px-6"></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-        <!-- <h2>paso 6: si esta conforme con los items y la promo proceda a crear la coti</h2>
-        <div>
-            <button type="button" id="creacion">Crear Cotizacion</button>
-            <p>mensaje:no se creara nada si su tabla de items esta vacia y/o si desea reiniar la tabla solo actualise</p>
-        </div> -->
-    <!-- </div> -->
+    <!-- PASO 4: GENERAR COTIZACIÓN -->
+    <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
+      <div class="flex items-center mb-4">
+        <div class="flex items-center justify-center w-8 h-8 bg-orange-500 text-white rounded-full font-bold text-sm">4</div>
+        <h2 class="ml-3 text-xl font-bold text-gray-900">
+          <i class="fas fa-file-invoice mr-2 text-orange-500"></i>
+          Generar Cotización
+        </h2>
+      </div>
+      <div class="space-y-4">
+        <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+          <p class="text-sm text-yellow-800">
+            <i class="fas fa-exclamation-triangle mr-2"></i>
+            <strong>Advertencia:</strong> La cotización se creará solo si tiene al menos un producto en el carrito. Para reiniciar, recargue la página.
+          </p>
+        </div>
+        <button id="creacion" 
+        class="w-full flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 px-6 py-3 text-lg font-bold text-white hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105 active:scale-95 shadow-lg">
+          <i class="fas fa-check-circle"></i>
+          <span>CREAR COTIZACIÓN</span>
+        </button>
+      </div>
+    </div>
 
-    <!-- PASO 6 PARA LA TABLA DE BUSQUEDA PRODUCTOS -->
-<div class="min-[601px]:max-w-[400px] min-[601px]:mx-auto mx-6 my-4">
-  <div class="flex flex-row space-x-2">
-    <label for="producto" class="block text-sm/6 font-medium text-gray-900">Paso 4:</label>
-    <label for="producto" class="block text-sm/6 font-medium underline underline-offset-4 text-gray-900">Generar Cotizacion</label>
-  </div>
-  <div class="mt-2">
-    <p class="font-mono text-base">advertencia:no se creara nada si su tabla de items esta vacia y/o si desea reiniar la tabla solo actualise</p>
-    <!-- <a id="creacion" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">CREAR</a> -->
-  </div>
-</div>
-  
-  <div class="min-[601px]:max-w-[400px] min-[601px]:mx-auto my-4 mx-16">
-    <a id="creacion" 
-    class="flex items-center justify-center rounded-lg border border-transparent bg-rose-500 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">CREAR</a>
-  </div>
-<!-- FIN DEL PASO 6 -->
+  </main>
 
 <script src="/js/global/variables.js"></script>
 <script src="/caminos/rutas.js"></script>
