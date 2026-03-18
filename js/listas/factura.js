@@ -1,5 +1,137 @@
-document.addEventListener('DOMContentLoaded',buscar_dia)
-document.getElementById("fecha-dia").addEventListener('change',buscar_dia2);
+// UI State Management
+const UIState = {
+    loader: document.getElementById('loader'),
+    container: document.getElementById('nfactus'),
+    emptyState: document.getElementById('empty-state'),
+    errorState: document.getElementById('error-state'),
+    errorMessage: document.getElementById('error-message'),
+    btnLimpiar: document.getElementById('btn-limpiar')
+};
+
+// Show/Hide UI Elements
+function showLoader() {
+    UIState.loader.classList.remove('hidden');
+    UIState.container.innerHTML = '';
+    UIState.emptyState.classList.add('hidden');
+    UIState.errorState.classList.add('hidden');
+}
+
+function hideLoader() {
+    UIState.loader.classList.add('hidden');
+}
+
+function showEmpty() {
+    UIState.loader.classList.add('hidden');
+    UIState.emptyState.classList.remove('hidden');
+    UIState.errorState.classList.add('hidden');
+}
+
+function showError(message) {
+    UIState.loader.classList.add('hidden');
+    UIState.errorMessage.textContent = message;
+    UIState.errorState.classList.remove('hidden');
+    UIState.emptyState.classList.add('hidden');
+}
+
+// Card Builder for Facturas
+function buildCardElement(data) {
+    const card = document.createElement('div');
+    card.className = 'bg-white rounded-lg shadow-md overflow-hidden card-item fade-in';
+    card.innerHTML = `
+        <div class="h-40 bg-gray-100 flex items-center justify-center overflow-hidden">
+            <img src="/logotipo.png" alt="Logo" class="w-24 h-24 object-contain">
+        </div>
+        <div class="p-4 sm:p-5">
+            <div class="space-y-3">
+                <div>
+                    <p class="text-xs font-semibold text-green-600 uppercase tracking-wide">Factura ID</p>
+                    <h3 class="text-base font-bold text-gray-900 truncate">${data[1] || 'N/A'}</h3>
+                </div>
+                <p class="text-sm text-gray-600 line-clamp-2 min-h-10">${data[2] || 'Sin descripción'}</p>
+                <div class="pt-2 border-t border-gray-200 grid grid-cols-2 gap-2">
+                    <div>
+                        <p class="text-xs text-gray-500 font-medium">Monto</p>
+                        <p class="text-lg font-bold text-green-600">$${data[3] || '0'}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 font-medium">Tipo</p>
+                        <p class="text-sm font-semibold text-gray-900">${data[4] || 'N/A'}</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 font-medium">Referencia</p>
+                    <p class="text-sm text-gray-700 font-mono">${data[5] || '-'}</p>
+                </div>
+            </div>
+            <button class="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition-colors text-sm">
+                Ver detalles
+            </button>
+        </div>
+    `;
+    return card;
+}
+
+// Fetch and Display Data
+async function fetchAndDisplay(endpoint, showByDate = false) {
+    showLoader();
+    try {
+        const payload = {};
+        if (showByDate) {
+            const dateValue = document.getElementById('fecha-dia').value;
+            if (!dateValue) {
+                showEmpty();
+                return;
+            }
+            payload.dia = dateValue;
+        }
+
+        const fetchConfig = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors',
+            credentials: 'include',
+            body: JSON.stringify(payload)
+        };
+
+        const response = await fetch(endpoint, fetchConfig);
+        const jsonData = await response.json();
+        const data = JSON.parse(jsonData);
+
+        // Check if data is empty or not an object
+        if (!data || Object.keys(data).length === 0) {
+            showEmpty();
+            hideLoader();
+            return;
+        }
+
+        hideLoader();
+        UIState.container.innerHTML = '';
+
+        // Build and append cards
+        for (const key in data) {
+            const card = buildCardElement(data[key]);
+            UIState.container.appendChild(card);
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        showError('No se pudieron cargar los datos. Por favor, intenta nuevamente.');
+    }
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    fetchAndDisplay(rutalistafactus);
+});
+
+document.getElementById('fecha-dia').addEventListener('change', () => {
+    fetchAndDisplay(rutalistafactusxdia, true);
+});
+
+document.getElementById('btn-limpiar').addEventListener('click', () => {
+    document.getElementById('fecha-dia').value = '';
+    fetchAndDisplay(rutalistafactus);
+});
 
 async function buscar_dia(){
     let dataenviar=new Object();
