@@ -1,0 +1,116 @@
+/* Toast animations */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.animate-slideInRight {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.animate-slideOutRight {
+    animation: slideOutRight 0.3s ease-in forwards;
+}
+
+/* Loading spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Fade animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Form elements */
+.input-field {
+    @apply w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all;
+}
+
+.input-field:disabled {
+    @apply bg-gray-50 cursor-not-allowed;
+}
+
+/* Cards */
+.card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg;
+}
+
+.card-header {
+    @apply bg-gradient-to-r from-indigo-500 to-indigo-600 px-6 py-4 text-white;
+}
+
+.card-body {
+    @apply p-6 space-y-4;
+}
+
+/* Buttons */
+.btn-primary {
+    @apply w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+}
+
+.btn-secondary {
+    @apply w-full bg-gray-200 hover:bg-gray-300 text-gray-900 font-medium py-2.5 rounded-lg transition-colors;
+}
+
+.btn-sm {
+    @apply inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-icon {
+    @apply h-10 w-10 flex items-center justify-center rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors;
+}
+
+/* Label */
+.label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+}
+
+/* Grid responsive */
+.grid-responsive {
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+/* Empty state */
+.empty-state {
+    @apply flex flex-col items-center justify-center py-16 px-4 text-center;
+}
+
+.empty-state-icon {
+    @apply mx-auto h-12 w-12 text-gray-400;
+}
+
+.empty-state-title {
+    @apply mt-4 text-lg font-medium text-gray-900;
+}
+
+.empty-state-text {
+    @apply mt-2 text-sm text-gray-500;
+}

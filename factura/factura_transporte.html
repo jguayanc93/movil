@@ -1,99 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>FACTURA</title>    
+    <link rel="stylesheet" href="/styles/factura-components.css">
+    <title>Gestionar Transportista - Factura</title>    
 </head>
-<body>
+<body class="bg-gray-50">
 
-  <div class="my-4 mx-16">
-    <a href="/main.html" class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs">MENU</a>
-  </div>
-    
-    <!-- <div class="mt-6">
-      <a href="main.html" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">MENU</a>
-    </div> -->
-    <!-- <div>
-        <input type="text" name="" id="leer">
-        <button id="enviar">buscar documento</button>
-    </div> -->
-    
-    <!-- <div>
-      <input type="hidden" id="pista">
-      <input type="hidden" id="doc">
-    </div> -->
-    <div id="aparecer">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Transportista</h1>
+                    <p class="text-sm text-gray-500 mt-1">Asigna o modifica el transportista de la factura</p>
+                </div>
+                <a href="/main.html" class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-2.5 text-base font-medium text-white shadow-sm hover:bg-indigo-700 transition-colors">
+                    ← Volver
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Search Card -->
+        <div class="bg-white rounded-lg shadow-md p-6 sm:p-8 mb-8">
+            <div class="space-y-4">
+                <div>
+                    <label for="leer" class="label">Buscar Factura</label>
+                    <div class="flex gap-2">
+                        <input type="search" id="leer" placeholder="Ingresa número de factura o boleta" class="input-field flex-1">
+                        <button id="enviar2" class="btn-icon hover:bg-indigo-100 hover:text-indigo-600" title="Buscar">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">💡 Ingresa el número de factura para cargar sus datos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="card-header">
+                <div class="flex items-center gap-2">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12M8 7a2 2 0 100-4H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9m0 0H8m12 0v6m-6 4H8" />
+                    </svg>
+                    <h2 class="text-xl font-semibold">Información del Transportista</h2>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <!-- Current Transportista -->
+                <div>
+                    <label class="label">Transportista Actual</label>
+                    <p id="transportista" class="px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 min-h-10 flex items-center">
+                        <span class="text-gray-400">Cargando...</span>
+                    </p>
+                </div>
+
+                <!-- New Transportista -->
+                <div>
+                    <label for="transportista2" class="label">Nuevo Transportista (Escribe para buscar)</label>
+                    <input type="search" id="transportista2" placeholder="Ingresa nombre o empresa de transporte..." disabled class="input-field" />
+                    <p class="text-xs text-gray-500 mt-1">💡 Ejemplos: DHL, Fedex, TNT, Empresa local</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
+            <div class="flex gap-3">
+                <svg class="h-5 w-5 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div class="text-sm text-blue-700">
+                    <p class="font-medium">¿Cómo usar?</p>
+                    <p class="mt-1">1. Ingresa el número de factura</p>
+                    <p>2. Verifica el transportista actual</p>
+                    <p>3. Selecciona un nuevo transportista si es necesario</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Hidden table for old structure -->
+    <div id="aparecer" class="hidden">
         <table>
             <tbody id="recorrer"></tbody>
         </table>        
     </div>
-    <!-- nuevo estilo para mostrar -->
-    <ul role="list" class="px-12 divide-y divide-gray-100">
-      <li class="flex justify-between gap-x-6 py-5">
-        <div class="flex min-w-0 gap-x-4">
-          <div class="min-w-0 flex-auto">
-            <p class="text-sm/6 font-semibold text-gray-900">FACTURA</p>
-            <input type="search" id="leer" placeholder="digite factura y/o boleta">
-          </div>
-          <div id="enviar2" class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-              <svg class="size-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-              </svg>
-          </div>
-        </div>
-      </li>
-      
-        <!-- transportista -->
-        <li class="flex justify-between gap-x-6 py-5">
-          <div class="flex min-w-0 gap-x-4">
-            <div id="upd-transportista" class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                <svg class="size-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-                </svg>
-            </div>
-            <div class="min-w-0 flex-auto">
-              <p class="text-sm/6 font-semibold text-gray-900">Transportista</p>
-              <p id="transportista" class="mt-1 truncate text-xs/5 text-gray-500"></p>
-              <!-- <input type="text" id="transportista" placeholder="transportista actual" disabled /> -->
-              <input type="search" id="transportista2" placeholder="nuevo transportista" disabled/>
-            </div>
-          </div>
-        </li>
-        
-        
-      </ul>
-      
-    <script>
-        // document.getElementById("back-menu").addEventListener("click",()=>window.location.href="http://127.0.0.1/demo1/main.html")
-    </script>
+
     <script src="/caminos/rutas.js"></script>
     <script src="/js/global/variables.js"></script>
+    <script src="/js/global/toast-notifications.js"></script>
     <script src="/js/funciones/fac_modificar.js"></script>
     <script src="/activador.js/botones.js"></script>
     <script src="/js/factura/identificar.js"></script>
-
-    <!-- <script src="/js/factura/tipo_entrega.js"></script>
-    <script src="./js/funciones/despacho.js"></script> -->
-
     <script src="/js/factura/transportista.js"></script>
     <script src="/js/funciones/transportista.js"></script>
-
-    <!-- <script src="./js/factura/atencion.js"></script>
-    <script src="./js/funciones/atencion.js"></script>
-
-    <script src="./js/factura/direccion.js"></script>
-    <script src="./js/funciones/direccion.js"></script>
-
-    <script src="./js/factura/vendedor_facturado.js"></script>
-    <script src="./js/funciones/vendedor.js"></script>
-
-    <script src="./js/factura/observacion.js"></script>
-    <script src="./js/funciones/observacion.js"></script>
-
-    <script src="./js/factura/orden_compra.js"></script>
-    <script src="./js/funciones/orden_compra.js"></script> -->
 </body>
 </html>
