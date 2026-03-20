@@ -108,6 +108,7 @@ if(document.getElementById("enviar4")){
       objfactura=[];
       objfactura=[resultado[0][1],resultado[0][2]];
       document.getElementById("direccion").textContent=resultado[0][0];
+      get_direccion();
       })
       .catch(err=>{console.log(err);})
   })
