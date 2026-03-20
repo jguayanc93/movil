@@ -1,6 +1,7 @@
-async function get_direccion(){
+async function get_direccion(codcli){
     let dataenviar=new Object();
-    dataenviar.cli=objfactura[0];
+    // dataenviar.cli=objfactura[0];
+    dataenviar.cli=codcli;
     // dataenviar.sugerencia=document.getElementById("direccion2").value;
     let fetchobj=new Object();
     fetchobj.method="POST";
