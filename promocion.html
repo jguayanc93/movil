@@ -172,8 +172,12 @@
                 return "promocion_adjuntar";
                 break;
             
-            case "delete":
-                return "promocion_eliminar";
+            case "delete cotizacion":
+                return "promocion_eliminar_cotizacion";
+                break;
+
+            case "delete pedido":
+                return "promocion_eliminar_pedido";
                 break;
         
             default:
@@ -197,8 +201,12 @@
                 return ["MODIFICAR","Permite aplicar promociones"];
                 break;
 
-            case "delete":
-                return ["ELIMINAR","Permite dar de baja una promocion"];
+            case "delete cotizacion":
+                return ["ELIMINAR COTI","Permite dar de baja una promocion en una cotizacion"];
+                break;
+
+            case "delete pedido":
+                return ["ELIMINAR PEDI","Permite dar de baja una promocion en un pedido"];
                 break;
         
             default:

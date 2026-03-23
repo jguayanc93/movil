@@ -36,7 +36,7 @@ async function get_direccion(codcli){
 
         let direccion=document.createElement("p");
         direccion.className="text-sm text-gray-700";
-        direccion.innerHTML=paso3[indice][1];
+        direccion.innerHTML=paso3[indice][0];
 
         card.appendChild(titulo);
         card.appendChild(direccion);
