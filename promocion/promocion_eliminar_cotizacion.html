@@ -171,7 +171,7 @@
 
     // Función mejorada para limpiar la selección
     function clearSelection() {
-        promos_recojidas = [];
+        promos_recojidas.length = 0;
         document.getElementById('productos-cotizacion-detallada').innerHTML = '';
         
         // Resetear botones de items
