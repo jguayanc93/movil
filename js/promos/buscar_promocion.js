@@ -6,7 +6,8 @@ document.getElementById("buscar-coti").addEventListener("click",()=>{
 async function buscar_promocion_cotizacion(){
     // Limpiar selecciones previas
     document.getElementById("productos-cotizacion-detallada").innerHTML = "";
-    promos_recojidas = [];
+    // promos_recojidas = [];
+    promos_recojidas.length = 0;
     updateSelectedCount();
     
     let dataenviar = new Object();
