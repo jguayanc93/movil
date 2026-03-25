@@ -142,18 +142,6 @@
                     </svg>
                     Adjuntar Promociones
                 </button>
-
-                <!-- CARD DE PROMOCIONES SELECCIONADAS -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 border-b border-gray-200 px-6 py-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Elementos Seleccionados</h3>
-                    </div>
-                    <div id="items-seleccionados" class="p-6">
-                        <div class="text-center py-4 text-gray-500 text-sm">
-                            <p>Sin promociones seleccionadas aún</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -267,12 +255,6 @@
                 try {
                     // Limpiar variables previas
                     selectedItems.clear();
-                    document.getElementById('items-seleccionados').innerHTML = `
-                        <div class="text-center py-4 text-gray-500 text-sm">
-                            <p>Sin promociones seleccionadas aún</p>
-                        </div>
-                    `;
-                    
                     await buscar_original.call(this);
                     window.actualizarEstadoUI?.();
                 } catch (error) {
@@ -301,11 +283,6 @@
             window.cancelar_confirmacion = function() {
                 cancelar_original.call(this);
                 selectedItems.clear();
-                document.getElementById('items-seleccionados').innerHTML = `
-                    <div class="text-center py-4 text-gray-500 text-sm">
-                        <p>Sin promociones seleccionadas aún</p>
-                    </div>
-                `;
             };
         }
     </script>
