@@ -104,11 +104,14 @@ async function ver_promo2(idprom){
     fetchobj.credentials="include";
     fetchobj.body=JSON.stringify(dataenviar);
     try{
-        console.log(`fecheando el ${idprom}`);
+        console.log(`[DEBUG] Fetching promo ${idprom}...`);
+        console.log(`[DEBUG] Datos enviados:`, dataenviar);
+        
         // let paso1=await fetch(rutaprom,fetchobj)
         let paso1=await fetch(rutapromocionrecojedor,fetchobj)
-        if(!paso1.ok){ throw new Error(paso1.status); }
+        if(!paso1.ok){ throw new Error(`Error HTTP: ${paso1.status}`); }
         let paso2=await paso1.json();
+        console.log(`[DEBUG] Respuesta de promo ${idprom}:`, paso2);
         
         // console.log("el status",paso2["status"])
         // if(Object.keys(paso2).includes("status")){
@@ -200,7 +203,29 @@ async function ver_promo2(idprom){
         // };
 
         console.log("revisar objeto prom_numero",prom_numero);
+        console.log("revisar objeto paso2 por cada iteracion",paso2);
         
+
+        // Validar que exista el contenedor
+        const contenedorPromos = document.getElementById("productos-cotizacion-detallada");
+        if (!contenedorPromos) {
+            throw new Error("No se encontró el elemento #productos-cotizacion-detallada en el DOM");
+        }
+
+        // Validar que paso2 tenga datos
+        if (!paso2 || Object.keys(paso2).length === 0) {
+            console.warn(`[DEBUG] Promo ${idprom} sin items para renderizar`);
+            return;
+        }
+
+        console.log(`[DEBUG] Renderizando ${Object.keys(paso2).length} items de promo ${idprom}`);
+
+        // Remover la clase hidden del contenedor de promociones
+        const contenedorPromosFinal = document.getElementById("contendor-promos-final");
+        if (contenedorPromosFinal && contenedorPromosFinal.classList.contains('hidden')) {
+            contenedorPromosFinal.classList.remove('hidden');
+            console.log(`[DEBUG] Contenedor #contendor-promos-final mostrado`);
+        }
 
         for(let indice in paso2){
             let parrafo1=document.createElement('p')
@@ -270,9 +295,13 @@ async function ver_promo2(idprom){
             fila.appendChild(contenedor1)
             fila.appendChild(contenedor7)
 
-            document.getElementById("productos-cotizacion-detallada").appendChild(fila);
-            // productos_cotizacion_detallada.appendChild(fila);
+            contenedorPromos.appendChild(fila);
+            console.log(`[DEBUG] Item ${indice} de promo ${idprom} añadido al DOM`);
         }
+        console.log(`[DEBUG] Promo ${idprom} renderizada exitosamente en el DOM`);
     }
-    catch(err){ console.log(err); }
+    catch(err){ 
+        console.error(`[ERROR] Error al procesar promo ${idprom}:`, err);
+        console.error(err.stack);
+    }
 }
