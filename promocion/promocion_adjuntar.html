@@ -217,8 +217,8 @@
                 document.getElementById('total-items').textContent = tieneItems ? coti_cant : '0';
                 document.getElementById('items-count').textContent = tieneItems ? `${coti_cant} items encontrados` : 'Cargando...';
                 
-                // Actualizar contador de promociones
-                const countPromos = Object.keys(prom_numero).filter(k => k !== 'descuento').length;
+                // Actualizar contador de promociones (desde el array promos_conjunto_diferenciales)
+                const countPromos = promos_conjunto_diferenciales.length;
                 document.getElementById('promo-count').textContent = countPromos;
                 
                 // Mostrar/ocultar sección de promociones
