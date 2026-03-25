@@ -1,15 +1,11 @@
-// document.getElementById("buscar-prom").addEventListener("click",()=>{
-//     // for(let idprom of promos_conjunto_diferenciales) ver_promo2(idprom);
-//     // promos_conjunto_diferenciales.forEach(idprom => { ver_promo2(idprom) });
-//     // promos_conjunto_diferenciales.forEach(idprom=>ver_promo3(idprom));
-//     // ver_promo();
-//     esperador(promos_conjunto_diferenciales);
-// })
+
 ///funcion especial para esperar la funcion asincrona
 async function esperador(promos){
     for(const idprom of promos){
         await ver_promo2(idprom);
     }
+    // Actualizar estado del UI después de cargar todas las promociones
+    window.actualizarEstadoUI?.();
 }
 // mejorar la funcion de recursion de promociones
 async function ver_promo(){
@@ -105,18 +101,13 @@ async function ver_promo2(idprom){
     fetchobj.body=JSON.stringify(dataenviar);
     try{
         console.log(`[DEBUG] Fetching promo ${idprom}...`);
-        console.log(`[DEBUG] Datos enviados:`, dataenviar);
+        // console.log(`[DEBUG] Datos enviados:`, dataenviar);
         
         // let paso1=await fetch(rutaprom,fetchobj)
         let paso1=await fetch(rutapromocionrecojedor,fetchobj)
         if(!paso1.ok){ throw new Error(`Error HTTP: ${paso1.status}`); }
         let paso2=await paso1.json();
         console.log(`[DEBUG] Respuesta de promo ${idprom}:`, paso2);
-        
-        // console.log("el status",paso2["status"])
-        // if(Object.keys(paso2).includes("status")){
-        //     throw new Error("promocion ya aplicada")
-        // }
         
         // for(let i in paso2["items_validos2"]){ prom_numero[i]=paso2["items_validos2"][i]; }
         if(Object.keys(paso2).includes("agrupados")){
@@ -298,7 +289,6 @@ async function ver_promo2(idprom){
             contenedorPromos.appendChild(fila);
             console.log(`[DEBUG] Item ${indice} de promo ${idprom} añadido al DOM`);
         }
-        console.log(`[DEBUG] Promo ${idprom} renderizada exitosamente en el DOM`);
     }
     catch(err){ 
         console.error(`[ERROR] Error al procesar promo ${idprom}:`, err);
