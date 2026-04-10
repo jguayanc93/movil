@@ -1,5 +1,6 @@
 
 function preparado(sustituto,indice,doc){
+    console.log("sustituto",sustituto,"indice",indice,"doc",doc);
     let dataenviar=new Object();
     dataenviar[indice]=sustituto;
     dataenviar.doc=doc;
