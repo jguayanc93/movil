@@ -44,7 +44,7 @@ if(document.getElementById("enviar1")){
       console.log("este es el resultado",resultado)
       objfactura=[];
       objfactura=[resultado[0][2],resultado[0][3]];
-      document.getElementById("tipo-despacho").value=resultado[0][1];
+      document.getElementById("tipo-despacho-display").value=resultado[0][1];
     })
     .catch(err=>{console.log(err);})
   })
