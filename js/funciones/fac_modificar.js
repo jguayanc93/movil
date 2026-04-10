@@ -23,6 +23,6 @@ function preparado(sustituto,indice,doc){
 
 ['primera-opc', 'segunda-opc', 'tercera-opc'].forEach(id => {
     document.getElementById(id).addEventListener("click", () => {
-        preparado(document.getElementById(id).textContent, 1, objfactura[1]);
+        preparado(document.getElementById(id).dataset.despacho, 1, objfactura[1]);
     });
 });
