@@ -19,3 +19,9 @@ function preparado(sustituto,indice,doc){
     })
     .catch(err=>console.log(err))
 }
+
+['primera-opc', 'segunda-opc', 'tercera-opc'].forEach(id => {
+    document.getElementById(id).addEventListener("click", () => {
+        preparado(document.getElementById(id).textContent, 1, objfactura[1]);
+    });
+});
