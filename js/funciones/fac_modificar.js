@@ -43,9 +43,3 @@ function preparado(sustituto,indice,doc){
         alert("❌ Error: No se pudo actualizar el despacho. Intenta nuevamente.");
     })
 }
-
-['primera-opc', 'segunda-opc', 'tercera-opc'].forEach(id => {
-    document.getElementById(id).addEventListener("click", () => {
-        preparado(document.getElementById(id).dataset.despacho, 1, objfactura[1]);
-    });
-});
