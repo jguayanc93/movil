@@ -225,6 +225,25 @@
                         <p id="totalAmount" class="text-gray-900 mt-1 font-semibold">---</p>
                     </div>
                 </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-3 mt-8 pt-6 border-t border-gray-200">
+                    <button 
+                        id="btnRegresarPaso1" 
+                        class="flex-1 px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                        ← Buscar Otra
+                    </button>
+                    <button 
+                        id="btnIrPaso3" 
+                        class="flex-1 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                    >
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 16.17L4.83 12m0 0L2.25 9.41m2.58 2.59L12 20l8.59-8.59m0 0L21.75 9.41m-2.58 2.59L12 4l-8.59 8.59" />
+                        </svg>
+                        Cambiar Asignación
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -345,7 +364,9 @@
             noSuggestions: document.getElementById('no-suggestions'),
             btnCancelar: document.getElementById('btnCancelar'),
             btnConfirmar: document.getElementById('btnConfirmar'),
-            btnBuscar: document.getElementById('enviar3')
+            btnBuscar: document.getElementById('enviar3'),
+            btnRegresarPaso1: document.getElementById('btnRegresarPaso1'),
+            btnIrPaso3: document.getElementById('btnIrPaso3')
         };
 
         // Función para actualizar el indicador de paso
@@ -530,6 +551,16 @@
         // Botón Cancelar
         UI.btnCancelar.addEventListener('click', () => {
             resetForm();
+        });
+
+        // Botón Regresara al Paso 1
+        UI.btnRegresarPaso1.addEventListener('click', () => {
+            resetForm();
+        });
+
+        // Botón para ir al Paso 3 (Cambiar Asignación)
+        UI.btnIrPaso3.addEventListener('click', () => {
+            showStep(3);
         });
 
         // Botón Confirmar cambio
