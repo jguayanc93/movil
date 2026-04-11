@@ -508,6 +508,11 @@
             UI.typeToSearchMessage.style.display = 'block';
         }
 
+        // Función para cargar opciones de personal desde el API
+        function loadPersonalOptions(options) {
+            allPersonalOptions = options || [];
+        }
+
         // Manejador del botón Buscar (integración con lógica existente)
         UI.btnBuscar.addEventListener('click', async () => {
             const numeroFactura = document.getElementById('leer').value.trim();
@@ -519,8 +524,7 @@
                 return;
             }
 
-            // Simulación: Aquí se debe integrar con la lógica existente de búsqueda
-            // Por ahora, mostramos el siguiente paso
+            // Aquí se debe integrar con la API existente para obtener datos reales
             currentFacturaId = numeroFactura;
             
             // Datos simulados (reemplazar con datos reales del servidor)
@@ -540,15 +544,14 @@
             // Habilitar campo de búsqueda de personal
             UI.atencion2Input.disabled = false;
             
-            // Simular sugerencias de personal
-            allPersonalOptions = [
-                { id: 1, nombre: 'Juan Pérez', cargo: 'Vendedor' },
-                { id: 2, nombre: 'María García', cargo: 'Arpista' },
-                { id: 3, nombre: 'Carlos López', cargo: 'Repartidor' },
-                { id: 4, nombre: 'Ana Ramírez', cargo: 'Atención al Cliente' }
-            ];
-            
-            // No mostrar sugerencias hasta que escriba
+            // TODO: Integrar con API real para obtener opciones de personal
+            // Ejemplo de integración:
+            // const response = await fetch(`/api/factura/${numeroFactura}/personal-disponible`);
+            // const personalData = await response.json();
+            // loadPersonalOptions(personalData);
+            //
+            // Por ahora, dejar sin opciones hasta que el API proporcione datos
+            loadPersonalOptions([]);
             showTypeToSearchMessage();
             
             if (window.toast) {
