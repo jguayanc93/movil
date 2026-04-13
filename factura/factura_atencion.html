@@ -448,6 +448,7 @@
             const card = document.createElement('div');
             card.className = 'person-card border border-gray-200 rounded-lg p-4 cursor-pointer';
             card.setAttribute('data-person-id', id);
+            card.setAttribute('data-person-name', nombre);
             card.innerHTML = `
                 <div class="flex items-start justify-between">
                     <div class="flex-1">
@@ -458,13 +459,13 @@
                 </div>
             `;
             
-            card.addEventListener('click', () => selectPerson(id, card));
+            card.addEventListener('click', () => selectPerson(id, nombre, card));
             
             return card;
         }
 
         // Función para seleccionar una persona
-        function selectPerson(personId, cardElement) {
+        function selectPerson(personId, personName, cardElement) {
             selectedPersonId = personId;
             
             // Remover selección previa
@@ -480,6 +481,9 @@
             
             // Habilitar botón de confirmar
             UI.btnConfirmar.disabled = false;
+            
+            // Guardar el nombre seleccionado en el input de búsqueda para referencia
+            UI.atencion2Input.value = personName;
         }
 
         // Función para llenar sugerencias (tabla anterior convertida a grid)
@@ -513,6 +517,54 @@
             allPersonalOptions = options || [];
         }
 
+        // Función para obtener opciones de atención desde el API
+        async function fetchPersonalAtencion() {
+            try {
+                // Validar que tenemos los datos necesarios
+                if (!objfactura || !objfactura[0]) {
+                    console.log('objfactura no está disponible aún');
+                    allPersonalOptions = [];
+                    return;
+                }
+
+                let dataenviar = new Object();
+                dataenviar.cli = objfactura[0]; // Código de cliente
+                dataenviar.sugerencia = ''; // Vacío al inicio para traer todas las opciones
+
+                let fetchobj = new Object();
+                fetchobj.method = "POST";
+                fetchobj.headers = { "Content-Type": "application/json" };
+                fetchobj.mode = "cors";
+                fetchobj.credentials = "include";
+                fetchobj.body = JSON.stringify(dataenviar);
+
+                const paso1 = await fetch(rutafacturacambioatencion, fetchobj);
+                const paso2 = await paso1.json();
+                const paso3 = await JSON.parse(paso2);
+
+                // Convertir respuesta del API al formato de tarjetas
+                const personalOptions = [];
+                for (let indice in paso3) {
+                    personalOptions.push({
+                        id: indice,
+                        nombre: paso3[indice][0],
+                        cargo: '' // El API no proporciona cargo
+                    });
+                }
+
+                // Cargar las opciones
+                loadPersonalOptions(personalOptions);
+                
+                // Mostrar sugerencias iniciales
+                fillSuggestions(personalOptions);
+                
+            } catch (err) {
+                console.log('Error al obtener opciones de atención:', err);
+                allPersonalOptions = [];
+                showTypeToSearchMessage();
+            }
+        }
+
         // Manejador del botón Buscar (integración con lógica existente)
         UI.btnBuscar.addEventListener('click', async () => {
             const numeroFactura = document.getElementById('leer').value.trim();
@@ -524,10 +576,13 @@
                 return;
             }
 
-            // Aquí se debe integrar con la API existente para obtener datos reales
             currentFacturaId = numeroFactura;
             
-            // Datos simulados (reemplazar con datos reales del servidor)
+            // Aquí se debe integrar con la lógica existente de búsqueda
+            // que popula objfactura[0] = código cliente, objfactura[1] = número factura
+            // Para ahora, usamos datos simulados pero se reemplazará con lógica real
+            
+            // Datos simulados (reemplazar con datos reales del servidor/lógica existente)
             const facturaSimulada = {
                 numero: numeroFactura,
                 fecha: new Date().toLocaleDateString('es-ES'),
@@ -544,13 +599,13 @@
             // Habilitar campo de búsqueda de personal
             UI.atencion2Input.disabled = false;
             
-            // TODO: Integrar con API real para obtener opciones de personal
-            // Ejemplo de integración:
-            // const response = await fetch(`/api/factura/${numeroFactura}/personal-disponible`);
-            // const personalData = await response.json();
-            // loadPersonalOptions(personalData);
-            //
-            // Por ahora, dejar sin opciones hasta que el API proporcione datos
+            // TODO: Integrar con la lógica existente de búsqueda
+            // Asegurar que objfactura[0] y objfactura[1] se populen correctamente
+            // Ejemplo de cómo debería verse:
+            // const factura = await buscarFactura(numeroFactura); // función existente
+            // fillFacturaData(factura);
+            // fillCurrentAttention(factura.atencionActual);
+            
             loadPersonalOptions([]);
             showTypeToSearchMessage();
             
@@ -563,9 +618,13 @@
         UI.atencion2Input.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
             
-            // Si está vacío, mostrar mensaje de "escribe para buscar"
+            // Si está vacío, mostrar todas las opciones o mensaje initial
             if (!searchTerm) {
-                showTypeToSearchMessage();
+                if (allPersonalOptions.length > 0) {
+                    fillSuggestions(allPersonalOptions);
+                } else {
+                    showTypeToSearchMessage();
+                }
                 return;
             }
             
@@ -600,6 +659,9 @@
             UI.btnConfirmar.disabled = true;
             showTypeToSearchMessage(); // Mostrar mensaje inicial
             showStep(3);
+            
+            // Cargar opciones de personal desde el API
+            fetchPersonalAtencion();
         });
 
         // Botón Confirmar cambio
@@ -611,13 +673,20 @@
                 return;
             }
 
+            // Obtener el nombre de la persona seleccionada
+            const selectedCard = document.querySelector('.person-card.selected');
+            const personName = selectedCard.getAttribute('data-person-name');
+
             // Simular solicitud al servidor
             UI.btnConfirmar.disabled = true;
             UI.btnConfirmar.innerHTML = '<span class="animate-spin">⟳</span> Procesando...';
 
             try {
-                // Aquí se debe integrar con la API real
-                // await fetch('/api/factura/cambiar-atencion', { ... })
+                // Integración con función preparado() del atencion.js
+                // La función preparado() maneja el cambio en el API
+                if (typeof preparado === 'function') {
+                    await preparado(personName, 3, objfactura[1]);
+                }
                 
                 // Simulación de éxito
                 setTimeout(() => {
@@ -644,6 +713,7 @@
                 if (window.toast) {
                     toast.error('Error al procesar el cambio');
                 }
+                console.log('Error:', error);
             }
         });
 
