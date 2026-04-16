@@ -88,7 +88,7 @@
                             Buscar
                         </button>
                     </div>
-                    <p class="text-xs text-gray-500 mt-3">📝 Ejemplo: F009-0001234 o simplemente 0001234</p>
+                    <p class="text-xs text-gray-500 mt-3">📝 Ejemplo: F009-0001234</p>
                 </div>
             </div>
         </div>
@@ -207,9 +207,9 @@
     <script src="/js/global/variables.js"></script>
     <script src="/js/global/toast-notifications.js"></script>
     <script src="/js/funciones/fac_modificar.js"></script>
-    <script src="/activador.js/botones.js"></script>
+    <!-- <script src="/activador.js/botones.js"></script> -->
     <script src="/js/factura/identificar.js"></script>
-    <script src="/js/factura/observacion.js"></script>
+    <!-- <script src="/js/factura/observacion.js"></script> -->
     <script src="/js/funciones/observacion.js"></script>
 
     <script>
@@ -329,7 +329,7 @@
         });
 
         // PASO 3: Aceptar
-        btnAceptar.addEventListener('click', async function() {
+        btnAceptar.addEventListener('click', function() {
             const nuevaObservacion = observacionNueva.value.trim();
 
             if (!nuevaObservacion) {
@@ -348,9 +348,11 @@
             }
 
             try {
-                // Aquí se usa la función existente del sistema para guardar
-                // Adaptar según tu API
-                await guardarObservacionFactura(facturaActual, nuevaObservacion);
+                // Llamar a la función preparado con los parámetros:
+                // 1. Valor nuevo (observación)
+                // 2. Número 6 (identificador del campo)
+                // 3. objfactura[1] (documento/número de factura)
+                preparado(nuevaObservacion, 6, objfactura[1]);
 
                 // Mostrar modal de confirmación
                 document.getElementById('modal-factura-numero').textContent = facturaActual.numero || '-';
