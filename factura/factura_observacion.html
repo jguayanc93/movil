@@ -218,7 +218,7 @@
         // ============================================
 
         let currentStep = 1;
-        let facturaActual = null;
+        // let facturaActual = null;
 
         // Elementos del DOM
         const inputBusqueda = document.getElementById('leer');
@@ -284,7 +284,7 @@
             observacionActual.value = '';
             document.getElementById('factura-numero').textContent = '-';
             document.getElementById('factura-numero-paso3').textContent = '-';
-            facturaActual = null;
+            // facturaActual = null;
 
             // Volver al paso 1
             actualizarIndicadores(1);
@@ -306,10 +306,10 @@
                 return;
             }
 
-            if (!facturaActual) {
-                console.error('Error: No hay factura seleccionada');
-                return;
-            }
+            // if (!facturaActual) {
+            //     console.error('Error: No hay factura seleccionada');
+            //     return;
+            // }
 
             try {
                 // Llamar a la función preparado con los parámetros:
@@ -319,7 +319,7 @@
                 preparado(nuevaObservacion, 6, objfactura[1]);
 
                 // Mostrar modal de confirmación
-                document.getElementById('modal-factura-numero').textContent = facturaActual.numero || '-';
+                document.getElementById('modal-factura-numero').textContent = objfactura[1] || '-';
                 modalConfirmacion.classList.remove('hidden');
                 
                 // Actualizar indicador al paso 3
@@ -339,7 +339,7 @@
             observacionActual.value = '';
             document.getElementById('factura-numero').textContent = '-';
             document.getElementById('factura-numero-paso3').textContent = '-';
-            facturaActual = null;
+            // facturaActual = null;
 
             actualizarIndicadores(1);
             document.getElementById('paso1').scrollIntoView({ behavior: 'smooth', block: 'start' });
