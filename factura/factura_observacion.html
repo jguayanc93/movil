@@ -268,44 +268,8 @@
         }
 
         // PASO 1: Buscar factura
-        btnBuscar.addEventListener('click', async function() {
-            const numeroFactura = inputBusqueda.value.trim();
-
-            if (!numeroFactura) {
-                showToast('Por favor ingresa un número de factura', 'error');
-                return;
-            }
-
-            try {
-                // Aquí se usa la función existente del sistema
-                // Simular búsqueda (adaptar según tu API)
-                const resultados = await buscarFactura(numeroFactura);
-
-                if (resultados && resultados.length > 0) {
-                    facturaActual = resultados[0];
-                    
-                    // Llenar datos del paso 2 y 3
-                    document.getElementById('factura-numero').textContent = facturaActual.numero || numeroFactura;
-                    document.getElementById('factura-numero-paso3').textContent = facturaActual.numero || numeroFactura;
-                    observacionActual.value = facturaActual.observacion || 'Sin observaciones';
-                    observacionNueva.value = '';
-
-                    // Actualizar indicador al paso 2
-                    actualizarIndicadores(2);
-                    showToast('Factura encontrada correctamente', 'success');
-                    
-                    // Scroll suave hacia el paso 2
-                    document.getElementById('paso2').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else {
-                    showToast('No se encontró la factura. Verifica el número', 'error');
-                }
-            } catch (error) {
-                console.error('Error en búsqueda:', error);
-                showToast('Error al buscar la factura', 'error');
-            }
-        });
-
-        // Permitir Enter en el input de búsqueda
+        // La búsqueda se maneja a través de identificar.js
+        // Solo asignamos el número a la variable global
         inputBusqueda.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 btnBuscar.click();
@@ -325,7 +289,7 @@
             // Volver al paso 1
             actualizarIndicadores(1);
             document.getElementById('paso1').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            showToast('Operación cancelada', 'info');
+            console.log('Operación cancelada');
         });
 
         // PASO 3: Aceptar
@@ -333,17 +297,17 @@
             const nuevaObservacion = observacionNueva.value.trim();
 
             if (!nuevaObservacion) {
-                showToast('Por favor ingresa una nueva observación', 'error');
+                console.warn('Por favor ingresa una nueva observación');
                 return;
             }
 
             if (nuevaObservacion.length > 500) {
-                showToast('La observación no puede exceder 500 caracteres', 'error');
+                console.warn('La observación no puede exceder 500 caracteres');
                 return;
             }
 
             if (!facturaActual) {
-                showToast('Error: No hay factura seleccionada', 'error');
+                console.error('Error: No hay factura seleccionada');
                 return;
             }
 
@@ -360,10 +324,8 @@
                 
                 // Actualizar indicador al paso 3
                 actualizarIndicadores(3);
-                showToast('Observación actualizada correctamente', 'success');
             } catch (error) {
                 console.error('Error al guardar:', error);
-                showToast('Error al guardar la observación', 'error');
             }
         });
 
@@ -381,12 +343,7 @@
 
             actualizarIndicadores(1);
             document.getElementById('paso1').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-            // Opcional: redirigir al menú después de 1 segundo
-            setTimeout(() => {
-                // Descomenta la siguiente línea para redirigir automáticamente
-                // window.location.href = '/main.html';
-            }, 1000);
+            console.log('Volviendo al paso 1');
         });
 
         // Cerrar modal con tecla Escape
