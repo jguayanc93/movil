@@ -17,7 +17,7 @@ async function get_transportista(){
       const resultadosContainer = document.getElementById("resultados-transportistas");
       resultadosContainer.innerHTML = '';
       
-      if(Array.isArray(paso3) && paso3.length > 0){
+      if(Object.keys(paso3).length > 0){
         resultadosContainer.classList.remove('hidden');
         
         for(let indice in paso3){
