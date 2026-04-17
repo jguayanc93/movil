@@ -12,6 +12,7 @@ async function get_transportista(){
       let paso1=await fetch(rutafacturacambiotransportista,fetchobj)
       let paso2=await paso1.json();
       let paso3=await JSON.parse(paso2);
+      console.log("verificar respuesta de los transportistas buscado",paso3);
       for(let indice in paso3){
         let escondido=document.createElement("p");
         escondido.classList.add("paraguardar");
