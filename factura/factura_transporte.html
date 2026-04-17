@@ -210,54 +210,10 @@
             }
 
             // Usar la función get_transportista del script transportista.js
-            await buscarTransportistas(valor);
+            await get_transportista();
         });
 
-        async function buscarTransportistas(busqueda) {
-            try {
-                let dataenviar = {};
-                dataenviar.sugerencia = busqueda;
-                
-                let fetchobj = {
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    mode: "cors",
-                    credentials: "include",
-                    body: JSON.stringify(dataenviar)
-                };
 
-                const respuesta = await fetch(rutafacturacambiotransportista, fetchobj);
-                const resultado = respuesta.ok ? await respuesta.json() : await respuesta.text();
-                const datos = typeof resultado === 'string' ? JSON.parse(resultado) : resultado;
-
-                // Limpiar resultados previos
-                resultadosContainer.innerHTML = '';
-
-                if (Array.isArray(datos) && datos.length > 0) {
-                    resultadosContainer.classList.remove('hidden');
-                    
-                    datos.forEach(item => {
-                        const codigo = item[0];
-                        const nombre = item[1];
-                        
-                        const div = document.createElement('div');
-                        div.className = 'px-4 py-2.5 hover:bg-indigo-100 cursor-pointer border-b border-gray-200 last:border-b-0 transition-colors';
-                        div.innerHTML = `<div class="font-medium text-gray-800">${nombre}</div>`;
-                        
-                        div.addEventListener('click', function() {
-                            seleccionarTransportista(codigo, nombre);
-                        });
-                        
-                        resultadosContainer.appendChild(div);
-                    });
-                } else {
-                    resultadosContainer.classList.add('hidden');
-                }
-            } catch (err) {
-                console.error('Error al buscar transportistas:', err);
-                toast.error('Error al buscar transportistas');
-            }
-        }
 
         function seleccionarTransportista(codigo, nombre) {
             transportistaSeleccionado.codigo = codigo;
