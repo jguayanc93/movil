@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Lista de Clientes</title>
+    <style>
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #4f46e5;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .fade-in {
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .btn-option {
+            transition: all 0.3s ease;
+        }
+        .btn-option:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Clientes</h1>
+                    <p class="text-sm text-gray-500 mt-1">Gestiona y visualiza tus clientes</p>
+                </div>
+                <a href="/main.html" class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-2.5 text-base font-medium text-white shadow-sm hover:bg-indigo-700 transition-colors">
+                    ← Volver
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Vista de Selección de Opciones -->
+        <div id="seleccion-view" class="fade-in">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">¿Qué deseas visualizar?</h2>
+                <p class="text-gray-600 text-lg">Selecciona una opción para ver la lista correspondiente</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <!-- Botón Clientes Asignados -->
+                <button id="btn-asignados" class="btn-option bg-white border-2 border-indigo-200 rounded-xl p-8 text-center hover:border-indigo-600 hover:bg-indigo-50 group">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full group-hover:bg-indigo-200 transition-colors mb-4">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 12H9m4 8H7a2 2 0 01-2-2V5a2 2 0 012-2h10a2 2 0 012 2v15a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Clientes Asignados</h3>
+                    <p class="text-gray-600">Visualiza todos los clientes que tienes asignados con sus facturas y notas de crédito</p>
+                </button>
+
+                <!-- Botón Clientes Libres -->
+                <button id="btn-libres" class="btn-option bg-white border-2 border-green-200 rounded-xl p-8 text-center hover:border-green-600 hover:bg-green-50 group">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full group-hover:bg-green-200 transition-colors mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Clientes Libres</h3>
+                    <p class="text-gray-600">Visualiza todos los clientes disponibles que aún no están asignados</p>
+                </button>
+            </div>
+        </div>
+
+        <!-- Vista de Tabla - Clientes Asignados -->
+        <div id="tabla-asignados-view" class="hidden fade-in">
+            <div class="mb-6 flex items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Clientes Asignados</h2>
+                    <p class="text-gray-600 mt-1">Lista de clientes asignados con sus respectivas facturas y notas de crédito</p>
+                </div>
+                <button id="btn-volver-asignados" class="inline-flex items-center justify-center rounded-lg bg-gray-600 px-6 py-2.5 text-base font-medium text-white shadow-sm hover:bg-gray-700 transition-colors">
+                    ← Volver
+                </button>
+            </div>
+
+            <!-- Contenedor de carga -->
+            <div id="loader-asignados" class="flex justify-center py-12">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Tabla -->
+            <div id="tabla-asignados-container" class="hidden bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-200">
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Cliente</th>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Facturas</th>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">NC (Notas de Crédito)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-asignados" class="divide-y divide-gray-200">
+                            <!-- Las filas se rellenarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Estado vacío -->
+            <div id="empty-asignados" class="hidden text-center py-16 bg-white rounded-lg">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <h3 class="mt-4 text-lg font-medium text-gray-900">No hay clientes asignados</h3>
+                <p class="mt-2 text-sm text-gray-500">No se encontraron clientes en esta categoría</p>
+            </div>
+
+            <!-- Estado error -->
+            <div id="error-asignados" class="hidden rounded-lg bg-red-50 p-6 text-center">
+                <svg class="mx-auto h-12 w-12 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h3 class="mt-4 text-lg font-medium text-red-900">Error al cargar</h3>
+                <p class="mt-2 text-sm text-red-700" id="error-msg-asignados">Ocurrió un error inesperado. Intenta nuevamente.</p>
+            </div>
+        </div>
+
+        <!-- Vista de Tabla - Clientes Libres -->
+        <div id="tabla-libres-view" class="hidden fade-in">
+            <div class="mb-6 flex items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Clientes Libres</h2>
+                    <p class="text-gray-600 mt-1">Lista de clientes disponibles sin asignar</p>
+                </div>
+                <button id="btn-volver-libres" class="inline-flex items-center justify-center rounded-lg bg-gray-600 px-6 py-2.5 text-base font-medium text-white shadow-sm hover:bg-gray-700 transition-colors">
+                    ← Volver
+                </button>
+            </div>
+
+            <!-- Contenedor de carga -->
+            <div id="loader-libres" class="flex justify-center py-12">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Tabla -->
+            <div id="tabla-libres-container" class="hidden bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-200">
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Cliente</th>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Factura</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-libres" class="divide-y divide-gray-200">
+                            <!-- Las filas se rellenarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Estado vacío -->
+            <div id="empty-libres" class="hidden text-center py-16 bg-white rounded-lg">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <h3 class="mt-4 text-lg font-medium text-gray-900">No hay clientes libres</h3>
+                <p class="mt-2 text-sm text-gray-500">No se encontraron clientes sin asignar</p>
+            </div>
+
+            <!-- Estado error -->
+            <div id="error-libres" class="hidden rounded-lg bg-red-50 p-6 text-center">
+                <svg class="mx-auto h-12 w-12 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h3 class="mt-4 text-lg font-medium text-red-900">Error al cargar</h3>
+                <p class="mt-2 text-sm text-red-700" id="error-msg-libres">Ocurrió un error inesperado. Intenta nuevamente.</p>
+            </div>
+        </div>
+
+    </main>
+    
+    <script src="/caminos/rutas.js"></script>
+    <script>
+        // ===============================================
+        // GESTIÓN DE VISTAS
+        // ===============================================
+        
+        function mostrarVista(vista) {
+            // Ocultar todas las vistas
+            document.getElementById('seleccion-view').classList.add('hidden');
+            document.getElementById('tabla-asignados-view').classList.add('hidden');
+            document.getElementById('tabla-libres-view').classList.add('hidden');
+
+            // Mostrar vista solicitada
+            document.getElementById(vista).classList.remove('hidden');
+        }
+
+        // ===============================================
+        // EVENTO: Clientes Asignados
+        // ===============================================
+        document.getElementById('btn-asignados').addEventListener('click', () => {
+            mostrarVista('tabla-asignados-view');
+            cargarClientesAsignados();
+        });
+
+        // ===============================================
+        // EVENTO: Clientes Libres
+        // ===============================================
+        document.getElementById('btn-libres').addEventListener('click', () => {
+            mostrarVista('tabla-libres-view');
+            cargarClientesLibres();
+        });
+
+        // ===============================================
+        // VOLVER DESDE TABLA ASIGNADOS
+        // ===============================================
+        document.getElementById('btn-volver-asignados').addEventListener('click', () => {
+            mostrarVista('seleccion-view');
+        });
+
+        // ===============================================
+        // VOLVER DESDE TABLA LIBRES
+        // ===============================================
+        document.getElementById('btn-volver-libres').addEventListener('click', () => {
+            mostrarVista('seleccion-view');
+        });
+
+        // ===============================================
+        // CARGAR CLIENTES ASIGNADOS
+        // ===============================================
+        async function cargarClientesAsignados() {
+            const loader = document.getElementById('loader-asignados');
+            const container = document.getElementById('tabla-asignados-container');
+            const tbody = document.getElementById('tbody-asignados');
+            const empty = document.getElementById('empty-asignados');
+            const error = document.getElementById('error-asignados');
+
+            // Mostrar loader, ocultar otros elementos
+            loader.classList.remove('hidden');
+            container.classList.add('hidden');
+            empty.classList.add('hidden');
+            error.classList.add('hidden');
+
+            try {
+                //rutalistaclientes
+                // ===============================================
+                // TODO: IMPLEMENTAR EVENTO AL BACKEND
+                // ===============================================
+                // Ejemplo:
+                // const response = await fetch('/api/clientes/asignados');
+                // const clientes = await response.json();
+                //
+                // Estructura esperada:
+                // [
+                //     {
+                //         cliente: "Nombre del cliente",
+                //         facturas: "Número de facturas",
+                //         nc: "Número de notas de crédito"
+                //     },
+                //     ...
+                // ]
+                // ===============================================
+
+                const clientes = []; // Reemplazar con datos del backend
+
+                // Ocultar loader
+                loader.classList.add('hidden');
+
+                if (clientes.length === 0) {
+                    empty.classList.remove('hidden');
+                } else {
+                    // Limpiar tbody
+                    tbody.innerHTML = '';
+
+                    // Llenar tabla con datos
+                    clientes.forEach(cliente => {
+                        const fila = document.createElement('tr');
+                        fila.classList.add('hover:bg-gray-50', 'transition-colors');
+                        fila.innerHTML = `
+                            <td class="px-6 py-4 text-sm text-gray-900">${cliente.cliente}</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">${cliente.facturas}</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">${cliente.nc}</td>
+                        `;
+                        tbody.appendChild(fila);
+                    });
+
+                    container.classList.remove('hidden');
+                }
+
+            } catch (err) {
+                console.error('Error cargando clientes asignados:', err);
+                loader.classList.add('hidden');
+                error.classList.remove('hidden');
+                document.getElementById('error-msg-asignados').textContent = err.message || 'Error al cargar los datos';
+            }
+        }
+
+        // ===============================================
+        // CARGAR CLIENTES LIBRES
+        // ===============================================
+        async function cargarClientesLibres() {
+            const loader = document.getElementById('loader-libres');
+            const container = document.getElementById('tabla-libres-container');
+            const tbody = document.getElementById('tbody-libres');
+            const empty = document.getElementById('empty-libres');
+            const error = document.getElementById('error-libres');
+
+            // Mostrar loader, ocultar otros elementos
+            loader.classList.remove('hidden');
+            container.classList.add('hidden');
+            empty.classList.add('hidden');
+            error.classList.add('hidden');
+
+            try {
+                // ===============================================
+                // TODO: IMPLEMENTAR EVENTO AL BACKEND
+                // ===============================================
+                // Ejemplo:
+                // const response = await fetch('/api/clientes/libres');
+                // const clientes = await response.json();
+                //
+                // Estructura esperada:
+                // [
+                //     {
+                //         cliente: "Nombre del cliente",
+                //         factura: "Número de factura o referencia"
+                //     },
+                //     ...
+                // ]
+                // ===============================================
+
+                const clientes = []; // Reemplazar con datos del backend
+
+                // Ocultar loader
+                loader.classList.add('hidden');
+
+                if (clientes.length === 0) {
+                    empty.classList.remove('hidden');
+                } else {
+                    // Limpiar tbody
+                    tbody.innerHTML = '';
+
+                    // Llenar tabla con datos
+                    clientes.forEach(cliente => {
+                        const fila = document.createElement('tr');
+                        fila.classList.add('hover:bg-gray-50', 'transition-colors');
+                        fila.innerHTML = `
+                            <td class="px-6 py-4 text-sm text-gray-900">${cliente.cliente}</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">${cliente.factura}</td>
+                        `;
+                        tbody.appendChild(fila);
+                    });
+
+                    container.classList.remove('hidden');
+                }
+
+            } catch (err) {
+                console.error('Error cargando clientes libres:', err);
+                loader.classList.add('hidden');
+                error.classList.remove('hidden');
+                document.getElementById('error-msg-libres').textContent = err.message || 'Error al cargar los datos';
+            }
+        }
+    </script>
+</body>
+</html>

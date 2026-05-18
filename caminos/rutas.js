@@ -62,6 +62,7 @@ const rutalistapedi=produccion+"/lista/pedidos";
 const rutalistapedixdia=produccion+"/lista/pedidosxdia";
 const rutalistafactus=produccion+"/lista/facturas"
 const rutalistafactusxdia=produccion+"/lista/facturasxdia";
+const rutalistaclientes=produccion+"/lista/clientes";
 
 ///////nuevas rutas con respecto al PROGRAMADOR raiz principal con accesos dinamicos
 const rutaprogramadorpermisos=produccion+"/programador";
