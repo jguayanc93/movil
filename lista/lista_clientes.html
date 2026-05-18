@@ -215,7 +215,7 @@
         // ===============================================
         document.getElementById('btn-asignados').addEventListener('click', () => {
             mostrarVista('tabla-asignados-view');
-            cargarClientesAsignados();
+            cargarClientesAsignados("cartera");
         });
 
         // ===============================================
@@ -223,7 +223,7 @@
         // ===============================================
         document.getElementById('btn-libres').addEventListener('click', () => {
             mostrarVista('tabla-libres-view');
-            cargarClientesLibres();
+            cargarClientesLibres("cobertura");
         });
 
         // ===============================================
@@ -243,7 +243,7 @@
         // ===============================================
         // CARGAR CLIENTES ASIGNADOS
         // ===============================================
-        async function cargarClientesAsignados() {
+        async function cargarClientesAsignados(tipo) {
             const loader = document.getElementById('loader-asignados');
             const container = document.getElementById('tabla-asignados-container');
             const tbody = document.getElementById('tbody-asignados');
@@ -258,7 +258,7 @@
 
             ////construccion del objeto para mandar al backend
             let dataenviar=new Object();
-            dataenviar.tipo="cartera";
+            dataenviar.tipo=tipo; ///segun el tipo que se mande, el backend deberia responder con la data correspondiente a esa categoria
             let fetchobje = new Object();
             fetchobje.method="POST";
             fetchobje.headers={"Content-Type":"application/json"};
@@ -325,7 +325,7 @@
         // ===============================================
         // CARGAR CLIENTES LIBRES
         // ===============================================
-        async function cargarClientesLibres() {
+        async function cargarClientesLibres(tipo) {
             const loader = document.getElementById('loader-libres');
             const container = document.getElementById('tabla-libres-container');
             const tbody = document.getElementById('tbody-libres');
@@ -338,13 +338,24 @@
             empty.classList.add('hidden');
             error.classList.add('hidden');
 
+            ////construccion del objeto para mandar al backend
+            let dataenviar=new Object();
+            dataenviar.tipo=tipo; ///segun el tipo que se mande, el backend
+            let fetchobje = new Object();
+            fetchobje.method="POST";
+            fetchobje.headers={"Content-Type":"application/json"};
+            fetchobje.mode="cors";
+            fetchobje.credentials="include";
+            fetchobje.body=JSON.stringify(dataenviar);
+
             try {
                 // ===============================================
                 // TODO: IMPLEMENTAR EVENTO AL BACKEND
                 // ===============================================
                 // Ejemplo:
-                // const response = await fetch('/api/clientes/libres');
-                // const clientes = await response.json();
+                const paso1 = await fetch(rutalistaclientes,fetchobje);
+                const paso2 = await response.json();
+                const paso3 = await JSON.parse(paso2);
                 //
                 // Estructura esperada:
                 // [
@@ -356,7 +367,8 @@
                 // ]
                 // ===============================================
 
-                const clientes = []; // Reemplazar con datos del backend
+                // const clientes = []; // Reemplazar con datos del backend
+                const clientes = Object.values(paso3);
 
                 // Ocultar loader
                 loader.classList.add('hidden');
@@ -372,8 +384,8 @@
                         const fila = document.createElement('tr');
                         fila.classList.add('hover:bg-gray-50', 'transition-colors');
                         fila.innerHTML = `
-                            <td class="px-6 py-4 text-sm text-gray-900">${cliente.cliente}</td>
-                            <td class="px-6 py-4 text-sm text-gray-600">${cliente.factura}</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">${cliente[1]}</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">${cliente[2]}</td>
                         `;
                         tbody.appendChild(fila);
                     });
