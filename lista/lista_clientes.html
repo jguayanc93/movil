@@ -256,15 +256,27 @@
             empty.classList.add('hidden');
             error.classList.add('hidden');
 
+            ////construccion del objeto para mandar al backend
+            let dataenviar=new Object();
+            dataenviar.tipo="cartera";
+            let fetchobje = new Object();
+            fetchobje.method="POST";
+            fetchobje.headers={"Content-Type":"application/json"};
+            fetchobje.mode="cors";
+            fetchobje.credentials="include";
+            fetchobje.body=JSON.stringify(dataenviar);
+
             try {
                 //rutalistaclientes
                 // ===============================================
                 // TODO: IMPLEMENTAR EVENTO AL BACKEND
                 // ===============================================
                 // Ejemplo:
-                // const response = await fetch('/api/clientes/asignados');
-                // const clientes = await response.json();
+                const paso1 = await fetch(rutalistaclientes, fetchobje);
+                const paso2 = await paso1.json();
+                const paso3 = await JSON.parse(paso2);
                 //
+                console.log("respuesta del backend para clientes asignados", paso3);
                 // Estructura esperada:
                 // [
                 //     {
