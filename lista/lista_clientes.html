@@ -267,7 +267,6 @@
             fetchobje.body=JSON.stringify(dataenviar);
 
             try {
-                //rutalistaclientes
                 // ===============================================
                 // TODO: IMPLEMENTAR EVENTO AL BACKEND
                 // ===============================================
@@ -288,7 +287,8 @@
                 // ]
                 // ===============================================
 
-                const clientes = []; // Reemplazar con datos del backend
+                // const clientes = []; // Reemplazar con datos del backend
+                const clientes = Object.values(paso3); // Reemplazar con datos del backend
 
                 // Ocultar loader
                 loader.classList.add('hidden');
@@ -304,9 +304,9 @@
                         const fila = document.createElement('tr');
                         fila.classList.add('hover:bg-gray-50', 'transition-colors');
                         fila.innerHTML = `
-                            <td class="px-6 py-4 text-sm text-gray-900">${cliente.cliente}</td>
-                            <td class="px-6 py-4 text-sm text-gray-600">${cliente.facturas}</td>
-                            <td class="px-6 py-4 text-sm text-gray-600">${cliente.nc}</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">${cliente[1]}</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">${cliente[2]}</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">${cliente[3]}</td>
                         `;
                         tbody.appendChild(fila);
                     });
