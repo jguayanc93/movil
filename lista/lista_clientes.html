@@ -354,7 +354,7 @@
                 // ===============================================
                 // Ejemplo:
                 const paso1 = await fetch(rutalistaclientes,fetchobje);
-                const paso2 = await response.json();
+                const paso2 = await paso1.json();
                 const paso3 = await JSON.parse(paso2);
                 //
                 // Estructura esperada:
