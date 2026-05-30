@@ -13,6 +13,11 @@ const rutaloginregistrocompletado=produccion+"/login/registro/completado";
 const rutavendedor=produccion+"/vendedor";
 //////////nuevas rutas con respecto ala COTIZACION raiz principal con accesos dinamicos
 const rutacotizacionpermisos=produccion+"/cotizacion";
+//////////nuevas rutas con respecto al PEDIDO raiz principal con accesos dinamicos
+const rutapedidopermisos=produccion+"/pedido";
+///nuevos rutas con respecto al PEDIDO flete
+const rutapedidoflete=produccion+"/pedido/mostrar";
+const rutapedidofleteaplicar=produccion+"/pedido/flete";
 //////nuevas rutas con respecto al CLIENTE ya se busqueda o identificar
 const rutaclientebusqueda=produccion+"/cliente/buscar";
 const rutaclienteid=produccion+"/cliente/id";
