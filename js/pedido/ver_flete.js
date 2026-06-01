@@ -3,17 +3,17 @@ const PEDIDO_INDICES = {
     flag: 0,
     apro: 1,
     dias: 2,
-    fecha: 3,
-    documento: 4,
-    cliente: 5,
-    item: 6,
-    codigo_fabricante: 7,
-    descripcion: 8,
-    marca: 9,
-    cantidad: 10,
-    descuento: 11,
-    precio_unitario: 12,
-    total: 13
+    documento: 3,
+    cliente: 4,
+    item: 5,
+    codigo_fabricante: 6,
+    descripcion: 7,
+    marca: 8,
+    cantidad: 9,
+    descuento: 10,
+    precio_unitario: 11,
+    total: 12,
+    moneda: 13
 };
 
 let pedido_actual = null;
