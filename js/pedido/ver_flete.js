@@ -77,17 +77,18 @@ async function buscar_pedido_flete() {
             const total_item = parseFloat(item[PEDIDO_INDICES.total]) || 0;
 
             subtotal += total_item;
-            total_items += cantidad;
+            // total_items += cantidad;
+            total_items = Object.keys(paso3).length;
 
             // Crear fila
             let tr = document.createElement("tr");
             tr.className = "hover:bg-gray-50";
             tr.innerHTML = `
                 <td class="px-6 py-4 text-sm text-gray-900">
-                    <div class="font-medium">${item[PEDIDO_INDICES.descripcion]}</div>
-                    <div class="text-xs text-gray-500">${item[PEDIDO_INDICES.marca]}</div>
+                    <div class="font-medium">${item[PEDIDO_INDICES.marca]}</div>
+                    <div class="text-xs text-gray-500">${item[PEDIDO_INDICES.descuento]}</div>
                 </td>
-                <td class="px-6 py-4 text-center text-sm text-gray-900">${item[PEDIDO_INDICES.codigo_fabricante]}</td>
+                <td class="px-6 py-4 text-center text-sm text-gray-900">${item[PEDIDO_INDICES.descripcion]}</td>
                 <td class="px-6 py-4 text-center text-sm text-gray-900">${cantidad}</td>
                 <td class="px-6 py-4 text-center text-sm text-gray-900">$${precio_unitario.toFixed(2)}</td>
                 <td class="px-6 py-4 text-right text-sm font-medium text-gray-900">$${total_item.toFixed(2)}</td>
