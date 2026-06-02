@@ -149,6 +149,12 @@ async function aplicar_flete() {
         const flag = primer_item[PEDIDO_INDICES.flag];
         const apro = primer_item[PEDIDO_INDICES.apro];
 
+        // Validar que flag sea 0 y apro sea 1 para aplicar flete
+        if (flag !== 0 || apro !== 1) {
+            mostrar_mensaje("No se puede aplicar flete. El pedido debe estar aprobado.", "error");
+            return;
+        }
+
         let dataenviar = {
             npedi: npedi,
             flag: flag,
