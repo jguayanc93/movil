@@ -1,3 +1,9 @@
+// Cerrar carrito con el botón X del nuevo modal
+const btnCerrarCarrito = document.getElementById("btn-cerrar-carrito");
+if (btnCerrarCarrito) {
+    btnCerrarCarrito.addEventListener('click', cerrar_carrito);
+}
+
 document.getElementById("carrito").addEventListener('click',()=>carrito2())
 
 function carrito(){

@@ -12,153 +12,207 @@
   
   <!-- HEADER/NAVBAR -->
   <nav class="bg-white shadow-md border-b border-gray-200 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex items-center space-x-3">
-          <h1 class="text-xl font-bold text-indigo-600">CDK</h1>
-          <span class="text-sm text-gray-600">Crear Cotización</span>
+    <div class="px-4 py-3 sm:px-6">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <h1 class="text-lg sm:text-xl font-bold text-indigo-600">CDK</h1>
+          <span class="text-xs sm:text-sm text-gray-600">Crear Cotización</span>
         </div>
         <a href="/main.html" 
-        class="flex items-center justify-center space-x-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">
+        class="flex items-center justify-center space-x-2 rounded-lg bg-indigo-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">
           <i class="fas fa-home"></i>
-          <span>Menú</span>
+          <span class="hidden sm:inline">Menú</span>
         </a>
       </div>
     </div>
   </nav>
 
   <!-- MAIN CONTAINER -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <main class="px-4 py-4 sm:px-6 pb-20">
     
-    <!-- PASO 1: BUSCAR CLIENTE -->
-    <div class="bg-white rounded-xl shadow-lg p-6 mb-6 border-l-4 border-indigo-600">
-      <div class="flex items-center mb-4">
-        <div class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full font-bold text-sm">1</div>
-        <h2 class="ml-3 text-xl font-bold text-gray-900">
+    <!-- PASO 1: BUSCAR CLIENTE - COMPACTO PARA MOBILE -->
+    <div class="bg-white rounded-lg shadow-md p-4 mb-4 border-l-4 border-indigo-600">
+      <div class="flex items-center mb-3">
+        <div class="flex items-center justify-center w-6 h-6 bg-indigo-600 text-white rounded-full font-bold text-xs">1</div>
+        <h2 class="ml-2 text-base sm:text-lg font-bold text-gray-900">
           <i class="fas fa-user mr-2 text-indigo-600"></i>
-          Seleccionar Cliente
+          Cliente
         </h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label for="busqueda" class="block text-sm font-medium text-gray-700 mb-2">
-            Buscar Cliente
-          </label>
-          <div class="relative">
-            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-            <input type="search" name="busqueda" id="busqueda" 
-            class="w-full pl-10 pr-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none placeholder:text-gray-400"
-            placeholder="Digitar nombre o RUC...">
+
+      <!-- Búsqueda + Moneda en fila compacta -->
+      <div class="flex gap-2 mb-3">
+        <button id="btn-buscar-cliente" type="button"
+        class="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border-2 border-indigo-200 bg-indigo-50 text-indigo-700 font-medium text-sm transition-colors hover:bg-indigo-100 active:scale-95">
+          <i class="fas fa-search"></i>
+          <span>Buscar</span>
+        </button>
+        <select id="alm" name="alm" 
+        class="px-3 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-medium text-sm transition-colors focus:border-indigo-500 focus:outline-none">
+          <option value="D">💵 USD</option>
+          <option value="S">S/ PEN</option>
+        </select>
+      </div>
+
+      <!-- Cliente seleccionado -->
+      <div id="cliente-seleccionado" class="hidden">
+        <div class="px-3 py-2 bg-green-50 border border-green-200 rounded-lg flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-600"></i>
+            <span id="nombre-cliente" class="text-sm font-medium text-gray-900"></span>
           </div>
-        </div>
-        <div>
-          <label for="alm" class="block text-sm font-medium text-gray-700 mb-2">
-            Moneda
-          </label>
-          <select id="alm" name="alm" 
-          class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-indigo-500 focus:bg-white focus:outline-none">
-            <option value="D">💵 USD - Dólar</option>
-            <option value="S">S/ - Soles</option>
-          </select>
+          <button id="btn-cambiar-cliente" type="button"
+          class="text-xs font-medium text-indigo-600 hover:text-indigo-700 underline">
+            Cambiar
+          </button>
         </div>
       </div>
-      <p id="nomcli" class="mt-4 px-4 py-2 bg-indigo-100 text-indigo-800 rounded-lg text-sm font-medium hidden">
-        <i class="fas fa-check-circle mr-2"></i>Cliente seleccionado
-      </p>
     </div>
 
-    <!-- CONTENEDOR DE SUGERENCIAS DE CLIENTES -->
-    <div id="recorrer-clientes" class="mb-6 space-y-2"></div>
+    <!-- BOTTOM SHEET MODAL DE BÚSQUEDA -->
+    <div id="modal-busqueda-cliente" class="fixed inset-0 z-40 hidden" aria-hidden="true">
+      <div class="fixed inset-0 bg-black/40 transition-opacity" id="modal-backdrop"></div>
+      
+      <div class="fixed bottom-0 left-0 right-0 z-50 bg-white rounded-t-2xl shadow-2xl max-h-[90vh] flex flex-col animate-in slide-in-from-bottom">
+        <!-- HEADER DEL MODAL -->
+        <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 sticky top-0 bg-white rounded-t-2xl">
+          <h3 class="text-lg font-bold text-gray-900">Buscar Cliente</h3>
+          <button id="btn-cerrar-busqueda" type="button"
+          class="p-1 text-gray-500 hover:text-gray-700 transition-colors">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <!-- CONTENIDO DEL MODAL -->
+        <div class="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+          
+          <!-- INPUT DE BÚSQUEDA -->
+          <div class="relative">
+            <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
+            <input type="search" id="input-busqueda" 
+            class="w-full pl-9 pr-9 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 text-sm transition-colors focus:border-indigo-500 focus:outline-none placeholder:text-gray-400"
+            placeholder="Nombre o RUC...">
+            <button id="btn-limpiar-busqueda" type="button"
+            class="absolute right-3 top-3 text-gray-400 hover:text-gray-600 hidden">
+              <i class="fas fa-times-circle text-lg"></i>
+            </button>
+          </div>
+
+          <!-- INDICADOR DE BÚSQUEDA -->
+          <div id="indicador-busqueda" class="text-xs text-gray-500 hidden">
+            <i class="fas fa-info-circle mr-1"></i>
+            Escribe al menos 3 caracteres
+          </div>
+
+          <!-- LOADING -->
+          <div id="busqueda-loading" class="hidden py-4 text-center">
+            <div class="inline-block">
+              <i class="fas fa-spinner fa-spin text-indigo-600 text-lg"></i>
+              <p class="text-sm text-gray-600 mt-2">Buscando...</p>
+            </div>
+          </div>
+
+          <!-- LISTA DE SUGERENCIAS -->
+          <div id="recorrer-clientes" class="space-y-2"></div>
+
+          <!-- SIN RESULTADOS -->
+          <div id="sin-resultados" class="hidden py-8 text-center">
+            <i class="fas fa-search text-4xl text-gray-300 mb-3"></i>
+            <p class="text-sm text-gray-600">No se encontraron clientes</p>
+          </div>
+        </div>
+
+        <!-- FOOTER DEL MODAL -->
+        <div class="px-4 py-3 border-t border-gray-200 bg-gray-50 rounded-b-2xl">
+          <button id="btn-cancelar-busqueda" type="button"
+          class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-medium text-sm transition-colors hover:bg-gray-50 active:scale-95">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- PASO 2: BUSCAR PRODUCTOS -->
-    <div id="paso2" class="bg-white rounded-xl shadow-lg p-6 mb-6 border-l-4 border-green-600 hidden">
-      <div class="flex items-center mb-4">
-        <div class="flex items-center justify-center w-8 h-8 bg-green-600 text-white rounded-full font-bold text-sm">2</div>
-        <h2 class="ml-3 text-xl font-bold text-gray-900">
+    <div id="paso2" class="bg-white rounded-lg shadow-md p-4 mb-4 border-l-4 border-green-600 hidden">
+      <div class="flex items-center mb-3">
+        <div class="flex items-center justify-center w-6 h-6 bg-green-600 text-white rounded-full font-bold text-xs">2</div>
+        <h2 class="ml-2 text-base sm:text-lg font-bold text-gray-900">
           <i class="fas fa-box mr-2 text-green-600"></i>
-          Seleccionar Productos
+          Productos
         </h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label for="producto" class="block text-sm font-medium text-gray-700 mb-2">
-            Buscar por Descripción
-          </label>
-          <div class="relative">
-            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-            <input type="search" name="producto" id="producto" 
-            class="w-full pl-10 pr-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-green-500 focus:bg-white focus:outline-none placeholder:text-gray-400"
-            placeholder="Nombre del producto...">
-          </div>
-        </div>
-        <div>
-          <label for="currency2" class="block text-sm font-medium text-gray-700 mb-2">
-            Tipo de Búsqueda
-          </label>
+
+      <!-- Tipo de búsqueda + Input en mobile-friendly -->
+      <div class="space-y-3">
+        <div class="flex gap-2">
           <select id="currency2" name="currency2"
-          class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-green-500 focus:bg-white focus:outline-none">
-            <option value="1">📋 Por Descripción</option>
-            <option value="2">🔍 Por Part Number</option>
+          class="px-3 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-medium text-sm transition-colors focus:border-green-500 focus:outline-none">
+            <option value="1">📋 Descripción</option>
+            <option value="2">🔍 Part Number</option>
           </select>
         </div>
+        <div class="relative">
+          <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
+          <input type="search" name="producto" id="producto" 
+          class="w-full pl-9 pr-4 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 text-sm transition-colors focus:border-green-500 focus:outline-none placeholder:text-gray-400"
+          placeholder="Nombre del producto...">
+        </div>
+        <div class="relative hidden" id="container-productof">
+          <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
+          <input type="search" name="productof" id="productof" 
+          class="w-full pl-9 pr-4 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 text-sm transition-colors focus:border-green-500 focus:outline-none placeholder:text-gray-400"
+          placeholder="Ingrese Part Number...">
+        </div>
       </div>
-      <input type="search" name="productof" id="productof" 
-      class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-200 bg-gray-50 text-gray-900 transition-colors focus:border-green-500 focus:bg-white focus:outline-none placeholder:text-gray-400 hidden"
-      placeholder="Ingrese Part Number...">
     </div>
 
-    <!-- MODAL DE ACEPTACION -->
-    <div id="modal-aceptacion" class="relative z-10"></div>
-
     <!-- CONTENEDOR DE SUGERENCIAS DE PRODUCTOS -->
-    <div id="recorrer-productos" class="mb-6 space-y-2"></div>
+    <div id="recorrer-productos" class="mb-4 space-y-2"></div>
 
     <!-- PASO 3: CARRITO DE PRODUCTOS -->
-    <div class="bg-white rounded-xl shadow-lg p-6 mb-6 border-l-4 border-blue-600">
-      <div class="flex items-center justify-between mb-4">
+    <div class="bg-white rounded-lg shadow-md p-4 mb-4 border-l-4 border-blue-600">
+      <div class="flex items-center justify-between mb-3">
         <div class="flex items-center">
-          <div class="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full font-bold text-sm">3</div>
-          <h2 class="ml-3 text-xl font-bold text-gray-900">
+          <div class="flex items-center justify-center w-6 h-6 bg-blue-600 text-white rounded-full font-bold text-xs">3</div>
+          <h2 class="ml-2 text-base sm:text-lg font-bold text-gray-900">
             <i class="fas fa-shopping-cart mr-2 text-blue-600"></i>
-            Revisar Carrito
+            Carrito
           </h2>
         </div>
         <button id="carrito" 
-        class="inline-flex items-center justify-center space-x-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">
-          <i class="fas fa-list"></i>
-          <span>Ver Carrito</span>
+        class="inline-flex items-center justify-center space-x-1 rounded-lg bg-blue-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 transition-colors active:scale-95">
+          <i class="fas fa-list text-sm"></i>
+          <span>Ver</span>
         </button>
       </div>
-      <p class="text-sm text-gray-600">
-        <i class="fas fa-info-circle mr-2 text-blue-500"></i>
-        (Opcional) Revisa los productos seleccionados antes de generar la cotización
+      <p class="text-xs sm:text-sm text-gray-600">
+        <i class="fas fa-info-circle mr-1 text-blue-500"></i>
+        Revisa los productos antes de generar la cotización
       </p>
     </div>
 
     <!-- MODAL DEL CARRITO -->
-    <div id="carro-contenedor" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-      <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+    <div id="carro-contenedor" class="fixed inset-0 z-40 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+      <div class="fixed inset-0 bg-black/40 transition-opacity" aria-hidden="true"></div>
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
-          <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-6">
-            <div class="pointer-events-auto w-screen max-w-md">
-              <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-2xl">
-                <div class="flex items-start justify-between bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-6 sm:px-6 text-white">
-                  <h2 class="text-lg font-semibold" id="slide-over-title">
+          <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-6 w-full">
+            <div class="pointer-events-auto w-screen max-w-sm">
+              <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-2xl rounded-l-2xl">
+                <div class="flex items-start justify-between bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-4 sm:px-6 text-white rounded-tl-2xl">
+                  <h2 class="text-base sm:text-lg font-semibold" id="slide-over-title">
                     <i class="fas fa-shopping-cart mr-2"></i>
-                    Carrito de Productos
+                    Carrito
                   </h2>
-                  <button type="button" class="relative -m-2 p-2 text-blue-100 hover:text-white transition-colors">
+                  <button type="button" id="btn-cerrar-carrito" class="relative -m-2 p-2 text-blue-100 hover:text-white transition-colors">
                     <span class="sr-only">Cerrar panel</span>
-                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
+                    <i class="fas fa-times text-lg"></i>
                   </button>
                 </div>
-                <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-                  <ul id="productos-listados" role="list" class="-my-6 divide-y divide-gray-200"></ul>
+                <div class="flex-1 overflow-y-auto px-4 py-4 sm:px-6">
+                  <ul id="productos-listados" role="list" class="-my-3 divide-y divide-gray-200"></ul>
                 </div>
-                <div id="productos-totales" class="border-t border-gray-200 px-4 py-6 sm:px-6 bg-gray-50"></div>
+                <div id="productos-totales" class="border-t border-gray-200 px-4 py-4 sm:px-6 bg-gray-50 rounded-bl-2xl"></div>
               </div>
             </div>
           </div>
@@ -167,25 +221,25 @@
     </div>
 
     <!-- PASO 4: GENERAR COTIZACIÓN -->
-    <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
-      <div class="flex items-center mb-4">
-        <div class="flex items-center justify-center w-8 h-8 bg-orange-500 text-white rounded-full font-bold text-sm">4</div>
-        <h2 class="ml-3 text-xl font-bold text-gray-900">
+    <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg shadow-md p-4 border-l-4 border-orange-500">
+      <div class="flex items-center mb-3">
+        <div class="flex items-center justify-center w-6 h-6 bg-orange-500 text-white rounded-full font-bold text-xs">4</div>
+        <h2 class="ml-2 text-base sm:text-lg font-bold text-gray-900">
           <i class="fas fa-file-invoice mr-2 text-orange-500"></i>
           Generar Cotización
         </h2>
       </div>
-      <div class="space-y-4">
-        <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-          <p class="text-sm text-yellow-800">
+      <div class="space-y-3">
+        <div class="p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded text-xs sm:text-sm">
+          <p class="text-yellow-800">
             <i class="fas fa-exclamation-triangle mr-2"></i>
-            <strong>Advertencia:</strong> La cotización se creará solo si tiene al menos un producto en el carrito. Para reiniciar, recargue la página.
+            <strong>Advertencia:</strong> Mínimo un producto requerido. Para reiniciar, recargue la página.
           </p>
         </div>
         <button id="creacion" 
-        class="w-full flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 px-6 py-3 text-lg font-bold text-white hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105 active:scale-95 shadow-lg">
+        class="w-full flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 px-4 py-3 text-base sm:text-lg font-bold text-white hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105 active:scale-95 shadow-lg">
           <i class="fas fa-check-circle"></i>
-          <span>CREAR COTIZACIÓN</span>
+          <span>CREAR</span>
         </button>
       </div>
     </div>
@@ -209,5 +263,26 @@
 
 <script src="/js/cotizacion/crear.js"></script>
 <script src="/js/funciones/coti_crear.js"></script>
+
+<style>
+  /* Animaciones para el bottom sheet */
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-in.slide-in-from-bottom {
+    animation: slideInFromBottom 0.3s ease-out;
+  }
+
+  /* Prevenir scroll cuando modal está activo */
+  body.modal-abierto {
+    overflow: hidden;
+  }
+</style>
 </body>
 </html>
