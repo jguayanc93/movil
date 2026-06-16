@@ -114,6 +114,7 @@ function limpiarBusqueda() {
 // MOSTRAR RESULTADOS DE BÚSQUEDA
 // ========================================
 function mostrarSugerenciasClientes(clientes) {
+    console.log("Clientes encontrados:", clientes);
     busquedaLoading.classList.add("hidden");
     recorrerClientes.innerHTML = "";
 
