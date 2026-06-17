@@ -199,7 +199,7 @@ function mostrarSugerenciasProductos(productos) {
         
         const stock2 = document.createElement("p");
         stock2.className = "text-gray-600";
-        stock2.innerHTML = `<span class="font-semibold text-blue-600">${producto[3]}</span> Sec.`;
+        stock2.innerHTML = `<span class="font-semibold text-blue-600">${producto[3]}</span> MYM.`;
         
         stockContainer.appendChild(stock1);
         stockContainer.appendChild(stock2);
