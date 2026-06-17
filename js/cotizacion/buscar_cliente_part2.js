@@ -167,15 +167,16 @@ async function buscar_producto_nuevo(descprod) {
 // MOSTRAR SUGERENCIAS DE PRODUCTOS
 // ========================================
 function mostrarSugerenciasProductos(productos) {
+    console.log("Productos encontrados:", productos);
     busquedaProductoLoading.classList.add("hidden");
     recorrerProductos.innerHTML = "";
 
-    if (!productos || productos.length === 0) {
+    if (!productos || Object.keys(productos).length === 0) {
         sinResultadosProducto.classList.remove("hidden");
         return;
     }
 
-    productos.forEach((producto) => {
+    Object.values(productos).forEach((producto) => {
         // producto[0] = ID
         // producto[1] = Descripción
         // producto[2] = Stock Principal
