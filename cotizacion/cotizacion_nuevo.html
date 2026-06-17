@@ -142,35 +142,181 @@
         </h2>
       </div>
 
-      <!-- Tipo de búsqueda + Input en mobile-friendly -->
-      <div class="space-y-3">
-        <div class="flex gap-2">
-          <select id="currency2" name="currency2"
-          class="px-3 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-medium text-sm transition-colors focus:border-green-500 focus:outline-none">
-            <option value="1">📋 Descripción</option>
-            <option value="2">🔍 Part Number</option>
-          </select>
+      <!-- Búsqueda normal + Búsqueda por voz -->
+      <div class="flex gap-2 mb-3">
+        <button id="btn-buscar-producto" type="button"
+        class="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border-2 border-green-200 bg-green-50 text-green-700 font-medium text-sm transition-colors hover:bg-green-100 active:scale-95">
+          <i class="fas fa-search"></i>
+          <span>Buscar</span>
+        </button>
+        <button id="btn-buscar-voz" type="button"
+        class="px-3 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-700 font-medium text-sm transition-colors hover:bg-gray-50 active:scale-95 relative group">
+          <i class="fas fa-microphone"></i>
+          <span id="estado-voz" class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+            Comenzar a escuchar
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- BOTTOM SHEET MODAL DE BÚSQUEDA DE PRODUCTOS -->
+    <div id="modal-busqueda-producto" class="fixed inset-0 z-40 hidden" aria-hidden="true">
+      <div class="fixed inset-0 bg-black/40 transition-opacity" id="modal-backdrop-producto"></div>
+      
+      <div class="fixed bottom-0 left-0 right-0 z-50 bg-white rounded-t-2xl shadow-2xl max-h-[90vh] flex flex-col animate-in slide-in-from-bottom">
+        <!-- HEADER DEL MODAL -->
+        <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 sticky top-0 bg-white rounded-t-2xl">
+          <h3 class="text-lg font-bold text-gray-900">Buscar Producto</h3>
+          <button id="btn-cerrar-busqueda-producto" type="button"
+          class="p-1 text-gray-500 hover:text-gray-700 transition-colors">
+            <i class="fas fa-times text-xl"></i>
+          </button>
         </div>
-        <div class="relative">
-          <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
-          <input type="search" name="producto" id="producto" 
-          class="w-full pl-9 pr-4 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 text-sm transition-colors focus:border-green-500 focus:outline-none placeholder:text-gray-400"
-          placeholder="Nombre del producto...">
+
+        <!-- CONTENIDO DEL MODAL -->
+        <div class="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+          
+          <!-- SELECTOR DE TIPO DE BÚSQUEDA -->
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-2">Tipo de Búsqueda</label>
+            <select id="tipo-busqueda-producto"
+            class="w-full px-3 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-medium text-sm transition-colors focus:border-green-500 focus:outline-none">
+              <option value="1">📋 Descripción</option>
+              <option value="2">🔍 Part Number</option>
+            </select>
+          </div>
+
+          <!-- INPUT DE BÚSQUEDA -->
+          <div class="relative">
+            <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
+            <input type="search" id="input-busqueda-producto" 
+            class="w-full pl-9 pr-9 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 text-sm transition-colors focus:border-green-500 focus:outline-none placeholder:text-gray-400"
+            placeholder="Nombre o Part Number...">
+            <button id="btn-limpiar-busqueda-producto" type="button"
+            class="absolute right-3 top-3 text-gray-400 hover:text-gray-600 hidden">
+              <i class="fas fa-times-circle text-lg"></i>
+            </button>
+          </div>
+
+          <!-- INDICADOR DE BÚSQUEDA -->
+          <div id="indicador-busqueda-producto" class="text-xs text-gray-500 hidden">
+            <i class="fas fa-info-circle mr-1"></i>
+            Escribe al menos 3 caracteres
+          </div>
+
+          <!-- LOADING -->
+          <div id="busqueda-producto-loading" class="hidden py-4 text-center">
+            <div class="inline-block">
+              <i class="fas fa-spinner fa-spin text-green-600 text-lg"></i>
+              <p class="text-sm text-gray-600 mt-2">Buscando productos...</p>
+            </div>
+          </div>
+
+          <!-- LISTA DE SUGERENCIAS -->
+          <div id="recorrer-productos" class="space-y-2"></div>
+
+          <!-- SIN RESULTADOS -->
+          <div id="sin-resultados-producto" class="hidden py-8 text-center">
+            <i class="fas fa-search text-4xl text-gray-300 mb-3"></i>
+            <p class="text-sm text-gray-600">No se encontraron productos</p>
+          </div>
         </div>
-        <div class="relative hidden" id="container-productof">
-          <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
-          <input type="search" name="productof" id="productof" 
-          class="w-full pl-9 pr-4 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 text-sm transition-colors focus:border-green-500 focus:outline-none placeholder:text-gray-400"
-          placeholder="Ingrese Part Number...">
+
+        <!-- FOOTER DEL MODAL -->
+        <div class="px-4 py-3 border-t border-gray-200 bg-gray-50 rounded-b-2xl">
+          <button id="btn-cancelar-busqueda-producto" type="button"
+          class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-medium text-sm transition-colors hover:bg-gray-50 active:scale-95">
+            Cancelar
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- CONTENEDOR DE SUGERENCIAS DE PRODUCTOS -->
-    <div id="recorrer-productos" class="mb-4 space-y-2"></div>
+    <!-- MODAL DE CONFIRMACIÓN DE PRODUCTO -->
+    <div id="modal-confirmacion-producto" class="fixed inset-0 z-40 hidden" aria-hidden="true">
+      <div class="fixed inset-0 bg-black/40 transition-opacity" id="modal-backdrop-confirmacion"></div>
+      
+      <div class="fixed inset-0 overflow-y-auto z-50 flex items-end sm:items-center justify-center p-4">
+        <div class="bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full sm:max-w-md animate-in slide-in-from-bottom sm:slide-in-from-center">
+          
+          <!-- HEADER -->
+          <div class="px-4 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-bold text-gray-900">
+              <i class="fas fa-check-circle text-green-600 mr-2"></i>
+              Confirmar Producto
+            </h3>
+          </div>
+
+          <!-- CONTENIDO -->
+          <div class="px-4 py-4 space-y-4">
+            
+            <!-- INFO DEL PRODUCTO -->
+            <div class="p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <p class="text-xs text-gray-600 mb-1">Descripción</p>
+              <p id="conf-producto-descripcion" class="font-semibold text-gray-900 text-sm"></p>
+              <div class="grid grid-cols-2 gap-2 mt-2">
+                <div>
+                  <p class="text-xs text-gray-600">Stock Principal</p>
+                  <p id="conf-producto-stock1" class="font-bold text-blue-600"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-600">Stock Secundario</p>
+                  <p id="conf-producto-stock2" class="font-bold text-blue-600"></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CANTIDAD -->
+            <div>
+              <label for="conf-cantidad" class="block text-sm font-semibold text-gray-900 mb-2">
+                Cantidad <span class="text-red-600">*</span>
+              </label>
+              <div class="relative">
+                <input type="number" id="conf-cantidad" 
+                min="1" max="500" value="1"
+                class="w-full px-3 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 text-sm transition-colors focus:border-green-500 focus:outline-none">
+              </div>
+              <p class="text-xs text-gray-500 mt-1">Mínimo: 1 | Máximo: 500</p>
+              <p id="error-cantidad" class="text-xs text-red-600 mt-1 hidden"></p>
+            </div>
+
+            <!-- DESCUENTO -->
+            <div>
+              <label for="conf-descuento" class="block text-sm font-semibold text-gray-900 mb-2">
+                Descuento (%) 
+                <span id="conf-descuento-maximo" class="text-gray-600 font-normal text-xs"></span>
+              </label>
+              <div class="relative">
+                <input type="number" id="conf-descuento" 
+                min="0" max="100" step="0.01" value="0.00" placeholder="0.00"
+                class="w-full px-3 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 text-sm transition-colors focus:border-green-500 focus:outline-none">
+                <span class="absolute right-3 top-3 text-gray-500 text-sm">%</span>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">Máximo 2 decimales</p>
+              <p id="error-descuento" class="text-xs text-red-600 mt-1 hidden"></p>
+            </div>
+
+          </div>
+
+          <!-- FOOTER -->
+          <div class="px-4 py-4 border-t border-gray-200 bg-gray-50 rounded-b-2xl space-y-2">
+            <button id="btn-confirmar-producto" type="button"
+            class="w-full px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold text-sm transition-colors hover:from-green-600 hover:to-green-700 active:scale-95">
+              <i class="fas fa-check mr-2"></i>
+              Agregar al Carrito
+            </button>
+            <button id="btn-cancelar-confirmacion-producto" type="button"
+            class="w-full px-4 py-2.5 rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-medium text-sm transition-colors hover:bg-gray-50 active:scale-95">
+              Cancelar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- PASO 3: CARRITO DE PRODUCTOS -->
-    <div class="bg-white rounded-lg shadow-md p-4 mb-4 border-l-4 border-blue-600">
+    <div id="paso3" class="bg-white rounded-lg shadow-md p-4 mb-4 border-l-4 border-blue-600 hidden">
       <div class="flex items-center justify-between mb-3">
         <div class="flex items-center">
           <div class="flex items-center justify-center w-6 h-6 bg-blue-600 text-white rounded-full font-bold text-xs">3</div>
@@ -255,7 +401,7 @@
 
 <script src="/js/cotizacion/cambio_almacen.js"></script>
 
-<script src="/js/cotizacion/buscar_producto.js"></script>
+<script src="/js/cotizacion/buscar_cliente_part2.js"></script>
 <script src="/js/funciones/b_producto.js"></script>
 <script src="/js/funciones/identificar_producto.js"></script>
 
