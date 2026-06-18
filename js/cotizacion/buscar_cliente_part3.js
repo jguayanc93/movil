@@ -42,7 +42,7 @@ const btnCancelarEdicion = document.getElementById("btn-cancelar-edicion");
 const modalBackdropEditar = document.getElementById("modal-backdrop-editar");
 
 // VARIABLES DE CONTROL
-const tipoCambioUSDPEN = 3.80;
+// const tipoCambioUSDPEN = 3.80;
 
 // ========================================
 // FUNCIÓN: Obtener moneda seleccionada
