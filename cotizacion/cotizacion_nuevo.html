@@ -266,6 +266,32 @@
               </div>
             </div>
 
+            <!-- PRECIO UNITARIO Y DESCUENTO MÁXIMO -->
+            <div class="p-3 bg-purple-50 rounded-lg border border-purple-200">
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <p class="text-xs text-gray-600 mb-1">Precio Unitario</p>
+                  <p class="font-bold text-purple-600 text-sm">
+                    <span id="conf-precio-unitario">0.00</span>
+                    <span id="conf-moneda-precio" class="text-xs ml-1">USD</span>
+                  </p>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-600 mb-1">Desc. Máximo</p>
+                  <p id="conf-descuento-maximo" class="font-bold text-purple-600 text-sm">0.00%</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- VALOR DE VENTA -->
+            <div class="p-3 bg-green-50 rounded-lg border border-green-200">
+              <p class="text-xs text-gray-600 mb-1">Valor de Venta</p>
+              <p class="font-bold text-green-600 text-lg">
+                <span id="conf-valor-venta">0.00</span>
+                <span id="conf-moneda-venta" class="text-sm ml-1">USD</span>
+              </p>
+            </div>
+
             <!-- CANTIDAD -->
             <div>
               <label for="conf-cantidad" class="block text-sm font-semibold text-gray-900 mb-2">
@@ -283,8 +309,7 @@
             <!-- DESCUENTO -->
             <div>
               <label for="conf-descuento" class="block text-sm font-semibold text-gray-900 mb-2">
-                Descuento (%) 
-                <span id="conf-descuento-maximo" class="text-gray-600 font-normal text-xs"></span>
+                Descuento (%)
               </label>
               <div class="relative">
                 <input type="number" id="conf-descuento" 
@@ -301,7 +326,7 @@
           <!-- FOOTER -->
           <div class="px-4 py-4 border-t border-gray-200 bg-gray-50 rounded-b-2xl space-y-2">
             <button id="btn-confirmar-producto" type="button"
-            class="w-full px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold text-sm transition-colors hover:from-green-600 hover:to-green-700 active:scale-95">
+            class="w-full px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold text-sm transition-colors hover:from-green-600 hover:to-green-700 active:scale-95 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed disabled:opacity-60">
               <i class="fas fa-check mr-2"></i>
               Agregar al Carrito
             </button>

@@ -29,6 +29,10 @@ const confProductoDescripcion = document.getElementById("conf-producto-descripci
 const confProductoStock1 = document.getElementById("conf-producto-stock1");
 const confProductoStock2 = document.getElementById("conf-producto-stock2");
 const confDescuentoMaximo = document.getElementById("conf-descuento-maximo");
+const confPrecioUnitario = document.getElementById("conf-precio-unitario");
+const confMonedaPrecio = document.getElementById("conf-moneda-precio");
+const confValorVenta = document.getElementById("conf-valor-venta");
+const confMonedaVenta = document.getElementById("conf-moneda-venta");
 const confCantidad = document.getElementById("conf-cantidad");
 const confDescuento = document.getElementById("conf-descuento");
 const errorCantidad = document.getElementById("error-cantidad");
@@ -38,7 +42,103 @@ const btnCancelarConfirmacionProducto = document.getElementById("btn-cancelar-co
 const modalBackdropConfirmacion = document.getElementById("modal-backdrop-confirmacion");
 
 // ========================================
-// ABRIR MODAL DE BÚSQUEDA DE PRODUCTOS
+// FUNCIÓN DE CONVERSIÓN DE MONEDA
+// ========================================
+const tipoCambioUSDPEN = 3.80; // Tasa de cambio fija (ajustable según necesidad)
+
+function obtenerMonedaSeleccionada() {
+    const selectMoneda = document.getElementById("alm");
+    return selectMoneda ? selectMoneda.value : "D";
+}
+
+function obtenerSímboloMoneda(monedaId) {
+    return monedaId === "D" ? "USD" : "PEN";
+}
+
+function convertirMoneda(monto, monedaOrigen) {
+    const monedaActual = obtenerMonedaSeleccionada();
+    
+    // Si la moneda origen es la misma que la actual, no convertir
+    if (monedaOrigen === monedaActual) {
+        return monto;
+    }
+    
+    // Si viene en USD y necesita convertir a PEN
+    if (monedaOrigen === "D" && monedaActual === "S") {
+        return monto * tipoCambioUSDPEN;
+    }
+    
+    // Si viene en PEN y necesita convertir a USD
+    if (monedaOrigen === "S" && monedaActual === "D") {
+        return monto / tipoCambioUSDPEN;
+    }
+    
+    return monto;
+}
+
+// ========================================
+// CALCULAR VALOR DE VENTA
+// ========================================
+function calcularValorVenta() {
+    if (!productoSeleccionadoParaConfirmar) return;
+    
+    const precioUnitario = productoSeleccionadoParaConfirmar.precioUnitario;
+    const cantidad = parseInt(confCantidad.value) || 0;
+    const descuento = parseFloat(confDescuento.value) || 0;
+    
+    // Calcular valor sin descuento
+    const valorSinDescuento = precioUnitario * cantidad;
+    
+    // Calcular descuento aplicado
+    const montoDescuento = valorSinDescuento * (descuento / 100);
+    
+    // Calcular valor final
+    const valorFinal = valorSinDescuento - montoDescuento;
+    
+    // Mostrar valor de venta formateado a 2 decimales
+    confValorVenta.textContent = valorFinal.toFixed(2);
+}
+
+// ========================================
+// ACTUALIZAR ESTADO DEL BOTÓN CONFIRMAR
+// ========================================
+function actualizarEstadoBotón() {
+    if (!productoSeleccionadoParaConfirmar) return;
+    
+    const descuento = parseFloat(confDescuento.value) || 0;
+    const descuentoMax = productoSeleccionadoParaConfirmar.descuentoMaximo;
+    const cantidad = parseInt(confCantidad.value) || 0;
+    
+    // Desabilitar si: descuento > máximo O cantidad < 1 O cantidad > 500
+    const debeDesabilitar = descuento > descuentoMax || cantidad < 1 || cantidad > 500;
+    
+    btnConfirmarProducto.disabled = debeDesabilitar;
+}
+
+// ========================================
+// RECALCULAR PRECIOS CUANDO SE CAMBIA MONEDA
+// ========================================
+function recalcularPreciosConMoneda() {
+    // Solo recalcular si hay un producto seleccionado y el modal está visible
+    if (!productoSeleccionadoParaConfirmar || modalConfirmacionProducto.classList.contains("hidden")) {
+        return;
+    }
+    
+    const monedaActual = obtenerMonedaSeleccionada();
+    const monedaActualSimbolo = obtenerSímboloMoneda(monedaActual);
+    
+    // Convertir precio unitario a la moneda actual
+    const precioConvertido = convertirMoneda(productoSeleccionadoParaConfirmar.precioUnitario, "D");
+    
+    // Actualizar símbolos y precio unitario
+    confPrecioUnitario.textContent = precioConvertido.toFixed(2);
+    confMonedaPrecio.textContent = monedaActualSimbolo;
+    confMonedaVenta.textContent = monedaActualSimbolo;
+    
+    // Recalcular valor de venta
+    calcularValorVenta();
+}
+
 // ========================================
 btnBuscarProducto.addEventListener("click", () => {
     abrirModalBusquedaProducto();
@@ -224,7 +324,8 @@ function seleccionarProducto(producto) {
         descripcion: producto[1],
         stock1: producto[2],
         stock2: producto[3],
-        descuentoMaximo: producto[4] || 0 // descuento máximo del backend
+        descuentoMaximo: producto[4] || 0, // descuento máximo del backend
+        precioUnitario: parseFloat(producto[5]) || 0 // precio unitario del backend (posición 5)
     };
     
     // Cerrar modal de búsqueda
@@ -239,18 +340,32 @@ function seleccionarProducto(producto) {
 // ========================================
 function mostrarModalConfirmacionProducto() {
     const prod = productoSeleccionadoParaConfirmar;
+    const monedaActual = obtenerMonedaSeleccionada();
+    const monedaActualSimbolo = obtenerSímboloMoneda(monedaActual);
+    
+    // Convertir precio unitario a la moneda actual (el precio viene en USD)
+    const precioConvertido = convertirMoneda(prod.precioUnitario, "D"); // Asumimos que viene en USD
     
     // Llenar datos del producto
     confProductoDescripcion.textContent = prod.descripcion;
     confProductoStock1.textContent = prod.stock1;
     confProductoStock2.textContent = prod.stock2;
-    confDescuentoMaximo.innerHTML = `<span class="text-gray-600">Máx: ${prod.descuentoMaximo.toFixed(2)}%</span>`;
+    confDescuentoMaximo.textContent = `${prod.descuentoMaximo.toFixed(2)}%`;
+    confPrecioUnitario.textContent = precioConvertido.toFixed(2);
+    confMonedaPrecio.textContent = monedaActualSimbolo;
+    confMonedaVenta.textContent = monedaActualSimbolo;
     
     // Reset de campos
     confCantidad.value = "1";
     confDescuento.value = "0.00";
     errorCantidad.classList.add("hidden");
     errorDescuento.classList.add("hidden");
+    
+    // Calcular valor de venta inicial
+    calcularValorVenta();
+    
+    // Actualizar estado del botón
+    actualizarEstadoBotón();
     
     // Mostrar modal
     modalConfirmacionProducto.classList.remove("hidden");
@@ -288,6 +403,8 @@ confCantidad.addEventListener("input", (ev) => {
         errorCantidad.textContent = "La cantidad mínima es 1";
         errorCantidad.classList.remove("hidden");
         ev.target.value = "1";
+        calcularValorVenta();
+        actualizarEstadoBotón();
         return;
     }
     
@@ -295,10 +412,15 @@ confCantidad.addEventListener("input", (ev) => {
         errorCantidad.textContent = "La cantidad máxima es 500";
         errorCantidad.classList.remove("hidden");
         ev.target.value = "500";
+        calcularValorVenta();
+        actualizarEstadoBotón();
         return;
     }
     
     errorCantidad.classList.add("hidden");
+    // Recalcular valor de venta y actualizar estado del botón
+    calcularValorVenta();
+    actualizarEstadoBotón();
 });
 
 // ========================================
@@ -311,6 +433,8 @@ confDescuento.addEventListener("blur", (ev) => {
     if (valor === "") {
         confDescuento.value = "0.00";
         errorDescuento.classList.add("hidden");
+        calcularValorVenta();
+        actualizarEstadoBotón();
         return;
     }
     
@@ -322,6 +446,8 @@ confDescuento.addEventListener("blur", (ev) => {
         errorDescuento.textContent = "Ingrese un número válido";
         errorDescuento.classList.remove("hidden");
         confDescuento.value = "0.00";
+        calcularValorVenta();
+        actualizarEstadoBotón();
         return;
     }
     
@@ -330,6 +456,8 @@ confDescuento.addEventListener("blur", (ev) => {
         errorDescuento.textContent = "El descuento no puede ser negativo";
         errorDescuento.classList.remove("hidden");
         confDescuento.value = "0.00";
+        calcularValorVenta();
+        actualizarEstadoBotón();
         return;
     }
     
@@ -337,12 +465,16 @@ confDescuento.addEventListener("blur", (ev) => {
         errorDescuento.innerHTML = `El descuento máximo permitido es <strong>${descuentoMax.toFixed(2)}%</strong>`;
         errorDescuento.classList.remove("hidden");
         confDescuento.value = descuentoMax.toFixed(2);
+        calcularValorVenta();
+        actualizarEstadoBotón();
         return;
     }
     
     // Si todo es válido, formatear a 2 decimales
     confDescuento.value = numeroValor.toFixed(2);
     errorDescuento.classList.add("hidden");
+    calcularValorVenta();
+    actualizarEstadoBotón();
 });
 
 // Validar mientras escribe para feedback inmediato
@@ -351,7 +483,11 @@ confDescuento.addEventListener("input", (ev) => {
     const descuentoMax = productoSeleccionadoParaConfirmar ? productoSeleccionadoParaConfirmar.descuentoMaximo : 100;
     
     // Solo validar el formato mientras escribe
-    if (valor === "" || valor === "-") return;
+    if (valor === "" || valor === "-") {
+        calcularValorVenta();
+        actualizarEstadoBotón();
+        return;
+    }
     
     const numeroValor = parseFloat(valor);
     
@@ -361,6 +497,12 @@ confDescuento.addEventListener("input", (ev) => {
         errorDescuento.classList.remove("hidden");
     } else {
         errorDescuento.classList.add("hidden");
+    }
+    
+    // Recalcular valor de venta en tiempo real
+    if (!isNaN(numeroValor)) {
+        calcularValorVenta();
+        actualizarEstadoBotón();
     }
 });
 
