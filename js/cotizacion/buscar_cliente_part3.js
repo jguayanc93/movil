@@ -42,7 +42,7 @@ const btnCancelarEdicion = document.getElementById("btn-cancelar-edicion");
 const modalBackdropEditar = document.getElementById("modal-backdrop-editar");
 
 // VARIABLES DE CONTROL
-// const tipoCambioUSDPEN = 3.80;
+const tipoCambioUSDPEN = 3.80;
 
 // ========================================
 // FUNCIÓN: Obtener moneda seleccionada
@@ -428,12 +428,10 @@ btnCancelarEdicion.addEventListener("click", cerrarModalEditarProducto);
 modalBackdropEditar.addEventListener("click", cerrarModalEditarProducto);
 
 // ========================================
-// BOTÓN PROMOCIONES (sin funcionalidad por ahora)
+// BOTÓN PROMOCIONES - Conectado a buscar_promo_part4.js
 // ========================================
-btnPromociones.addEventListener("click", () => {
-    console.log("Promociones seleccionadas");
-    alert("Función de Promociones aún en desarrollo");
-});
+// El evento está manejado en buscar_promo_part4.js
+// No agregar evento aquí para evitar conflictos
 
 // ========================================
 // INTEGRACIÓN CON BÚSQUEDA DE PRODUCTOS
