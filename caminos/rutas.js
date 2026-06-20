@@ -44,6 +44,9 @@ const rutapromocionrecojedor=produccion+"/promocion/mostrar";
 const rutapromocionacoplador=produccion+"/promocion/acoplar";
 ///nuevas rutas con respecto a PROMOCION ELIMINAR
 const rutapromocioneliminar=produccion+"/promocion/eliminar";
+///nuevas rutas con respecto a PROMOCION CODIGOS Y DETALLES (SEGMENTO 3)
+const rutapromocodigos=produccion+"/promocion/codigos";
+const rutapromodetalles=produccion+"/promocion/detalle";
 
 ///nuevas rutas con respecto ala CUOTA raiz principal con accesos dinamicos
 const rutacuotapermisos=produccion+"/cuota"
