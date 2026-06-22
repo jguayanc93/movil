@@ -9,7 +9,7 @@ let productoEnEdicion = null; // Producto seleccionado para modificar
 // ========================================
 const btnDetallado = document.getElementById("btn-detallado");
 const btnModificar = document.getElementById("btn-modificar");
-const btnPromociones = document.getElementById("btn-promociones");
+// const btnPromociones = document.getElementById("btn-promociones");
 const cantidadProductos = document.getElementById("cantidad-productos");
 
 // MODAL DETALLADO
