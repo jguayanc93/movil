@@ -110,6 +110,8 @@ async function obtenerCodigosPromociones() {
         // Validar que tenemos productos seleccionados
         if (!window.productosSeleccionados || Object.keys(window.productosSeleccionados).length === 0) {
             console.log("NO supere la validacion de que si tengo items seleccionados");
+            console.log("esto tenia en el listado chekear");
+            console.log(window.productosSeleccionados)
             mostrarSinPromociones();
             return;
         }
