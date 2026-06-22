@@ -40,6 +40,7 @@ const rutacotizacioncambiaralmacen=produccion+"/cotizacion/almacen";
 const rutapromocionpermisos=produccion+"/promocion";
 ///nuevas rutas con respecto a PROMOCION BUSCAR Y ADJUNTAR
 const rutapromocionbuscador=produccion+"/promocion/revisar";
+const rutapromocionrecolector=produccion+"/promocion/recolector";
 const rutapromocionrecojedor=produccion+"/promocion/mostrar";
 const rutapromocionacoplador=produccion+"/promocion/acoplar";
 ///nuevas rutas con respecto a PROMOCION ELIMINAR

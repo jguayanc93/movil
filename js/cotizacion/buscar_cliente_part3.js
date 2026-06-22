@@ -95,7 +95,7 @@ function agregarProductoSeleccionado(producto, cantidad, descuento) {
         cantidad: cantidad,
         descuento: descuento,
         precioUnitario: producto.precioUnitario,
-        descuentoMaximo: producto.descuentoMaximo || 100,
+        descuentoMaximo: producto.descuentoMaximo || 6,
         stock1: producto.stock1,
         stock2: producto.stock2
     };
