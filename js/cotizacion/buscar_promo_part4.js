@@ -37,7 +37,7 @@ const promoMonedasSpan = [
 // ========================================
 // CONFIGURACIÓN
 // ========================================
-const tipoCambioUSDPEN = 3.80;
+// const tipoCambioUSDPEN = 3.80;
 
 // ========================================
 // FUNCIÓN: Obtener moneda y conversión
