@@ -1,7 +1,9 @@
 // ========================================
 // ESTADO GLOBAL - PRODUCTOS SELECCIONADOS
 // ========================================
-let productosSeleccionados = {}; // Objeto con ID como clave
+let productosSeleccionados = {}; // Objeto con índices numéricos: {0: {...}, 1: {...}}
+let idsProductosAgregados = []; // Array para rastrear IDs únicos y evitar duplicados
+let contadorProductos = 0; // Contador para índices numéricos
 let productoEnEdicion = null; // Producto seleccionado para modificar
 
 // ========================================
@@ -42,8 +44,7 @@ const btnCancelarEdicion = document.getElementById("btn-cancelar-edicion");
 const modalBackdropEditar = document.getElementById("modal-backdrop-editar");
 
 // VARIABLES DE CONTROL
-// const tipoCambioUSDPEN = 3.80;
-
+// const tipoCambioUSDPEN = 3.80;let indiceProductoEnEdicion = null; // Índice numérico del producto siendo editado
 // ========================================
 // FUNCIÓN: Obtener moneda seleccionada
 // ========================================
@@ -78,18 +79,18 @@ function convertirMoneda(monto, monedaOrigen) {
 }
 
 // ========================================
-// FUNCIÓN: Agregar producto (con validación de duplicados)
+// FUNCIÓN: Agregar producto (con validación de duplicados por ID)
 // ========================================
 function agregarProductoSeleccionado(producto, cantidad, descuento) {
     // Validar si el producto ya existe por ID
-    if (productosSeleccionados[producto.id]) {
+    if (idsProductosAgregados.includes(producto.id)) {
         console.warn(`Producto con ID ${producto.id} ya existe en la lista. Se ignorará.`);
         return false;
     }
 
-    // Guardar el producto seleccionado
-    productosSeleccionados[producto.id] = {
-        id: producto.id,
+    // Guardar el producto seleccionado con índice numérico
+    productosSeleccionados[contadorProductos] = {
+        codigo: producto.id,
         descripcion: producto.descripcion,
         cantidad: cantidad,
         descuento: descuento,
@@ -98,6 +99,10 @@ function agregarProductoSeleccionado(producto, cantidad, descuento) {
         stock1: producto.stock1,
         stock2: producto.stock2
     };
+
+    // Rastrear ID para evitar duplicados
+    idsProductosAgregados.push(producto.id);
+    contadorProductos++;
 
     // Actualizar UI
     actualizarResumenProductos();
@@ -150,6 +155,9 @@ function abrirModalDetallado() {
         const detalles = document.createElement("div");
         detalles.className = "grid grid-cols-2 gap-2 text-xs text-gray-600 mb-3";
         
+        const detalleCodigo = document.createElement("p");
+        detalleCodigo.innerHTML = `<span class="font-medium">Código:</span> ${producto.codigo}`;
+        
         const detalleCantidad = document.createElement("p");
         detalleCantidad.innerHTML = `<span class="font-medium">Cantidad:</span> ${producto.cantidad}`;
         
@@ -159,13 +167,10 @@ function abrirModalDetallado() {
         const detallePrecio = document.createElement("p");
         detallePrecio.innerHTML = `<span class="font-medium">Precio Unit.:</span> ${monedaSymbol} ${precioConvertido.toFixed(2)}`;
         
-        const detalleStock = document.createElement("p");
-        detalleStock.innerHTML = `<span class="font-medium">Stock:</span> ${producto.stock1} / ${producto.stock2}`;
-        
+        detalles.appendChild(detalleCodigo);
         detalles.appendChild(detalleCantidad);
         detalles.appendChild(detalleDescuento);
         detalles.appendChild(detallePrecio);
-        detalles.appendChild(detalleStock);
         
         const valorVentaDiv = document.createElement("div");
         valorVentaDiv.className = "p-2 bg-green-50 rounded-lg border border-green-200";
@@ -219,7 +224,7 @@ btnConformidad.addEventListener("click", () => {
 function abrirModalModificar() {
     listaProductosModificar.innerHTML = "";
 
-    Object.values(productosSeleccionados).forEach((producto) => {
+    Object.entries(productosSeleccionados).forEach(([indice, producto]) => {
         const item = document.createElement("div");
         item.className = "p-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer transition-colors hover:bg-gray-100 active:bg-gray-200";
         
@@ -236,8 +241,7 @@ function abrirModalModificar() {
         
         // Al hacer click, abrir modal de edición
         item.addEventListener("click", () => {
-            productoEnEdicion = producto;
-            abrirModalEditarProducto(producto);
+            abrirModalEditarProducto(indice, producto);
         });
         
         listaProductosModificar.appendChild(item);
@@ -260,7 +264,8 @@ modalBackdropModificar.addEventListener("click", cerrarModalModificar);
 // ========================================
 // FUNCIÓN: Abrir modal de edición de producto
 // ========================================
-function abrirModalEditarProducto(producto) {
+function abrirModalEditarProducto(indice, producto) {
+    indiceProductoEnEdicion = indice;
     productoEnEdicion = producto;
     
     editProductoNombre.textContent = producto.descripcion;
@@ -284,6 +289,7 @@ function cerrarModalEditarProducto() {
     modalEditarProducto.classList.add("hidden");
     document.body.classList.remove("modal-abierto");
     productoEnEdicion = null;
+    indiceProductoEnEdicion = null;
 }
 
 function recalcularValorVentaEdicion() {
@@ -410,10 +416,10 @@ btnGuardarCambios.addEventListener("click", () => {
     
     if (tieneError) return;
     
-    // Guardar cambios
-    if (productoEnEdicion) {
-        productosSeleccionados[productoEnEdicion.id].cantidad = cantidad;
-        productosSeleccionados[productoEnEdicion.id].descuento = descuento;
+    // Guardar cambios usando el índice numérico
+    if (indiceProductoEnEdicion !== null && productosSeleccionados[indiceProductoEnEdicion]) {
+        productosSeleccionados[indiceProductoEnEdicion].cantidad = cantidad;
+        productosSeleccionados[indiceProductoEnEdicion].descuento = descuento;
     }
     
     // Cerrar modales
@@ -455,3 +461,15 @@ window.agregarProductoAlCarrito = function(producto, cantidad, descuento) {
 
 // Inicializar
 actualizarResumenProductos();
+
+// ========================================
+// FUNCIÓN: Reiniciar estado
+// ========================================
+function reiniciarSegmento3() {
+    productosSeleccionados = {};
+    idsProductosAgregados = [];
+    contadorProductos = 0;
+    productoEnEdicion = null;
+    indiceProductoEnEdicion = null;
+    actualizarResumenProductos();
+}
