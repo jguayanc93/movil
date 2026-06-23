@@ -133,17 +133,22 @@ async function obtenerCodigosPromociones() {
         // Llamar API para obtener códigos de promos
         let paso1 = await fetch(rutapromocionrecolector, fetchobj);
         let paso2 = await paso1.json();
-        console.log("en caso funcione hasta aqui",paso2);
-        let codigosPromos = await JSON.parse(paso2);
+        // console.log("en caso funcione hasta aqui",paso2);
+        // let codigosPromos = await JSON.parse(paso2);
 
         // Verificar si hay promociones disponibles
-        if (!codigosPromos || Object.keys(codigosPromos).length === 0) {
+        // if (!codigosPromos || Object.keys(codigosPromos).length === 0) {
+        //     mostrarSinPromociones();
+        //     return;
+        // }
+        if (!Array.isArray(paso2)) {
             mostrarSinPromociones();
             return;
         }
 
         // Obtener detalles de cada promoción
-        await obtenerDetallesPromociones(codigosPromos);
+        // await obtenerDetallesPromociones(codigosPromos);
+        await obtenerDetallesPromociones(paso2);
 
     } catch (err) {
         console.error("Error al obtener códigos de promociones:", err);
