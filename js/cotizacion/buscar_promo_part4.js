@@ -133,6 +133,7 @@ async function obtenerCodigosPromociones() {
         // Llamar API para obtener códigos de promos
         let paso1 = await fetch(rutapromocionrecolector, fetchobj);
         let paso2 = await paso1.json();
+        console.log("en caso funcione hasta aqui",paso2);
         let codigosPromos = await JSON.parse(paso2);
 
         // Verificar si hay promociones disponibles
