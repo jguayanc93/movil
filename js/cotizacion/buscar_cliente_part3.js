@@ -1,7 +1,7 @@
 // ========================================
 // ESTADO GLOBAL - PRODUCTOS SELECCIONADOS
 // ========================================
-let productosSeleccionados = {}; // Objeto con índices numéricos: {0: {...}, 1: {...}}
+var productosSeleccionados = {}; // Objeto con índices numéricos: {0: {...}, 1: {...}}
 let idsProductosAgregados = []; // Array para rastrear IDs únicos y evitar duplicados
 let contadorProductos = 0; // Contador para índices numéricos
 let productoEnEdicion = null; // Producto seleccionado para modificar
