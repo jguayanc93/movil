@@ -213,6 +213,7 @@ async function obtenerDetallePromo(codigoPromo) {
 
         let paso1 = await fetch(rutapromodetalles, fetchobj);
         let paso2 = await paso1.json();
+        console.log("revisa lo que trae el detallado por bucle",paso2);
         let detallePromo = await JSON.parse(paso2);
 
         // Retornar null si la respuesta indica error o no cumple requisitos
