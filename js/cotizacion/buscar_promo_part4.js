@@ -200,6 +200,7 @@ async function obtenerDetallesPromociones(codigosPromos) {
 // ========================================
 async function obtenerDetallePromo(codigoPromo) {
     try {
+        console.log("idprom",codigoPromo);
         let dataenviar = new Object();
         dataenviar.codigo = codigoPromo;
         dataenviar.productos = window.productosSeleccionados;
