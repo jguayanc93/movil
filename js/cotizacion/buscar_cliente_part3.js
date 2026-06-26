@@ -303,7 +303,7 @@ function recalcularValorVentaEdicion() {
     const valorVenta = calcularValorVentaProducto(precioConvertido, cantidad, descuento);
     editValorVenta.textContent = valorVenta.toFixed(2);
     // Guardando el valor del monto total con descuento cuando se modifica la cantidad o el descuento
-    productoEnEdicion.total = valorVenta.toFixed(2);
+    productoEnEdicion.preciosinIGV = Number(valorVenta.toFixed(2));
 }
 
 editCantidad.addEventListener("input", (ev) => {
