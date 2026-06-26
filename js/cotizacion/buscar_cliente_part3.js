@@ -302,6 +302,8 @@ function recalcularValorVentaEdicion() {
     
     const valorVenta = calcularValorVentaProducto(precioConvertido, cantidad, descuento);
     editValorVenta.textContent = valorVenta.toFixed(2);
+    // Guardando el valor del monto total con descuento cuando se modifica la cantidad o el descuento
+    productoEnEdicion.total = valorVenta.toFixed(2);
 }
 
 editCantidad.addEventListener("input", (ev) => {
@@ -346,7 +348,7 @@ editDescuento.addEventListener("blur", (ev) => {
     }
     
     const numeroValor = parseFloat(valor);
-    const descuentoMax = productoEnEdicion ? (productoEnEdicion.descuentoMaximo || 100) : 100;
+    const descuentoMax = productoEnEdicion ? (productoEnEdicion.descuentoMaximo || 6) : 1;
     
     // Validar que sea un número válido
     if (isNaN(numeroValor)) {
