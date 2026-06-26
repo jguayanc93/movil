@@ -196,7 +196,6 @@ async function obtenerDetallesPromociones(codigosPromos) {
 // ========================================
 async function obtenerDetallePromo(codigoPromo) {
     try {
-        console.log("idprom",codigoPromo);
         let dataenviar = new Object();
         dataenviar.codigo = codigoPromo;
         dataenviar.productos = window.productosSeleccionados;
@@ -266,9 +265,13 @@ function mostrarPromoEnLista(promo, index) {
     // Descuento
     const descuentoDiv = document.createElement("div");
     descuentoDiv.className = "p-2 bg-red-50 rounded-lg border border-red-200";
+    // descuentoDiv.innerHTML = `
+    //     <p class="text-xs text-gray-600 mb-1">Descuento en Monto</p>
+    //     <p class="text-sm font-bold text-red-600">-${montoDescuentoConvertido.toFixed(2)} ${monedaSymbol}</p>
+    // `;
     descuentoDiv.innerHTML = `
         <p class="text-xs text-gray-600 mb-1">Descuento en Monto</p>
-        <p class="text-sm font-bold text-red-600">-${montoDescuentoConvertido.toFixed(2)} ${monedaSymbol}</p>
+        <p class="text-sm font-bold text-red-600">-${isNaN(montoDescuentoConvertido.toFixed(2)) ? '0.00' : montoDescuentoConvertido.toFixed(2)} ${monedaSymbol}</p>
     `;
     
     item.appendChild(titulo);
