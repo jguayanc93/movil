@@ -98,7 +98,7 @@ function calcularValorVenta() {
     // Mostrar valor de venta formateado a 2 decimales
     confValorVenta.textContent = valorFinal.toFixed(2);
     // Guardando el valor del monto total con descuento para usarlo despues
-    productoSeleccionadoParaConfirmar["total"] = valorFinal.toFixed(2);
+    productoSeleccionadoParaConfirmar["total"] = Number(valorFinal.toFixed(2));
 }
 
 // ========================================
