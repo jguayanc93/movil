@@ -110,13 +110,10 @@ async function obtenerCodigosPromociones() {
         // Validar que tenemos productos seleccionados
         if (!window.productosSeleccionados || Object.keys(window.productosSeleccionados).length === 0) {
             console.log("NO supere la validacion de que si tengo items seleccionados");
-            console.log("esto tenia en el listado chekear");
             console.log(window.productosSeleccionados)
             mostrarSinPromociones();
             return;
         }
-        console.log("supere la validacion de que si tengo items seleccionados");
-
         // Preparar datos para enviar al backend
         let dataenviar = new Object();
         dataenviar.productos = window.productosSeleccionados;
@@ -133,7 +130,6 @@ async function obtenerCodigosPromociones() {
         // Llamar API para obtener códigos de promos
         let paso1 = await fetch(rutapromocionrecolector, fetchobj);
         let paso2 = await paso1.json();
-        // console.log("en caso funcione hasta aqui",paso2);
         // let codigosPromos = await JSON.parse(paso2);
 
         // Verificar si hay promociones disponibles
