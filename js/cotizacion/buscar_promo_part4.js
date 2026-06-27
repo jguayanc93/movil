@@ -55,6 +55,10 @@ function convertirMoneda(monto, monedaOrigen) {
     const monedaActual = obtenerMonedaSeleccionada();
     
     if (monedaOrigen === monedaActual) {
+        ////aqui hago un espacio para manejar el caso de que el monto sea NaN
+        if (isNaN(monto)) {
+            return 0;
+        }
         return monto;
     }
     
