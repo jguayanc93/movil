@@ -215,6 +215,7 @@ async function obtenerDetallePromo(codigoPromo) {
         let paso2 = await paso1.json();
         console.log("revisa lo que trae el detallado por bucle",paso2);
         let detallePromo = await JSON.parse(paso2);
+        console.log("revisa el paso3",detallePromo);
 
         // Retornar null si la respuesta indica error o no cumple requisitos
         if (!detallePromo || detallePromo.error || !detallePromo.codigo) {
