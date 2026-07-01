@@ -569,7 +569,7 @@
           <!-- Observación 1: Cálculo con descuento -->
           <div class="p-3 bg-white rounded-lg border border-purple-200">
             <p class="text-xs text-gray-600 mb-2">Valor con Descuento (sin IGV)</p>
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center gap-4">
               <div>
                 <p class="text-sm text-gray-700">Valor Venta</p>
                 <p class="text-lg font-bold text-gray-900">
@@ -581,6 +581,7 @@
                 <p class="text-sm text-gray-700">Descuento</p>
                 <p class="text-lg font-bold text-red-600">
                   -<span id="promo-monto-descuento">0.00</span>
+                  <span id="promo-moneda-descuento" class="text-xs ml-1">USD</span>
                 </p>
               </div>
             </div>
@@ -593,13 +594,22 @@
             </div>
           </div>
 
-          <!-- Observación 2: Valor con IGV -->
-          <div class="p-3 bg-green-50 rounded-lg border border-green-200">
-            <p class="text-xs text-gray-600 mb-1">Con IGV (18%)</p>
-            <p class="text-lg font-bold text-green-600">
-              <span id="promo-total-con-igv">0.00</span>
-              <span id="promo-moneda-igv" class="text-xs ml-1">USD</span>
-            </p>
+          <!-- Observación 2: IGV y total con IGV -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="p-3 bg-green-50 rounded-lg border border-green-200">
+              <p class="text-xs text-gray-600 mb-1">IGV (18%)</p>
+              <p class="text-lg font-bold text-green-600">
+                <span id="promo-monto-igv">0.00</span>
+                <span id="promo-moneda-igv" class="text-xs ml-1">USD</span>
+              </p>
+            </div>
+            <div class="p-3 bg-green-100 rounded-lg border border-green-200">
+              <p class="text-xs text-gray-600 mb-1">Total con IGV</p>
+              <p class="text-lg font-bold text-green-700">
+                <span id="promo-total-con-igv">0.00</span>
+                <span id="promo-moneda-total-igv" class="text-xs ml-1">USD</span>
+              </p>
+            </div>
           </div>
 
           <!-- Ahorro estimado -->
