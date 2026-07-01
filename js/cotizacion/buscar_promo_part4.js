@@ -179,7 +179,6 @@ modalBackdropPromociones.addEventListener("click", cerrarModalPromociones);
 // ========================================
 async function obtenerCodigosPromociones() {
     try {
-        console.log("entre en la funcion de obtener codigos de promociones");
         // Validar que tenemos productos seleccionados
         if (!window.productosSeleccionados || Object.keys(window.productosSeleccionados).length === 0) {
             console.log("NO supere la validacion de que si tengo items seleccionados");
@@ -272,6 +271,7 @@ async function obtenerDetallePromo(codigoPromo) {
 
         const paso1 = await fetch(rutapromodetalles, fetchobj);
         const textoRespuesta = await paso1.text();
+        console.log(`Detalle de promoción ${codigoPromo}:`, textoRespuesta);
         const detallePromo = normalizarPromoDetalle(textoRespuesta, codigoPromo);
 
         if (!detallePromo || !detallePromo.lineas || detallePromo.lineas.length === 0) {
