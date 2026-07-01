@@ -31,6 +31,7 @@ const promoAhorroTotal = document.getElementById("promo-ahorro-total");
 const promoMonedasSpan = [
     document.getElementById("promo-moneda-venta"),
     document.getElementById("promo-moneda-descuento"),
+    document.getElementById("promo-moneda-total-descuento"),
     document.getElementById("promo-moneda-igv"),
     document.getElementById("promo-moneda-total-igv"),
     document.getElementById("promo-moneda-ahorro")
