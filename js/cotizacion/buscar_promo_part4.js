@@ -90,6 +90,8 @@ function parseJSONResponse(value) {
 
 function normalizarDetalleLinea(linea, promoDefaults = {}) {
     console.log("Normalizando línea de detalle:", linea);
+    console.log("Normalizando dentro del objeto detalle:", promoDefaults);
+    // let nuevalinea=linea["items"];
     const tipoRaw = (linea.tipo || linea.tipoPromocion || linea.accion || linea.accionPromo || linea.modo || "").toString().toLowerCase();
     const esRegalo = tipoRaw.includes("regalo") || tipoRaw.includes("gift") || tipoRaw.includes("gratis") || tipoRaw.includes("obsequio") || parseFloat(linea.precioUnitario) === 0;
     const tipo = esRegalo ? "REGALO" : "DESCUENTO";
