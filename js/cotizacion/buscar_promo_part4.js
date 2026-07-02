@@ -89,6 +89,7 @@ function parseJSONResponse(value) {
 }
 
 function normalizarDetalleLinea(linea, promoDefaults = {}) {
+    console.log("Normalizando línea de detalle:", linea);
     const tipoRaw = (linea.tipo || linea.tipoPromocion || linea.accion || linea.accionPromo || linea.modo || "").toString().toLowerCase();
     const esRegalo = tipoRaw.includes("regalo") || tipoRaw.includes("gift") || tipoRaw.includes("gratis") || tipoRaw.includes("obsequio") || parseFloat(linea.precioUnitario) === 0;
     const tipo = esRegalo ? "REGALO" : "DESCUENTO";
@@ -116,6 +117,7 @@ function normalizarPromoDetalle(response, codigoPromo) {
     if (!data) return null;
     ////este caso nunca ocurrira porqe siempre retornara un objeto
     if (Array.isArray(data)) {
+        console.log("no creo que entre en esta funcion")
         const lineas = data.map(item => normalizarDetalleLinea(item, { codigo: codigoPromo }));
         return {
             codigo: codigoPromo,
