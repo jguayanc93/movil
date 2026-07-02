@@ -114,7 +114,7 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
 function normalizarPromoDetalle(response, codigoPromo) {
     const data = parseJSONResponse(response);
     if (!data) return null;
-
+    ////este caso nunca ocurrira porqe siempre retornara un objeto
     if (Array.isArray(data)) {
         const lineas = data.map(item => normalizarDetalleLinea(item, { codigo: codigoPromo }));
         return {
@@ -126,6 +126,7 @@ function normalizarPromoDetalle(response, codigoPromo) {
 
     const lineasRaw = data.detalles || data.detalle || data.items || data.lineas || data.beneficios || data.promociones;
     if (Array.isArray(lineasRaw) && lineasRaw.length > 0) {
+        console.log("entre en la funcion 1 para ver si tiene el detalle de detalle")
         const lineas = lineasRaw.map(item => normalizarDetalleLinea(item, { codigo: data.codigo || codigoPromo, descripcion: data.descripcion }));
         return {
             codigo: data.codigo || codigoPromo,
