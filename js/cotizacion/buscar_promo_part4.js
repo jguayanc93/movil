@@ -88,19 +88,38 @@ function parseJSONResponse(value) {
     return value;
 }
 
+// Normaliza una línea de promoción a un formato interno común.
+// Esto permite manejar distintos nombres de campo que pueda devolver el backend.
 function normalizarDetalleLinea(linea, promoDefaults = {}) {
+    // Extrae el tipo de línea usando múltiples alias posibles.
     const tipoRaw = (
         linea.tipo || linea.Tipo || linea.tipoPromocion || linea.TipoPromocion || linea.accion || linea.accionPromo || linea.modo || ""
     ).toString().toLowerCase();
+
+    // Determina si la línea es regalo por palabras clave o precio unitario igual a cero.
     const esRegalo = tipoRaw.includes("regalo") || tipoRaw.includes("gift") || tipoRaw.includes("gratis") || tipoRaw.includes("obsequio") || parseFloat(linea.precioUnitario ?? linea.PrecioUnitario ?? linea.precio ?? linea.Precio ?? 0) === 0;
+
+    // Define el tipo estandarizado para la UI y cálculos.
     const tipo = esRegalo ? "REGALO" : "DESCUENTO";
+
+    // Extrae la descripción con alias y fallback a la descripción de la promoción.
     const descripcion = linea.descripcion || linea.Descripcion || linea.nombre || linea.Nombre || linea.producto || linea.articulo || linea.detalle || promoDefaults.descripcion || "";
+
+    // Extrae el código de promción con alias y fallback.
     const codigo = linea.codigo || linea.Codigo || linea.promocion || linea.promoCodigo || promoDefaults.codigo || "";
+
+    // Extrae la cantidad con alias qty y fallback a 1.
     const cantidad = parseInt(linea.cantidad ?? linea.qty ?? linea.Cantidad ?? 1, 10) || 1;
+
+    // Extrae el monto de descuento/valor/ahorro con varios alias posibles.
     const monto = parseFloat(
         linea.montoDescuento ?? linea.MontoDescuento ?? linea.valorDescuento ?? linea.ValorDescuento ?? linea.valor ?? linea.Valor ?? linea.ahorro ?? linea.Ahorro ?? 0
     ) || 0;
+
+    // Extrae la moneda usando alias y valor por defecto D.
     const moneda = linea.monedaDescuento || linea.MonedaDescuento || linea.moneda || linea.Moneda || linea.monedaVenta || linea.monedaVenta || "D";
+
+    // Extrae el precio unitario con alias y fallback cero.
     const precioUnitario = parseFloat(linea.precioUnitario ?? linea.PrecioUnitario ?? linea.precio ?? linea.Precio ?? 0) || 0;
 
     return {
@@ -116,12 +135,17 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
 }
 
 function normalizarPromoDetalle(response, codigoPromo) {
+    // El backend puede devolver un objeto con detalle o una colección indexada.
+    // Esta función intenta normalizar cualquier estructura válida a:
+    // { codigo, descripcion, lineas: [ ... ] }
     const data = parseJSONResponse(response);
     if (!data) return null;
 
+    // Extracción de código y descripción general con alias.
     const codigoGeneral = data.codigo || data.Codigo || codigoPromo;
     const descripcionGeneral = data.descripcion || data.Descripcion || "Promoción disponible";
 
+    // Caso: el backend devuelve directamente un array de líneas de promoción.
     if (Array.isArray(data)) {
         const lineas = data
             .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
@@ -134,6 +158,7 @@ function normalizarPromoDetalle(response, codigoPromo) {
         };
     }
 
+    // Caso: el objeto tiene claves numéricas como 0, 1, 2, ... con los detalles de cada línea.
     const numericKeysLineas = Object.keys(data)
         .filter((key) => /^[0-9]+$/.test(key))
         .sort((a, b) => Number(a) - Number(b))
@@ -141,12 +166,12 @@ function normalizarPromoDetalle(response, codigoPromo) {
         .filter((item) => item && typeof item === 'object');
 
     if (numericKeysLineas.length > 0) {
-        console.log("Se encontraron lineas numericas en la respuesta:", numericKeysLineas);
+        console.log("sera esta funcion 1");
         const lineas = numericKeysLineas
             .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
             .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
 
-        console.log("que se encontro al normalisar",lineas);
+        console.log("que se encontro al normalisar", lineas);
         return {
             codigo: codigoGeneral,
             descripcion: descripcionGeneral || lineas[0]?.descripcion || "Promoción disponible",
@@ -154,10 +179,11 @@ function normalizarPromoDetalle(response, codigoPromo) {
         };
     }
 
+    // Buscar propiedades comunes que contienen arrays de líneas de promoción.
     const lineasRaw = data.detalles || data.detalle || data.items || data.lineas || data.beneficios || data.promociones || data.detalleLinea || data.detalle_lineas;
 
     if (Array.isArray(lineasRaw) && lineasRaw.length > 0) {
-        console.log("o talves se usa la otra funcion?");
+        // Caso: un array de líneas dentro de una propiedad del objeto principal.
         const lineas = lineasRaw
             .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
             .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
@@ -169,7 +195,9 @@ function normalizarPromoDetalle(response, codigoPromo) {
         };
     }
 
+    // Caso: la propiedad encontrada es un objeto individual en lugar de un array.
     if (lineasRaw && typeof lineasRaw === 'object') {
+        console.log("sera esta funcion 2");
         const lineas = [normalizarDetalleLinea(lineasRaw, { codigo: codigoGeneral, descripcion: descripcionGeneral })]
             .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
 
@@ -180,6 +208,7 @@ function normalizarPromoDetalle(response, codigoPromo) {
         };
     }
 
+    // Fallback: normaliza el objeto completo como una sola línea.
     const singleLinea = normalizarDetalleLinea(data, { codigo: codigoGeneral, descripcion: descripcionGeneral });
     return {
         codigo: codigoGeneral,
@@ -192,7 +221,8 @@ function normalizarPromoDetalle(response, codigoPromo) {
 // FUNCIÓN: Abrir modal de promociones
 // ========================================
 function abrirModalPromociones() {
-    // Resetear estado
+    // 1) Resetear estado inicial al abrir el modal.
+    //    Borrar resultados previos y mostrar el loader.
     promocionesExitosas = [];
     promocionesAplicadas = [];
     listaPromociones.innerHTML = "";
@@ -200,11 +230,11 @@ function abrirModalPromociones() {
     sinPromociones.classList.add("hidden");
     promosTotal.classList.add("hidden");
     
-    // Mostrar modal
+    // 2) Mostrar modal en pantalla.
     modalPromociones.classList.remove("hidden");
     document.body.classList.add("modal-abierto");
     
-    // Obtener códigos de promociones
+    // 3) Iniciar el flujo de búsqueda de promociones.
     obtenerCodigosPromociones();
 }
 
@@ -225,17 +255,18 @@ modalBackdropPromociones.addEventListener("click", cerrarModalPromociones);
 // ========================================
 async function obtenerCodigosPromociones() {
     try {
-        // Validar que tenemos productos seleccionados
+        // Validar que tengamos productos en el carrito antes de llamar la API.
         if (!window.productosSeleccionados || Object.keys(window.productosSeleccionados).length === 0) {
             console.log("NO supere la validacion de que si tengo items seleccionados");
             mostrarSinPromociones();
             return;
         }
-        // Preparar datos para enviar al backend
+
+        // Preparar payload con los productos seleccionados.
         let dataenviar = new Object();
         dataenviar.productos = window.productosSeleccionados;
 
-        console.log("revisar los productos",window.productosSeleccionados);
+        console.log("revisar los productos", window.productosSeleccionados);
         
         let fetchobj = new Object();
         fetchobj.method = "POST";
@@ -244,16 +275,18 @@ async function obtenerCodigosPromociones() {
         fetchobj.credentials = "include";
         fetchobj.body = JSON.stringify(dataenviar);
 
-        // Llamar API para obtener códigos de promos
+        // Llamar API para obtener códigos de promociones.
         let paso1 = await fetch(rutapromocionrecolector, fetchobj);
         let textoRespuesta = await paso1.text();
         const codigosPromos = parseJSONResponse(textoRespuesta);
 
+        // Si no hay códigos, mostrar estado de sin promociones.
         if (!Array.isArray(codigosPromos) || codigosPromos.length === 0) {
             mostrarSinPromociones();
             return;
         }
 
+        // Pasar los códigos para obtener los detalles de cada promoción.
         await obtenerDetallesPromociones(codigosPromos);
 
     } catch (err) {
@@ -266,6 +299,7 @@ async function obtenerCodigosPromociones() {
 // FUNCIÓN: Obtener detalles de cada promoción
 // ========================================
 async function obtenerDetallesPromociones(codigosPromos) {
+    // Si el backend entregó códigos válidos, iniciamos la solicitud de detalles.
     promosLoading.classList.remove("hidden");
     listaPromociones.innerHTML = "";
     
@@ -273,6 +307,7 @@ async function obtenerDetallesPromociones(codigosPromos) {
     const promesasDetalles = codigosArray.map(codigo => obtenerDetallePromo(codigo));
     const resultados = await Promise.allSettled(promesasDetalles);
 
+    // Recolectar solo promociones que retornaron detalles válidos.
     let promoExitosaCount = 0;
     resultados.forEach((resultado) => {
         if (resultado.status === "fulfilled" && resultado.value && resultado.value.lineas?.length > 0) {
@@ -290,6 +325,7 @@ async function obtenerDetallesPromociones(codigosPromos) {
         return;
     }
 
+    // Mostrar cantidad real de promociones disponibles y calcular totales.
     contadorPromos.textContent = `Se encontraron ${promoExitosaCount} promoción${promoExitosaCount !== 1 ? 'es' : ''}`;
     promosLoading.classList.add("hidden");
     promosTotal.classList.remove("hidden");
@@ -301,6 +337,7 @@ async function obtenerDetallesPromociones(codigosPromos) {
 // ========================================
 async function obtenerDetallePromo(codigoPromo) {
     try {
+        // Enviar código de promoción y productos seleccionados para recibir su detalle.
         const dataenviar = {
             codigo: codigoPromo,
             productos: window.productosSeleccionados
@@ -316,6 +353,8 @@ async function obtenerDetallePromo(codigoPromo) {
         const paso1 = await fetch(rutapromodetalles, fetchobj);
         const textoRespuesta = await paso1.text();
         console.log(`Detalle de promoción ${codigoPromo}:`, textoRespuesta);
+
+        // El backend puede devolver un objeto con claves numéricas, arrays, o un objeto detalle.
         const detallePromo = normalizarPromoDetalle(textoRespuesta, codigoPromo);
 
         if (!detallePromo || !detallePromo.lineas || detallePromo.lineas.length === 0) {
@@ -334,6 +373,7 @@ async function obtenerDetallePromo(codigoPromo) {
 // FUNCIÓN: Mostrar promoción en lista
 // ========================================
 function mostrarPromoEnLista(promo) {
+    // Renderizar cada promoción en el modal usando el formato normalizado.
     const monedaActual = obtenerMonedaSeleccionada();
     const monedaSymbol = obtenerSímboloMoneda(monedaActual);
 
@@ -418,6 +458,7 @@ function mostrarSinPromociones() {
 // FUNCIÓN: Calcular totales de promociones
 // ========================================
 function calcularTotalesPromociones() {
+    // Calcular valores de resumen a partir del carrito y las promociones encontradas.
     if (promocionesExitosas.length === 0) return;
 
     const monedaActual = obtenerMonedaSeleccionada();
@@ -458,25 +499,25 @@ function calcularTotalesPromociones() {
 // FUNCIÓN: Aplicar promociones
 // ========================================
 btnAplicarPromo.addEventListener("click", () => {
+    // Al aplicar promociones, solo cerramos el modal y guardamos el estado actual.
     if (promocionesExitosas.length === 0) {
         alert("No hay promociones para aplicar");
         return;
     }
 
-    // Guardar promociones aplicadas
+    // Guardar promociones aplicadas para su uso posterior.
     promocionesAplicadas = [...promocionesExitosas];
 
-    // Log para verificar
+    // Log para verificar en consola antes de cerrar modal.
     console.log("Promociones aplicadas:", promocionesAplicadas);
 
-    // Aquí se puede hacer más (enviar al backend, actualizar UI, etc.)
-    // Por ahora solo notificamos y cerramos
+    // Notificar al usuario.
     alert(`¡${promocionesAplicadas.length} promoción${promocionesAplicadas.length !== 1 ? 'es' : ''} aplicada${promocionesAplicadas.length !== 1 ? 's' : ''}!`);
     
-    // Cerrar modal
+    // Cerrar modal y regresar al flujo principal.
     cerrarModalPromociones();
 
-    // Actualizar UI si es necesario
+    // Si se requiere, aquí podría actualizarse el carrito o el summary.
     // updatearUI();
 });
 
