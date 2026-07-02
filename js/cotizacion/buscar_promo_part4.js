@@ -89,19 +89,19 @@ function parseJSONResponse(value) {
 }
 
 function normalizarDetalleLinea(linea, promoDefaults = {}) {
-    console.log("Normalizando línea de detalle:", linea);
-    console.log("Normalizando dentro del objeto detalle:", promoDefaults);
-    // let nuevalinea=linea["items"];
-    const tipoRaw = (linea.tipo || linea.tipoPromocion || linea.accion || linea.accionPromo || linea.modo || "").toString().toLowerCase();
-    const esRegalo = tipoRaw.includes("regalo") || tipoRaw.includes("gift") || tipoRaw.includes("gratis") || tipoRaw.includes("obsequio") || parseFloat(linea.precioUnitario) === 0;
+    const tipoRaw = (
+        linea.tipo || linea.Tipo || linea.tipoPromocion || linea.TipoPromocion || linea.accion || linea.accionPromo || linea.modo || ""
+    ).toString().toLowerCase();
+    const esRegalo = tipoRaw.includes("regalo") || tipoRaw.includes("gift") || tipoRaw.includes("gratis") || tipoRaw.includes("obsequio") || parseFloat(linea.precioUnitario ?? linea.PrecioUnitario ?? linea.precio ?? linea.Precio ?? 0) === 0;
     const tipo = esRegalo ? "REGALO" : "DESCUENTO";
-    console.log("revisando el tipo de regreso que a manejado",tipo);
-    const descripcion = linea.descripcion || linea.nombre || linea.producto || linea.articulo || linea.detalle || promoDefaults.descripcion || "";
-    const codigo = linea.codigo || linea.promocion || linea.promoCodigo || promoDefaults.codigo || "";
-    const cantidad = parseInt(linea.cantidad ?? linea.qty ?? 1, 10) || 1;
-    const monto = parseFloat(linea.montoDescuento ?? linea.valorDescuento ?? linea.valor ?? linea.ahorro ?? 0) || 0;
-    const moneda = linea.monedaDescuento || linea.moneda || linea.monedaVenta || "D";
-    const precioUnitario = parseFloat(linea.precioUnitario ?? linea.precio ?? 0) || 0;
+    const descripcion = linea.descripcion || linea.Descripcion || linea.nombre || linea.Nombre || linea.producto || linea.articulo || linea.detalle || promoDefaults.descripcion || "";
+    const codigo = linea.codigo || linea.Codigo || linea.promocion || linea.promoCodigo || promoDefaults.codigo || "";
+    const cantidad = parseInt(linea.cantidad ?? linea.qty ?? linea.Cantidad ?? 1, 10) || 1;
+    const monto = parseFloat(
+        linea.montoDescuento ?? linea.MontoDescuento ?? linea.valorDescuento ?? linea.ValorDescuento ?? linea.valor ?? linea.Valor ?? linea.ahorro ?? linea.Ahorro ?? 0
+    ) || 0;
+    const moneda = linea.monedaDescuento || linea.MonedaDescuento || linea.moneda || linea.Moneda || linea.monedaVenta || linea.monedaVenta || "D";
+    const precioUnitario = parseFloat(linea.precioUnitario ?? linea.PrecioUnitario ?? linea.precio ?? linea.Precio ?? 0) || 0;
 
     return {
         tipo,
@@ -118,32 +118,69 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
 function normalizarPromoDetalle(response, codigoPromo) {
     const data = parseJSONResponse(response);
     if (!data) return null;
-    ////este caso nunca ocurrira porqe siempre retornara un objeto
-    if (Array.isArray(data)) {
-        console.log("no creo que entre en esta funcion")
-        const lineas = data.map(item => normalizarDetalleLinea(item, { codigo: codigoPromo }));
-        return {
-            codigo: codigoPromo,
-            descripcion: data[0]?.descripcion || data[0]?.nombre || "Promoción disponible",
-            lineas: lineas.filter(linea => linea.descripcion || linea.monto || linea.precioUnitario)
-        };
-    }
 
-    const lineasRaw = data.detalles || data.detalle || data.items || data.lineas || data.beneficios || data.promociones;
-    if (Array.isArray(lineasRaw) && lineasRaw.length > 0) {
-        console.log("entre en la funcion 1 para ver si tiene el detalle de detalle")
-        const lineas = lineasRaw.map(item => normalizarDetalleLinea(item, { codigo: data.codigo || codigoPromo, descripcion: data.descripcion }));
+    const codigoGeneral = data.codigo || data.Codigo || codigoPromo;
+    const descripcionGeneral = data.descripcion || data.Descripcion || "Promoción disponible";
+
+    if (Array.isArray(data)) {
+        const lineas = data
+            .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
+            .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
+
         return {
-            codigo: data.codigo || codigoPromo,
-            descripcion: data.descripcion || lineas[0]?.descripcion || "Promoción disponible",
+            codigo: codigoGeneral,
+            descripcion: descripcionGeneral || lineas[0]?.descripcion || "Promoción disponible",
             lineas
         };
     }
 
-    const singleLinea = normalizarDetalleLinea(data, { codigo: data.codigo || codigoPromo, descripcion: data.descripcion });
+    const numericKeysLineas = Object.keys(data)
+        .filter((key) => /^[0-9]+$/.test(key))
+        .sort((a, b) => Number(a) - Number(b))
+        .map((key) => data[key])
+        .filter((item) => item && typeof item === 'object');
+
+    if (numericKeysLineas.length > 0) {
+        const lineas = numericKeysLineas
+            .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
+            .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
+
+        return {
+            codigo: codigoGeneral,
+            descripcion: descripcionGeneral || lineas[0]?.descripcion || "Promoción disponible",
+            lineas
+        };
+    }
+
+    const lineasRaw = data.detalles || data.detalle || data.items || data.lineas || data.beneficios || data.promociones || data.detalleLinea || data.detalle_lineas;
+
+    if (Array.isArray(lineasRaw) && lineasRaw.length > 0) {
+        const lineas = lineasRaw
+            .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
+            .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
+
+        return {
+            codigo: codigoGeneral,
+            descripcion: descripcionGeneral || lineas[0]?.descripcion || "Promoción disponible",
+            lineas
+        };
+    }
+
+    if (lineasRaw && typeof lineasRaw === 'object') {
+        const lineas = [normalizarDetalleLinea(lineasRaw, { codigo: codigoGeneral, descripcion: descripcionGeneral })]
+            .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
+
+        return {
+            codigo: codigoGeneral,
+            descripcion: descripcionGeneral || lineas[0]?.descripcion || "Promoción disponible",
+            lineas
+        };
+    }
+
+    const singleLinea = normalizarDetalleLinea(data, { codigo: codigoGeneral, descripcion: descripcionGeneral });
     return {
-        codigo: data.codigo || codigoPromo,
-        descripcion: data.descripcion || singleLinea.descripcion || "Promoción disponible",
+        codigo: codigoGeneral,
+        descripcion: descripcionGeneral || singleLinea.descripcion || "Promoción disponible",
         lineas: [singleLinea]
     };
 }
@@ -188,7 +225,6 @@ async function obtenerCodigosPromociones() {
         // Validar que tenemos productos seleccionados
         if (!window.productosSeleccionados || Object.keys(window.productosSeleccionados).length === 0) {
             console.log("NO supere la validacion de que si tengo items seleccionados");
-            console.log(window.productosSeleccionados)
             mostrarSinPromociones();
             return;
         }
@@ -231,9 +267,6 @@ async function obtenerDetallesPromociones(codigosPromos) {
     listaPromociones.innerHTML = "";
     
     const codigosArray = Array.isArray(codigosPromos) ? codigosPromos : Object.values(codigosPromos);
-    const promoCount = codigosArray.length;
-    contadorPromos.textContent = `Se encontraron ${promoCount} promoción${promoCount !== 1 ? 'es' : ''}`;
-
     const promesasDetalles = codigosArray.map(codigo => obtenerDetallePromo(codigo));
     const resultados = await Promise.allSettled(promesasDetalles);
 
@@ -250,9 +283,11 @@ async function obtenerDetallesPromociones(codigosPromos) {
         promosLoading.classList.add("hidden");
         listaPromociones.innerHTML = "";
         sinPromociones.classList.remove("hidden");
+        contadorPromos.textContent = "";
         return;
     }
 
+    contadorPromos.textContent = `Se encontraron ${promoExitosaCount} promoción${promoExitosaCount !== 1 ? 'es' : ''}`;
     promosLoading.classList.add("hidden");
     promosTotal.classList.remove("hidden");
     calcularTotalesPromociones();
