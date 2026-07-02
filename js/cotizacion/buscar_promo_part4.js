@@ -141,10 +141,12 @@ function normalizarPromoDetalle(response, codigoPromo) {
         .filter((item) => item && typeof item === 'object');
 
     if (numericKeysLineas.length > 0) {
+        console.log("Se encontraron lineas numericas en la respuesta:", numericKeysLineas);
         const lineas = numericKeysLineas
             .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
             .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
 
+        console.log("que se encontro al normalisar",lineas);
         return {
             codigo: codigoGeneral,
             descripcion: descripcionGeneral || lineas[0]?.descripcion || "Promoción disponible",
@@ -155,6 +157,7 @@ function normalizarPromoDetalle(response, codigoPromo) {
     const lineasRaw = data.detalles || data.detalle || data.items || data.lineas || data.beneficios || data.promociones || data.detalleLinea || data.detalle_lineas;
 
     if (Array.isArray(lineasRaw) && lineasRaw.length > 0) {
+        console.log("o talves se usa la otra funcion?");
         const lineas = lineasRaw
             .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
             .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
