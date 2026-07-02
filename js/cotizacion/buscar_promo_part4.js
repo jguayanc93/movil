@@ -93,6 +93,7 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
     const tipoRaw = (linea.tipo || linea.tipoPromocion || linea.accion || linea.accionPromo || linea.modo || "").toString().toLowerCase();
     const esRegalo = tipoRaw.includes("regalo") || tipoRaw.includes("gift") || tipoRaw.includes("gratis") || tipoRaw.includes("obsequio") || parseFloat(linea.precioUnitario) === 0;
     const tipo = esRegalo ? "REGALO" : "DESCUENTO";
+    console.log("revisando el tipo de regreso que a manejado",tipo);
     const descripcion = linea.descripcion || linea.nombre || linea.producto || linea.articulo || linea.detalle || promoDefaults.descripcion || "";
     const codigo = linea.codigo || linea.promocion || linea.promoCodigo || promoDefaults.codigo || "";
     const cantidad = parseInt(linea.cantidad ?? linea.qty ?? 1, 10) || 1;
