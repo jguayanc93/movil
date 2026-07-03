@@ -137,14 +137,13 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
 }
 
 function normalizarPromoDetalle(response, codigoPromo) {
+    if(response.startsWith("NO SUFICIENTE")) return null;
     // El backend puede devolver un objeto con detalle o una colección indexada.
     const data2= parseJSONResponse(response);
     // Esta función intenta normalizar cualquier estructura válida a:
     // { codigo, descripcion, lineas: [ ... ] }
     const data = parseJSONResponse(data2);
     if (!data) return null;
-
-    if(data.startsWith("NO SUFICIENTE")) return null;
     
     // Extracción de código y descripción general con alias.
     const codigoGeneral = data.codigo || data.Codigo || codigoPromo;
