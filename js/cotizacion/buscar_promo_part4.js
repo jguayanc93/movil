@@ -141,6 +141,8 @@ function normalizarPromoDetalle(response, codigoPromo) {
     const data = parseJSONResponse(response);
     if (!data) return null;
 
+    console.log("de 1 revisa esto mejor",data);
+
     // Extracción de código y descripción general con alias.
     const codigoGeneral = data.codigo || data.Codigo || codigoPromo;
     const descripcionGeneral = data.descripcion || data.Descripcion || "Promoción disponible";
@@ -354,7 +356,6 @@ async function obtenerDetallePromo(codigoPromo) {
 
         const paso1 = await fetch(rutapromodetalles, fetchobj);
         const textoRespuesta = await paso1.text();
-        console.log(`Detalle de promoción ${codigoPromo}:`, textoRespuesta);
 
         // El backend puede devolver un objeto con claves numéricas, arrays, o un objeto detalle.
         const detallePromo = normalizarPromoDetalle(textoRespuesta, codigoPromo);
