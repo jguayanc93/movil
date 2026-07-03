@@ -210,6 +210,7 @@ function normalizarPromoDetalle(response, codigoPromo) {
 
     // Fallback: normaliza el objeto completo como una sola línea.
     const singleLinea = normalizarDetalleLinea(data, { codigo: codigoGeneral, descripcion: descripcionGeneral });
+    console.log("sera esta funcion 3");
     return {
         codigo: codigoGeneral,
         descripcion: descripcionGeneral || singleLinea.descripcion || "Promoción disponible",
@@ -356,6 +357,7 @@ async function obtenerDetallePromo(codigoPromo) {
 
         // El backend puede devolver un objeto con claves numéricas, arrays, o un objeto detalle.
         const detallePromo = normalizarPromoDetalle(textoRespuesta, codigoPromo);
+        console.log("y esto regreso despues de normalisar",detallePromo);
 
         if (!detallePromo || !detallePromo.lineas || detallePromo.lineas.length === 0) {
             return null;
