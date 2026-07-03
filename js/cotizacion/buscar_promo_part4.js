@@ -137,6 +137,7 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
 }
 
 function normalizarPromoDetalle(response, codigoPromo) {
+    console.log("QUE EXTRAÑO LA RESPONSE",response);
     if(response.startsWith("NO SUFICIENTE")) return null;
     // El backend puede devolver un objeto con detalle o una colección indexada.
     const data2= parseJSONResponse(response);
