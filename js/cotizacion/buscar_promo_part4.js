@@ -143,6 +143,8 @@ function normalizarPromoDetalle(response, codigoPromo) {
     // { codigo, descripcion, lineas: [ ... ] }
     const data = parseJSONResponse(data2);
     if (!data) return null;
+
+    if(data.startsWith("NO SUFICIENTE")) return null;
     
     // Extracción de código y descripción general con alias.
     const codigoGeneral = data.codigo || data.Codigo || codigoPromo;
@@ -172,7 +174,6 @@ function normalizarPromoDetalle(response, codigoPromo) {
     //lo que pasa es un array de objetos que pasan con estructura clasica de ejem
     //[0:{ codigo: 14603, descripcion: "promocion tal", cantidad: 1, montoDescuento:20.06,monedaDescuento:"D" }]
     if (numericKeysLineas.length > 0) {
-        console.log("no creo q pueda romper la funcion 1 cuando no alcanse");
         const lineas = numericKeysLineas
             .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
             .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
