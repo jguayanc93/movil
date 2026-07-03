@@ -97,7 +97,8 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
     ).toString().toLowerCase();
 
     // Determina si la línea es regalo por palabras clave o precio unitario igual a cero.
-    const esRegalo = tipoRaw.includes("regalo") || tipoRaw.includes("gift") || tipoRaw.includes("gratis") || tipoRaw.includes("obsequio") || parseFloat(linea.precioUnitario ?? linea.PrecioUnitario ?? linea.precio ?? linea.Precio ?? 0) === 0;
+    // const esRegalo = tipoRaw.includes("regalo") || tipoRaw.includes("gift") || tipoRaw.includes("gratis") || tipoRaw.includes("obsequio") || parseFloat(linea.precioUnitario ?? linea.PrecioUnitario ?? linea.precio ?? linea.Precio ?? 0) === 0;
+    const esRegalo = tipoRaw.includes("regalo") || tipoRaw.includes("gift") || tipoRaw.includes("gratis") || tipoRaw.includes("obsequio");
 
     // Define el tipo estandarizado para la UI y cálculos.
     const tipo = esRegalo ? "REGALO" : "DESCUENTO";
