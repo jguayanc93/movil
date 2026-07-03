@@ -101,7 +101,7 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
 
     // Define el tipo estandarizado para la UI y cálculos.
     const tipo = esRegalo ? "REGALO" : "DESCUENTO";
-
+    console.log("lo que se encontro en el tipo fue", tipo, "y el tipoRaw es", tipoRaw);
     // Extrae la descripción con alias y fallback a la descripción de la promoción.
     const descripcion = linea.descripcion || linea.Descripcion || linea.nombre || linea.Nombre || linea.producto || linea.articulo || linea.detalle || promoDefaults.descripcion || "";
 
@@ -167,7 +167,8 @@ function normalizarPromoDetalle(response, codigoPromo) {
         .filter((item) => item && typeof item === 'object');
 
     console.log("sera esta funcion 1",numericKeysLineas);
-
+    //lo que pasa es un array de objetos que pasan con estructura clasica de ejem
+    //[0:{ codigo: 14603, descripcion: "promocion tal", cantidad: 1, montoDescuento:20.06,monedaDescuento:"D" }]
     if (numericKeysLineas.length > 0) {
         const lineas = numericKeysLineas
             .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
