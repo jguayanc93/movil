@@ -91,6 +91,7 @@ function parseJSONResponse(value) {
 // Normaliza una línea de promoción a un formato interno común.
 // Esto permite manejar distintos nombres de campo que pueda devolver el backend.
 function normalizarDetalleLinea(linea, promoDefaults = {}) {
+    console.log("normalizando linea", linea, "con defaults", promoDefaults);
     // Extrae el tipo de línea usando múltiples alias posibles.
     const tipoRaw = (
         linea.tipo || linea.Tipo || linea.tipoPromocion || linea.TipoPromocion || linea.accion || linea.accionPromo || linea.modo || ""
