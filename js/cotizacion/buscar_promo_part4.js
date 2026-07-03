@@ -147,8 +147,9 @@ function normalizarPromoDetalle(response, codigoPromo) {
     // Esta función intenta normalizar cualquier estructura válida a:
     // { codigo, descripcion, lineas: [ ... ] }
     const data = parseJSONResponse(data2);
+    console.log("QUE EXTRAÑO LA RESPONSE2",typeof data,data);
     if (!data) return null;
-    
+    console.log("Y ESTO SI PASO LA COMPROBACION?");
     // Extracción de código y descripción general con alias.
     const codigoGeneral = data.codigo || data.Codigo || codigoPromo;
     const descripcionGeneral = data.descripcion || data.Descripcion || "Promoción disponible";
