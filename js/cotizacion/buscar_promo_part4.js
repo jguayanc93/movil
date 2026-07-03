@@ -150,6 +150,10 @@ function normalizarPromoDetalle(response, codigoPromo) {
     console.log("QUE EXTRAÑO LA RESPONSE2",typeof data,data);
     if (!data) return null;
     console.log("Y ESTO SI PASO LA COMPROBACION?");
+    if(data.startsWith("NO")) {
+        console.log("no estoi retornandome2");
+        return null;
+    }
     // Extracción de código y descripción general con alias.
     const codigoGeneral = data.codigo || data.Codigo || codigoPromo;
     const descripcionGeneral = data.descripcion || data.Descripcion || "Promoción disponible";
