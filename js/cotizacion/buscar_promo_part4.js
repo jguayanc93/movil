@@ -141,7 +141,10 @@ function normalizarPromoDetalle(response, codigoPromo) {
     const data = parseJSONResponse(response);
     if (!data) return null;
 
+    const data2= parseJSONResponse(data);
+
     console.log("de 1 revisa esto mejor",typeof data,data);
+    console.log("de 2 revisa esto mejor",typeof data2,data2);
 
     // Extracción de código y descripción general con alias.
     const codigoGeneral = data.codigo || data.Codigo || codigoPromo;
