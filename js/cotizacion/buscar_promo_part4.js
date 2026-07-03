@@ -172,6 +172,7 @@ function normalizarPromoDetalle(response, codigoPromo) {
     //lo que pasa es un array de objetos que pasan con estructura clasica de ejem
     //[0:{ codigo: 14603, descripcion: "promocion tal", cantidad: 1, montoDescuento:20.06,monedaDescuento:"D" }]
     if (numericKeysLineas.length > 0) {
+        console.log("no creo q pueda romper la funcion 1 cuando no alcanse");
         const lineas = numericKeysLineas
             .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
             .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
