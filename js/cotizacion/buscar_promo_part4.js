@@ -165,8 +165,9 @@ function normalizarPromoDetalle(response, codigoPromo) {
         .map((key) => data[key])
         .filter((item) => item && typeof item === 'object');
 
+    console.log("sera esta funcion 1",numericKeysLineas);
+
     if (numericKeysLineas.length > 0) {
-        console.log("sera esta funcion 1");
         const lineas = numericKeysLineas
             .map(item => normalizarDetalleLinea(item, { codigo: codigoGeneral, descripcion: descripcionGeneral }))
             .filter(linea => linea.descripcion || linea.monto || linea.precioUnitario);
