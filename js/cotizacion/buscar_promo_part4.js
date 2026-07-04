@@ -77,23 +77,10 @@ function convertirMoneda(monto, monedaOrigen) {
 }
 
 function parseJSONResponse(value) {
+    console.log("parseando el valor",typeof value,value);
     if (typeof value === "string") {
         try {
             return JSON.parse(value);
-            // const paso1=JSON.parse(value);
-            // console.log("siendo parseado",paso1)
-            // if(Array.isArray(paso1)){
-            //     console.log("cual corro 1")
-            //     return paso1;
-            // }
-            // if(typeof paso1 === "object"){
-            //     console.log("cual corro 2")
-            //     return paso1;
-            // }
-            // if(typeof paso1 === "string"){
-            //     console.log("cual corro 3")
-            //     return null;
-            // }
         } catch (err) {
             console.warn("No se pudo parsear la respuesta JSON:", err);
             return null;
@@ -101,6 +88,15 @@ function parseJSONResponse(value) {
     }
     return value;
 }
+// function parseJSONResponse2(value) {
+//     try {
+//         return JSON.parse(value);
+//     } catch (err) {
+//         console.warn("No se pudo parsear la respuesta JSON:", err);
+//         return null;
+//     }
+//     return value;
+// }
 
 // Normaliza una línea de promoción a un formato interno común.
 // Esto permite manejar distintos nombres de campo que pueda devolver el backend.
