@@ -79,21 +79,21 @@ function convertirMoneda(monto, monedaOrigen) {
 function parseJSONResponse(value) {
     if (typeof value === "string") {
         try {
-            // return JSON.parse(value);
-            const paso1=JSON.parse(value);
-            console.log("siendo parseado",paso1)
-            if(Array.isArray(paso1)){
-                console.log("cual corro 1")
-                return paso1;
-            }
-            if(typeof paso1 === "object"){
-                console.log("cual corro 2")
-                return paso1;
-            }
-            if(typeof paso1 === "string"){
-                console.log("cual corro 3")
-                return null;
-            }
+            return JSON.parse(value);
+            // const paso1=JSON.parse(value);
+            // console.log("siendo parseado",paso1)
+            // if(Array.isArray(paso1)){
+            //     console.log("cual corro 1")
+            //     return paso1;
+            // }
+            // if(typeof paso1 === "object"){
+            //     console.log("cual corro 2")
+            //     return paso1;
+            // }
+            // if(typeof paso1 === "string"){
+            //     console.log("cual corro 3")
+            //     return null;
+            // }
         } catch (err) {
             console.warn("No se pudo parsear la respuesta JSON:", err);
             return null;
