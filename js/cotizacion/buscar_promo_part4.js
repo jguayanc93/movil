@@ -79,7 +79,15 @@ function convertirMoneda(monto, monedaOrigen) {
 function parseJSONResponse(value) {
     if (typeof value === "string") {
         try {
-            return JSON.parse(value);
+            // return JSON.parse(value);
+            const paso1=JSON.parse(value);
+            console.log("siendo parseado",paso1)
+            if(typeof paso1 === "object"){
+                return paso1;
+            }
+            if(typeof paso1 === "string"){
+                return null;
+            }
         } catch (err) {
             console.warn("No se pudo parsear la respuesta JSON:", err);
             return null;
@@ -139,21 +147,11 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
 function normalizarPromoDetalle(response, codigoPromo) {
     // El backend puede devolver un objeto con detalle o una colección indexada.
     const data2= parseJSONResponse(response);
-    console.log("QUE EXTRAÑO LA RESPONSE",typeof data2,data2);
-    if(data2.startsWith("NO")) {
-        console.log("no estoi retornandome");
-        return null;
-    }
     // Esta función intenta normalizar cualquier estructura válida a:
     // { codigo, descripcion, lineas: [ ... ] }
     const data = parseJSONResponse(data2);
-    console.log("QUE EXTRAÑO LA RESPONSE2",typeof data,data);
     if (!data) return null;
-    console.log("Y ESTO SI PASO LA COMPROBACION?");
-    if(data.startsWith("NO")) {
-        console.log("no estoi retornandome2");
-        return null;
-    }
+    
     // Extracción de código y descripción general con alias.
     const codigoGeneral = data.codigo || data.Codigo || codigoPromo;
     const descripcionGeneral = data.descripcion || data.Descripcion || "Promoción disponible";
