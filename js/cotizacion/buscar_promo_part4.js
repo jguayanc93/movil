@@ -179,6 +179,8 @@ function normalizarPromoDetalle(response, codigoPromo) {
         .filter((item) => item && typeof item === 'object');
 
     console.log("sera esta funcion 1",numericKeysLineas);
+    if(numericKeysLineas.length == 0){ return null; }
+    console.log("no deberia escapar de aqui");
     //lo que pasa es un array de objetos que pasan con estructura clasica de ejem
     //[0:{ codigo: 14603, descripcion: "promocion tal", cantidad: 1, montoDescuento:20.06,monedaDescuento:"D" }]
     if (numericKeysLineas.length > 0) {
