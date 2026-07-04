@@ -82,7 +82,7 @@ function parseJSONResponse(value) {
             // return JSON.parse(value);
             const paso1=JSON.parse(value);
             console.log("siendo parseado",paso1)
-            if(typeof paso1 === "object"){
+            if(typeof paso1 === "object" || Array.isArray(paso1)){
                 return paso1;
             }
             if(typeof paso1 === "string"){
