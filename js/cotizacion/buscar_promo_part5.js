@@ -152,7 +152,9 @@ window.crearCotizacion = async function () {
 
         const paso1 = await fetch(rutacotizacionnewcrear, fetchobj);
         const textoRespuesta = await paso1.text();
+        console.log("Respuesta del backend:", textoRespuesta);
         const data = parseJSONResponse(textoRespuesta);
+        console.log("respuesta parseada", data);
 
         const esValida = paso1.ok && (
             (typeof data === "object" && data !== null && (
