@@ -29,6 +29,7 @@ const rutaproductoencontrado=produccion+"/producto/encontrado";
 const rutacarritorentabilidad=produccion+"/producto/rentabilidad";
 ////nuevas rutas con respecto ala COTIZACION CREAR
 const rutacotizacioncrear=produccion+"/cotizacion/create";
+const rutacotizacionnewcrear=produccion+"/cotizacion/pegar";
 ///nuevos rutas con respecto ala COTIZACION LEER
 const rutacotizacionleer=produccion+"/cotizacion/read";
 const rutacotizacionleerprom=produccion+"/cotizacion/readprom";

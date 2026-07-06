@@ -44,7 +44,7 @@ const modalBackdropConfirmacion = document.getElementById("modal-backdrop-confir
 // ========================================
 // FUNCIÓN DE CONVERSIÓN DE MONEDA
 // ========================================
-const tipoCambioUSDPEN = 3.80; // Tasa de cambio fija (ajustable según necesidad)
+const tipoCambioUSDPEN = 3.403; // Tasa de cambio fija (ajustable según necesidad)
 
 function obtenerMonedaSeleccionada() {
     const selectMoneda = document.getElementById("alm");

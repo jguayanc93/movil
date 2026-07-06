@@ -215,8 +215,25 @@ function cerrar_carrito(){ document.getElementById("carro-contenedor").classList
 function remover_item(codi){
     delete agrupacion[codi];
     document.getElementById("carro-contenedor").classList.add('hidden');
-    if(Object.keys(agrupacion).length==0){
-        document.getElementById("creacion").classList.remove("bg-green-500");
-        document.getElementById("creacion").classList.add("bg-rose-500");
+
+    if (window.productosSeleccionados) {
+        for (let index in window.productosSeleccionados) {
+            if (window.productosSeleccionados[index] && window.productosSeleccionados[index].codigo === codi) {
+                delete window.productosSeleccionados[index];
+            }
+        }
+        if (Array.isArray(window.idsProductosAgregados)) {
+            const idx = window.idsProductosAgregados.indexOf(codi);
+            if (idx !== -1) {
+                window.idsProductosAgregados.splice(idx, 1);
+            }
+        }
+        if (typeof window.actualizarResumenProductos === "function") {
+            window.actualizarResumenProductos();
+        }
+    }
+
+    if (typeof window.actualizarBotonCreacion === "function") {
+        window.actualizarBotonCreacion();
     }
 }

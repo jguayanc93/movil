@@ -116,6 +116,9 @@ function agregarProductoSeleccionado(producto, cantidad, descuento) {
 function actualizarResumenProductos() {
     const cantidad = Object.keys(productosSeleccionados).length;
     cantidadProductos.textContent = `${cantidad} producto${cantidad !== 1 ? 's' : ''}`;
+    if (typeof window.actualizarBotonCreacion === "function") {
+        window.actualizarBotonCreacion();
+    }
 }
 
 // ========================================
