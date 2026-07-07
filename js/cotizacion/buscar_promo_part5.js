@@ -154,7 +154,7 @@ window.crearCotizacion = async function () {
         const textoRespuesta = await paso1.text();
         console.log("Respuesta del backend:", textoRespuesta);
         const data = parseJSONResponse(textoRespuesta);
-        console.log("respuesta parseada", data);
+        console.log("respuesta parseada",typeof data ,data);
 
         const esValida = paso1.ok && (
             (typeof data === "object" && data !== null && (
