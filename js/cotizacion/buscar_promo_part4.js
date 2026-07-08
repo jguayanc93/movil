@@ -115,7 +115,7 @@ function normalizarDetalleLinea(linea, promoDefaults = {}) {
     const tipo = esRegalo ? "REGALO" : "DESCUENTO";
     console.log("lo que se encontro en el tipo fue", tipo, "y el tipoRaw es", tipoRaw);
     // Extrae la descripción con alias y fallback a la descripción de la promoción.
-    const descripcion = linea.itemdescr || linea.Descripcion || linea.nombre || linea.Nombre || linea.producto || linea.articulo || linea.detalle || promoDefaults.descripcion || "";
+    const descripcion = linea.itemdescr || linea.descripcion || linea.nombre || linea.Nombre || linea.producto || linea.articulo || linea.detalle || promoDefaults.descripcion || "";
 
     // Extrae el código de promción con alias y fallback.
     const codigo = linea.codigo || linea.Codigo || linea.promocion || linea.promoCodigo || promoDefaults.codigo || "";
