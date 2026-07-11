@@ -25,163 +25,93 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  <div class="min-[601px]:max-w-[400px] min-[601px]:mx-auto my-4 mx-16">
-    <a href="/main.html" class="flex items-center justify-center rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-xl 
-    font-semibold text-white tracking-[.3em] shadow-xs hover:bg-indigo-700">MENU</a>
-  </div>
-
-<!-- Información del Vendedor -->
-        <div id="insertador-tipo" class="mb-8"></div>
-
-        <!-- Sección de Vendedor Simple o Selector de Marcas -->
-        <div id="contenedor-marcas" class="mb-8"></div>
-
-        <!-- Progreso Principal -->
-        <div id="marcas-multiple" class="hidden">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                
-                <!-- Tarjeta: Días Transcurridos -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center">
-                            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-                                <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0121 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                                </svg>
-                            </div>
-                            <h3 class="ml-3 text-sm font-semibold text-gray-600">Días Transcurridos</h3>
-                        </div>
-                    </div>
-                    <p class="text-3xl font-bold text-gray-900" id="respon1">-</p>
-                    <p class="text-xs text-gray-500 mt-2">Del mes actual</p>
-                </div>
-
-                <!-- Tarjeta: Meta de Ventas -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center">
-                            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
-                                <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7.5h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                                </svg>
-                            </div>
-                            <h3 class="ml-3 text-sm font-semibold text-gray-600">Meta Mensual</h3>
-                        </div>
-                    </div>
-                    <p class="text-3xl font-bold text-gray-900" id="respon2">-</p>
-                    <p class="text-xs text-gray-500 mt-2">Objetivo establecido</p>
-                </div>
-
-                <!-- Tarjeta: Avance Actual -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center">
-                            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-100">
-                                <svg class="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.25 11.25 0 015.814-5.977L21 9" />
-                                </svg>
-                            </div>
-                            <h3 class="ml-3 text-sm font-semibold text-gray-600">Avance Actual</h3>
-                        </div>
-                    </div>
-                    <p class="text-3xl font-bold text-gray-900" id="respon3">-</p>
-                    <p class="text-xs text-gray-500 mt-2">Ventas acumuladas</p>
-                </div>
-
-                <!-- Tarjeta: Porcentaje -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center">
-                            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100">
-                                <svg class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <h3 class="ml-3 text-sm font-semibold text-gray-600">Cumplimiento</h3>
-                        </div>
-                    </div>
-                    <p class="text-3xl font-bold text-gray-900"><span id="respon4">-</span>%</p>
-                    <p class="text-xs text-gray-500 mt-2">De la meta alcanzada</p>
-                </div>
-            </div>
-
-            <!-- Barra de Progreso Principal -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <div class="mb-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-lg font-semibold text-gray-900">Progreso hacia Meta</h3>
-                        <span class="text-2xl font-bold text-indigo-600" id="porcentaje-display">0%</span>
-                    </div>
-                    <p class="text-sm text-gray-600">Falta: <span class="font-semibold text-red-600" id="falta-cantidad">-</span></p>
-                </div>
-                <div class="relative bg-gray-200 rounded-full h-6 overflow-hidden">
-                    <div id="barra-progreso" class="bg-gradient-to-r from-indigo-500 to-purple-600 h-full rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
-                </div>
-                <div class="flex justify-between text-xs text-gray-500 mt-2">
-                    <span>$0</span>
-                    <span id="meta-display">Meta: $-</span>
-                </div>
-            </div>
-
-            <!-- Fila de Mensaje y Costo/Rentabilidad -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                
-                <!-- Mensaje del Sistema -->
-                <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-lg shadow-md p-6 border-l-4 border-indigo-500">
-                    <h3 class="text-sm font-semibold text-gray-600 mb-2">Estado del Mes</h3>
-                    <p class="text-lg font-semibold text-indigo-900" id="respon5">Cargando...</p>
-                    <div class="mt-3 text-xs text-indigo-700 bg-white px-3 py-2 rounded">
-                        <p>💡 Este mensaje refleja tu desempeño con respecto a la meta establecida.</p>
-                    </div>
-                </div>
-
-                <!-- Costo -->
-                <div id="marca-costo" class="hidden bg-gradient-to-br from-orange-50 to-red-50 rounded-lg shadow-md p-6 border-l-4 border-orange-500">
-                    <h3 class="text-sm font-semibold text-gray-600 mb-2">Costo Asociado</h3>
-                    <p class="text-3xl font-bold text-orange-900" id="respon6">-</p>
-                    <div class="mt-3 text-xs text-orange-700 bg-white px-3 py-2 rounded">
-                        <p>💡 Costo total de las operaciones realizadas.</p>
-                    </div>
-                </div>
-
-                <!-- Rentabilidad -->
-                <div id="marca-rentabilidad" class="hidden bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg shadow-md p-6 border-l-4 border-green-500">
-                    <h3 class="text-sm font-semibold text-gray-600 mb-2">Rentabilidad</h3>
-                    <p class="text-3xl font-bold text-green-900" id="respon7">-</p>
-                    <div class="mt-3 text-xs text-green-700 bg-white px-3 py-2 rounded">
-                        <p>✓ Ganancia neta de tus operaciones.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Resumen Informativo -->
-            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-                <h3 class="font-semibold text-gray-900 mb-4">📊 Análisis de Cumplimiento</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-white p-4 rounded border border-blue-200">
-                        <div class="text-blue-600 font-bold mb-2">⏰ Tiempo</div>
-                        <p class="text-sm text-gray-700">Monitorea cuántos días han transcurrido</p>
-                    </div>
-                    <div class="bg-white p-4 rounded border border-blue-200">
-                        <div class="text-blue-600 font-bold mb-2">🎯 Meta</div>
-                        <p class="text-sm text-gray-700">Tu objetivo de ventas del mes</p>
-                    </div>
-                    <div class="bg-white p-4 rounded border border-blue-200">
-                        <div class="text-blue-600 font-bold mb-2">📈 Progreso</div>
-                        <p class="text-sm text-gray-700">Las ventas que has acumulado</p>
-                    </div>
-                    <div class="bg-white p-4 rounded border border-blue-200">
-                        <div class="text-blue-600 font-bold mb-2">✅ Cumplimiento</div>
-                        <p class="text-sm text-gray-700">Qué porcentaje de meta alcanzaste</p>
-                    </div>
-                </div>
-            </div>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex flex-col items-center gap-4 mb-6">
+            <a href="/main.html" class="w-full max-w-xs text-center rounded-full bg-indigo-600 px-5 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors">← Volver al menú</a>
         </div>
 
-        <!-- Detalle para depuración -->
-        <div id="detallado" class="hidden"></div>
+        <div id="insertador-tipo" class="mb-6"></div>
+        <div id="contenedor-marcas" class="mb-6"></div>
 
+        <section id="cuota-mensual" class="bg-white rounded-3xl shadow-lg p-5 sm:p-6 mb-6 hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.25em] text-indigo-600">Segmento 1</p>
+                    <h2 class="text-2xl font-bold text-slate-900">Cuota Mensual</h2>
+                </div>
+                <div class="rounded-full bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-700">Resumen del mes</div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
+                <article class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-sm font-medium text-slate-500">Meta mensual</p>
+                    <p id="meta-mensual" class="mt-3 text-3xl font-bold text-slate-900">-</p>
+                </article>
+                <article class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-sm font-medium text-slate-500">Avance actual</p>
+                    <p id="avance-mensual" class="mt-3 text-3xl font-bold text-slate-900">-</p>
+                </article>
+                <article class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-sm font-medium text-slate-500">Cumplimiento</p>
+                    <p id="cumplimiento-mensual" class="mt-3 text-3xl font-bold text-slate-900">-</p>
+                </article>
+                <article class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-sm font-medium text-slate-500">Estado</p>
+                    <p id="mensaje-mensual" class="mt-3 text-lg font-semibold text-slate-900">Cargando...</p>
+                </article>
+            </div>
+
+            <div class="space-y-3">
+                <div class="flex items-center justify-between text-sm text-slate-500">
+                    <span>Progreso hacia la cuota mensual</span>
+                    <span id="porcentaje-display" class="font-semibold text-slate-900">0%</span>
+                </div>
+                <div class="h-4 overflow-hidden rounded-full bg-slate-200">
+                    <div id="barra-progreso" class="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                    <span id="meta-display">Meta: $0</span>
+                    <span id="falta-cantidad">Falta: $0</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="cuota-especifica" class="bg-white rounded-3xl shadow-lg p-5 sm:p-6 mb-6 hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.25em] text-emerald-600">Segmento 2</p>
+                    <h2 class="text-2xl font-bold text-slate-900">Cuota Específica por Línea</h2>
+                </div>
+                <div id="linea-code" class="rounded-full bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-700">Línea: -</div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-6">
+                <article class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-sm font-medium text-slate-500">Avance específico</p>
+                    <p id="avance-especifico" class="mt-3 text-2xl font-bold text-slate-900">-</p>
+                </article>
+                <article class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-sm font-medium text-slate-500">Porcentaje objetivo</p>
+                    <p id="objetivo-especifico" class="mt-3 text-2xl font-bold text-slate-900">-</p>
+                </article>
+                <article class="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+                    <p class="text-sm font-medium text-slate-500">Cuota requerida</p>
+                    <p id="cuota-especifica-valor" class="mt-3 text-2xl font-bold text-slate-900">-</p>
+                </article>
+            </div>
+
+            <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-500">Cumplimiento específico</p>
+                        <p id="cumplimiento-especifico" class="mt-2 text-3xl font-bold text-slate-900">-</p>
+                    </div>
+                    <div class="text-sm text-slate-600">Sigue el ritmo de la línea y ajusta tu actividad para alcanzar el objetivo.</div>
+                </div>
+            </div>
+        </section>
+
+        <div id="detallado" class="hidden"></div>
     </main>
 
     <!-- Modal de error -->
@@ -215,8 +145,7 @@
                     console.log("Respuesta recibida:", resultado);
                     
                     if (Object.keys(resultado).includes("simple")) {
-                        document.getElementById("marcas-multiple").classList.remove('hidden');
-                        recibir_mensajes(resultado["simple"]);
+                        mostrar_cuota_simple(resultado["simple"]);
                     } else if (Object.keys(resultado).includes("multiple")) {
                         recorrer_bucles_marcas(resultado["multiple"]);
                     } else if (Object.keys(resultado).includes("superior")) {
@@ -229,18 +158,14 @@
                 });
         }
 
-        function recibir_mensajes(objrespon) {
-            document.getElementById("marcas-multiple").classList.remove('hidden');
-            
-            // Asignar valores a las tarjetas
-            document.getElementById("respon1").textContent = objrespon["diastexto"];
-            document.getElementById("respon2").textContent = objrespon["meta"];
-            document.getElementById("respon3").textContent = parseFloat(objrespon["avance"].toFixed(2));
-            document.getElementById("respon4").textContent = objrespon["porcentaje"];
-            document.getElementById("respon5").textContent = objrespon["mensaje"];
+        function formatMoney(value) {
+            const amount = Number(value) || 0;
+            return amount.toLocaleString("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+        }
 
-            // Actualizar barra de progreso
-            actualizar_barra_progreso(objrespon);
+        function formatPercent(value) {
+            const percent = Number(value) || 0;
+            return percent.toFixed(2) + "%";
         }
 
         function actualizar_barra_progreso(datos) {
@@ -387,7 +312,7 @@
                 })
                 .then(resultado => {
                     console.log("Datos de marca traídos:", resultado);
-                    mostrar_marca_visual(resultado["estimado"], nombre);
+                    mostrar_cuota_simple(Object.assign({}, resultado["estimado"], { codfam: abreviatura }), nombre);
                 })
                 .catch(err => {
                     console.log("Error:", err);
@@ -395,27 +320,28 @@
                 });
         }
 
-        function mostrar_marca_visual(objrespon, nombreMarca) {
-            document.getElementById("marcas-multiple").classList.remove('hidden');
-            
-            // Scroll a la sección de progreso
-            document.getElementById("marcas-multiple").scrollIntoView({ behavior: 'smooth' });
-            
-            // Actualizar valores
-            document.getElementById("respon1").textContent = objrespon["diastexto"];
-            document.getElementById("respon2").textContent = objrespon["meta"];
-            document.getElementById("respon3").textContent = objrespon["avance"];
-            document.getElementById("respon4").textContent = objrespon["porcentaje"];
-            document.getElementById("respon5").textContent = objrespon["mensaje"];
-            
-            // Mostrar costo y rentabilidad
-            document.getElementById("marca-costo").classList.remove('hidden');
-            document.getElementById("marca-rentabilidad").classList.remove('hidden');
-            document.getElementById("respon6").textContent = objrespon["costo"];
-            document.getElementById("respon7").textContent = objrespon["rentabilidad"];
+        function mostrar_cuota_simple(objrespon, nombreMarca) {
+            const cuotaMensualSection = document.getElementById("cuota-mensual");
+            const cuotaEspecificaSection = document.getElementById("cuota-especifica");
 
-            // Actualizar barra de progreso
-            actualizar_barra_progreso(objrespon);
+            cuotaMensualSection.classList.remove("hidden");
+            cuotaEspecificaSection.classList.remove("hidden");
+
+            document.getElementById("meta-mensual").textContent = formatMoney(objrespon["meta"]);
+            document.getElementById("avance-mensual").textContent = formatMoney(objrespon["avance"]);
+            document.getElementById("cumplimiento-mensual").textContent = formatPercent(objrespon["porcentaje"]);
+            document.getElementById("mensaje-mensual").textContent = objrespon["mensaje"] || "Sin mensaje disponible";
+
+            document.getElementById("linea-code").textContent = "Línea: " + (objrespon["codfam"] || nombreMarca || "-");
+            document.getElementById("avance-especifico").textContent = formatMoney(objrespon["objspec_avance"]);
+            document.getElementById("objetivo-especifico").textContent = formatPercent(objrespon["objesp"]);
+            document.getElementById("cuota-especifica-valor").textContent = formatMoney(objrespon["objspec_cuota"]);
+            document.getElementById("cumplimiento-especifico").textContent = formatPercent(objrespon["objspec_porcentaje"]);
+
+            actualizar_barra_progreso({
+                meta: objrespon["meta"],
+                avance: objrespon["avance"]
+            });
         }
 
         function mostrar_modal_error(mensaje) {
