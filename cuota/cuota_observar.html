@@ -329,7 +329,7 @@
 
             document.getElementById("meta-mensual").textContent = formatMoney(objrespon["meta"]);
             document.getElementById("avance-mensual").textContent = formatMoney(objrespon["avance"]);
-            document.getElementById("cumplimiento-mensual").textContent = formatPercent(objrespon["porcentaje"]);
+            document.getElementById("cumplimiento-mensual").textContent = objrespon["porcentaje"];
             document.getElementById("mensaje-mensual").textContent = objrespon["mensaje"] || "Sin mensaje disponible";
 
             document.getElementById("linea-code").textContent = "Línea: " + (objrespon["codfam"] || nombreMarca || "-");
