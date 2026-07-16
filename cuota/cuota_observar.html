@@ -271,17 +271,18 @@
         }
 
         function cargar_segmento3_items() {
-            if (!segmento3Activo) {
-                activar_segmento3(false);
-                return;
-            }
+            // ///activar luego
+            // if (!segmento3Activo) {
+            //     activar_segmento3(false);
+            //     return;
+            // }
 
-            const rutaSegmento3 = rutacuotamostraritems || null;
-            if (!rutaSegmento3) {
-                console.warn("La ruta del segmento 3 aún no está configurada.");
-                renderizar_segmento3([]);
-                return;
-            }
+            // const rutaSegmento3 = rutacuotamostraritems || null;
+            // if (!rutaSegmento3) {
+            //     console.warn("La ruta del segmento 3 aún no está configurada.");
+            //     renderizar_segmento3([]);
+            //     return;
+            // }
 
             const cuerpo = {};
             const peticion = new Request(rutacuotamostraritems, {
