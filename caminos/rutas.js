@@ -61,6 +61,7 @@ const rutacuotaregistromarcaseleccionada=produccion+"/cuota/marcaupdate";
 ///nuevas rutas con respecto ala CUOTA para mostrar
 const rutacuotamostrar=produccion+"/cuota/mostrar";
 const rutacuotamostrarmarca=produccion+"/cuota/marcamostrar";///puede q no sea necesario
+const rutacuotamostraritems=produccion+"/cuota/desechar";
 ///nuevas rutas con respecto ala PRODUCTOS en la BUSQUEDA DE MARCAS
 const rutaproductobuscarmarcas=produccion+"/producto/marcas";
 

@@ -111,6 +111,37 @@
             </div>
         </section>
 
+        <section id="segmento-3" class="bg-white rounded-3xl shadow-lg p-5 sm:p-6 mb-6 hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.25em] text-amber-600">Segmento 3</p>
+                    <h2 class="text-2xl font-bold text-slate-900">Items especiales requeridos</h2>
+                </div>
+                <div class="rounded-full bg-amber-50 px-4 py-2 text-sm font-medium text-amber-700">
+                    Listado de productos especiales vendidos
+                </div>
+            </div>
+
+            <div id="segmento-3-vacio" class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-sm text-slate-500">
+                No hay datos disponibles para este segmento.
+            </div>
+
+            <div id="segmento-3-lista" class="hidden">
+                <div class="overflow-hidden rounded-2xl border border-slate-200">
+                    <table class="min-w-full divide-y divide-slate-200">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Código</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Descripción</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Unidades</th>
+                            </tr>
+                        </thead>
+                        <tbody id="segmento-3-body" class="divide-y divide-slate-200 bg-white"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
         <div id="detallado" class="hidden"></div>
     </main>
 
@@ -122,6 +153,7 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            activar_segmento3(segmento3Activo);
             if (document.getElementById("detallado")) {
                 responder_revision_registro();
             }
@@ -166,6 +198,116 @@
         function formatPercent(value) {
             const percent = Number(value) || 0;
             return percent.toFixed(2) + "%";
+        }
+
+        let segmento3Activo = window.segmento3Activo ?? false;
+
+        function activar_segmento3(activo = false) {
+            segmento3Activo = Boolean(activo || window.segmento3Activo);
+            const section = document.getElementById("segmento-3");
+            const listContainer = document.getElementById("segmento-3-lista");
+            const emptyState = document.getElementById("segmento-3-vacio");
+            const body = document.getElementById("segmento-3-body");
+
+            if (!section || !listContainer || !emptyState || !body) {
+                return;
+            }
+
+            section.classList.toggle("hidden", !segmento3Activo);
+
+            if (!segmento3Activo) {
+                listContainer.classList.add("hidden");
+                emptyState.classList.remove("hidden");
+                body.innerHTML = "";
+            }
+        }
+
+        function normalizar_items_segmento3(items) {
+            if (Array.isArray(items)) {
+                return items;
+            }
+
+            if (!items || typeof items !== "object") {
+                return [];
+            }
+
+            if ("codigo" in items || "descripcion" in items || "unidades" in items) {
+                return [items];
+            }
+
+            return Object.values(items);
+        }
+
+        function renderizar_segmento3(items) {
+            const listContainer = document.getElementById("segmento-3-lista");
+            const emptyState = document.getElementById("segmento-3-vacio");
+            const body = document.getElementById("segmento-3-body");
+
+            if (!listContainer || !emptyState || !body) {
+                return;
+            }
+
+            const datos = normalizar_items_segmento3(items);
+            body.innerHTML = "";
+
+            if (!datos.length) {
+                listContainer.classList.add("hidden");
+                emptyState.classList.remove("hidden");
+                return;
+            }
+
+            emptyState.classList.add("hidden");
+            listContainer.classList.remove("hidden");
+
+            datos.forEach((item) => {
+                const fila = document.createElement("tr");
+                fila.innerHTML = `
+                    <td class="px-4 py-3 text-sm font-medium text-slate-900">${item?.codigo ?? "-"}</td>
+                    <td class="px-4 py-3 text-sm text-slate-600">${item?.descripcion ?? "-"}</td>
+                    <td class="px-4 py-3 text-sm text-slate-600">${item?.unidades ?? 0}</td>
+                `;
+                body.appendChild(fila);
+            });
+        }
+
+        function cargar_segmento3_items() {
+            if (!segmento3Activo) {
+                activar_segmento3(false);
+                return;
+            }
+
+            const rutaSegmento3 = window.rutaSegmento3 || null;
+            if (!rutaSegmento3) {
+                console.warn("La ruta del segmento 3 aún no está configurada.");
+                renderizar_segmento3([]);
+                return;
+            }
+
+            const cuerpo = {};
+            const peticion = new Request(rutacuotamostraritems, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(cuerpo),
+                mode: "cors",
+                credentials: "include"
+            });
+
+            fetch(peticion)
+                .then((resultado) => {
+                    if (!resultado.ok) {
+                        throw new Error("Fallo al cargar los items del segmento 3");
+                    }
+                    return resultado.json();
+                })
+                .then((resultado) => {
+                    console.log("regresado del segmento3",resultado)
+                    const items = resultado?.items || resultado || [];
+                    renderizar_segmento3(items);
+                })
+                .catch((err) => {
+                    console.log("Error segmento 3:", err);
+                    renderizar_segmento3([]);
+                });
         }
 
         function actualizar_barra_progreso(datos) {
@@ -342,6 +484,9 @@
                 meta: objrespon["meta"],
                 avance: objrespon["avance"]
             });
+
+            activar_segmento3(segmento3Activo);
+            cargar_segmento3_items();
         }
 
         function mostrar_modal_error(mensaje) {
