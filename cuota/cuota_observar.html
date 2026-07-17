@@ -264,9 +264,9 @@
             datos.forEach((item) => {
                 const fila = document.createElement("tr");
                 fila.innerHTML = `
-                    <td class="px-4 py-3 text-sm font-medium text-slate-900">${item?.codigo ?? "-"}</td>
-                    <td class="px-4 py-3 text-sm text-slate-600">${item?.descripcion ?? "-"}</td>
-                    <td class="px-4 py-3 text-sm text-slate-600">${item?.unidades ?? 0}</td>
+                    <td class="px-4 py-3 text-sm font-medium text-slate-900">${item[0]}</td>
+                    <td class="px-4 py-3 text-sm text-slate-600">${item[2]}</td>
+                    <td class="px-4 py-3 text-sm text-slate-600">${item[3]}</td>
                 `;
                 body.appendChild(fila);
             });
