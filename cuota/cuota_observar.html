@@ -249,6 +249,7 @@
             }
 
             const datos = normalizar_items_segmento3(items);
+            console.log("normalisado segmento",datos)
             body.innerHTML = "";
 
             if (!datos.length) {
@@ -302,7 +303,7 @@
                     return resultado.json();
                 })
                 .then((resultado) => {
-                    console.log("regresado del segmento3",resultado)
+                    // console.log("regresado del segmento3",resultado)
                     const items = resultado?.items || resultado || [];
                     renderizar_segmento3(items["simple"]);
                 })
