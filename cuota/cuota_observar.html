@@ -274,10 +274,10 @@
 
         function cargar_segmento3_items() {
             // ///activar luego
-            // if (!segmento3Activo) {
-            //     activar_segmento3(false);
-            //     return;
-            // }
+            if (!segmento3Activo) {
+                activar_segmento3(true);
+                return;
+            }
 
             // const rutaSegmento3 = rutacuotamostraritems || null;
             // if (!rutaSegmento3) {
