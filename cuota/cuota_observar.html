@@ -223,6 +223,7 @@
         }
 
         function normalizar_items_segmento3(items) {
+            console.log("si estoi siendo disparado",items)
             if (Array.isArray(items)) {
                 return items;
             }
@@ -303,7 +304,7 @@
                 .then((resultado) => {
                     console.log("regresado del segmento3",resultado)
                     const items = resultado?.items || resultado || [];
-                    renderizar_segmento3(items);
+                    renderizar_segmento3(items["simple"]);
                 })
                 .catch((err) => {
                     console.log("Error segmento 3:", err);
