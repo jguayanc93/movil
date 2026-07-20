@@ -409,12 +409,18 @@ btnGuardarCambios.addEventListener("click", () => {
     let descuento = 0;
     if (descuentoStr !== "") {
         descuento = parseFloat(descuentoStr);
+        const descuentoMax = productoEnEdicion ? (productoEnEdicion.descuentoMaximo || 6) : 6;
+
         if (isNaN(descuento)) {
             errorEditDescuento.textContent = "Descuento inválido";
             errorEditDescuento.classList.remove("hidden");
             tieneError = true;
         } else if (descuento < 0) {
             errorEditDescuento.textContent = "El descuento no puede ser negativo";
+            errorEditDescuento.classList.remove("hidden");
+            tieneError = true;
+        } else if (descuento > descuentoMax) {
+            errorEditDescuento.textContent = `El descuento máximo es ${descuentoMax.toFixed(2)}%`;
             errorEditDescuento.classList.remove("hidden");
             tieneError = true;
         }
